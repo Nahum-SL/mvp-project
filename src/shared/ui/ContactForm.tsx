@@ -97,6 +97,7 @@ export default function ContactForm() {
           <input
             name="name"
             required
+            placeholder="Tu nombre"
             value={formData.name}
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
@@ -111,6 +112,7 @@ export default function ContactForm() {
             type="email"
             name="email"
             required
+            placeholder="tu@email.com"
             value={formData.email}
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
@@ -125,6 +127,7 @@ export default function ContactForm() {
             name="number"
             maxLength={9}
             required
+            placeholder="*********"
             value={formData.number}
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
@@ -139,6 +142,7 @@ export default function ContactForm() {
             type="date"
             name="fechaNac"
             required
+            placeholder="dd/mm/aa"
             value={formData.fechaNac}
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
@@ -152,6 +156,7 @@ export default function ContactForm() {
           <textarea
             name="comment"
             rows={4}
+            placeholder="Dejanos saber tu opinion"
             value={formData.comment}
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 resize-none focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
@@ -170,4 +175,3 @@ export default function ContactForm() {
     </form>
   );
 }
-

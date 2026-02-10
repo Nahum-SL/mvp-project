@@ -23,7 +23,7 @@ function IntranetCard({ title, href, icon }: Omit<IntranetCard, "id">) {
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
         whileHover={{ y: -4 }}
-        className="h-full bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow duration-200"
+        className="h-full bg-white rounded-lg shadow-sm p-10 border border-gray-200 hover:shadow-md transition-shadow duration-200"
       >
         {icon && <div className="text-3xl mb-3">{icon}</div>}
         <h3 className="text-center text-lg font-semibold text-gray-900 mb-2">
@@ -44,11 +44,7 @@ export default function IntranetCardsGrid({ cards }: IntranetCardsGridProps) {
               key={card.id}
               className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)] max-w-300px"
             >
-              <IntranetCard
-                title={card.title}
-                href={card.href}
-                icon={card.icon}
-              />
+              <IntranetCard {...card}/>
             </div>
           ))}
         </div>

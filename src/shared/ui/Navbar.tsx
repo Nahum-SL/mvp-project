@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 
 function NavbarCard() {
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openBell, setOpenBell] = useState(false);
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white text-gray-900 shadow-md">
@@ -16,9 +17,14 @@ function NavbarCard() {
           Asescon
         </Link>
 
-        <div className="hidden md:flex
-         items-center gap-4 text-gray-600 font-medium">
-          <Link href="/" className="hover:text-blue-700 hover:underline transition-colors">
+        <div
+          className="hidden md:flex
+         items-center gap-4 text-gray-600 font-medium"
+        >
+          <Link
+            href="/"
+            className="hover:text-blue-700 hover:underline transition-colors"
+          >
             INICIO
           </Link>
           <Link
@@ -69,76 +75,97 @@ function NavbarCard() {
           </Link>
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile Notificaciones */}
         <button
-          className="md:hidden p-3 ml-auto border-2 border-blue-900 rounded-lg hover:bg-blue-700 hover:text-white transition-colors"
-          onClick={() => setOpen(!open)}
+          className="md:hidden p-3 hover:bg-blue-700 hover:text-white transition-color"
+          onClick={() => setOpenBell(!openBell)}
           aria-label="Toggle Menu"
         >
-          {open ? <X size={28} /> : <Menu size={28} />}
+          {openBell ? <X size={24} /> : <Bell size={24} />}
+        </button>
+
+        {/* Mobile Menu de Hamburgesa */}
+        <button
+          className="md:hidden p-3 ml-auto border-2 border-blue-900 rounded-lg hover:bg-blue-700 hover:text-white transition-colors"
+          onClick={() => setOpenMenu(!openMenu)}
+          aria-label="Toggle Menu"
+        >
+          {openMenu ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-        {open && (
-          <div className="md:hidden absolute top-20 right-0 w-full bg-blue-900 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              INICIO
-            </Link>
-            <Link
-              href="/nosotros"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              NOSOTROS
-            </Link>
-            <Link
-              href="/servicios"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              SERVICIOS
-            </Link>
-            <Link
-              href="/planes"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              PLANES
-            </Link>
-            <Link
-              href="/contacto"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              CONTACTO
-            </Link>
-            <Link
-              href="/blog"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              BLOG
-            </Link>
-            <Link
-              href="/intranet"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              INTRANET
-            </Link>
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="font-medium hover:text-blue-200 transition-colors"
-            >
-              TRABAJA CON NOSOTROS
-            </Link>
-          </div>
-        )}
+      {openBell && (
+        <div className="md:hidden absolute top-20 right-0 w-full bg-blue-900 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+          <Link
+            href="/blog"
+            onClick={() => setOpenBell(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            Blog
+          </Link>
+        </div>
+      )}
+
+      {openMenu && (
+        <div className="md:hidden absolute top-20 right-0 w-full bg-blue-900 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+          <Link
+            href="/"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            INICIO
+          </Link>
+          <Link
+            href="/nosotros"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            NOSOTROS
+          </Link>
+          <Link
+            href="/servicios"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            SERVICIOS
+          </Link>
+          <Link
+            href="/planes"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            PLANES
+          </Link>
+          <Link
+            href="/contacto"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            CONTACTO
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            BLOG
+          </Link>
+          <Link
+            href="/intranet"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            INTRANET
+          </Link>
+          <Link
+            href="/"
+            onClick={() => setOpenMenu(false)}
+            className="font-medium hover:text-blue-200 transition-colors"
+          >
+            TRABAJA CON NOSOTROS
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
