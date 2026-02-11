@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+:root {
+  --header-height: 100vh;
+}
+
 @theme {
   --animate-scroll: scroll 30s linear infinite;
   --animate-scroll-reverse: scroll-reverse 30s linear infinite;
+
+  /* Aquí defines tus variables de marca */
+  --color-brand-primary: #20235b;
+  --color-brand-secondary: #070921;
+  
+  /* Puedes definir escalas de grises para tus Grids */
+  --color-surface-950: #09090b; /* Fondo general */
+  --color-surface-900: #18181b; /* Cards */
+  --color-surface-800: #27272a; /* Hovers */
 }
 
 @keyframes scroll {

@@ -31,13 +31,11 @@ function ArticleCard({
           relative
           rounded-xl
           overflow-hidden
-          text-white
           transition-all
           duration-300
           bg-linear-to-tl
           from-[rgba(32,35,91,0.8)]
           to-[rgba(7,9,33,0.9)]
-          /* Ajuste de dimensiones: h-full para que todas midan lo mismo */
           ${image ? "aspect-3/4 w-full" : "min-h-55 w-full"}
         `}
       >
@@ -46,7 +44,7 @@ function ArticleCard({
             src={image}
             alt={title}
             fill
-            className="object-cover -z-10 opacity-60 group-hover:opacity-80 transition-opacity"
+            className="object-cover z-10 opacity-60 group-hover:opacity-80 transition-opacity"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         )}
@@ -69,21 +67,21 @@ function ArticleCard({
 
 export default function ArticleHome({ title, cards }: ArticleHomeProps) {
   return (
-    <section className="pt-10 border-t border-brand-black/10 relative mb-20">
+    <section className="pt-10 bg-blue-900/20 to-slate-500 border-t border-brand-black/10 relative mb-20">
       <div className="px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="w-full max-w-lg text-pretty text-center mx-auto font-semibold text-4xl text-shadow-lg py-4">
+          <h2 className="w-full max-w-lg text-pretty text-center mx-auto font-semibold text-4xl text-shadow-lg py-4 text-white">
             {title}
           </h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 justify-center">
             {cards.map((card) => (
               <Hover key={card.id}>
-                <li className="w-full list-none">
+                <div className="w-full list-none">
                   <ArticleCard {...card} />
-                </li>
+                </div>
               </Hover>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>
