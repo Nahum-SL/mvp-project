@@ -14,19 +14,19 @@ const team: Member[] = [
   {
     id: 1,
     name: "Ana Martínez",
-    role: "Frontend Developer",
+    role: "Empresa 1",
     image: "/ejemplo.jpeg",
   },
   {
     id: 2,
     name: "Carlos López",
-    role: "Backend Engineer",
+    role: "Empresa 2",
     image: "/ejemplo.jpeg",
   },
   {
     id: 3,
     name: "Lucía Torres",
-    role: "UI/UX Designer",
+    role: "Empresa 3",
     image: "/ejemplo.jpeg",
   },
 ];
@@ -34,6 +34,11 @@ const team: Member[] = [
 export default function TeamGrid() {
   return (
     <section className="p-6">
+      <header className="bg-black/20 hover:bg-black/10 transition-colors text-center">
+        <h3 className="font-bold py-10 text-3xl text-pretty text-white mb-2">
+          ALGUNOS DE NUESTROS CLIENTES
+        </h3>
+      </header>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {team.map((member) => (
           <motion.div

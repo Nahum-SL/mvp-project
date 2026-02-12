@@ -12,7 +12,7 @@ export default function GlassNavbar({ children, className }: GlassNavbarProps) {
     <nav
       className={`
         fixed top-0 left-0 w-full z-50
-        bg-blue-900/20 backdrop-blur-md
+        bg-blue-950 backdrop-blur-md
         border-b border-white/10
         ${className}
       `}

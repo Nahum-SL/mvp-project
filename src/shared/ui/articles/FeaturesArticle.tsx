@@ -22,7 +22,7 @@ function MainArticleCard({
   return (
     <motion.article
       whileHover={{ y: -5 }}
-      className="md:col-span-2 relative h-112.5 rounded-3xl overflow-hidden group cursor-pointer"
+      className="md:col-span-2 relative aspect-4/5 md:aspect-auto md:h-125 rounded-3xl overflow-hidden group cursor-pointer"
     >
       <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-900/20 to-transparent z-10" />
       <Image
@@ -50,34 +50,36 @@ export default function FeaturedArticle() {
   const secundarios = imagenes.slice(1, 3); // Tomamos los siguientes para el lateral
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-      {/* Renderizamos el principal pasando las props individuales */}
-      <MainArticleCard
-        src={principal.src}
-        alt={principal.alt}
-        title={principal.title}
-        description={principal.description}
-        span={principal.span}
-      />
+    <section className="pt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        {/* Renderizamos el principal pasando las props individuales */}
+        <MainArticleCard
+          src={principal.src}
+          alt={principal.alt}
+          title={principal.title}
+          description={principal.description}
+          span={principal.span}
+        />
 
-      {/* Artículos Secundarios mapeados */}
-      <div className="flex flex-col gap-6">
-        {secundarios.map((img) => (
-          <motion.article
-            key={img.id}
-            whileHover={{ x: 5 }}
-            className="flex-1 bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center"
-          >
-            <h3 className="text-xl font-bold text-white">{img.title}</h3>
-            <p className="text-zinc-400 text-sm mt-2">{img.description}</p>
-            <a
-              href="#"
-              className="text-brand-primary font-semibold mt-4 inline-flex items-center gap-2"
+        {/* Artículos Secundarios mapeados */}
+        <div className="flex flex-col gap-6">
+          {secundarios.map((img) => (
+            <motion.article
+              key={img.id}
+              whileHover={{ x: 5 }}
+              className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col justify-center"
             >
-              Leer más →
-            </a>
-          </motion.article>
-        ))}
+              <h3 className="text-xl font-bold text-white">{img.title}</h3>
+              <p className="text-zinc-400 text-sm mt-2">{img.description}</p>
+              <a
+                href="#"
+                className="text-brand-primary font-semibold mt-4 inline-flex items-center gap-2"
+              >
+                Leer más →
+              </a>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

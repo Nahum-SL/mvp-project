@@ -25,61 +25,61 @@ function NavbarCard() {
         >
           <Link
             href="/"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             INICIO
           </Link>
           <Link
             href="/nosotros"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             NOSOTROS
           </Link>
           <Link
             href="/servicios"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             SERVICIOS
           </Link>
           <Link
             href="/planes"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             PLANES
           </Link>
           <Link
             href="/contacto"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             CONTACTO
           </Link>
           <Link
             href="/blog"
-            className="hover:bg-blue-900/20 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             BLOG
           </Link>
         </div>
 
         {/* Desktop menu */}
-        <div className="hidden lg:flex items-center font-semibold ml-auto gap-4">
+        <div className="hidden lg:flex items-center text-white font-semibold ml-auto gap-4">
           <Link
             href="/intranet"
-            className="px-4 py-2 border-2 border-blue-900 rounded-xl text-white hover:bg-blue-700 hover:text-white transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             INTRANET
           </Link>
           <Link
             href="/intranet"
-            className="px-4 py-2 border-2 border-blue-900 rounded-xl text-white  hover:bg-blue-700 hover:text-white transition-colors"
+            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
-            COLABORA
+            UNETE
           </Link>
         </div>
 
         {/* Mobile Notificaciones */}
         <button
-          className="lg:hidden p-3 hover:bg-blue-900/20 rounded-2xl text-white stroke-white transition-color"
+          className="lg:hidden p-3 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
           onClick={() => setOpenBell(!openBell)}
           aria-label="Toggle Menu"
         >
@@ -88,7 +88,7 @@ function NavbarCard() {
 
         {/* Mobile Menu de Hamburgesa */}
         <button
-          className="lg:hidden p-3 ml-auto hover:bg-blue-900/20 rounded-2xl text-white stroke-white hover:text-white transition-colors"
+          className="lg:hidden p-3 ml-auto hover:bg-blue-900/40 rounded-2xl text-white stroke-white  transition-colors"
           onClick={() => setOpenMenu(!openMenu)}
           aria-label="Toggle Menu"
         >
@@ -164,7 +164,7 @@ function NavbarCard() {
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
-            TRABAJA CON NOSOTROS
+            UNETE
           </Link>
         </div>
       )}

@@ -5,9 +5,8 @@
 }
 
 @theme {
-  --animate-scroll: scroll 30s linear infinite;
-  --animate-scroll-reverse: scroll-reverse 30s linear infinite;
-
+  /* --animate-scroll: scroll 30s linear infinite;
+   */
   /* Aquí defines tus variables de marca */
   --color-brand-primary: #20235b;
   --color-brand-secondary: #070921;
