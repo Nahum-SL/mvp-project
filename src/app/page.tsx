@@ -1,10 +1,6 @@
 // Animaciones
 import FeaturedArticle from "../shared/ui/articles/FeaturesArticle";
 
-// Componentes
-import AnimatedCardGrid from "../shared/ui/animations/AnimateCardGrid";
-import BlogGrid from "../shared/ui/animations/BlogGrid";
-
 // Articulos
 import MidnightCard from "../components/ui/cards/MidnightCard";
 import WhiteCard from "../components/ui/cards/WhiteCard";
@@ -12,9 +8,6 @@ import ArticleCard from "../components/ui/cards/ArticleCard";
 
 // ContactForm
 import ContactForm from "../shared/ui/ContactForm";
-
-// Scroll
-import ScrollStagger from "../shared/ui/animations/ScrollStagger";
 
 // Home
 import AsesconHero from "../shared/ui/home/AsesconHero";
@@ -27,7 +20,7 @@ export default function Home() {
           companyName="ASESCON"
           mainTitle="Arquitectos De Crecimiento Empresarial"
           subtitle="Brindamos el respaldo estratégico y la seguridad jurídica que su empresa necesita para operar con total tranquilidad en el mercado actual."
-          ctaText="Agendar Consultoría"
+          ctaText="Habla con nosotros"
         />
 
         {/* Primer componente Grid */}

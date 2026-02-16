@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface HeroProps {
   companyName: string;
@@ -69,14 +70,19 @@ export default function AsesconHero({
           >
             <button
               onClick={onCtaClick}
-              className="group relative px-8 py-4 bg-white text-slate-950 font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
+              className="group relative px-8 py-4 bg-white text-slate-950 font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
             >
-              <div className="absolute inset-0 bg-blue-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative group-hover:text-white transition-colors duration-300 uppercase tracking-widest text-sm">
-                {ctaText}
-              </span>
-            </button>
+              {/* Fondo que sube en hover */}
+              <div className="absolute inset-0 bg-[#25D366] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 
+              {/* Contenido del botón (Icono + Texto) */}
+              <div className="relative flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+                <FaWhatsapp size={22} className="shrink-0" />
+                <span className="uppercase tracking-widest text-sm">
+                  {ctaText}
+                </span>
+              </div>
+            </button>{" "}
             <Link
               href="/servicios"
               className="px-8 py-4 bg-transparent text-white font-bold rounded-full border border-white/20 hover:bg-white/5 transition-colors uppercase tracking-widest text-sm"
