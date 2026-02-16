@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Equal, X, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 
-import GlassNavbar from "./navbar/GlasNavbar";
+import GlassNavbar from "../../shared/ui/navbar/GlasNavbar";
 
 function NavbarCard() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -40,12 +40,6 @@ function NavbarCard() {
             className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             SERVICIOS
-          </Link>
-          <Link
-            href="/planes"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
-          >
-            PLANES
           </Link>
           <Link
             href="/contacto"
@@ -130,13 +124,6 @@ function NavbarCard() {
             className="font-medium hover:text-blue-200 transition-colors"
           >
             SERVICIOS
-          </Link>
-          <Link
-            href="/planes"
-            onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
-          >
-            PLANES
           </Link>
           <Link
             href="/contacto"

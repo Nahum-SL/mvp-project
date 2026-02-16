@@ -3,8 +3,8 @@ import { raleway } from "../shared/types/letras";
 
 import "./globals.css";
 
-import Navbar from "../shared/ui/Navbar";
-import Footer from "../shared/ui/Footer";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Asescon App",
