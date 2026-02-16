@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AnimatedButton from "@/src/components/ui/buttons/AnimatedButton";
 
 type ContactFormData = {
   name: string;
@@ -66,112 +67,109 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8 space-y-6"
-    >
-      {/* Header */}
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-semibold text-blue-800 h-15">
-          Completa tus datos y agenda tu cita
-        </h2>
+className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl shadow-blue-900/10 border border-slate-100 overflow-hidden relative -bottom-10 z-20"    >
+      {/* Contenedor interno con padding y spacing */}
+      <div className="p-8 md:p-10 flex flex-col space-y-6">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl text-blue-800">
+            Completa tus datos y agenda tu cita
+          </h2>
+        </div>
+
+        {/* Mensajes */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-lg">
+            Mensaje enviado correctamente
+          </div>
+        )}
+
+        {/* Campos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="md:col-span-2">
+            <input
+              name="name"
+              required
+              placeholder="Nombre Completo"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Correo Corporativo / Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
+            />
+          </div>
+          <div>
+            <input
+              name="number"
+              maxLength={9}
+              required
+              placeholder="Teléfono / WhatsApp"
+              value={formData.number}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <input
+              type="date"
+              name="fechaNac"
+              required
+              placeholder="Fecha de Nacimiento"
+              value={formData.fechaNac}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <textarea
+              name="comment"
+              rows={4}
+              placeholder="Dejanos saber tu opinion / Mensaje"
+              value={formData.comment}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 resize-none focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
+            />
+          </div>
+        </div>
+
+        {/* Botón */}
+        <div className="mt-6">
+          <AnimatedButton
+            type="submit"
+            disabled={loading}
+            className="w-full flex justify-center items-center gap-2 rounded-lg bg-blue-700 py-3 text-white font-medium hover:bg-blue-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+          >
+            {loading ? "Enviando..." : "Enviar Solicitud"}
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+              />
+            </svg>
+          </AnimatedButton>
+        </div>
       </div>
-
-      {/* Mensajes */}
-      {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
-          {error}
-        </div>
-      )}
-
-      {success && (
-        <div className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-lg">
-          Mensaje enviado correctamente
-        </div>
-      )}
-
-      {/* Campos */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Nombre completo
-          </label>
-          <input
-            name="name"
-            required
-            placeholder="Tu nombre"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Correo electrónico
-          </label>
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="tu@email.com"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Teléfono
-          </label>
-          <input
-            name="number"
-            maxLength={9}
-            required
-            placeholder="*********"
-            value={formData.number}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
-          />
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Fecha de nacimiento
-          </label>
-          <input
-            type="date"
-            name="fechaNac"
-            required
-            placeholder="dd/mm/aa"
-            value={formData.fechaNac}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
-          />
-        </div>
-
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Comentario
-          </label>
-          <textarea
-            name="comment"
-            rows={4}
-            placeholder="Dejanos saber tu opinion"
-            value={formData.comment}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 resize-none focus:border-blue-700 focus:ring-2 focus:ring-blue-200 outline-none"
-          />
-        </div>
-      </div>
-
-      {/* Botón */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full flex justify-center items-center gap-2 rounded-lg bg-blue-700 py-3 text-white font-medium hover:bg-blue-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-      >
-        {loading ? "Enviando..." : "Enviar mensaje"}
-      </button>
     </form>
   );
 }

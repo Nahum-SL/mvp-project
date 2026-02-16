@@ -1,3 +1,4 @@
+'use client';
 // src/lib/animations.ts
 export const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -14,4 +15,9 @@ export const staggerContainer = {
     opacity: 1,
     transition: { staggerChildren: 0.2 }
   }
+};
+
+export const buttonMotion = {
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 0.95 },
 };

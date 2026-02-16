@@ -4,13 +4,17 @@
   --header-height: 100vh;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   /* --animate-scroll: scroll 30s linear infinite;
    */
   /* Aquí defines tus variables de marca */
   --color-brand-primary: #20235b;
   --color-brand-secondary: #070921;
-  
+
   /* Puedes definir escalas de grises para tus Grids */
   --color-surface-950: #09090b; /* Fondo general */
   --color-surface-900: #18181b; /* Cards */

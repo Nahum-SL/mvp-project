@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface HeroProps {
   companyName: string;
@@ -17,13 +18,12 @@ export default function AsesconHero({
   onCtaClick,
 }: HeroProps) {
   return (
-    <section className="relative min-h-[90vh] w-full overflow-hidden bg-slate-950 flex items-center justify-center text-center">
+    <section className="relative min-h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center text-center pt-5">
       {/* Background Decorativo: Efecto de iluminación superior */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-125 bg-blue-600/10 blur-[120px] rounded-full" />
-            
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto space-y-10">
-          
           {/* Badge Superior */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,26 +77,41 @@ export default function AsesconHero({
               </span>
             </button>
 
-            <button className="px-8 py-4 bg-transparent text-white font-bold rounded-full border border-white/20 hover:bg-white/5 transition-colors uppercase tracking-widest text-sm">
+            <Link
+              href="/servicios"
+              className="px-8 py-4 bg-transparent text-white font-bold rounded-full border border-white/20 hover:bg-white/5 transition-colors uppercase tracking-widest text-sm"
+            >
               Saber más
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>
 
       {/* Elemento decorativo inferior: Línea de horizonte */}
       <div className="absolute bottom-0 w-full h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-      
+
       {/* Stats rápidas flotantes (Solo Desktop) */}
       <div className="absolute bottom-12 left-0 w-full hidden md:block">
         <div className="container mx-auto px-6 flex justify-between items-center text-white/40 text-[10px] font-bold tracking-[0.5em] uppercase">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
             Estrategia Fiscal
           </motion.span>
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4 }}
+          >
             Auditoría Integral
           </motion.span>
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6 }}
+          >
             Consultoría Legal
           </motion.span>
         </div>

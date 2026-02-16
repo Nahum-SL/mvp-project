@@ -30,19 +30,13 @@ function NavbarCard() {
             INICIO
           </Link>
           <Link
-            href="/nosotros"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
-          >
-            NOSOTROS
-          </Link>
-          <Link
             href="/servicios"
             className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             SERVICIOS
           </Link>
           <Link
-            href="/contacto"
+            href="/#contact"
             className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
           >
             CONTACTO
@@ -110,13 +104,6 @@ function NavbarCard() {
             className="font-medium hover:text-blue-200 transition-colors"
           >
             INICIO
-          </Link>
-          <Link
-            href="/nosotros"
-            onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
-          >
-            NOSOTROS
           </Link>
           <Link
             href="/servicios"

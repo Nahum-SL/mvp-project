@@ -10,6 +10,8 @@ type Card = {
 };
 
 const cards: Card[] = [
+  
+  // Ejemplos
   { id: 1, title: "Analytics", description: "Track your performance easily." },
   { id: 2, title: "Automation", description: "Automate workflows seamlessly." },
   { id: 3, title: "Security", description: "Enterprise-level security." },

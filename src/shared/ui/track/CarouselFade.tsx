@@ -82,7 +82,7 @@ const CarouselFade = forwardRef<HTMLDivElement, Props>(
               alt={items[index].alt}
               fill
               priority={index === 0}
-              className="object-cover"
+              className="object-cover rounded-2xl"
             />
 
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">

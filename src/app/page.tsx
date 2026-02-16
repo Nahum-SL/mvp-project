@@ -1,18 +1,17 @@
 // Animaciones
-import CarouselStack from "../shared/ui/track/CarouselStack";
-import Carousel3D from "../shared/ui/track/Carousel3D";
 import FeaturedArticle from "../shared/ui/articles/FeaturesArticle";
-import CarouselFade from "../shared/ui/track/CarouselFade";
 
 // Componentes
 import AnimatedCardGrid from "../shared/ui/animations/AnimateCardGrid";
 import BlogGrid from "../shared/ui/animations/BlogGrid";
-import TeamGrid from "../shared/ui/animations/TemGrid";
 
-// Articulo
-import MidnightCard from "../shared/ui/articles/MidnightCard";
+// Articulos
+import MidnightCard from "../components/ui/cards/MidnightCard";
+import WhiteCard from "../components/ui/cards/WhiteCard";
+import ArticleCard from "../components/ui/cards/ArticleCard";
 
-import { carousel } from "../shared/types/carousel";
+// ContactForm
+import ContactForm from "../shared/ui/ContactForm";
 
 // Scroll
 import ScrollStagger from "../shared/ui/animations/ScrollStagger";
@@ -20,11 +19,10 @@ import ScrollStagger from "../shared/ui/animations/ScrollStagger";
 // Home
 import AsesconHero from "../shared/ui/home/AsesconHero";
 
-
 export default function Home() {
   return (
     <main>
-      <div className="relative z-10 bg-zinc-950">
+      <div id="/home" className="relative z-10">
         <AsesconHero
           companyName="ASESCON"
           mainTitle="Arquitectos De Crecimiento Empresarial"
@@ -33,12 +31,24 @@ export default function Home() {
         />
 
         {/* Primer componente Grid */}
-        <div className="relative z-9 bg-zinc-950 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
-          
-          <CarouselFade items={carousel} />
+        <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
+          <ArticleCard
+            titleCard="Impulsa el cambio que tu negocio necesita hoy"
+            Title="Crece con una estrategia financiera sólida."
+            Subtitle="Acelera la transformación de tu negocio con herramientas diseñadas para empresas."
+            description="Descripcion"
+            image="/ejemplo.jpeg"
+          />
 
           {/* Card derecho */}
           <MidnightCard
+            title="IMPULSA TU NEGOCIO"
+            subtitle="Sub"
+            description="Conoce nuestros servicios en detalle en el Brochure comercial"
+            textColor="Asescon"
+          />
+          {/* Card derecho */}
+          <WhiteCard
             title="IMPULSA TU NEGOCIO"
             subtitle="Sub"
             description="Conoce nuestros servicios en detalle en el Brochure comercial"
@@ -54,25 +64,14 @@ export default function Home() {
             side="right"
           />
 
-          {/* Primer Carrusel */}
-          <CarouselStack />
-
-          {/* Segundo Carrusel */}
-          <Carousel3D />
-
           {/* Primer Articulo */}
           <FeaturedArticle />
 
-          {/* Segundo Componente Grid */}
-          <ScrollStagger>
-            <AnimatedCardGrid />
-          </ScrollStagger>
-
-          {/* Quinto Componente Grid */}
-          <BlogGrid />
-
-          {/* Sexto Componente Grid */}
-          <TeamGrid />
+          <section id="contact" className="py-20 md:py-32 px-6">
+            <div className="max-w-7xl mx-auto">
+              <ContactForm />
+            </div>
+          </section>
         </div>
       </div>
     </main>
