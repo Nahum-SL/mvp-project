@@ -9,7 +9,7 @@ export const servicesData: Service[] = [
     slug: "outsourcing-contable",
     title: "Outsourcing Contable",
     description:
-      "Gestión integral de sus libros y estados financieros con precisión garantizada.",
+      "Te apoyamos mediante nuestros servicios de Outsourcing Contable, garantizando una adecuada solución.",
     text: `
     Contamos con un área especializada en la gestión integral de planillas, 
     dedicada a ofrecer un servicio personalizado, asegurando el cumplimiento 
@@ -30,6 +30,7 @@ export const servicesData: Service[] = [
         text: "Impresión de libros oficiales o presentación de libros electrónicos, presentación de DJ mensuales y anuales ante la administración tributaria, y reportes corporativos",
       },
     ],
+    src: "/outsourcing-contable.webp"
   },
   {
     id: 2,
@@ -37,7 +38,7 @@ export const servicesData: Service[] = [
     slug: "outsourcing-tributario",
     title: "Outsourcing Tributario",
     description:
-      "Cumplimiento riguroso de obligaciones fiscales para minimizar contingencias.",
+      "Podrás interactuar directamente en el proceso de tu planilla sin transferencia de archivos.",
     text: `
     Nuestro servicio de Outsourcing Tributario busca brindarte latranquilidad y seguridad
     de que tus impuestos sean liquidados correctamente, asegurando que pagues lo que corresponde, 
@@ -67,6 +68,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/outoursing-tributario.webp"
   },
   {
     id: 3,
@@ -74,7 +76,7 @@ export const servicesData: Service[] = [
     slug: "outsourcing-laboral",
     title: "Outsourcing Laboral",
     description:
-      "Administración de planillas y beneficios sociales bajo normativa vigente.",
+      "Nos hacemos cargo de tu tributación, convirtiendo los costos de los procesos en verdadero valor.",
     text: `
     Ofrecemos servicios de outsourcing laboral en áreas clave de su empresa, tales como contabilidad,
     recursos humanos y administración. Nuestro equipo de profesionales se encarga de las siguientes 
@@ -105,6 +107,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/outsourcing-laboral.webp"
   },
   // Asesoría
   {
@@ -113,7 +116,7 @@ export const servicesData: Service[] = [
     slug: "asesoria-contable",
     title: "Asesoría Contable",
     description:
-      "Consultoría estratégica para la toma de decisiones financieras informadas.",
+      "Llevado de su contabilidad de manera computarizada dentro de sus oficinas o de nuestras oficinas.",
     text: `
     levamos su contabilidad de manera computarizada, ya sea en sus oficinas o en las nuestras, 
     reportando estados financieros para cumpliendo con las obligaciones tributarias y haci evitara multas 
@@ -145,6 +148,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/asesoria-contable.webp"
   },
   {
     id: 5,
@@ -152,7 +156,7 @@ export const servicesData: Service[] = [
     slug: "asesoria-tributaria",
     title: "Asesoría Tributaria",
     description:
-      "Planeamiento fiscal preventivo para optimizar la carga impositiva.",
+      "Te apoyamos mediante nuestros servicios de Outsourcing Contable, garantizando una adecuada solución.",
     text: `
     Nuestro servicio de asesoría tributaria está diseñado para proporcionar soluciones integrales 
     y personalizadas que permitan a su empresa cumplir con todas las obligaciones fiscales de manera 
@@ -183,12 +187,13 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/asesoria-tributaria.webp"
   },
   {
     id: 6,
     category: "Asesoria",
-    slug: "adopcion-de-niif",
-    title: "Adopción de NIIF",
+    slug: "asesoria-de-niif",
+    title: "Asesoria de NIIF",
     description:
       "Implementación y actualización de estándares internacionales de información financiera.",
     text: `
@@ -221,6 +226,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/asesoria-niif.webp"
   },
   // Especializados
   {
@@ -260,6 +266,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/constitucion-de-empresas.webp"
   },
   {
     id: 8,
@@ -301,6 +308,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/reestructuracion-de-empresas.webp"
   },
   {
     id: 9,
@@ -337,6 +345,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/planeamiento-tributario.webp"
   },
   {
     id: 10,
@@ -380,6 +389,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: "/fiscalizaciones-tributarias.webp"
   },
   {
     id: 11,
@@ -422,6 +432,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: ""
   },
   {
     id: 12,
@@ -457,6 +468,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
+    src: ""
   },
   {
     id: 13,
@@ -496,5 +508,6 @@ export const servicesData: Service[] = [
         `
       }
     ],
+    src: ""
   },
 ];

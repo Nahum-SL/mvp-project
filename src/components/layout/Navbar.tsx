@@ -20,30 +20,30 @@ function NavbarCard() {
         </Link>
 
         <div
-          className="hidden lg:flex
-         items-center gap-4 text-white font-medium"
+          className="hidden lg:flex ml-auto
+         items-center gap-10 text-white font-medium"
         >
           <Link
             href="/"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             INICIO
           </Link>
           <Link
             href="/servicios"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             SERVICIOS
           </Link>
           <Link
             href="/#contact"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             CONTACTO
           </Link>
           <Link
             href="/blog"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             BLOG
           </Link>
@@ -53,13 +53,13 @@ function NavbarCard() {
         <div className="hidden lg:flex items-center text-white font-semibold ml-auto gap-4">
           <Link
             href="/intranet"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             INTRANET
           </Link>
           <Link
             href="/intranet"
-            className="hover:bg-blue-900/40 p-3 rounded-2xl transition-colors"
+            className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             UNETE
           </Link>
@@ -67,7 +67,7 @@ function NavbarCard() {
 
         {/* Mobile Notificaciones */}
         <button
-          className="lg:hidden p-3 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
+          className="lg:hidden p-4 ml-25 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
           onClick={() => setOpenBell(!openBell)}
           aria-label="Toggle Menu"
         >
@@ -76,7 +76,7 @@ function NavbarCard() {
 
         {/* Mobile Menu de Hamburgesa */}
         <button
-          className="lg:hidden p-3 ml-auto hover:bg-blue-900/40 rounded-2xl text-white stroke-white  transition-colors"
+          className="lg:hidden p-4 ml-auto hover:bg-blue-900/40 rounded-2xl text-white stroke-white  transition-colors"
           onClick={() => setOpenMenu(!openMenu)}
           aria-label="Toggle Menu"
         >
@@ -85,7 +85,7 @@ function NavbarCard() {
       </div>
 
       {openBell && (
-        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-white text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-950 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
           <Link
             href="/blog"
             onClick={() => setOpenBell(false)}
@@ -97,7 +97,7 @@ function NavbarCard() {
       )}
 
       {openMenu && (
-        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-900 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-950 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
           <Link
             href="/"
             onClick={() => setOpenMenu(false)}

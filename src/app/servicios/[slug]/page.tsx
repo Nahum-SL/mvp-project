@@ -15,6 +15,12 @@ export default async function ServicioDetallePage({
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
       {/* Hero del Servicio */}
+    {/* <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden bg-blue-950">
+      <Image 
+        src={}
+      />        
+      </section> */}
+
       <div className="bg-blue-950 text-white py-24 px-8 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-blue-600/5 blur-3xl rounded-full -translate-y-1/2" />
         <span className="relative z-10 text-blue-400 font-bold uppercase tracking-widest text-sm">

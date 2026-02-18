@@ -12,4 +12,5 @@ export interface Service {
   description: string;
   text: string;
   steps: ServiceSteps[];
+  src: string;
 }
