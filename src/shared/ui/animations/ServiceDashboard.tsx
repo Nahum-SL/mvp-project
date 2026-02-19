@@ -75,7 +75,8 @@ export default function ServiceDashboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="group bg-white rounded-4xl p-8 md:p-10 border border-slate-200 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all flex flex-col justify-between"
+              className="group bg-white rounded-4xl p-8 md:p-10 border border-slate-200
+              shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all flex flex-col justify-between hover:border-blue-500/50"
             >
               <div>
                 {/* Badge de Categoría para contexto rápido */}

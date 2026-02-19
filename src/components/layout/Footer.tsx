@@ -1,3 +1,4 @@
+//Muy buen proyecto, eres mas ordenado que yo , me dejaste impresionado ojala te lo aprueben 👾
 
 export default function Footer() {
   return (

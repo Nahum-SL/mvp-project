@@ -67,8 +67,11 @@ function NavbarCard() {
 
         {/* Mobile Notificaciones */}
         <button
-          className="lg:hidden p-4 ml-25 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
-          onClick={() => setOpenBell(!openBell)}
+          className="lg:hidden p-4 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
+          onClick={() => {
+            setOpenBell((prev) => !prev);
+            setOpenMenu(false);
+          }}
           aria-label="Toggle Menu"
         >
           {openBell ? <X size={24} /> : <Bell size={24} />}
@@ -77,7 +80,10 @@ function NavbarCard() {
         {/* Mobile Menu de Hamburgesa */}
         <button
           className="lg:hidden p-4 ml-auto hover:bg-blue-900/40 rounded-2xl text-white stroke-white  transition-colors"
-          onClick={() => setOpenMenu(!openMenu)}
+          onClick={() => {
+            setOpenMenu((prev) => !prev);
+            setOpenBell(false);
+          }}
           aria-label="Toggle Menu"
         >
           {openMenu ? <X size={30} /> : <Equal size={30} />}

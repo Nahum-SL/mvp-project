@@ -67,7 +67,8 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-className="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl shadow-blue-900/10 border border-slate-100 overflow-hidden relative -bottom-10 z-20"    >
+      className="max-w-xl mx-auto bg-gray-50 rounded-3xl shadow-2xl shadow-blue-900/10 border border-slate-100 overflow-hidden relative -bottom-10 z-20"
+    >
       {/* Contenedor interno con padding y spacing */}
       <div className="p-8 md:p-10 flex flex-col space-y-6">
         {/* Header */}

@@ -68,7 +68,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
-    src: "/outoursing-tributario.webp"
+    src: "/outsourcing-tributario.webp"
   },
   {
     id: 3,
@@ -375,7 +375,7 @@ export const servicesData: Service[] = [
       {
         id: 2,
         text: `
-        nconsistencias fiscales: Si la SUNAT detecta inconsistencias entre lo declarado por el contribuyente 
+        Inconsistencias fiscales: Si la SUNAT detecta inconsistencias entre lo declarado por el contribuyente 
         y la información obtenida a través de otras fuentes, se puede iniciar una auditoría fiscal.
         `,
       },

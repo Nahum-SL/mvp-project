@@ -1,6 +1,6 @@
 import { servicesData } from "@/src/types/servicios";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import SlugHeader from "@/src/components/ui/layout/SlugHeader";
 
 export default async function ServicioDetallePage({
   params,
@@ -14,22 +14,8 @@ export default async function ServicioDetallePage({
 
   return (
     <main className="min-h-screen bg-slate-50 pb-20">
-      {/* Hero del Servicio */}
-    {/* <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden bg-blue-950">
-      <Image 
-        src={}
-      />        
-      </section> */}
 
-      <div className="bg-blue-950 text-white py-24 px-8 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-600/5 blur-3xl rounded-full -translate-y-1/2" />
-        <span className="relative z-10 text-blue-400 font-bold uppercase tracking-widest text-sm">
-          {service.category}
-        </span>
-        <h1 className="relative z-10 text-4xl md:text-6xl font-extrabold mt-4 tracking-tight">
-          {service.title}
-        </h1>
-      </div>
+      <SlugHeader src={service.src} alt={service.title} category={service.category} title={service.title}/>
 
       <section className="max-w-5xl mx-auto px-6 -mt-10 relative z-20">
         <div className="bg-white rounded-3xl p-8 md:p-16 shadow-xl border border-slate-100">
