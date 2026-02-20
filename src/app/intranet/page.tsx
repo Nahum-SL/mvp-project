@@ -7,7 +7,7 @@ export default function IntranetPage() {
       <IntranetHeader
         title="Intranet"
         subtitle="Portal seguro de gestión empresarial ASESCON"
-        src="/outsourcing-tributario.webp"
+        src="/fondo-intranet.webp"
         alt="Fondo Intranet"
       />
 

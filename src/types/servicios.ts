@@ -432,7 +432,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
-    src: ""
+    src: "/defensa-sunafil.webp"
   },
   {
     id: 12,
@@ -468,7 +468,7 @@ export const servicesData: Service[] = [
         `,
       },
     ],
-    src: ""
+    src: "/transformacion-sociedades.webp"
   },
   {
     id: 13,
@@ -508,6 +508,6 @@ export const servicesData: Service[] = [
         `
       }
     ],
-    src: ""
+    src: "/decla-en-quiebra.webp"
   },
 ];

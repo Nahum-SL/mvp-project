@@ -1,4 +1,4 @@
-import ServiceDashboard from "@/src/shared/ui/animations/ServiceDashboard";
+import ServiceDashboard from "@/src/components/ui/layout/servicios/ServiceDashboard";
 import ServiceHeader from "@/src/components/ui/layout/ServiceHeader";
 
 export default function ServiciosPage() {

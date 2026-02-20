@@ -45,7 +45,7 @@ export default function AboutSection({ data }: Props) {
           </div>
 
           {/* Lado Derecho: Grid de Cards de Historia/Stats */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-2 gap-6">
             {data.history.map((item, index) => (
               <motion.div
                 key={item.id}

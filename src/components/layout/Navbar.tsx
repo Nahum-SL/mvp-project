@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Equal, X, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 
-import GlassNavbar from "../../shared/ui/navbar/GlasNavbar";
+import GlassNavbar from "./GlasNavbar";
 
 function NavbarCard() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -15,7 +15,7 @@ function NavbarCard() {
     <GlassNavbar>
       <div className="flex items-center h-20 px-6 md:px-10">
         {/* Logo */}
-        <Link href="/" className="text-2xl text-white font-bold mr-8">
+        <Link href="/#home" className="text-2xl text-white font-bold mr-8">
           Asescon
         </Link>
 
@@ -36,7 +36,7 @@ function NavbarCard() {
             SERVICIOS
           </Link>
           <Link
-            href="/#contact"
+            href="/#contacto"
             className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             CONTACTO
@@ -58,7 +58,7 @@ function NavbarCard() {
             INTRANET
           </Link>
           <Link
-            href="/intranet"
+            href="/unete"
             className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
             UNETE
@@ -97,7 +97,7 @@ function NavbarCard() {
             onClick={() => setOpenBell(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
-            Blog
+            BLOG
           </Link>
         </div>
       )}
@@ -105,7 +105,7 @@ function NavbarCard() {
       {openMenu && (
         <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-950 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
           <Link
-            href="/"
+            href="/#home"
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
@@ -119,7 +119,7 @@ function NavbarCard() {
             SERVICIOS
           </Link>
           <Link
-            href="/contacto"
+            href="/#contacto"
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
@@ -140,7 +140,7 @@ function NavbarCard() {
             INTRANET
           </Link>
           <Link
-            href="/"
+            href="/unete"
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >

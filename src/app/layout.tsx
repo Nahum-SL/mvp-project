@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { raleway } from "../shared/types/letras";
+import { raleway } from "../lib/fonts";
 
 import "./globals.css";
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" data-scroll-behavior="smooth">
       <body
         className={`${raleway.className} antialiased min-h-screen flex flex-col`}
       >
