@@ -3,7 +3,7 @@
 import AboutSection from "../components/ui/layout/home/AboutSection";
 
 // Data del <AboutSection />
-import { aboutUs } from "../types/about-us";
+import { aboutUs } from "../data/about-us";
 
 // Formulario de contacto
 import ContactForm from "../features/ContactForm";

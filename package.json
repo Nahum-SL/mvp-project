@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
-    "@prisma/client": "^7.3.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.31.0",
     "lucide-react": "^0.563.0",
@@ -30,7 +29,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "prisma": "^7.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

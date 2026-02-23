@@ -1,5 +1,5 @@
 // src/data/services.ts
-import { Service } from "../data/service";
+import { Service } from "../types/service";
 
 export const servicesData: Service[] = [
   // Outsourcing

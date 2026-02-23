@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { servicesData } from "@/src/types/servicios";
+import { servicesData } from "@/src/data/servicios";
 import { cn } from "@/src/lib/utils";
 
 const categories = ["Todos", "Outsourcing", "Asesoria", "Especializados"];

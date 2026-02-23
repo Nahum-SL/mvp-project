@@ -1,4 +1,4 @@
-import { servicesData } from "@/src/types/servicios";
+import { servicesData } from "@/src/data/servicios";
 import { notFound } from "next/navigation";
 import SlugHeader from "@/src/components/ui/layout/SlugHeader";
 import Link from "next/link";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { intranetLinks } from "@/src/types/intranet";
+import { intranetLinks } from "@/src/data/intranet";
 import { cn } from "@/src/lib/utils";
 import { FaArrowRight } from "react-icons/fa";
 
