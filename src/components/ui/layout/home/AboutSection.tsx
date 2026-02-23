@@ -69,7 +69,7 @@ export default function AboutSection({ data }: Props) {
                       : "bg-green-500/10 text-green-600",
                   )}
                 >
-                  <span className="text-xl font-bold italic">#</span>
+                  <span className="text-xl font-bold italic"></span>
                 </div>
 
                 <div className="space-y-2">
