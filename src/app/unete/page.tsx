@@ -1,6 +1,7 @@
 import UneteHeader from "@/src/components/ui/layout/UneteHeader"
 import UneteForm from "@/src/features/UneteForm"
 
+// Se reformara esta exibicion de la data
 export default function JoinUsPage() {
   return (
     <main>

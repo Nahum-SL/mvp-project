@@ -13,3 +13,4 @@ export interface BlogPost {
   image: string;
   slug: string;
 }
+
