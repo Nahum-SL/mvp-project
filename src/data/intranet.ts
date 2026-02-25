@@ -1,5 +1,5 @@
 // Exportado ==> IntranetDashboard.tsx
-import { Intranet } from "../types/intranet";
+import { Intranet } from "../types/intranet/intranet-links";
 
 export const intranetLinks: Intranet[] = [
 

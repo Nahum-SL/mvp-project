@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BlogPost } from "@/src/types/blog";
+import { BlogPost } from "@/src/types/blog/blog";
 
 export default function FeaturedPost({ post }: { post: BlogPost }) {
   return (

@@ -6,12 +6,12 @@ import AboutSection from "../components/ui/layout/home/AboutSection";
 import { aboutUs } from "../data/about-us";
 
 // Formulario de contacto
-import ContactForm from "../features/ContactForm";
-
+// import ContactForm from "../features/ContactForm";
+import { ContactoForm } from "../features/contacto/components/ContactoForm";
 // Header del Home
 import AsesconHero from "../components/ui/layout/AsesconHero";
 
-// 
+//
 import MidnightCard from "../components/ui/cards/MidnightCard";
 
 export default function Home() {
@@ -20,7 +20,6 @@ export default function Home() {
   return (
     <main>
       <div id="/home" className="relative z-10">
-        
         {/* Header del Home */}
         <AsesconHero
           companyName="ASESCON"
@@ -31,21 +30,21 @@ export default function Home() {
         />
 
         {/* Seccion Sobre Nosotros */}
-        <AboutSection data={aboutUs[0]}/>
+        <AboutSection data={aboutUs[0]} />
 
         {/* Descarga del Brouchet */}
-        <MidnightCard 
-          title="Impulsa tu negocio" 
-          subtitle="Sub" 
+        <MidnightCard
+          title="Impulsa tu negocio"
+          subtitle="Sub"
           description="Conoce nuestros servicios en detalle en el Brochure comercial"
-          textColor="Asescon" 
+          textColor="Asescon"
         />
 
         <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
           {/* Formulario de Contacto */}
-          <section id="contacto" className="py-20 md:py-32 px-6">
-            <div className="max-w-7xl mx-auto">
-              <ContactForm />
+          <section id="contacto" className="py-20 bg-gray-50">
+            <div className="container mx-auto max-w-2xl">
+              <ContactoForm />
             </div>
           </section>
         </div>

@@ -157,7 +157,7 @@ export default function UneteForm({ title, subtitle, src, alt }: Props) {
               <Image src={src} alt={alt} fill className="object-cover" />11
               <div className="absolute inset-0 bg-linear-to-t from-blue-950/80 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8">
-                <p className="text-white text-2xl font-bold leading-tight">
+                <p className="text-white text-2xl font-bold leading-tight"> 
                   Buscamos mentes brillantes para construir el futuro contable.
                 </p>
               </div>

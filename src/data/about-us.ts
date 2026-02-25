@@ -1,4 +1,4 @@
-import { AboutUs } from "../types/about-us";
+import { AboutUs } from "../types/unete/unete";
 
 // Exportado --> src/app/components/ui/layout/AboutSection.tsx 
 export const aboutUs: AboutUs[] = [
