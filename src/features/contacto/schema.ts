@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const contactoSchema = z.object({
   name: z.string().min(3, "El nombre debe tener al menos 3 caracteres"),
-  email: z.string().email("Correo electrónico inválido"),
+  email: z.email("Correo electrónico inválido"),
   telefono: z
     .string()
     .regex(/^\+?[0-9]{9,15}$/, "Ingrese un número válido (ej: 999888777)"),

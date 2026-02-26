@@ -11,6 +11,9 @@ import { ContactoForm } from "../features/contacto/components/ContactoForm";
 // Header del Home
 import AsesconHero from "../components/ui/layout/AsesconHero";
 
+// Post recientes
+import { RecentPosts } from "../components/sections/RecentPost";
+
 //
 import MidnightCard from "../components/ui/cards/MidnightCard";
 
@@ -39,6 +42,8 @@ export default function Home() {
           description="Conoce nuestros servicios en detalle en el Brochure comercial"
           textColor="Asescon"
         />
+
+        <RecentPosts />
 
         <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
           {/* Formulario de Contacto */}

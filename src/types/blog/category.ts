@@ -1,22 +1,12 @@
-import { BlogPost } from "./blog";
+import { BlogPost } from "./blogPost";
+
 
 export interface Category {
   id: number;
   name: string;
-  posts: BlogPost[];
+  posts: BlogPost;
 
   createdAt: string;
   updateAt: string;
 }
 
-
-// Crear Categoria
-export interface CreateCategory {
-  name: string;
-  posts: BlogPost[];
-}
-
-// Actualizar Categoria
-export interface UpdateCategoryInput {
-  prop: CreateCategory[];
-}

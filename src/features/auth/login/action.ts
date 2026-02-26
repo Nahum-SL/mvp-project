@@ -3,11 +3,11 @@
 import { cookies } from "next/headers";
 import { LoginFormValues } from "./schema";
 
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001/api/v1";
+const API_URL = process.env.NEST_API_URL || "http://localhost:3001/src";
 
 export async function loginAction(data: LoginFormValues) {
   try {
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch( `${API_URL}/auth`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

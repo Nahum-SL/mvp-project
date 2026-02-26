@@ -1,3 +1,4 @@
+import { LoginForm } from "@/src/features/auth/login/components/LoginForm";
 
 export default function LoginPage() {
   return (
@@ -6,7 +7,7 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold text-center mb-6 text-blue-900">
           Intranet ASESCON
         </h1>
-        {/* <LoginForm /> */}
+        <LoginForm />
       </div>
     </main>
   );

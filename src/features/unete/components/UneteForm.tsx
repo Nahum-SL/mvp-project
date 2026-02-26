@@ -8,12 +8,13 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 //
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useWatch } from "react-hook-form";
 import { useState } from "react";
 
 // Validaciones con Zod
 import { zodResolver } from "@hookform/resolvers/zod";
-import { uneteSchema, type UneteFormValues } from "../schema"; // Debes crear este schema
+import { uneteSchema } from "../schema"; // Debes crear este schema
+import { type UneteFormInput, type UneteFormValues } from "../schema";
 
 // Icono
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -29,13 +30,11 @@ export const UneteSection = ({ title, subtitle, src, alt }: Props) => {
   // 1. Forzamos a useForm a usar exactamente el tipo que infiere Zod
   const {
     reset,
+    control,
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<UneteFormValues>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+  } = useForm<UneteFormInput, unknown, UneteFormValues>({
     resolver: zodResolver(uneteSchema),
     // Es buena práctica inicializar valores si usas coerce
     defaultValues: {
@@ -47,17 +46,20 @@ export const UneteSection = ({ title, subtitle, src, alt }: Props) => {
     },
   });
 
-  // Limpiar el input
-
-  const selectedFile = watch("cv");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [status, setStatus] = useState<{
     type: "success" | "error";
     msg: string;
   } | null>(null);
 
+  // Limpiar el input
+
+  const selectedFile = useWatch({
+    control,
+    name: "cv",
+  });
+
   // 2. Aseguramos que data use el tipo inferido
-  const onSubmit: SubmitHandler<UneteFormValues> = async (data: UneteFormValues) => {
+  const onSubmit: SubmitHandler<UneteFormValues> = async (data) => {
     setStatus(null);
     const result = await sendUneteAction(data);
 

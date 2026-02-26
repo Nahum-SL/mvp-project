@@ -28,16 +28,8 @@ export interface JobApplication {
   createdAt: string;
 }
 
-export interface CreateJobApplication {
-  fullName: string;
-  dni: string;
-  age: number;
-  email: string;
-  phone: string;
-  experience: number;
-  position: string;
-
-  // CVs del Postulante
-  cvUrl: string;
-  status: string; // PENDIENTE, REVISADO, RECHAZADO
+export enum JobAppStatus {
+  PENDIENTE,
+  REVISADO,
+  RECHAZADO
 }
