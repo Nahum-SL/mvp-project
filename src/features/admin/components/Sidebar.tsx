@@ -6,8 +6,8 @@ import {
   FileText,
   Users,
   Link as LinkIcon,
-  LogOut,
 } from "lucide-react";
+import { LogoutButton } from "@/src/components/ui/buttons/LogoutButton";
 
 const menuItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -51,10 +51,7 @@ export const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-800">
-        <button className="flex items-center gap-3 px-4 py-3 w-full text-slate-400 hover:text-red-400 transition-colors text-sm font-medium">
-          <LogOut size={18} />
-          Cerrar Sesión
-        </button>
+        <LogoutButton />
       </div>
     </aside>
   );

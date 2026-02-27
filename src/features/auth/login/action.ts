@@ -2,15 +2,17 @@
 
 import { cookies } from "next/headers";
 import { LoginFormValues } from "./schema";
+import { revalidatePath } from "next/cache";
 
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001/src";
+const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
 export async function loginAction(data: LoginFormValues) {
   try {
-    const response = await fetch( `${API_URL}/auth`, {
+    const response = await fetch( `${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
+      cache: "no-store"
     });
 
     const result = await response.json();
@@ -29,9 +31,11 @@ export async function loginAction(data: LoginFormValues) {
       path: "/",
     });
 
+    revalidatePath('/login')
+
     return { success: true, user: result.user };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+  } catch (error) { 
     return { error: "No se pudo conectar con el servidor de autenticación" };
   }
 }

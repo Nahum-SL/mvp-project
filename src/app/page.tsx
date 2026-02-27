@@ -53,7 +53,7 @@ export default function Home() {
             </div>
           </section>
         </div>
-      </div>
+      </div>1
     </main>
   );
 }

@@ -1,5 +1,12 @@
-"use client";
 // src/lib/animations.ts
+"use client";
+
+import { Variants } from "framer-motion";
+
+/* ================================
+  FADE IN 
+================================ */
+
 export const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: (custom: number = 0) => ({
@@ -9,6 +16,10 @@ export const fadeIn = {
   }),
 };
 
+/* ================================
+  STAGGER CONTAINET (CON TELARAÑAS XD) 
+================================ */
+
 export const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -17,12 +28,43 @@ export const staggerContainer = {
   },
 };
 
+/* ================================
+  TABLE ROW         -    export ==> src/components/animations/AnimatedTableRow.tsx 
+================================ */
+export const tableRowVariant: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      delay: index * 0.05,
+      ease: "easeOut",
+    },
+  }),
+};
+
+/* ================================
+  BUTTON 
+================================ */
+
 export const buttonMotion = {
   whileHover: { scale: 1.05 },
   whileTap: { scale: 0.95 },
 };
 
-export const fadeHeader = {
-  initial: { opacity: 0, x: -30 },
-  animate: { opacity: 1, x: 0 },
+/* ================================
+   BADGE
+================================ */
+
+export const badgeVariant: Variants = {
+  initial: { scale: 0.8, opacity: 0 },
+  animate: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
 };

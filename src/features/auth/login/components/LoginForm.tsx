@@ -31,8 +31,17 @@ export const LoginForm = () => {
       setError(result.error);
       setIsLoading(false);
     } else {
-      // Redirigir a la intranet o dashboard tras éxito
-      router.push("/intranet");
+      // Logica de redireccion por Rol (ADMIN, COLABORADOR, CLIENTE)
+      const userRole = result.user?.role;
+
+      // Redirige a src/app/(auth)/admin/page.tsx
+      if (userRole === "ADMIN") {
+        router.push("/admin");
+      } else {
+        // Redirigir a la intranet o dashboard tras éxito
+        router.push("/intranet");
+      }
+
       router.refresh(); // Forzar actualización de cookies en el cliente
     }
   };

@@ -9,7 +9,6 @@ export default function AdminLayout({
     <div className="flex min-h-screen bg-slate-50">
       {/* Sidebar Fijo */}
       <Sidebar />
-
       <div className="flex-1 flex flex-col">
         {/* Header de navegación interna */}
         <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8">

@@ -16,7 +16,7 @@ export default async function IntranetLayout({
   return (
     <div className="flex">
       {/* Tu Sidebar aquí */}
-      <main className="flex-1 p-6">{children}</main>
+      <main className="flex-1">{children}</main>
     </div>
   );
 }
