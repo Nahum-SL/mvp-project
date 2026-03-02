@@ -1,21 +1,25 @@
 // Componente Sobre Nosotros
 // src/components/ui/layout/home
-import AboutSection from "../components/ui/layout/home/AboutSection";
+import AboutSection from "../../components/ui/layout/home/AboutSection";
 
 // Data del <AboutSection />
-import { aboutUs } from "../data/about-us";
+import { aboutUs } from "../../data/about-us";
 
 // Formulario de contacto
 // import ContactForm from "../features/ContactForm";
-import { ContactoForm } from "../features/contacto/components/ContactoForm";
+import { ContactoForm } from "../../features/contacto/components/ContactoForm";
 // Header del Home
-import AsesconHero from "../components/ui/layout/AsesconHero";
+import AsesconHero from "../../components/ui/layout/AsesconHero";
 
 // Post recientes
-import { RecentPosts } from "../components/sections/RecentPost";
+import { RecentPosts } from "../../components/sections/RecentPost";
 
 //
-import MidnightCard from "../components/ui/cards/MidnightCard";
+import MidnightCard from "../../components/ui/cards/MidnightCard";
+
+// Skeletons
+import { Suspense } from "react";
+import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
 
 export default function Home() {
   // Prueba
@@ -43,8 +47,11 @@ export default function Home() {
           textColor="Asescon"
         />
 
-        <RecentPosts />
-
+        {/* Post recientes */}
+        <Suspense fallback={<RecentPostSkeleton />}>
+          <RecentPosts />
+        </Suspense>
+        
         <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
           {/* Formulario de Contacto */}
           <section id="contacto" className="py-20 bg-gray-50">
@@ -53,7 +60,8 @@ export default function Home() {
             </div>
           </section>
         </div>
-      </div>1
+      </div>
+      1
     </main>
   );
 }

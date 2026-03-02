@@ -17,7 +17,7 @@ export default function UneteAdminPage() {
       </div>
 
       <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
-        {/* 💡 El Skeleton aparece mientras se cargan los datos */}
+        {/* El Skeleton aparece mientras se cargan los datos */}
         <Suspense fallback={<TableSkeleton rows={5} />}>
           <CandidatosList />
         </Suspense>

@@ -2,7 +2,7 @@ import { BlogCard } from "../../features/blog/components/BlogCard";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
 async function getRecentPosts(): Promise<BlogPost[]> {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001/api/v1";
+  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
   // Usamos revalidate para que se actualice cada hora sin perder velocidad
   const res = await fetch(`${API_URL}/posts?limit=3`, {

@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
         {stats.map((stat) => (
           <div
             key={stat.name}
-            className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+            className="bg-white p-6 rounded-4xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
           >
             <div
               className={`w-12 h-12 ${stat.bg} ${stat.color} rounded-2xl flex items-center justify-center mb-4`}
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
 
       {/* Espacio para Gráficos o Actividad Reciente */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 min-h-[300px]">
+        <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 min-h-75">
           <h3 className="font-bold text-slate-900 mb-4">Actividad del Blog</h3>
           <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-100 rounded-3xl text-slate-300 italic text-sm">
             Gráfico de visualizaciones (Próximamente)
