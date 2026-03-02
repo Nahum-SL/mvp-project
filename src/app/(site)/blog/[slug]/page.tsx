@@ -15,7 +15,7 @@ async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   return res.json();
 }
 
-// Esta función se ejecuta en el servidor antes de renderizar la página
+// Exporta generateMetadata como named export, NO por defecto
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
 
@@ -45,4 +45,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [post.image],
     },
   };
+}
+
+// Ahora exporta el componente React como default
+export default async function BlogPostPage({ params }: Props) {
+  const post = await getPostBySlug(params.slug);
+
+  if (!post) notFound();
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.excerpt}</p>
+      {/* Renderiza más contenido del post aquí */}
+    </article>
+  );
 }

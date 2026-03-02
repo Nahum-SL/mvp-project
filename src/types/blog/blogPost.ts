@@ -4,8 +4,8 @@ export interface BlogPost {
   id: string;
   title: string;
   slug: string;
-  excerpt: string;
   content: string;
+  excerpt: string;
   image: string;
   published: boolean;
   readingTime: string;
@@ -14,7 +14,6 @@ export interface BlogPost {
 
   categoryId: number;
   category: Category;
-  date: string;
 
   createAt: string;
   updateAt: string;

@@ -1,12 +1,13 @@
-import { BlogPost } from "./blogPost";
+  import { BlogPost } from "./blogPost";
 
 
-export interface Category {
-  id: number;
-  name: string;
-  posts: BlogPost;
+  export interface Category {
+    id: number;
+    name: string;
+    slug: string;
+    posts: BlogPost[];
 
-  createdAt: string;
-  updateAt: string;
-}
+    createdAt: string;
+    updateAt: string;
+  }
 

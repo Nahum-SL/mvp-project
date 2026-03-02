@@ -51,7 +51,7 @@ export default function Home() {
         <Suspense fallback={<RecentPostSkeleton />}>
           <RecentPosts />
         </Suspense>
-        
+
         <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
           {/* Formulario de Contacto */}
           <section id="contacto" className="py-20 bg-gray-50">

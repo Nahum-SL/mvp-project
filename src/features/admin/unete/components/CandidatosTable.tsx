@@ -1,29 +1,16 @@
 // src/features/admin/unete/components/CandidatosTable.tsx
 "use client";
-// Animacion
-import { motion } from "framer-motion";
-// Iconos
-import { FileText, CheckCircle, MoreVertical, Calendar } from "lucide-react";
 
-// Transición con React
-import { useTransition } from "react";
-
-// Tratar con las fechas
+import { motion, AnimatePresence } from "framer-motion";
+import { FileText, CheckCircle, MoreVertical, Calendar, XCircle, Filter } from "lucide-react";
+import { useTransition, useState } from "react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-
-// Notificaciones
 import { toast } from "sonner";
-
-// Traer los datos ENUM
 import { JobAppStatus } from "@/src/types/unete/unete";
-// Cambio de estado
 import { StatusBadge } from "./StatusBadge";
-// Accion de actualizar el estado
 import { updateCandidatoStatus } from "../action";
-
-// Tratar con los estilos del className
-import { cn } from "@/src/lib/utils"; // Tu función de clsx + twMerge
+import { cn } from "@/src/lib/utils";
 
 interface Candidato {
   id: number;
@@ -39,161 +26,155 @@ interface Candidato {
 
 export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
   const [isPending, startTransition] = useTransition();
+  const [filter, setFilter] = useState<JobAppStatus | "TODOS">("TODOS");
 
-  // Conectada con la base de datos
+  // Lógica de filtrado
+  const filteredData = data.filter((c) =>
+    filter === "TODOS" ? true : c.status === filter
+  );
+
   const handleUpdateStatus = (id: number, status: JobAppStatus) => {
     startTransition(async () => {
       const result = await updateCandidatoStatus(id, status);
-
       if (result.success) {
-        toast("Estado actualizado correctamente");
+        toast.success(`Estado actualizado a ${status.toLowerCase()}`);
       } else {
-        // Manejar el error
-        alert(result.error);
+        toast.error(result.error);
       }
     });
   };
 
   return (
-    <div className="w-full overflow-x-auto">
-      <table className="w-full text-left border-collapse">
-        <thead>
-          <tr className="bg-slate-50/50 border-b border-slate-100">
-            <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              Postulante
-            </th>
-            <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              Puesto / Exp.
-            </th>
-            <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              Fecha
-            </th>
-            <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">
-              Estado
-            </th>
-            <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">
-              Acciones
-            </th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-50">
-          {data.map((candidato, index) => (
-            <motion.tr
-              key={candidato.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: index * 0.05,
-                ease: "easeOut",
-              }}
-              className="group hover:bg-blue-50/30 transition-colors"
+    <div className="space-y-6">
+      {/* --- SELECTOR DE FILTROS --- */}
+      <div className="flex items-center justify-between bg-white/50 p-2 rounded-3xl border border-slate-100 backdrop-blur-sm">
+        <div className="flex gap-1">
+          {["TODOS", ...Object.values(JobAppStatus)].map((s) => (
+            <button
+              key={s}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              onClick={() => setFilter(s as any)}
+              className={cn(
+                "px-4 py-2 text-xs font-black uppercase tracking-tighter rounded-2xl transition-all",
+                filter === s 
+                  ? "bg-slate-900 text-white shadow-lg shadow-slate-200" 
+                  : "text-slate-400 hover:bg-slate-100"
+              )}
             >
-              {/* Información Personal */}
-              <td className="px-6 py-5">
-                <div className="flex items-center gap-3">
-                  <div
-                    className={cn(
-                      "w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold transition-colors",
-                      "group-hover:bg-blue-100 group-hover:text-blue-600",
-                    )}
-                  >
-                    {candidato.fullName.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900">
-                      {candidato.fullName}
-                    </p>
-                    <p className="text-xs text-slate-500">{candidato.email}</p>
-                  </div>
-                </div>
-              </td>
-
-              {/* Puesto y Experiencia */}
-              <td className="px-6 py-5">
-                <p className="text-sm font-medium text-slate-700">
-                  {candidato.position}
-                </p>
-                <p className="text-xs text-slate-400">
-                  {candidato.experience} años de experiencia
-                </p>
-              </td>
-
-              {/* Fecha de Postulación */}
-              <td className="px-6 py-5">
-                <div className="flex items-center gap-2 text-slate-500">
-                  <Calendar size={14} />
-                  <span className="text-xs font-medium">
-                    {format(new Date(candidato.createdAt), "dd MMM, yyyy", {
-                      locale: es,
-                    })}
-                  </span>
-                </div>
-              </td>
-
-              {/* Badge de Estado */}
-              <td className="px-6 py-5 text-center">
-                <StatusBadge status={candidato.status} />
-              </td>
-
-              {/* Botones de Acción */}
-              <td className="px-6 py-5 text-right">
-                <div className="flex justify-end gap-1">
-                  <motion.a
-                    href={candidato.cvUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-100 rounded-xl transition-all"
-                    title="Ver CV PDF"
-                  >
-                    <FileText size={18} />
-                  </motion.a>
-
-                  <motion.button
-                    // ... tus props de motion
-                    onClick={() =>
-                      handleUpdateStatus(candidato.id, JobAppStatus.REVISADO)
-                    }
-                    disabled={
-                      isPending || candidato.status === JobAppStatus.REVISADO
-                    }
-                    className={cn(
-                      "p-2 rounded-xl transition-all",
-                      isPending && "opacity-50 cursor-not-allowed",
-                      candidato.status === JobAppStatus.REVISADO
-                        ? "text-emerald-600 bg-emerald-50"
-                        : "text-slate-400 hover:text-emerald-600 hover:bg-emerald-100",
-                    )}
-                  >
-                    <CheckCircle
-                      size={18}
-                      className={cn(isPending && "animate-spin")}
-                    />
-                  </motion.button>
-
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 text-slate-400 hover:text-slate-900 rounded-xl"
-                  >
-                    <MoreVertical size={18} />
-                  </motion.button>
-                </div>
-              </td>
-            </motion.tr>
+              {s.replace("_", " ")}
+            </button>
           ))}
-        </tbody>
-      </table>
-
-      {data.length === 0 && (
-        <div className="p-20 text-center">
-          <p className="text-slate-400 italic">
-            No hay postulaciones registradas por el momento.
-          </p>
         </div>
-      )}
+        <div className="px-4 text-[10px] font-black text-slate-300 uppercase tracking-widest flex items-center gap-2">
+          <Filter size={12} /> {filteredData.length} Candidatos
+        </div>
+      </div>
+
+      {/* --- TABLA --- */}
+      <div className="w-full overflow-x-auto bg-white rounded-[2.5rem] border border-slate-100 shadow-sm">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-slate-50/50 border-b border-slate-100">
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Postulante</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Puesto / Exp.</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Fecha</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Estado</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-50">
+            <AnimatePresence mode="popLayout">
+              {filteredData.map((candidato, index) => (
+                <motion.tr
+                  key={candidato.id}
+                  layout // 💡 Hace que las filas se deslicen suavemente al cambiar el filtro
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, x: 20 }}
+                  transition={{ duration: 0.2, delay: index * 0.03 }}
+                  className="group hover:bg-blue-50/30 transition-colors"
+                >
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        {candidato.fullName.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900">{candidato.fullName}</p>
+                        <p className="text-xs text-slate-500">{candidato.email}</p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="px-6 py-5">
+                    <p className="text-sm font-medium text-slate-700">{candidato.position}</p>
+                    <p className="text-xs text-slate-400 font-bold tracking-tighter italic">{candidato.experience} AÑOS EXP.</p>
+                  </td>
+
+                  <td className="px-6 py-5 text-center">
+                    <div className="flex items-center justify-center gap-2 text-slate-400">
+                      <Calendar size={12} />
+                      <span className="text-[10px] font-bold uppercase">
+                        {format(new Date(candidato.createdAt), "dd MMM yy", { locale: es })}
+                      </span>
+                    </div>
+                  </td>
+
+                  <td className="px-6 py-5 text-center">
+                    <StatusBadge status={candidato.status} />
+                  </td>
+
+                  <td className="px-6 py-5 text-right">
+                    <div className="flex justify-end gap-1">
+                      {/* BOTÓN REVISADO */}
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleUpdateStatus(candidato.id, JobAppStatus.REVISADO)}
+                        disabled={isPending || candidato.status === JobAppStatus.REVISADO}
+                        className={cn(
+                          "p-2 rounded-xl transition-all",
+                          candidato.status === JobAppStatus.REVISADO 
+                            ? "text-emerald-600 bg-emerald-50" 
+                            : "text-slate-300 hover:text-emerald-600 hover:bg-emerald-50"
+                        )}
+                      >
+                        <CheckCircle size={18} className={cn(isPending && candidato.status !== JobAppStatus.REVISADO && "animate-spin")} />
+                      </motion.button>
+
+                      {/* BOTÓN RECHAZAR */}
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleUpdateStatus(candidato.id, JobAppStatus.RECHAZADO)}
+                        disabled={isPending || candidato.status === JobAppStatus.RECHAZADO}
+                        className={cn(
+                          "p-2 rounded-xl transition-all",
+                          candidato.status === JobAppStatus.RECHAZADO 
+                            ? "text-rose-600 bg-rose-50" 
+                            : "text-slate-300 hover:text-rose-600 hover:bg-rose-50"
+                        )}
+                      >
+                        <XCircle size={18} />
+                      </motion.button>
+
+                      <a href={candidato.cvUrl} target="_blank" className="p-2 text-slate-300 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all">
+                        <FileText size={18} />
+                      </a>
+                    </div>
+                  </td>
+                </motion.tr>
+              ))}
+            </AnimatePresence>
+          </tbody>
+        </table>
+
+        {filteredData.length === 0 && (
+          <div className="p-20 text-center text-slate-300 uppercase font-black tracking-widest text-xs italic">
+            No hay registros en esta categoría
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ async function getRecentPosts(): Promise<BlogPost[]> {
   const res = await fetch(`${API_URL}/posts?limit=3`, {
     next: { revalidate: 3600 },
   });
-
+//a
   if (!res.ok) return [];
   return res.json();
 }

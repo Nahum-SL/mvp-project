@@ -18,9 +18,7 @@ export default function RootLayout({
       <body
         className={`${raleway.className} antialiased min-h-screen flex flex-col`}
       >
-        <main className="flex-1">
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );

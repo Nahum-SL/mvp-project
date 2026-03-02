@@ -1,12 +1,8 @@
 // src/app/(admin)/layout.tsx
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Toaster } from "sonner";
 
-// Font letter
-import { raleway } from "@/src/lib/fonts";
-
-export default async function AdminLayout({
+export default async function RootAdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -23,15 +19,8 @@ export default async function AdminLayout({
   // asegúrate de implementar esa validación pronto.
 
   return (
-    <html lang="es" data-scroll-behavior="smooth">
-      <body
-        className={`${raleway.className} antialiased min-h-screen flex flex-col`}
-      >
-        <main className="flex-1">
-          <Toaster position="top-right" richColors />
-          {children}
-        </main>
-      </body>
-    </html>
+    <>
+      <main className="flex-1">{children}</main>
+    </>
   );
 }

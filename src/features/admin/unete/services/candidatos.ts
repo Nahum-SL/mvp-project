@@ -17,8 +17,7 @@ export async function getCandidatos() {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    // Esto asegura que cada vez que entres, pida datos frescos (o puedes usar tags)
-    cache: "no-store",
+    next: { revalidate: 0 }
   });
 
   if (!response.ok) {
