@@ -7,7 +7,7 @@ import { PostHeader } from "./form/PostHeader";
 import { ImagePicker } from "./form/ImagePicker";
 import { PostConfigCard } from "./form/PostConfigCard";
 import { Category } from "@/src/types/blog/category";
-import { createPostAction } from "../actions/create-post";
+import { createPostAction } from "../action";
 
 export const CreatePostForm = ({ categories }: { categories: Category[] }) => {
   const [isPending, startTransition] = useTransition();

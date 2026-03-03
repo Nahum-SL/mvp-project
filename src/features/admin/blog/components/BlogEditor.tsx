@@ -13,6 +13,7 @@ export const BlogEditor = ({
   const editor = useEditor({
     extensions: [StarterKit],
     content: "<p>Escribe algo increíble para ASESCON... </p>",
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
@@ -28,7 +29,7 @@ export const BlogEditor = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-[2rem] border border-slate-100 shadow-xl overflow-hidden"
+      className="bg-white rounded-4xl border border-slate-100 shadow-xl overflow-hidden"
     >
       {/* Barra de herramientas simple */}
       <div className="bg-slate-50 p-4 border-b border-slate-100 flex gap-2">

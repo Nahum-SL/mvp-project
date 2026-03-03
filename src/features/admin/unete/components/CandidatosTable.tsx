@@ -2,7 +2,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { FileText, CheckCircle, MoreVertical, Calendar, XCircle, Filter } from "lucide-react";
+import { FileText, CheckCircle, Calendar, XCircle, Filter } from "lucide-react";
 import { useTransition, useState } from "react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -87,7 +87,7 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
               {filteredData.map((candidato, index) => (
                 <motion.tr
                   key={candidato.id}
-                  layout // 💡 Hace que las filas se deslicen suavemente al cambiar el filtro
+                  layout // Hace que las filas se deslicen suavemente al cambiar el filtro
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.95, x: 20 }}

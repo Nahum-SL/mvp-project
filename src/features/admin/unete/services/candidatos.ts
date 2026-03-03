@@ -17,11 +17,12 @@ export async function getCandidatos() {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    next: { revalidate: 0 }
+    next: { revalidate: 3600 }
   });
 
   if (!response.ok) {
-    throw new Error("Error al obtener los candidatos");
+     console.error("Error al obtener los candidatos");
+    return[];
   }
 
   return response.json();

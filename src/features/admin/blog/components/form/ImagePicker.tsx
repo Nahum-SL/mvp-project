@@ -23,7 +23,7 @@ export const ImagePicker = ({
       Portada
     </label>
     <div
-      className={`relative aspect-[4/3] rounded-[2rem] border-2 border-dashed transition-all overflow-hidden flex flex-col items-center justify-center group ${previewUrl ? "border-transparent" : "border-slate-200 hover:border-blue-400 bg-slate-50"} ${disabled && "opacity-50 pointer-events-none"}`}
+      className={`relative aspect-4/3 rounded-4xl border-2 border-dashed transition-all overflow-hidden flex flex-col items-center justify-center group ${previewUrl ? "border-transparent" : "border-slate-200 hover:border-blue-400 bg-slate-50"} ${disabled && "opacity-50 pointer-events-none"}`}
     >
       <AnimatePresence mode="wait">
         {previewUrl ? (
