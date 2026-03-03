@@ -1,25 +1,11 @@
 import { Suspense } from "react";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
 export default async function RootAdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // 1. Leemos la cookie (esto marca la ruta como dinámica)
-  const cookieStore = await cookies();
-  const token = cookieStore.get("asescon_token");
-
-  // 2. Validación rápida
-  if (!token) {
-    redirect("/login");
-  }
-
   return (
     <>
-      {/* Aquí podrías tener tu <Sidebar /> fijo */}
-
       <main className="flex-1">
         {/* 3. Envolvemos el children en Suspense para satisfacer a Next.js 15 */}
         <Suspense fallback={<AdminSkeleton />}>{children}</Suspense>

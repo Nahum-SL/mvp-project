@@ -4,12 +4,11 @@ import { NextResponse, NextRequest } from "next/server";
 const ROLE_ROUTES = {
   ADMIN: "/admin",
   COLABORADOR: "/intranet",
-  CLIENTE: "/intranet",
 };
 
 export function proxy(request: NextRequest) {
   const token = request.cookies.get("asescon_token")?.value;
-  const { pathname } = request.nextUrl;
+  const { pathname } = request.nextUrl; 
 
   // 1. SI NO HAY TOKEN
   if (!token) {

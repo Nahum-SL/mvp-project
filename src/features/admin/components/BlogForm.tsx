@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postSchema, PostFormInput, PostFormValues } from "../../blog/components/schema";
-
-export const BlogForm = ({ categories }: { categories: any[] }) => {
+import { Category } from "@/src/types/blog/category";
+//
+export const BlogForm = ({ categories }: { categories: Category[] }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<PostFormInput, unknown, PostFormValues>({
     resolver: zodResolver(postSchema),
-  });
+ });
 
   const onSubmit = async (data: PostFormValues) => {
     const formData = new FormData();

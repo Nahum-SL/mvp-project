@@ -25,7 +25,7 @@ export default function UneteAdminPage() {
     </div>
   );
 }
-
+// 
 async function CandidatosList() {
   const candidatos = await getCandidatos();
   return <CandidatosTable data={candidatos} />;

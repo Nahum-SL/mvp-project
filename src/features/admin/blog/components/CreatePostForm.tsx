@@ -36,12 +36,7 @@ export const CreatePostForm = ({ categories }: { categories: Category[] }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (content.length < 50)
-      return toast.error("El contenido es demasiado corto.");
-
     const formData = new FormData(e.currentTarget);
-    formData.append("content", content);
-    // Nota: 'image' ya viene del input file en el FormData gracias al atributo 'name="image"' en ImagePicker
 
     startTransition(async () => {
       const result = await createPostAction(formData); // <-- Llamada al Server Action

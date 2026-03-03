@@ -16,7 +16,7 @@ export async function createPostAction(formData: FormData) {
   }
 
   try {
-    const response = await fetch(`${API_URL}/posts`, {
+    const response = await fetch(`${API_URL}/post`, {
       method: "POST",
       body: formData, // Pasamos el FormData tal cual (incluye la imagen)
       headers: {
@@ -56,13 +56,36 @@ export async function getCategories() {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
     if (!res.ok) return [];
 
     return res.json();
   } catch (error) {
     console.error("SERVER_ACTION_ERROR:", error);
+    return [];
+  }
+}
+
+export async function getAdminPost() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
+
+  if (!token) return [];
+
+  try {
+    const res = await fetch(`${API_URL}/post`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      next: { tags: ["post"] },
+    });
+
+    if (!res.ok) return "Error al comunicarse con el servidor de NestJS";
+
+    return res.json();
+  } catch (e) {
+    console.error("GET_POST_ERROR", e);
     return [];
   }
 }
