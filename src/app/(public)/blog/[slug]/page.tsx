@@ -3,19 +3,21 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
+import { getPostBySlug } from "@/src/features/public/blog/action";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
 interface Props {
   params: Promise<{ slug: string }>; // En versiones recientes es una Promise
 }
 
-async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001/blog";
-  const res = await fetch(`${API_URL}/posts/${slug}`, {
-    next: { revalidate: 3600 }, // Cache por 1 hora
-  });
-  if (!res.ok) return null;
-  return res.json();
+export async function generateStaticParams() {
+  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+  const res = await fetch(`${API_URL}/post`);
+  const posts: BlogPost[] = await res.json();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -71,7 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
               </span>
               <span className="flex items-center gap-2">
                 <Calendar size={16} className="text-blue-400" />{" "}
-                {new Date(post.createAt).toLocaleDateString()}
+                {new Date(post.createdAt).toLocaleDateString()}
               </span>
               <span className="flex items-center gap-2">
                 <Clock size={16} className="text-blue-400" /> {post.readingTime}{" "}

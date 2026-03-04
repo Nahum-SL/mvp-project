@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BlogPost } from "@/src/types/blog/blog";
+import { BlogPost } from "@/src/types/blog/blogPost";
 
 export default function FeaturedPost({ post }: { post: BlogPost }) {
   return (
@@ -14,6 +14,9 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
             src={post.image}
             alt={post.title}
             fill
+            loading="eager"
+            quality={75}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-1000 group-hover:scale-105"
           />
 
@@ -45,18 +48,32 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
               {/* Nombre del autor y fecha, con un diseño limpio y minimalista */}
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full border-2 border-blue-500 overflow-hidden">
-                  <Image
-                    src={post.author.avatar}
-                    alt={post.author.name}
-                    width={48}
-                    height={48}
-                  />
+                  {post.author?.avatar ? (
+                    <Image
+                      src={post.author.avatar}
+                      alt={post.author.name || "Autor"}
+                      loading="eager"
+                      width={48}
+                      height={48}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-blue-600 text-white font-bold text-xs">
+                      {post.author?.name?.charAt(0) || "A"}
+                    </div>
+                  )}
                 </div>
                 <div className="text-white">
                   <p className="text-sm font-bold">{post.author.name}</p>
+                  {/* Dentro de FeaturedPost.tsx, cambia el renderizado de la fecha: */}
                   <p className="text-xs text-slate-400">
-                    {post.date} • {post.readingTime}
-                  </p>
+                    {new Date(post.createdAt).toLocaleDateString("es-ES", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}{" "}
+                    • {post.readingTime || "5 min"}
+                  </p>{" "}
                 </div>
               </div>
             </motion.div>

@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Plus } from "lucide-react";
 import {
   categorySchema,
-  CategoryFormInput,
-  CategoryFormValues,
+  type CategoryFormInput,
+  type CategoryFormValues,
 } from "../schema";
 import { createCategoryAction } from "../action";
 import { useState } from "react";

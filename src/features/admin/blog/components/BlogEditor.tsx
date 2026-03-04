@@ -1,18 +1,19 @@
 // Estilo de editor
 "use client";
-
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-export const BlogEditor = ({
-  onChange,
-}: {
+interface Props {
   onChange: (html: string) => void;
-}) => {
+  initialContent?: string;
+}
+
+export const BlogEditor = ({ onChange, initialContent }: Props) => {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: "<p>Escribe algo increíble para ASESCON... </p>",
+    content: initialContent || "", // Contenido inicial
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
@@ -20,10 +21,17 @@ export const BlogEditor = ({
     editorProps: {
       attributes: {
         class:
-          "prose prose-slate max-w-none focus:outline-none min-h-[400px] p-6",
+          "prose prose-slate max-w-none focus:outline-none min-h-[400px] p-8",
       },
     },
   });
+
+  // Si initialContent cambia (Por ejemplo, al cargar datos de una API), actualizamos el editor
+  useEffect(() => {
+    if (editor && initialContent && editor.isEmpty) {
+      editor.commands.setContent(initialContent);
+    }
+  }, [initialContent, editor])
 
   return (
     <motion.div

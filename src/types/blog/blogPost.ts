@@ -15,8 +15,8 @@ export interface BlogPost {
   categoryId: number;
   category: Category;
 
-  createAt: string;
-  updateAt: string;
+  createdAt: string;
+  updatedAt: string;
 
   author: {
     name: string;

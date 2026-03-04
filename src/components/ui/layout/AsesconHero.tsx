@@ -20,12 +20,15 @@ export default function AsesconHero({
 }: HeroProps) {
   return (
     <section className="
-    relative min-h-screen w-full overflow-hidden bg-slate-950 
+    relative w-full md:min-h-screen min-h-[70vh] overflow-hidden bg-slate-950 
     flex flex-col justify-between text-center pt-32 md:pt-44 pb-12 md:pb-32
     ">
       {/* Background Decorativo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-125 bg-blue-600/10 blur-[120px] rounded-full" />
-
+      <div className="
+      absolute top-0 left-1/2 -translate-x-1/2 w-full h-125 bg-blue-600/10 
+      blur-[120px] rounded-full" 
+      />
+      
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto space-y-10 md:space-y-14">
           {/* Título Principal */}
@@ -78,7 +81,7 @@ export default function AsesconHero({
       </div>
 
       {/* Stats - Limpio y solo para Desktop */}
-      <div className="hidden lg:block relative z-10 w-full mt-10 mb-10">
+      <div className="relative z-10 w-full mt-10 mb-10">
         <div className="container mx-auto px-6">
           <div className="
           flex justify-between items-center text-white/40 text-[10px]

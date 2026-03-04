@@ -52,10 +52,10 @@ function NavbarCard() {
         {/* Desktop menu */}
         <div className="hidden lg:flex items-center text-white font-semibold ml-auto gap-4">
           <Link
-            href="/intranet"
+            href="/login"
             className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
-            INTRANET
+            LOGIN
           </Link>
           <Link
             href="/unete"
@@ -133,11 +133,11 @@ function NavbarCard() {
             BLOG
           </Link>
           <Link
-            href="/intranet"
+            href="/login"
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
-            INTRANET
+            Login
           </Link>
           <Link
             href="/unete"

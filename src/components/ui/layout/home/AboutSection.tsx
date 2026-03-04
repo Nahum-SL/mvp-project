@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AboutUs } from "@/src/data/about-us";
+import { AboutUs } from "@/src/types/unete/unete";
 import { cn } from "@/src/lib/utils";
 
 interface Props {

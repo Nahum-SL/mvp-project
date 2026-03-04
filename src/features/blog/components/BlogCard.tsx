@@ -4,12 +4,16 @@ import { BlogPost } from "@/src/types/blog/blogPost";
 
 export const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
-    <div className="group bg-white rounded-3xl border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-500">
+    <div className="group bg-white rounded-3xl border border-slate-100 overflow-hidden 
+    hover:shadow-xl transition-all duration-500">
       <div className="relative aspect-video overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}
           fill
+          loading="eager"
+          quality={75}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute top-4 left-4">
@@ -21,7 +25,7 @@ export const BlogCard = ({ post }: { post: BlogPost }) => {
 
       <div className="p-6">
         <p className="text-slate-400 text-xs mb-2 font-medium">
-          {new Date(post.createAt).toLocaleDateString("es-PE", {
+          {new Date(post.createdAt).toLocaleDateString("es-PE", {
             day: "2-digit",
             month: "long",
             year: "numeric",

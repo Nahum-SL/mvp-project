@@ -6,7 +6,6 @@ import { BlogPost } from "@/src/types/blog/blogPost";
 
 export default async function AdminBlogPage() {
   const posts = await getAdminPost();
-  console.log("POSTS RECIBIDOS:", JSON.stringify(posts, null, 2));
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -56,12 +55,14 @@ export default async function AdminBlogPage() {
               className="bg-white border border-slate-100 p-4 rounded-2xl flex items-center gap-6 hover:shadow-md transition-shadow"
             >
               {/* Miniatura */}
-              <div className="w-24 h-24 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0">
+              <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0">
                 {post.image ? (
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                   />
                 ) : (
@@ -92,7 +93,7 @@ export default async function AdminBlogPage() {
                   </span>
                   <span className="flex items-center gap-1.5">
                     <Calendar size={14} />{" "}
-                    {new Date(post.createAt).toLocaleDateString()}
+                    {new Date(post.createdAt).toLocaleDateString()}
                   </span>
                 </div>
               </div>

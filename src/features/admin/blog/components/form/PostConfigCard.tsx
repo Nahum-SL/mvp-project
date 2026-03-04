@@ -1,44 +1,67 @@
 // src/features/admin/blog/components/form/PostConfigCard.tsx
 import { Loader2, Save } from "lucide-react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { PostFormInput } from "../../schema";
 import { Category } from "@/src/types/blog/category";
+import { cn } from "@/src/lib/utils";
 
-export const PostConfigCard = ({
-  categories,
-  isPending,
-}: {
+interface Props {
+  register: UseFormRegister<PostFormInput>;
+  errors: FieldErrors<PostFormInput>;
   categories: Category[];
   isPending: boolean;
-}) => (
+}
+
+// src/features/admin/blog/components/form/PostConfigCard.tsx
+export const PostConfigCard = ({
+  register,
+  errors,
+  categories,
+  isPending,
+}: Props) => (
   <aside className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 sticky top-6">
     <section>
       <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block">
         Clasificación
       </label>
       <select
-        name="categoryId"
+        {...register("categoryId")}
         disabled={isPending}
-        className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-700 disabled:opacity-50"
-        required
+        className={cn(
+          "w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-700 disabled:opacity-50 appearance-none",
+          errors.categoryId && "ring-2 ring-red-500",
+        )}
       >
+        <option value={0}>Seleccionar categoría...</option>
         {categories.map((cat) => (
           <option key={cat.id} value={cat.id}>
             {cat.name}
           </option>
         ))}
       </select>
+      {errors.categoryId && (
+        <p className="text-red-500 text-[10px] mt-2 font-bold uppercase">
+          {errors.categoryId.message}
+        </p>
+      )}
     </section>
 
-    <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+    <div
+      className={cn(
+        "flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100 transition-colors",
+        isPending && "opacity-50",
+      )}
+    >
       <input
+        {...register("published")}
         type="checkbox"
-        name="published"
         id="pub"
         disabled={isPending}
-        className="w-5 h-5 rounded border-slate-300 text-blue-600"
+        className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
       />
       <label
         htmlFor="pub"
-        className="text-sm font-bold text-slate-600 cursor-pointer"
+        className="text-sm font-bold text-slate-600 cursor-pointer select-none"
       >
         Publicar ahora
       </label>
@@ -47,14 +70,19 @@ export const PostConfigCard = ({
     <button
       type="submit"
       disabled={isPending}
-      className={`w-full py-5 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl ${isPending ? "bg-slate-100 text-slate-400" : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200"}`}
+      className={cn(
+        "w-full py-5 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
+        isPending
+          ? "bg-slate-100 text-slate-400 shadow-none"
+          : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200 active:scale-95",
+      )}
     >
       {isPending ? (
         <Loader2 className="animate-spin" size={18} />
       ) : (
         <Save size={18} />
       )}
-      {isPending ? "Procesando..." : "Publicar Artículo"}
+      {isPending ? "Procesando..." : "Guardar Artículo"}
     </button>
   </aside>
 );
