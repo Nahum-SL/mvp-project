@@ -10,7 +10,7 @@ export default async function NewPostPage() {
     <div className="max-w-6xl mx-auto space-y-8">
       <Suspense fallback={"Cargando.."} >
         <CardForm />
-        <CreatePostForm categories={categories} initialData={}/>
+        <CreatePostForm categories={categories}/>
       </Suspense>
     </div>
   );

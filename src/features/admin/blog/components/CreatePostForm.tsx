@@ -1,17 +1,29 @@
 "use client";
+// React + Next
 import { useState, useTransition, useRef, useEffect } from "react";
+// Validación con Zod + React Hook Form
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { postSchema, type PostFormInput, type PostFormValues } from "../schema";
+// Acciones del servidor (mensajes de éxito/error + revalidación)
 import { toast } from "sonner";
+// Redireccionar después de crear/editar el post
 import { useRouter } from "next/navigation";
+// Componentes del formulario
 import { BlogEditor } from "./BlogEditor";
+// Subcomponentes del formulario (title, excerpt)
 import { PostHeader } from "./form/PostHeader";
+// Componente para subir imagen (preview + input)
 import { ImagePicker } from "./form/ImagePicker";
+// Configuraciones (categoría, estado, etc)
 import { PostConfigCard } from "./form/PostConfigCard";
-import { Category } from "@/src/types/blog/category";
+// Acciones (create/update)
 import { createPostAction, updatePostAction } from "../action";
+// Validación y tipos del formulario
+import { postSchema, type PostFormInput, type PostFormValues } from "../schema";
+// Utils
+import { zodResolver } from "@hookform/resolvers/zod";
+// Tipos
 import { BlogPost } from "@/src/types/blog/blogPost";
+import { Category } from "@/src/types/blog/category";
 
 interface Props {
   categories: Category[];
@@ -94,14 +106,9 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
     });
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSubmit(onSubmit)(e);
-  };
-
   return (
     <form
-      onSubmit={handleFormSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20"
     >
       <div className="lg:col-span-2 space-y-8">

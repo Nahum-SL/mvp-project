@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-
 import { CreatePostForm } from "@/src/features/admin/blog/components/CreatePostForm";
 import { getPostByIdAction, getCategories } from "@/src/features/admin/blog/action";
 

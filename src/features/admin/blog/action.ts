@@ -155,8 +155,6 @@ export async function getAdminPost() {
   }
 }
 
-// src/features/admin/blog/action.ts
-
 // 1. Obtener post por ID para el formulario
 export async function getPostByIdAction(id: string) {
   const cookieStore = await cookies();
@@ -167,7 +165,7 @@ export async function getPostByIdAction(id: string) {
       headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     });
-    if (!res.ok) return null;
+    if (!res.ok) return "Error al comunicarse con el servidor de NestJS";
     return await res.json();
   } catch (error) {
     console.log("SERVER_NOT_FOUND", error);

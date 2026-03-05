@@ -33,7 +33,7 @@ export const PostHeader = ({ register, errors, disabled }: PostHeaderProps) => (
       disabled={disabled}
       placeholder="Resumen ejecutivo para SEO..."
       className=
-      {cn(`w-full p-6 bg-slate-50 rounded-[2rem] focus:outline-none 
+      {cn(`w-full p-6 bg-slate-50 rounded-4xl] focus:outline-none 
       focus:ring-2 focus:ring-blue-100 resize-none text-slate-600 italic 
       border border-transparent focus:border-blue-200 transition-all 
       disabled:opacity-50`,
