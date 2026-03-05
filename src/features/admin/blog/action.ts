@@ -44,28 +44,36 @@ export async function createPostAction(formData: FormData) {
 
 // 2. Actualizar el post
 export async function updatePostAction(
-  id: number | string,
+  id: number,
   formData: FormData,
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
-
   try {
     const res = await fetch(`${API_URL}/post/${id}`, {
-      method: "PATCH", // O PUT según tu API en NestJS
+      method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
-
     const data = await res.json();
-    if (!res.ok)
-      return { success: false, error: data.message || "Error al actualizar" };
+    console.log("ID RECIBIDO EN ACTION:", id);
+
+    if (!res.ok) {
+      // ESTO ES CLAVE: Mira la consola de tu terminal de Next.js
+      console.log("DETALLE ERROR NESTJS:", JSON.stringify(data, null, 2));
+
+      // Si NestJS devuelve un array de errores de validación (class-validator)
+      const errorMsg = Array.isArray(data.message)
+        ? data.message.join(", ")
+        : data.message;
+
+      return { success: false, error: errorMsg || "Error al actualizar" };
+    }
 
     revalidatePath("/admin/blog");
-    revalidatePath(`/admin/blog/${id}`);
     return { success: true };
-  } catch (error) {
-    console.log("SERVER_ERROR", error);
+  } catch (e) {
+    console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
@@ -100,7 +108,7 @@ export async function deletePostAction(id: number) {
 
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e)
+    console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión con el servidor" };
   }
 }
@@ -156,17 +164,19 @@ export async function getAdminPost() {
 }
 
 // 1. Obtener post por ID para el formulario
-export async function getPostByIdAction(id: string) {
+export async function getPostByIdAction(id: number) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
   try {
-    const res = await fetch(`${API_URL}/posts/${id}`, {
+    const res = await fetch(`${API_URL}/post/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     });
-    if (!res.ok) return "Error al comunicarse con el servidor de NestJS";
+    if (!res.ok) return null;
+    
     return await res.json();
+
   } catch (error) {
     console.log("SERVER_NOT_FOUND", error);
     return null;

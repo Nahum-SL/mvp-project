@@ -6,7 +6,7 @@ export const postSchema = z.object({
   excerpt: z.string().min(10, "El extracto debe ser más descriptivo").max(255),
   categoryId: z.coerce.number().min(1, "Selecciona una categoría"),
   published: z.coerce.boolean().default(false),
-  image: z.string().optional(),
+  image: z.any().optional(),
   // El contenido y la imagen se validan aparte o como opcionales aquí
   content: z.string().min(20, "El contenido es muy corto"),
 });

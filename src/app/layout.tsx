@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { raleway } from "../lib/fonts";
+import { Toaster } from "sonner";
 
 import "../styles/globals.css";
 
@@ -19,6 +20,11 @@ export default function RootLayout({
         className={`${raleway.className} antialiased min-h-screen flex flex-col`}
       >
         {children}
+        <Toaster 
+        position="top-right"
+        richColors
+        closeButton
+        />
       </body>
     </html>
   );

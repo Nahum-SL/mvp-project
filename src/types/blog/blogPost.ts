@@ -1,7 +1,7 @@
 import { Category } from "./category";
 
 export interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   content: string;

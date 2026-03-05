@@ -5,7 +5,7 @@ import { getPostByIdAction, getCategories } from "@/src/features/admin/blog/acti
 export default async function EditPostPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: number }>;
 }) {
   const { id } = await params;
 

@@ -16,7 +16,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
-  const res = await fetch(`${API_URL}/post/${slug}`, {
+  const res = await fetch(`${API_URL}/post/slug/${slug}`, {
     next: { revalidate: 3600 }, // Cache por 1 hora
   });
   if (!res.ok) return null;

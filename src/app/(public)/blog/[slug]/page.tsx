@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
+import { Clock, Calendar, User } from "lucide-react";
 import { getPostBySlug } from "@/src/features/public/blog/action";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
@@ -52,12 +52,6 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container max-w-4xl px-6 text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors text-sm font-bold uppercase tracking-widest"
-            >
-              <ArrowLeft size={16} /> Volver al Blog
-            </Link>
 
             <span className="block mb-4 text-blue-400 font-black uppercase tracking-[0.3em] text-xs">
               {post.category.name}

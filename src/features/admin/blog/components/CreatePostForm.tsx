@@ -93,6 +93,13 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
     }
 
     startTransition(async () => {
+      // Validación para que no dispare un ID si no existe
+      if (isEditing && !initialData?.id) {
+        toast.error("Error: No se encontró el ID del artículo para editar.");
+        console.error("No se puede editar: initialData.id es undefined");
+        return;
+      }
+
       const result = isEditing
         ? await updatePostAction(initialData.id, formData)
         : await createPostAction(formData);
@@ -108,7 +115,7 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e) => handleSubmit(onSubmit)(e)}
       className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20"
     >
       <div className="lg:col-span-2 space-y-8">

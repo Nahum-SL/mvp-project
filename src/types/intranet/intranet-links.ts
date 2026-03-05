@@ -7,7 +7,6 @@ export interface Intranet {
   url?: string;
 }
 
-// Aqui sin un created
 export interface IntranetLink {
   id: number;
   title: string;
