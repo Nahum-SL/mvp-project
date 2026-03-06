@@ -6,6 +6,7 @@ import {
   FileText,
   Users,
   Link as LinkIcon,
+  BookOpenText as Book,
 } from "lucide-react";
 import { LogoutButton } from "@/src/components/ui/buttons/LogoutButton";
 
@@ -14,6 +15,7 @@ const menuItems = [
   { name: "Gestionar Blog", href: "/admin/blog", icon: FileText },
   { name: "Candidatos", href: "/admin/unete", icon: Users },
   { name: "Intranet Links", href: "/admin/intranet", icon: LinkIcon },
+  { name: "Gestionar Clientes", href: "/admin/contacto", icon: Book },
 ];
 
 export const Sidebar = () => {

@@ -13,7 +13,7 @@ import { updateCandidatoStatus } from "../action";
 import { cn } from "@/src/lib/utils";
 
 interface Candidato {
-  id: number;
+  id: string;
   fullName: string;
   email: string;
   phone: string;
@@ -33,7 +33,7 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
     filter === "TODOS" ? true : c.status === filter
   );
 
-  const handleUpdateStatus = (id: number, status: JobAppStatus) => {
+  const handleUpdateStatus = (id: string, status: JobAppStatus) => {
     startTransition(async () => {
       const result = await updateCandidatoStatus(id, status);
       if (result.success) {

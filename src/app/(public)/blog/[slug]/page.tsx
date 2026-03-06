@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Calendar, User } from "lucide-react";
-import { getPostBySlug } from "@/src/features/public/blog/action";
+import { getPostBySlug } from "@/src/features/public-pages/blog/action";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
 interface Props {

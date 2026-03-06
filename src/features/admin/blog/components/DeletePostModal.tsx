@@ -43,11 +43,11 @@ export const DeletePostModal = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-100"
           />
 
           {/* Modal */}
-          <div className="fixed inset-0 flex items-center justify-center z-[101] p-4">
+          <div className="fixed inset-0 flex items-center justify-center z-101 p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}

@@ -7,7 +7,7 @@ import { aboutUs } from "../../data/about-us";
 
 // Formulario de contacto
 // import ContactForm from "../features/ContactForm";
-import { ContactoForm } from "../../features/contacto/components/ContactoForm";
+
 // Header del Home
 import AsesconHero from "../../components/ui/layout/AsesconHero";
 
@@ -20,6 +20,7 @@ import MidnightCard from "../../components/ui/cards/MidnightCard";
 // Skeletons
 import { Suspense } from "react";
 import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
+import { ContactForm } from "@/src/components/ui/layout/contacto/ContactForm";
 
 export default function Home() {
   // Prueba
@@ -55,9 +56,7 @@ export default function Home() {
         <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
           {/* Formulario de Contacto */}
           <section id="contacto" className="py-20 bg-gray-50">
-            <div className="container mx-auto max-w-2xl">
-              <ContactoForm />
-            </div>
+            <ContactForm />
           </section>
         </div>
       </div>

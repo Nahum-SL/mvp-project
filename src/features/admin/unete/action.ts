@@ -6,7 +6,7 @@ import { JobAppStatus } from "@/src/types/unete/unete";
 
 const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
-export async function updateCandidatoStatus(id: number, status: JobAppStatus) {
+export async function updateCandidatoStatus(id: string, status: JobAppStatus) {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get("asescon_token")?.value;

@@ -12,7 +12,7 @@ export interface AboutUs {
 }
 
 export interface JobApplication {
-  id: number;
+  id: string;
   fullName: string;
   dni: string;
   age: number;

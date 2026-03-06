@@ -26,7 +26,7 @@ export default async function AdminBlogPage() {
             Categorías
           </Link>
           <Link
-            href="/admin/blog/nuevo"
+            href="/admin/blog/crear"
             className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-100"
           >
             <Plus size={20} /> Nuevo Artículo

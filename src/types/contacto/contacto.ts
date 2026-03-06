@@ -1,36 +1,23 @@
-enum ContactStatus {
-  PENDING,
-  CONFIRMED,
-  CANCELLED,
-  COMPLETED
-}
+export const ContactStatus = {
+  PENDING: "PENDING",
+  CONFIRMED: "CONFIRMED",
+  CANCELLED: "CANCELLED",
+  COMPLETED: "COMPLETED"
+} as const;
+
+export type ContactStatus = (typeof ContactStatus)[keyof typeof ContactStatus]
 
 export interface Contacto {
-  id: number;
+  id: string;
   name: string;
   email: string;
   telefono: string;
   fechaNac: Date;
 
-  // Puede no haber un comentario
-  comentario: string | null;
+  comentario?: string;
 
-  // Estado
   status: ContactStatus;
 
   createdAt: string;
   updatedAt: string;
-}
-
-export interface CreateContacto {
-  name: string;
-  email: string;
-  telefono: string;
-  fechaNac: Date;
-  comentario?: string;
-  status: ContactStatus;
-}
-
-export interface UpdateContacto {
-  prop: CreateContacto;
 }
