@@ -1,51 +1,40 @@
+import { Suspense } from "react";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { jwtDecode } from "jwt-decode"; // pnpm add jwt-decode
 import IntranetHeader from "@/src/components/ui/layout/IntranetHeader";
 import IntranetDashboard from "@/src/components/ui/layout/intranet/IntranetDashboard";
+import { IntranetSkeleton } from "@/src/components/ui/layout/intranet/IntranetSkeleton";
 
-// 1. Definimos la estructura del Token
-interface JWTPayload {
-  id: number;
-  email: string;
-  role: "ADMIN" | "USER" | "COLABORADOR"; // Ajusta según tus roles de Prisma
-  iat: number;
-  exp: number;
-}
-
-export default async function IntranetPage() {
+async function getLinks() {
+  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
-  // 1. Si no hay token, al login
-  if (!token) {
-    redirect("/login");
-  }
+  // Llamamos al endpoint público que creamos en NestJS
+  const res = await fetch(`${API_URL}/intranet/links`, {
+    headers: { Authorization: `Bearer ${token}` },
+    next: { revalidate: 60 }, // Cacheamos por 1 minuto
+  });
 
-  try {
-    // 2. Decodificar el token para ver el ROL
-    // Nota: El payload de tu JWT en NestJS tiene { id, email, role }
-    const decoded = jwtDecode<JWTPayload>(token);
+  if (!res.ok) return { userName: "Usuario", links: [] };
+  return res.json();
+}
 
-    // 3. Si es ADMIN, mandarlo a su panel (No debería estar en la intranet común)
-    if (decoded.role === "ADMIN") {
-      redirect("/admin");
-    }
-  } catch (error) {
-    // Si el token es inválido o expiró
-    redirect("/login");
-  }
+export default async function IntranetPage() {
+  const { userName, links } = await getLinks();
+
   return (
-    <main className="bg-slate-950">
+    <main className="bg-slate-950 min-h-screen">
       <IntranetHeader
-        title="Intranet"
+        title={`Bienvenido, ${userName}`}
         subtitle="Portal seguro de gestión empresarial ASESCON"
         src="/fondo-intranet.webp"
         alt="Fondo Intranet"
       />
 
-      {/* El Dashboard continúa el fondo oscuro del Header */}
-      <IntranetDashboard />
+      {/* Pasamos los links reales al componente cliente */}
+      <Suspense fallback={<IntranetSkeleton />}>
+        <IntranetDashboard initialLinks={links} />
+      </Suspense>
     </main>
   );
 }

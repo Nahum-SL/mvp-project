@@ -46,7 +46,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
   );
 
   return (
-    <div className="space-y-4 p-6 bg-white rounded-[2rem] border border-slate-200 shadow-sm">
+    <div className="space-y-4 p-6 bg-white rounded-4xl border border-slate-200 shadow-sm">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 italic">
           Icono del Acceso
@@ -78,7 +78,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
         />
       </div>
 
-      <div className="grid grid-cols-5 gap-3 max-h-[200px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
+      <div className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
         {filteredIcons.map((iconName) => {
           // Tipado estricto en el mapeo
           const IconComponent = Icons[

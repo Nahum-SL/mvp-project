@@ -42,7 +42,7 @@ export default async function AdminIntranetPage() {
         </div>
 
         <Link
-          href="/admin/intranet/nuevo"
+          href="/admin/intranet/crear"
           className="bg-white text-slate-900 hover:bg-blue-50 px-6 py-4 rounded-2xl font-black uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg"
         >
           <Plus size={18} /> Nuevo Acceso

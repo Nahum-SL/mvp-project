@@ -20,7 +20,7 @@ import { LinkConfigCard } from "./form/LinkConfigCard";
 import { IntranetLink } from "@/src/types/intranet/intranet-links";
 
 interface Props {
-  initialData: IntranetLink;
+  initialData?: IntranetLink;
 }
 
 export const CreateLinkForm = ({ initialData }: Props) => {
