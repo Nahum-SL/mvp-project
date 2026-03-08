@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
@@ -24,17 +24,20 @@ export async function createPostAction(formData: FormData) {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      next: { tags: ["post"] }, // Etiqueta para revalidación selectiva
     });
-
+    
     const data = await response.json();
-
+    
     if (!response.ok) {
       return {
         success: false,
         error: data.message || "Error al comunicarse con el servidor de NestJS",
       };
     }
-
+    
+    revalidateTag("post", "max");
+    
     return { success: true, data };
   } catch (error) {
     console.error("SERVER_ACTION_ERROR:", error);
@@ -54,6 +57,7 @@ export async function updatePostAction(
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
+      next: { tags: ["post"] },
     });
     const data = await res.json();
     console.log("ID RECIBIDO EN ACTION:", id);
@@ -70,7 +74,7 @@ export async function updatePostAction(
       return { success: false, error: errorMsg || "Error al actualizar" };
     }
 
-    revalidatePath("/admin/blog");
+    revalidateTag("post", "max");
     return { success: true };
   } catch (e) {
     console.log("SERVER_ERROR", e);
@@ -92,6 +96,7 @@ export async function deletePostAction(id: number) {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      next: { tags: ["post"] },
     });
 
     if (!res.ok) {
@@ -103,8 +108,7 @@ export async function deletePostAction(id: number) {
     }
 
     // Revalidamos las rutas para que el post desaparezca de la lista
-    revalidatePath("/admin/blog");
-    revalidatePath("/blog");
+    revalidateTag("post", "max");
 
     return { success: true };
   } catch (e) {

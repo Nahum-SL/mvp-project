@@ -93,7 +93,9 @@ export const ContactForm = () => {
           registration={register("comentario")}
         />
 
-        <button
+        <motion.button
+          whileHover={ { scale: 1.02 } }
+          whileTap={ { scale: 0.98 } }
           type="submit"
           disabled={isPending}
           className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-black py-5 rounded-2xl shadow-xl shadow-blue-200 transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-[0.2em]"
@@ -104,7 +106,7 @@ export const ContactForm = () => {
             <Send size={18} className="-rotate-12" />
           )}
           {isPending ? "Enviando Solicitud..." : "Solicitar Asesoría Ahora"}
-        </button>
+        </motion.button>
       </form>
     </motion.div>
   );

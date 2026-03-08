@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { BlogCard } from "../../features/blog/components/BlogCard";
 import { BlogPost } from "@/src/types/blog/blogPost";
+import { HeaderRecentPost } from "./HeaderRecenPost";
+import { ArrowRight } from "lucide-react";
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
-  // Usamos revalidate para que se actualice cada hora sin perder velocidad
   const res = await fetch(`${API_URL}/post?limit=3`, {
     next: { revalidate: 3600 },
   });
-  //a
+
   if (!res.ok) return [];
   return res.json();
 }
@@ -19,32 +20,39 @@ export const RecentPosts = async () => {
 
   if (posts.length === 0) return null;
 
+  const [featured, ...rest] = posts;
+
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="max-w-xl">
-            <h2 className="text-4xl font-black text-slate-900 tracking-tight">
-              Actualidad{" "}
-              <span className="text-blue-600">Contable.</span>
-            </h2>
-            <p className="text-slate-500 mt-4 font-light">
-              Mantente informado con las últimas normativas y consejos
-              financieros de nuestros expertos.
-            </p>
-          </div>
-          <Link
-            href="/blog"
-            className="bg-white border border-slate-200 px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all"
-          >
-            Ver todo el blog
-          </Link>
+        <HeaderRecentPost />
+
+        {/* Post destacado */}
+        <div className="mt-10">
+          <BlogCard post={featured} featured />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
+        {/* Otros posts */}
+        {rest.length > 0 && (
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {rest.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="mt-14 flex justify-center">
+          <Link
+            href="/blog"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+          >
+            Ver todas las publicaciones
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-1"
+            />
+          </Link>
         </div>
       </div>
     </section>

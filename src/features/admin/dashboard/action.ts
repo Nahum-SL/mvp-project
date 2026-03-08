@@ -10,7 +10,7 @@ export async function getDashboardStats() {
   try {
     const res = await fetch(`${API_URL}/admin/stats`, {
       headers: { Authorization: `Bearer ${token}` },
-      next: { revalidate: 300 }, // Cache por 5 minutos
+      next: { revalidate: 60 }, // Cache por 5 minutos
     });
     if (!res.ok) throw new Error();
     return await res.json();

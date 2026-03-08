@@ -30,7 +30,7 @@ export default function GlassNavbar({ children, className }: GlassNavbarProps) {
         transition-all duration-500 ease-in-out
         ${
           scrolled
-            ? "bg-blue-950/90 shadow-xl backdrop-blur-md border-b border-white/5 py-2"
+            ? "bg-slate-950/80 shadow-xl backdrop-blur-md border-b border-white/5 py-2"
             : "bg-transparent backdrop-blur-none border-b border-transparent py-4"
         }
         `,

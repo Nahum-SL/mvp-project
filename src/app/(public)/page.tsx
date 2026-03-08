@@ -5,17 +5,11 @@ import AboutSection from "../../components/ui/layout/home/AboutSection";
 // Data del <AboutSection />
 import { aboutUs } from "../../data/about-us";
 
-// Formulario de contacto
-// import ContactForm from "../features/ContactForm";
-
 // Header del Home
 import AsesconHero from "../../components/ui/layout/AsesconHero";
 
 // Post recientes
 import { RecentPosts } from "../../components/sections/RecentPost";
-
-//
-import MidnightCard from "../../components/ui/cards/MidnightCard";
 
 // Skeletons
 import { Suspense } from "react";
@@ -40,20 +34,12 @@ export default function Home() {
         {/* Seccion Sobre Nosotros */}
         <AboutSection data={aboutUs[0]} />
 
-        {/* Descarga del Brouchet */}
-        <MidnightCard
-          title="Impulsa tu negocio"
-          subtitle="Sub"
-          description="Conoce nuestros servicios en detalle en el Brochure comercial"
-          textColor="Asescon"
-        />
-
         {/* Post recientes */}
         <Suspense fallback={<RecentPostSkeleton />}>
           <RecentPosts />
         </Suspense>
 
-        <div className="relative z-9 shadow-[0_-50px_100px_rgba(0,0,0,0.5)]">
+        <div className="relative z-9">
           {/* Formulario de Contacto */}
           <section id="contacto" className="py-20 bg-gray-50">
             <ContactForm />

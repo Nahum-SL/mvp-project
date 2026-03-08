@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { loginSchema, type LoginFormValues } from "../schema";
 import { loginAction } from "../action";
 import { Loader2, Lock, Mail } from "lucide-react";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -134,9 +135,16 @@ export const LoginForm = () => {
           )}
         </button>
 
-        <p className="text-center text-[10px] text-slate-400 font-medium italic">
-          Si olvidaste tu acceso, contacta con soporte técnico.
+        <p className="text-center text-[13px] text-slate-400 font-medium italic">
+          Si olvidaste tu acceso, contacta con soporte tégicnico.
         </p>
+
+        <Link
+          href="/#home"
+          className="text-center text-[13px] text-slate-800 hover:text-cyan-600 font-medium italic"
+        >
+          Volver a la Página Principal
+        </Link>
       </form>
     </div>
   );
