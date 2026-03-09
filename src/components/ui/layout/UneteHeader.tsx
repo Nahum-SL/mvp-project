@@ -18,7 +18,7 @@ export default function UneteHeader({
   alt,
 }: Props) {
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] min-h-90 overflow-hidden bg-slate-950 flex items-center">
+    <section className="relative w-full h-[60vh] md:h-[70vh] min-h-90 overflow-hidden flex items-center">
       {/* Imagen de fondo */}
       <Image
         src={src}
@@ -27,11 +27,11 @@ export default function UneteHeader({
         priority
         sizes="100vw"
         quality={75}
-        className="object-cover object-center opacity-40"
+        className="object-cover object-center brightness-50"
       />
 
-      {/* Overlay: Cambiado a gradiente radial/lineal para mejorar legibilidad central */}
-      <div className="absolute inset-0 bg-linear-to-b from-slate-950/20 via-slate-950/60 to-slate-950" />
+      {/* Overlay oscuro para legibilidad */}
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
@@ -41,11 +41,11 @@ export default function UneteHeader({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             {/* Subtítulo dinámico para coherencia */}
-            <span className="text-green-400 font-semibold tracking-[0.3em] uppercase text-xs md:text-sm mb-4 block">
+            <span className="text-green-500 text-sm md:text-base font-semibold leading-relaxed">
               {subtitle}
             </span>
 
-            <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-snug">
               {title}
             </h1>
 

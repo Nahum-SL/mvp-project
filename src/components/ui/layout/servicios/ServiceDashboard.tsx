@@ -21,13 +21,23 @@ export default function ServiceDashboard() {
     <section className="px-6 py-24 bg-slate-50">
       {/* Título Principal - Aumentado para impacto y claridad */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-extrabold text-blue-950 tracking-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-3xl md:text-6xl lg:text-4xl font-black text-slate-900 leading-tights tracking-tighter"
+        >
           Nuestras Soluciones
-        </h2>
-        <p className="mt-4 text-slate-600 text-lg md:text-xl max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-slate-500 text-sm md:text-xl font-medium leading-relaxed"
+        >
           Servicios integrales diseñados para potenciar el crecimiento de su
           empresa.
-        </p>
+        </motion.p>
       </div>
 
       {/* Filtros - Corregidos para Scroll Móvil */}

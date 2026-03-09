@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlogCard } from "../../features/blog/components/BlogCard";
+import BlogCard from "./BlogCard";
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { HeaderRecentPost } from "./HeaderRecenPost";
 import { ArrowRight } from "lucide-react";
@@ -13,36 +13,29 @@ export async function getRecentPosts(): Promise<BlogPost[]> {
   return res.json();
 }
 
-export const RecentPosts = async () => {
+export const RecentPostsSection = async () => {
   const posts = await getRecentPosts();
-  if (posts.length === 0) return null;
-
-  const [featured, ...rest] = posts;
+  if (!posts || posts.length === 0) return null;
 
   return (
     <section className="py-20 bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       <div className="container mx-auto px-6">
+        {/* Header centrado */}
         <HeaderRecentPost />
 
-        {/* Post destacado */}
-        <div className="mt-10">
-          <BlogCard post={featured} featured />
-        </div>
-
-        {/* Otros posts en grilla */}
-        {rest.length > 0 && (
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {rest.map((post) => (
-              <BlogCard key={post.id} post={post} />
+        <section className="container mx-auto px-15">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {posts.map((pos, i) => (
+              <BlogCard key={pos.id} post={pos} index={i + 1} />
             ))}
           </div>
-        )}
+        </section>
 
         {/* CTA */}
         <div className="mt-14 flex justify-center">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-blue-500 hover:text-blue-400 transition-colors"
+            className="group inline-flex items-center gap-2 text-sm md:text-base font-medium text-blue-500 hover:text-blue-400 transition-colors"
           >
             Ver todas las publicaciones
             <ArrowRight

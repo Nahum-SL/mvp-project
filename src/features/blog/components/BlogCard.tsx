@@ -14,11 +14,7 @@ export const BlogCard = ({
       className={`group bg-white border border-slate-100 overflow-hidden transition-all
       hover:shadow-lg rounded-2xl ${featured ? "grid md:grid-cols-2" : ""}`}
     >
-      <div
-        className={`relative overflow-hidden ${
-          featured ? "aspect-auto md:h-full" : "aspect-video"
-        }`}
-      >
+      <div className="relative overflow-hidden aspect-4/3 rounded-2xl">
         <Image
           src={post.image}
           alt={post.title}
@@ -34,7 +30,7 @@ export const BlogCard = ({
         </div>
       </div>
 
-      <div className={`relative p-6 ${featured ? "flex flex-col justify-center" : ""}`}>
+      <div className="relative p-4 md:p-6 flex flex-col gap-2">
         <p className="text-slate-400 text-xs mb-2">
           {new Date(post.createdAt).toLocaleDateString("es-PE", {
             day: "2-digit",
@@ -43,27 +39,17 @@ export const BlogCard = ({
           })}
         </p>
 
-        <h3
-          className={`text-slate-900 leading-tight mb-3 group-hover:text-blue-600 transition-colors ${
-            featured ? "text-2xl font-semibold" : "text-lg font-semibold"
-          }`}
-        >
+        <h3 className="text-slate-900 text-lg md:text-xl font-semibold leading-snug">
           {post.title}
         </h3>
 
-        <p
-          className={`text-slate-500 text-sm mb-5 ${
-            featured ? "line-clamp-3" : "line-clamp-2"
-          }`}
-        >
-          {post.excerpt}
-        </p>
+        <p className="text-slate-500 text-sm line-clamp-3">{post.excerpt}</p>
 
         <Link
           href={`/blog/${post.slug}`}
-          className="text-blue-600 text-sm font-medium flex items-center gap-2"
+          className="text-blue-500 text-sm hover:text-blue-600 transition-colors font-medium flex items-center gap-2"
         >
-          Leer artículo →
+          Leer artículo
         </Link>
         {/* Línea decorativa inferior que aparece en hover */}
         <div

@@ -1,14 +1,17 @@
+// src/components/ui/layout/AsesconHero.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 
 interface HeroProps {
-  companyName?: string; // Lo volví opcional por si no se usa
+  companyName?: string;
   mainTitle: string;
   subtitle: string;
   ctaText: string;
+  image: string; // La imagen de fondo
   onCtaClick?: () => void;
 }
 
@@ -16,51 +19,65 @@ export default function AsesconHero({
   mainTitle,
   subtitle,
   ctaText,
+  image,
   onCtaClick,
 }: HeroProps) {
   return (
-    <section className="
-    relative w-full md:min-h-screen min-h-[70vh] overflow-hidden bg-slate-950 
-    flex flex-col justify-between text-center pt-32 md:pt-44 pb-12 md:pb-32
-    ">
-      {/* Background Decorativo */}
-      <div className="
-      absolute top-0 left-1/2 -translate-x-1/2 w-full h-125 bg-blue-600/10 
-      blur-[120px] rounded-full" 
-      />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto space-y-10 md:space-y-14">
-          {/* Título Principal */}
+    <section
+      className="relative w-full min-h-screen flex items-center justify-center 
+    overflow-hidden bg-slate-950"
+    >
+      {/* 1. IMAGEN DE FONDO INMERSIVA */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={image}
+          alt="Background"
+          fill
+          className="object-cover object-center scale-105" // Ligeramente escalada para efecto de profundidad
+          priority
+        />
+        {/* Capas de degradado para legibilidad (Estilo NexaSAP) */}
+        <div className="absolute inset-0 bg-slate-950/70" />{" "}
+        {/* Oscurecimiento general */}
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-slate-950/40" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-900/20 via-transparent to-transparent" />
+      </div>
+
+      <div className="max-7xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-3xl mx-auto">
+          {/* Título */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.95]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-5xl md:text-5xl lg:text-6xl 
+            font-black text-white tracking-tighter 
+            leading-[0.9]"
           >
             {mainTitle}
           </motion.h1>
 
-          {/* Subtítulo */}
+          {/* Subtítulo con máximo contraste */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mt-10 text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-md"
           >
             {subtitle}
           </motion.p>
 
-          {/* Botones de Acción */}
+          {/* Contenedor de Botones */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12"
           >
+            {/* Botón Principal (WhatsApp) */}
             <button
               onClick={onCtaClick}
-              className="group relative w-full sm:w-auto px-8 py-4 bg-white text-slate-950 font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
+              className="group relative w-full sm:w-auto px-8 py-4 bg-white text-slate-950 font-black rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
               <div className="absolute inset-0 bg-[#25D366] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               <div className="relative flex items-center gap-2 group-hover:text-white transition-colors duration-300">
@@ -70,44 +87,40 @@ export default function AsesconHero({
                 </span>
               </div>
             </button>
+
+            {/* Botón Secundario */}
             <Link
               href="/servicios"
-              className="w-full sm:w-auto px-8 py-4 bg-transparent text-white font-bold rounded-full border border-white/20 hover:bg-white/5 transition-colors uppercase tracking-widest text-sm"
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-black rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
             >
-              Saber más
+              Ver soluciones
             </Link>
           </motion.div>
         </div>
       </div>
 
-      {/* Stats - Limpio y solo para Desktop */}
-      <div className="relative z-10 w-full mt-10 mb-10">
+      {/* Stats inferiores con línea decorativa */}
+      <div className="absolute bottom-12 w-full z-10 hidden md:block">
         <div className="container mx-auto px-6">
-          <div className="
-          flex justify-between items-center text-white/40 text-[10px]
-          font-bold tracking-[0.5em]
-          uppercase border-t border-white/10 pt-4
-          ">
-            {[
-              "Estrategia Fiscal",
-              "Auditoría Integral",
-              "Consultoría Legal",
-            ].map((stat, i) => (
-              <motion.span
-                key={stat}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 + i * 0.2 }}
-              >
-                {stat}
-              </motion.span>
-            ))}
+          <div
+            className="flex justify-between items-center text-white/50 text-[10px] 
+          font-black tracking-widest uppercase border-t border-white/10 pt-8"
+          >
+            <span className="hover:text-blue-400 transition-colors cursor-default">
+              Estrategia Fiscal
+            </span>
+            <span className="hover:text-blue-400 transition-colors cursor-default">
+              Auditoría Integral
+            </span>
+            <span className="hover:text-blue-400 transition-colors cursor-default">
+              Consultoría Legal
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Línea decorativa final */}
-      <div className="absolute bottom-0 w-full h-px bg-linear-to-r from-transparent via-white/20 to-transparent"/>
+      {/* Luz inferior decorativa */}
+      <div className="absolute bottom-0 w-full h-32 bg-linear-to-t from-slate-950 to-transparent" />
     </section>
   );
 }

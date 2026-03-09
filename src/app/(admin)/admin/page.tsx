@@ -165,6 +165,12 @@ export default async function AdminDashboardPage() {
               <button className="w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10">
                 Reporte de Leads
               </button>
+              <Link
+                href="/intranet"
+                className="flex items-center justify-center w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10"
+              >
+                Ver la Intranet
+              </Link>
             </div>
           </div>
         </div>

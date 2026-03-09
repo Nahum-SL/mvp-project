@@ -21,7 +21,10 @@ export default function BlogCard({ post, index }: Props) {
       className="group"
     >
       <Link href={`/blog/${post.slug}`} className="block relative">
-        <article className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm transition-transform duration-500 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-1">
+        <article
+          className="bg-white rounded-3xl overflow-hidden border-2 border-slate-600 shadow-sm 
+        transition-transform duration-500 hover:shadow-2xl hover:border-slate-300 hover:shadow-blue-500/20 hover:-translate-y-1"
+        >
           {/* Imagen principal con overlay sutil */}
           <div className="relative h-56 md:h-64 w-full overflow-hidden">
             <Image
@@ -35,7 +38,7 @@ export default function BlogCard({ post, index }: Props) {
             {/* Badge de categoría */}
             <div className="absolute top-4 left-4">
               <span className="bg-blue-50 text-blue-600 text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
-                {post.categoryId}
+                {post.category.name}
               </span>
             </div>
           </div>

@@ -7,7 +7,7 @@ export default function ServiciosPage() {
       <ServiceHeader
         title="Expertos en Asesoría y Consultoría Empresarial"
         subtitle="Nuestras Soluciones"
-        src="/services-hero.webp" 
+        src="/servicios-hero.webp" 
         alt="Equipo de asesores trabajando en oficina moderna"
       />
 

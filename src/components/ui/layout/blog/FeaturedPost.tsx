@@ -6,7 +6,7 @@ import { BlogPost } from "@/src/types/blog/blogPost";
 
 export default function FeaturedPost({ post }: { post: BlogPost }) {
   return (
-    <section className="relative min-h-screen bg-slate-950 w-full py-12">
+    <section className="relative bg-slate-950 w-full py-12">
       <Link href={`/blog/${post.slug}`} className="group">
         <div className="relative h-125 md:h-150 w-full rounded-[3rem] overflow-hidden shadow-2xl">
           {/* Imagen de fondo con Zoom en Hover */}
@@ -36,12 +36,15 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
               </span>
 
               {/* Titulo legible */}
-              <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6 tracking-tighter">
+              <h2
+                className="text-4xl md:text-5xl lg:text-6xl font-black
+               text-white leading-tight mb-4 md:mb-6 tracking-tighter"
+              >
                 {post.title}
               </h2>
 
               {/* Post excerpt con un poco más de espacio para respirar y legibilidad mejorada */}
-              <p className="text-slate-300 text-lg md:text-xl font-light mb-8 line-clamp-2">
+              <p className="text-slate-300 text-lg md:text-lg font-light mb-6 line-clamp-3">
                 {post.excerpt}
               </p>
 

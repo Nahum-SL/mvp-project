@@ -10,36 +10,44 @@ import AsesconHero from "../../components/ui/layout/AsesconHero";
 
 // Post recientes
 import { RecentPosts } from "../../components/sections/RecentPost";
+import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";
 
 // Skeletons
 import { Suspense } from "react";
 import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
+
 import { ContactForm } from "@/src/components/ui/layout/contacto/ContactForm";
+import { ContactHeader } from "@/src/components/ui/layout/contacto/ContacHeader";
 
 export default function Home() {
   // Prueba
 
   return (
     <main>
-      <div id="/home" className="relative z-10">
+      <div className="relative z-10">
         {/* Header del Home */}
-        <AsesconHero
-          companyName="ASESCON"
-          mainTitle="Arquitectos De Crecimiento Empresarial"
-          subtitle="Brindamos el respaldo estratégico y la seguridad jurídica que su 
-          empresa necesita para operar con total tranquilidad en el mercado actual."
-          ctaText="Habla con nosotros"
-        />
+        <section id="home">
+          <AsesconHero
+            mainTitle="Impulsamos el crecimiento de su empresa"
+            subtitle="Brindamos respaldo estratégico y seguridad jurídica para que su empresa opere con total tranquilidad."
+            ctaText="Habla con nosotros"
+            image="/constitucion-de-empresas.webp"
+          />
+        </section>
 
         {/* Seccion Sobre Nosotros */}
         <AboutSection data={aboutUs[0]} />
 
         {/* Post recientes */}
         <Suspense fallback={<RecentPostSkeleton />}>
-          <RecentPosts />
+          <RecentPostsSection />
         </Suspense>
 
-        <div className="relative z-9">
+        <div className="mt-18 relative z-9">
+          {/* Titulo del formulario contacto */}
+
+          <ContactHeader />
+
           {/* Formulario de Contacto */}
           <section id="contacto" className="py-20 bg-gray-50">
             <ContactForm />

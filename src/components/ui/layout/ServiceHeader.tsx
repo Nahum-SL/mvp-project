@@ -11,7 +11,7 @@ interface Props {
 
 export default function ServiceHeader({ title, subtitle, src, alt }: Props) {
   return (
-    <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden bg-blue-950">
+    <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden">
       {/* h-[60vh] en móvil y h-[75vh] en desktop (aprox 600px - 750p */}
       {/* Imagen de fondo con Next.js Image */}
       <Image
@@ -20,11 +20,11 @@ export default function ServiceHeader({ title, subtitle, src, alt }: Props) {
         fill
         sizes="100vh"
         quality={75}
-        className="object-cover object-center opacity-60" // Opacidad para el sombreado
+        className="object-cover object-center brightness-50" // Opacidad para el sombreado
       />
 
-      {/* Overlay Gradiente (Azul Oscuro hacia Transparente) */}
-      <div className="absolute inset-0 bg-linear-to-r from-blue-950/90 via-blue-950/50 to-transparent" />
+      {/* Overlay oscuro para legibilidad */}
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Contenido del Header */}
       <div className="relative z-10 h-full max-w-7xl mx-auto px-8 flex flex-col justify-center">
@@ -33,10 +33,10 @@ export default function ServiceHeader({ title, subtitle, src, alt }: Props) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <span className="text-green-400 font-semibold tracking-wider uppercase text-sm mb-4 block">
+          <span className="text-green-500 text-sm md:text-base leading-relaxed font-semibold">
             {subtitle}
           </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white max-w-2xl leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-white leading-snug">
             {title}
           </h1>
           <div className="mt-6 w-20 h-1.5 bg-green-500 rounded-full" />
