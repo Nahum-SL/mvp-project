@@ -72,6 +72,7 @@ export default function ServiceDashboard() {
           ))}
         </div>
       </div>
+      
       {/* Grid de Cards - Ajustado para legibilidad */}
       <motion.div
         layout

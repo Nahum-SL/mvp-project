@@ -75,7 +75,8 @@ export default function BlogCard({ post, index }: Props) {
                     <Image
                       src={post.author.avatar}
                       alt={post.author.name}
-                      fill
+                      width={48}
+                      height={48}
                       className="object-cover"
                     />
                   )}

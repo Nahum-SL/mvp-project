@@ -24,7 +24,7 @@ export const RecentPostsSection = async () => {
         <HeaderRecentPost />
 
         <section className="container mx-auto px-15">
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="mt-12 grid grid-cols-3 lg:grid-cols-3 md:grid-cols-1 gap-8">
             {posts.map((pos, i) => (
               <BlogCard key={pos.id} post={pos} index={i + 1} />
             ))}
@@ -35,7 +35,7 @@ export const RecentPostsSection = async () => {
         <div className="mt-14 flex justify-center">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 text-sm md:text-base font-medium text-blue-500 hover:text-blue-400 transition-colors"
+            className="group inline-flex items-center gap-2 text-sm md:text-base font-medium text-sky-400 hover:text-sky-500 transition-colors"
           >
             Ver todas las publicaciones
             <ArrowRight

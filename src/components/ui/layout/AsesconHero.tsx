@@ -47,10 +47,10 @@ export default function AsesconHero({
         <div className="max-w-3xl mx-auto">
           {/* Título */}
           <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl md:text-5xl lg:text-6xl 
+            initial={{ opacity: 0, y: 8}}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl md:text-5xl lg:text-5xl 
             font-black text-white tracking-tighter 
             leading-[0.9]"
           >

@@ -2,6 +2,8 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { getAdminPost } from "@/src/features/admin/blog/action";
 import { AdminPostList } from "@/src/features/admin/blog/components/AdminPostList";
+import { Suspense } from "react";
+import { PostListSkeleton } from "@/src/features/admin/blog/components/PostListSkeleton";
 
 export default async function AdminBlogPage() {
   const posts = await getAdminPost();
@@ -39,7 +41,9 @@ export default async function AdminBlogPage() {
           ...
         </div>
       ) : (
-        <AdminPostList posts={posts} />
+        <Suspense fallback={<PostListSkeleton />}>
+          <AdminPostList posts={posts} />
+        </Suspense>
       )}
     </div>
   );

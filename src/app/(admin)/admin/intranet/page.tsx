@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { Plus, LayoutGrid } from "lucide-react";
 import { AdminLinkList } from "@/src/features/admin/intranet/components/AdminLinkList";
+import { Suspense } from "react";
+import { LinkListSkeleton } from "@/src/features/admin/intranet/components/LinkListSkeleton";
 
 async function getIntranetLinks() {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
@@ -51,7 +53,9 @@ export default async function AdminIntranetPage() {
 
       {/* Lista de Gestión */}
       <section className="pb-10">
-        <AdminLinkList links={links} />
+        <Suspense fallback={<LinkListSkeleton />}>
+          <AdminLinkList links={links} />
+        </Suspense>
       </section>
     </main>
   );

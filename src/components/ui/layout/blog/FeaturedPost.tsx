@@ -31,7 +31,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
               transition={{ duration: 0.8 }}
               className="max-w-3xl"
             >
-              <span className="bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 inline-block">
+              <span className="bg-cyan-500 text-white text-[10px] font-black uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 inline-block">
                 Lectura Destacada
               </span>
 
@@ -61,7 +61,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-blue-600 text-white font-bold text-xs">
+                    <div className="w-full h-full flex items-center justify-center bg-blue-500/90 backdrop-blur text-white font-bold text-xs">
                       {post.author?.name?.charAt(0) || "A"}
                     </div>
                   )}

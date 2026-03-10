@@ -27,6 +27,7 @@ export const BlogHeader = ({
           src={backgroundImage}
           alt="Background"
           fill
+          sizes="100vh"
           className="object-cover object-center brightness-50"
         />
       ) : (
@@ -46,7 +47,7 @@ export const BlogHeader = ({
         <div className="inline-flex items-center gap-2 justify-center text-blue-500">
           <Newspaper size={22} />
           <span className="text-xs font-semibold uppercase tracking-wider">
-            Blog / Recursos
+            Centro de Recursos
           </span>
         </div>
 

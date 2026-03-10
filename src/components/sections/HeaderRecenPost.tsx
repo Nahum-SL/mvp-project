@@ -5,7 +5,7 @@ import { Newspaper } from "lucide-react";
 
 export const HeaderRecentPost = () => {
   return (
-    <header className="mb-12 text-center md:text-center">
+    <header className="mb-15 text-center md:text-center">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}

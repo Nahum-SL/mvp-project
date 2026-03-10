@@ -71,7 +71,7 @@ export const PostConfigCard = ({
       type="submit"
       disabled={isPending}
       className={cn(
-        "w-full py-5 rounded-[2rem] font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
+        "w-full py-5 rounded-4xl font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
         isPending
           ? "bg-slate-100 text-slate-400 shadow-none"
           : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200 active:scale-95",

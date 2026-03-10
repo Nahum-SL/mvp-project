@@ -2,6 +2,8 @@
 import { cookies } from "next/headers";
 import { MessageSquareQuote, Users } from "lucide-react";
 import { LeadsTable } from "@/src/features/admin/contacto/components/LeadsTable";
+import { Suspense } from "react";
+import { LeadsTableSkeleton } from "@/src/features/admin/contacto/components/LeadsTableSkeleton";
 
 async function getLeads() {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
@@ -45,7 +47,9 @@ export default async function AdminContactoPage() {
         </div>
       </header>
 
-      <LeadsTable leads={leads} />
+      <Suspense fallback={<LeadsTableSkeleton />}>
+        <LeadsTable leads={leads} />
+      </Suspense>
     </main>
   );
 }
