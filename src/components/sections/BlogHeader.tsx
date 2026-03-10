@@ -18,7 +18,7 @@ export const BlogHeader = ({
 }: BlogHeroHeaderProps) => {
   return (
     <section
-      className="relative w-full min-h-75 md:min-h-115 flex 
+      className="relative w-full h-[60vh] md:h-[75vh] min-h-125 flex 
     items-center justify-center text-center"
     >
       {/* Imagen o gradiente de fondo */}

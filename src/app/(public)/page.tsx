@@ -9,7 +9,6 @@ import { aboutUs } from "../../data/about-us";
 import AsesconHero from "../../components/ui/layout/AsesconHero";
 
 // Post recientes
-import { RecentPosts } from "../../components/sections/RecentPost";
 import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";
 
 // Skeletons

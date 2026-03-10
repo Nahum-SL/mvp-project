@@ -22,8 +22,9 @@ export default function BlogCard({ post, index }: Props) {
     >
       <Link href={`/blog/${post.slug}`} className="block relative">
         <article
-          className="bg-white rounded-3xl overflow-hidden border-2 border-slate-600 shadow-sm 
-        transition-transform duration-500 hover:shadow-2xl hover:border-slate-300 hover:shadow-blue-500/20 hover:-translate-y-1"
+          className="bg-white rounded-3xl overflow-hidden border-2 border-slate-900 shadow-sm 
+        transition-transform duration-500 hover:shadow-2xl hover:border-slate-700 
+        hover:shadow-blue-500/20 hover:-translate-y-1"
         >
           {/* Imagen principal con overlay sutil */}
           <div className="relative h-56 md:h-64 w-full overflow-hidden">
@@ -31,6 +32,7 @@ export default function BlogCard({ post, index }: Props) {
               src={post.image}
               alt={post.title}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-linear-to-t from-slate-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
