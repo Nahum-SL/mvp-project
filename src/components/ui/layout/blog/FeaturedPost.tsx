@@ -14,7 +14,6 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
             src={post.image}
             alt={post.title}
             fill
-            loading="eager"
             quality={75}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -55,7 +54,6 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                     <Image
                       src={post.author.avatar}
                       alt={post.author.name || "Autor"}
-                      loading="eager"
                       width={48}
                       height={48}
                       className="object-cover"

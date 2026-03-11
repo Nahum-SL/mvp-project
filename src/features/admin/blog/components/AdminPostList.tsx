@@ -26,7 +26,6 @@ export const AdminPostList = ({ posts }: { posts: BlogPost[] }) => {
                 src={post.image}
                 alt={post.title}
                 fill
-                loading="eager"
                 sizes="64px"
                 className="object-cover"
               />

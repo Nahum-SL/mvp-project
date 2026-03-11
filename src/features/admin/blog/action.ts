@@ -52,6 +52,7 @@ export async function updatePostAction(
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
+  
   try {
     const res = await fetch(`${API_URL}/post/${id}`, {
       method: "PATCH",
@@ -60,12 +61,8 @@ export async function updatePostAction(
       next: { tags: ["post"] },
     });
     const data = await res.json();
-    console.log("ID RECIBIDO EN ACTION:", id);
 
     if (!res.ok) {
-      // ESTO ES CLAVE: Mira la consola de tu terminal de Next.js
-      console.log("DETALLE ERROR NESTJS:", JSON.stringify(data, null, 2));
-
       // Si NestJS devuelve un array de errores de validación (class-validator)
       const errorMsg = Array.isArray(data.message)
         ? data.message.join(", ")

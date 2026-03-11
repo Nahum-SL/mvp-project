@@ -7,12 +7,14 @@ import {
   Users,
   Link as LinkIcon,
   BookOpenText as Book,
+  Layers
 } from "lucide-react";
 import { LogoutButton } from "@/src/components/ui/buttons/LogoutButton";
 
 const menuItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Gestionar Blog", href: "/admin/blog", icon: FileText },
+  { name: "Gestionar Servicios", href: "/admin/servicios", icon: Layers },
   { name: "Candidatos", href: "/admin/unete", icon: Users },
   { name: "Intranet Links", href: "/admin/intranet", icon: LinkIcon },
   { name: "Gestionar Clientes", href: "/admin/contacto", icon: Book },

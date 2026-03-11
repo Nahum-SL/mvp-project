@@ -8,7 +8,7 @@ export const BlogPostHeader = ({ post }: { post: BlogPost }) => (
       src={post.image}
       alt={post.title}
       fill
-      priority
+      loading="eager"
       sizes="(max-width: 1024px) 100vw, 33vw"
       quality={75}
       className="object-cover brightness-[0.4]"

@@ -26,7 +26,8 @@ export const BlogEditor = ({ onChange, initialContent }: Props) => {
     },
   });
 
-  // Si initialContent cambia (Por ejemplo, al cargar datos de una API), actualizamos el editor
+  // Si initialContent cambia (Por ejemplo, al cargar datos de una API), 
+  // actualizamos el editor
   useEffect(() => {
     if (editor && initialContent && editor.isEmpty) {
       editor.commands.setContent(initialContent);
