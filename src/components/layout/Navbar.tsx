@@ -45,7 +45,7 @@ function NavbarCard() {
             href="/blog"
             className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
           >
-            BLOG
+            RECURSOS
           </Link>
         </div>
 
@@ -97,7 +97,7 @@ function NavbarCard() {
             onClick={() => setOpenBell(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
-            BLOG
+            RECURSOS
           </Link>
         </div>
       )}
@@ -130,7 +130,7 @@ function NavbarCard() {
             onClick={() => setOpenMenu(false)}
             className="font-medium hover:text-blue-200 transition-colors"
           >
-            BLOG
+            RECURSOS
           </Link>
           <Link
             href="/login"

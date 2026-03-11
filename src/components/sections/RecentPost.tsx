@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlogCard } from "../../features/blog/components/BlogCard";
+import { BlogCard } from "../../features/blog/components/BlogCardPage";
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { HeaderRecentPost } from "./HeaderRecenPost";
 import { ArrowRight } from "lucide-react";

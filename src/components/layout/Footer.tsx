@@ -1,7 +1,6 @@
 'use client';
 // src/components/ui/layout/Footer.tsx
 import Link from "next/link";
-import Image from "next/image";
 import {
   Mail,
   Phone,

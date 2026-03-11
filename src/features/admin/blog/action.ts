@@ -117,6 +117,7 @@ export async function deletePostAction(id: number) {
   }
 }
 
+
 // Obtener categorias posts para el admin (con autenticación)
 export async function getCategories() {
   const cookieStore = await cookies();
@@ -127,7 +128,7 @@ export async function getCategories() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/blog/category`, {
+    const res = await fetch(`${API_URL}/category`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -25,7 +25,7 @@ export default function UneteHeader({
         alt={alt}
         fill
         priority
-        sizes="100vw"
+        sizes="(max-width: 1024px) 100vw, 33vw"
         quality={75}
         className="object-cover object-center brightness-50"
       />

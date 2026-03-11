@@ -18,8 +18,7 @@ export default function SlugHeader({ src, alt, category, title }: Props) {
         src={src}
         alt={alt}
         fill
-        priority // Recomendado para el Hero de la página
-        sizes="100vh"
+        sizes="(max-width: 1024px) 100vw, 33vw"
         quality={75}
         className="object-cover object-center opacity-40"
       />

@@ -11,7 +11,7 @@ interface Props {
   index: number;
 }
 
-export default function BlogCard({ post, index }: Props) {
+export default function BlogCardHome({ post, index }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,15 @@ export default function BlogCard({ post, index }: Props) {
     >
       <Link href={`/blog/${post.slug}`} className="block relative">
         <article
-          className="bg-white rounded-3xl overflow-hidden border-2 border-slate-900 shadow-sm 
+          className="rounded-3xl overflow-hidden 
+          border-2 border-slate-900 shadow-sm
+          transition-bg-linear-to-tl z-0 relative 
+          before:absolute before:w-full 
+          before:aspect-square before:left-0 before:top-0 
+          before:rounded-full before:blur-3xl before:opacity-80 
+          before:-z-10 before:transition 
+          from-[rgba(32,35,91,0.7)] to-[rgba(7,9,33,0.7)] 
+          before:bg-[radial-gradient(circle,#199AFC90_0,#0D102380_100%)] 
         transition-transform duration-500 hover:shadow-2xl hover:border-slate-700 
         hover:shadow-blue-500/20 hover:-translate-y-1"
         >
@@ -39,7 +47,7 @@ export default function BlogCard({ post, index }: Props) {
 
             {/* Badge de categoría */}
             <div className="absolute top-4 left-4">
-              <span className="bg-blue-50 text-blue-600 text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-sky-600 text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
                 {post.category.name}
               </span>
             </div>
@@ -63,12 +71,12 @@ export default function BlogCard({ post, index }: Props) {
             </div>
 
             {/* Título */}
-            <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug">
+            <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors line-clamp-2 leading-snug">
               {post.title}
             </h3>
 
             {/* Extracto */}
-            <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-3 mb-4">
+            <p className="text-slate-400 text-sm md:text-base leading-relaxed line-clamp-3 mb-4">
               {post.excerpt}
             </p>
 
@@ -96,7 +104,11 @@ export default function BlogCard({ post, index }: Props) {
                 </div>
               </div>
 
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+              <div
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-50 text-blue-600 flex 
+              items-center justify-center group-hover:bg-sky-400 group-hover:text-white 
+              transition-all duration-300"
+              >
                 <FaChevronRight className="text-xs md:text-sm" />
               </div>
             </div>

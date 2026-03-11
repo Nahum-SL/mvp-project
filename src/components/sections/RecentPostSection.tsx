@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BlogCard from "./BlogCard";
+import BlogCardHome from "./BlogCardHome";
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { HeaderRecentPost } from "./HeaderRecenPost";
 import { ArrowRight } from "lucide-react";
@@ -15,8 +15,14 @@ export async function getRecentPosts(): Promise<BlogPost[]> {
 
 export const RecentPostsSection = async () => {
   const posts = await getRecentPosts();
-  if (!posts || posts.length === 0) return null;
-
+  if (!posts || posts.length === 0)
+    return (
+      <div className="py-20 text-center">
+        <p className="text-slate-400 italic">
+          No hay artículos publicados aún.
+        </p>
+      </div>
+    );
   return (
     <section className="py-20 bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       <div className="container mx-auto px-6">
@@ -24,9 +30,9 @@ export const RecentPostsSection = async () => {
         <HeaderRecentPost />
 
         <section className="container mx-auto px-15">
-          <div className="mt-12 grid grid-cols-3 lg:grid-cols-3 md:grid-cols-1 gap-8">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-1 gap-8">
             {posts.map((pos, i) => (
-              <BlogCard key={pos.id} post={pos} index={i + 1} />
+              <BlogCardHome key={pos.id} post={pos} index={i + 1} />
             ))}
           </div>
         </section>

@@ -19,8 +19,7 @@ import { ContactForm } from "@/src/components/ui/layout/contacto/ContactForm";
 import { ContactHeader } from "@/src/components/ui/layout/contacto/ContacHeader";
 
 export default function Home() {
-  // Prueba
-
+  
   return (
     <main>
       <div className="relative z-10">

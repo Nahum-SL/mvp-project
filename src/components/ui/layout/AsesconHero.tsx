@@ -33,6 +33,8 @@ export default function AsesconHero({
           src={image}
           alt="Background"
           fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
+          quality={75}
           className="object-cover object-center scale-105" // Ligeramente escalada para efecto de profundidad
           priority
         />
@@ -47,7 +49,7 @@ export default function AsesconHero({
         <div className="max-w-3xl mx-auto">
           {/* Título */}
           <motion.h1
-            initial={{ opacity: 0, y: 8}}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-5xl md:text-5xl lg:text-5xl 
@@ -93,7 +95,7 @@ export default function AsesconHero({
               href="/servicios"
               className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-black rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
             >
-              Ver soluciones
+              Ver Servicios
             </Link>
           </motion.div>
         </div>

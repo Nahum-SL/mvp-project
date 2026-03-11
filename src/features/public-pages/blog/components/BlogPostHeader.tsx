@@ -9,6 +9,8 @@ export const BlogPostHeader = ({ post }: { post: BlogPost }) => (
       alt={post.title}
       fill
       priority
+      sizes="(max-width: 1024px) 100vw, 33vw"
+      quality={75}
       className="object-cover brightness-[0.4]"
     />
     <div className="absolute inset-0 flex items-center justify-center">

@@ -27,7 +27,9 @@ export const BlogHeader = ({
           src={backgroundImage}
           alt="Background"
           fill
-          sizes="100vh"
+          priority
+          sizes="(max-width: 1024px) 100vw, 33vw"
+          quality={75}
           className="object-cover object-center brightness-50"
         />
       ) : (

@@ -11,7 +11,7 @@ export const BlogPostFooter = () => {
         </p>
       </div>
       <Link
-        href="/contacto"
+        href="/#contacto"
         className="px-8 py-4 bg-white text-blue-600 font-black rounded-2xl hover:bg-slate-100 transition-colors uppercase text-sm tracking-widest"
       >
         Contactar ahora

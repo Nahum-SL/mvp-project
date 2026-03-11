@@ -4,7 +4,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Mail,
   Lock,
@@ -32,6 +32,7 @@ export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -39,11 +40,17 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  useEffect(() => {
+    reset();
+  }, [reset]);
+
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
     setError(null);
 
     const result = await loginAction(data);
+
+    if (result.success) setIsLoading(false);
 
     if (result.error) {
       setError(result.error);

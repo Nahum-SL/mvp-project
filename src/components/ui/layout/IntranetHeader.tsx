@@ -19,7 +19,7 @@ export default function IntranetHeader({ title, subtitle, src, alt }: Props) {
           src={src}
           alt={alt}
           fill
-          sizes="100vh"
+          sizes="(max-width: 1024px) 100vw, 33vw"
           priority
           quality={75}
           className="object-cover object-right md:object-center opacity-60"
