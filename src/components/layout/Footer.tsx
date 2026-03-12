@@ -1,13 +1,7 @@
-'use client';
+"use client";
 // src/components/ui/layout/Footer.tsx
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MessageCircle,
-  MapPin,
-  Clock,
-} from "lucide-react";
+import { Mail, Phone, MessageCircle, MapPin, Clock } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa";
 
 export default function Footer() {
@@ -20,20 +14,15 @@ export default function Footer() {
           {/* Columna 1: Logo y Bio */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <Link
-              href="/#home"
-              className="flex"
-              >
-              
-              <span className="text-2xl font-black hover:text-blue-700 text-white tracking-tighter">
-                Asescon
-              </span>
+              <Link href="/#home" className="flex">
+                <span className="text-2xl font-black hover:text-blue-700 text-white tracking-tighter">
+                  Asescon
+                </span>
               </Link>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
               Asesoría contable, tributaria y laboral para empresas y
-              emprendedores.
-               Gestionamos tu contabilidad y obligaciones fiscales
+              emprendedores. Gestionamos tu contabilidad y obligaciones fiscales
               con profesionalismo y confianza.
             </p>
             <div className="flex gap-4">
@@ -123,7 +112,11 @@ export default function Footer() {
         </div>
 
         {/* Línea Divisoria y Copyright */}
-        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+        <div
+          className="pt-8 border-t border-slate-900 flex flex-col md:flex-row 
+          justify-between items-center gap-4 text-[10px] font-bold uppercase 
+          tracking-[0.2em] text-slate-500"
+        >
           <p>© {currentYear} ASESCON. Todos los derechos reservados.</p>
           <p className="italic">
             MVP Prototipo —{" "}

@@ -78,3 +78,45 @@ export async function deleteServicioAction(id: number) {
     return { success: false, error: (error as Error).message };
   }
 }
+
+// Vista para Admin
+export async function getAdminServicios() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
+
+  try {
+    const response = await fetch(`${API_URL}/servicio/admin`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      next: { tags: ["servicio"] },
+    });
+
+    if (!response.ok) throw new Error("No se pudieron cargar los servicios");
+
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+// Obtener por Id
+export async function getAdminServicioById(id: number) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
+
+  try {
+    const res = await fetch(`${API_URL}/servicio/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
+    });
+
+    if (!res.ok) return null;
+
+    return await res.json();
+  } catch (e) {
+    console.log("SERVER_ERROR", e);
+    return null;
+  }
+}

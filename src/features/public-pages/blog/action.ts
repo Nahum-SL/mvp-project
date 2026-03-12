@@ -6,12 +6,18 @@ const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   // Traemos los posts. Puedes añadir filtros en NestJS para traer solo los "published: true"
-  const res = await fetch(`${API_URL}/post`, {
-    next: { revalidate: 60 },
-  });
+  try {
+    const res = await fetch(`${API_URL}/post`, {
+      next: { revalidate: 60 },
+    });
+  
+    if (!res.ok) return [];
+    return res.json();
 
-  if (!res.ok) return [];
-  return res.json();
+  } catch (e) {
+    console.log("ERROR:", e)
+    return []
+  }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
@@ -28,7 +34,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 export async function getNavigationPosts(currentSlug: string) {
   try {
-    const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
     const res = await fetch(`${API_URL}/post`, { next: { revalidate: 3600 } });
     const response = await res.json();
     const posts: BlogPost[] = Array.isArray(response)

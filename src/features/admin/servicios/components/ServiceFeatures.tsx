@@ -1,4 +1,4 @@
-import { useFieldArray, UseFormRegister, FieldErrors } from "react-hook-form";
+import { Control, useFieldArray, UseFormRegister, FieldErrors } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
 import { ServicioFormInput } from "../schema";
 
@@ -6,10 +6,12 @@ interface Props {
   register: UseFormRegister<ServicioFormInput>;
   errors: FieldErrors<ServicioFormInput>;
   isPending: boolean;
+  control: Control<ServicioFormInput>;
 }
 
-export const ServiceFeatures = ({ register, errors, isPending }: Props) => {
+export const ServiceFeatures = ({ register, errors, isPending, control }: Props) => {
   const { fields, append, remove } = useFieldArray({
+    control,
     name: "features",
   });
 

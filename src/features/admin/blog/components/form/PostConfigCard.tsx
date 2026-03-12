@@ -4,7 +4,7 @@ import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { PostFormInput } from "../../schema";
 import { Category } from "@/src/types/blog/category";
 import { cn } from "@/src/lib/utils";
-
+// 
 interface Props {
   register: UseFormRegister<PostFormInput>;
   errors: FieldErrors<PostFormInput>;

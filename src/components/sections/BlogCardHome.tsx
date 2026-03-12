@@ -81,9 +81,15 @@ export default function BlogCardHome({ post, index }: Props) {
             </p>
 
             {/* Footer: Autor + CTA */}
-            <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+            <div
+              className="flex items-center justify-between pt-4 
+            border-t border-slate-100 group-hover:border-slate-400"
+            >
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                <div
+                  className="relative w-10 h-10 rounded-full overflow-hidden 
+                border-2 border-white shadow-sm"
+                >
                   {post.author.avatar && (
                     <Image
                       src={post.author.avatar}
@@ -95,7 +101,7 @@ export default function BlogCardHome({ post, index }: Props) {
                   )}
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-900 leading-none">
+                  <span className="text-xs font-bold text-slate-300 leading-none">
                     {post.author.name}
                   </span>
                   <span className="text-[10px] text-slate-400 font-medium">

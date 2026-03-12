@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Settings, LogOut, ChevronDown, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { logoutAction } from "../../auth/login/logout-action";
 
 // Datos del autor (En el futuro esto vendrá de tu AuthContext o Store)

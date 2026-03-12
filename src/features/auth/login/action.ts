@@ -34,8 +34,8 @@ export async function loginAction(data: LoginFormValues) {
     revalidatePath('/login')
 
     return { success: true, user: result.user };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) { 
+  } catch (e) {
+    console.log(e)
     return { error: "No se pudo conectar con el servidor de autenticación" };
   }
 }

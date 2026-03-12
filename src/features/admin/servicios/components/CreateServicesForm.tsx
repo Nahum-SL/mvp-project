@@ -35,6 +35,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm<ServicioFormInput, unknown, ServicioFormValues>({
     resolver: zodResolver(servicioSchema),
@@ -137,6 +138,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
           register={register}
           errors={errors}
           isPending={isPending}
+          control={control}
         />
       </div>
 

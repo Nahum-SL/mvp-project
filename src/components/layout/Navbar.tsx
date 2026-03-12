@@ -74,7 +74,7 @@ function NavbarCard() {
           }}
           aria-label="Toggle Menu"
         >
-          {openBell ? <X size={24} /> : <Bell size={24} />}
+          {openBell ? <X size={27} /> : <Bell size={27} />}
         </button>
 
         {/* Mobile Menu de Hamburgesa */}
@@ -91,11 +91,14 @@ function NavbarCard() {
       </div>
 
       {openBell && (
-        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-950 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+        <div
+          className="lg:hidden absolute top-20 right-0 w-full bg-slate-950 
+        text-white flex flex-col gap-4 px-6 py-5 shadow-lg"
+        >
           <Link
             href="/blog"
             onClick={() => setOpenBell(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             RECURSOS
           </Link>
@@ -103,46 +106,49 @@ function NavbarCard() {
       )}
 
       {openMenu && (
-        <div className="lg:hidden absolute top-20 right-0 w-full bg-blue-950 text-white flex flex-col gap-4 px-6 py-5 shadow-lg">
+        <div
+          className="lg:hidden absolute top-20 right-0 w-full bg-slate-950 
+        text-white flex flex-col gap-4 px-6 py-5 shadow-lg"
+        >
           <Link
             href="/#home"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             INICIO
           </Link>
           <Link
             href="/servicios"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             SERVICIOS
           </Link>
           <Link
             href="/#contacto"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             CONTACTO
           </Link>
           <Link
             href="/blog"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             RECURSOS
           </Link>
           <Link
             href="/login"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
-            Login
+            INICIAR SESION
           </Link>
           <Link
             href="/unete"
             onClick={() => setOpenMenu(false)}
-            className="font-medium hover:text-blue-200 transition-colors"
+            className="font-medium hover:text-sky-300 transition-colors"
           >
             UNETE
           </Link>
