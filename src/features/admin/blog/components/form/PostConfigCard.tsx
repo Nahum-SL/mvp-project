@@ -1,10 +1,11 @@
 // src/features/admin/blog/components/form/PostConfigCard.tsx
-import { Loader2, Save } from "lucide-react";
+import { Loader2, Save, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { PostFormInput } from "../../schema";
 import { Category } from "@/src/types/blog/category";
 import { cn } from "@/src/lib/utils";
-// 
+//
 interface Props {
   register: UseFormRegister<PostFormInput>;
   errors: FieldErrors<PostFormInput>;
@@ -84,5 +85,15 @@ export const PostConfigCard = ({
       )}
       {isPending ? "Procesando..." : "Guardar Artículo"}
     </button>
+    <Link
+      href="/admin/blog"
+      className="w-full bg-white text-slate-500 font-bold py-4 
+      rounded-3xl border border-slate-200 
+      hover:bg-slate-50  hover:border-sky-500 hover:text-sky-500
+      transition-all flex items-center justify-center gap-3 
+      uppercase text-xs tracking-widest text-center"
+    >
+      <ArrowLeft size={16} /> Cancelar
+    </Link>
   </aside>
 );

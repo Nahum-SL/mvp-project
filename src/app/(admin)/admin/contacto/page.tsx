@@ -1,23 +1,9 @@
 // app/(admin)/admin/contacto/page.tsx
-import { cookies } from "next/headers";
 import { MessageSquareQuote, Users } from "lucide-react";
 import { LeadsTable } from "@/src/features/admin/contacto/components/LeadsTable";
 import { Suspense } from "react";
 import { LeadsTableSkeleton } from "@/src/features/admin/contacto/components/LeadsTableSkeleton";
-
-async function getLeads() {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
-  const cookieStore = await cookies();
-  const token = cookieStore.get("asescon_token")?.value;
-
-  const res = await fetch(`${API_URL}/contacto/admin/all`, {
-    headers: { Authorization: `Bearer ${token}` },
-    next: { tags: ["leads"] },
-  });
-
-  if (!res.ok) return [];
-  return res.json();
-}
+import { getLeads } from "@/src/features/admin/contacto/action";
 
 export default async function AdminContactoPage() {
   const leads = await getLeads();

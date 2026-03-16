@@ -5,7 +5,7 @@ export const servicioSchema = z.object({
   title: z.string().min(5, "El título debe tener al menos 5 caracteres"),
   slug: z.string().min(3, "El slug es obligatorio"),
   description: z.string().min(10, "La descripción debe ser más detallada"),
-  icon: z.any().optional(), // Puede ser un string (Lucide ID) o un File (Cloudinary)
+  icon: z.string().min(1, "Selecciona un Icono"), // Puede ser un string (Lucide ID) o un File (Cloudinary)
   image: z.any().optional(),
 
   // Selector Inteligente

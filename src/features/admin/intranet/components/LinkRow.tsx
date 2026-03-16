@@ -1,8 +1,8 @@
 // features/admin/intranet/components/LinkRow.tsx
 "use client";
 
-import * as Icons from "lucide-react";
-import { LucideIcon, Edit3, Trash2, ExternalLink } from "lucide-react";
+import { iconMap } from "@/src/lib/icons";
+import { Edit3, Trash2, ExternalLink, Link as LinkIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/src/lib/utils";
@@ -23,7 +23,9 @@ interface Props {
 export const LinkRow = ({ link }: Props) => {
   // Renderizado dinámico del icono
   const IconComponent =
-    (Icons[link.icon as keyof typeof Icons] as LucideIcon) || Icons.Link;
+    link.icon && iconMap[link.icon as keyof typeof iconMap]
+      ? iconMap[link.icon as keyof typeof iconMap]
+      : LinkIcon;
 
   const handleDelete = async () => {
     if (!confirm("¿Estás seguro de eliminar este acceso?")) return;

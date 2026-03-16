@@ -1,40 +1,48 @@
-import { Plus } from "lucide-react";
-import Link from "next/link";
+// Acciones
 import { getAdminPost } from "@/src/features/admin/blog/action";
+// Lista
 import { AdminPostList } from "@/src/features/admin/blog/components/AdminPostList";
-import { Suspense } from "react";
+// Diseño de carga
 import { PostListSkeleton } from "@/src/features/admin/blog/components/PostListSkeleton";
+import { Suspense } from "react";
+// Header
+import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import { LayoutGrid, Plus } from "lucide-react";
+import Link from "next/link";
 
 export default async function AdminBlogPage() {
   const posts = await getAdminPost();
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tighter uppercase italic">
-            Gestión de <span className="text-blue-600">Blog</span>
-          </h1>
-          <p className="text-slate-500 font-medium">
-            Administra los artículos de ASESCON.
-          </p>
-        </div>
-
-        <div className="flex gap-3">
+    <div className="space-y-10 pb-20">
+      <SectionHeader
+        title="Gestion de Blog"
+        subtitle="Administra los artículos de ASESCON."
+        icon={<LayoutGrid size={32} />}
+        variant="flat"
+        actions={
           <Link
             href="/admin/blog/categoria"
-            className="hidden md:flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-xl font-bold transition-all"
+            className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
+            font-black uppercase text-xs tracking-widest transition-all flex items-center }
+            gap-2 shadow-xl shadow-blue-100"
           >
-            Categorías
+            <Plus size={18} />
+            Nuevo Categoria
           </Link>
+        }
+        actions2={
           <Link
             href="/admin/blog/crear"
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-100"
+            className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
+            font-black uppercase text-xs tracking-widest transition-all flex items-center }
+            gap-2 shadow-xl shadow-blue-100"
           >
-            <Plus size={20} /> Nuevo Artículo
+            <Plus size={18} />
+            Nuevo Blog
           </Link>
-        </div>
-      </div>
+        }
+      />
 
       {posts.length === 0 ? (
         <div className="text-center p-20 border-2 border-dashed rounded-[3rem]">

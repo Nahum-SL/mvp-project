@@ -2,6 +2,43 @@ import { servicesData } from "@/src/data/servicios";
 import { notFound } from "next/navigation";
 import SlugHeader from "@/src/components/ui/layout/SlugHeader";
 import Link from "next/link";
+// Netadata que mostrara en la URL
+import { Metadata } from "next";
+
+interface Props {
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  try {
+    // Buscamos el servicio en tu backend de NestJS
+    const response = await fetch(`${API_URL}/servicio/${params.slug}`);
+    const service = await response.json();
+
+    if (!service) return { title: "Servicio no encontrado | Asescon" };
+
+    return {
+      title: `${service.title} | Asescon`,
+      description: service.description.replace(/<[^>]*>/g, "").slice(0, 160), // Limpiamos el HTML para el meta-tag
+      openGraph: {
+        title: service.title,
+        description: service.description.replace(/<[^>]*>/g, "").slice(0, 160),
+        images: [
+          {
+            url: service.imageUrl || "/default-service-og.jpg",
+            width: 1200,
+            height: 630,
+            alt: service.title,
+          },
+        ],
+      },
+    };
+  } catch (error) {
+    return { title: "Servicios | Asescon" };
+  }
+}
 
 export default async function ServicioDetallePage({
   params,

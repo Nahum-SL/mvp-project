@@ -125,7 +125,7 @@ export async function getCategories() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/category`, {
+    const res = await fetch(`${API_URL}/blog/category`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

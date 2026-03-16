@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/src/lib/utils";
 import { FaArrowRight } from "react-icons/fa";
-import * as LucideIcons from "lucide-react"; // Importamos todos los íconos
 import { IntranetNavHint } from "./IntranetNavHint";
+import { iconMap } from "@/src/lib/icons";
 
 interface IntranetLink {
   id: number;
@@ -32,10 +32,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {initialLinks.map((item, index) => {
             // Renderizado dinámico del icono guardado por el admin
-            const IconComponent =
-              (LucideIcons[
-                item.icon as keyof typeof LucideIcons
-              ] as LucideIcons.LucideIcon) || LucideIcons.Link;
+            const IconComponent = iconMap[item.icon as keyof typeof iconMap] || iconMap.LinkIcon;
 
             return (
               <motion.div

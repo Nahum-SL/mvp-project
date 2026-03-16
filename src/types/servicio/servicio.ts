@@ -4,6 +4,14 @@ export interface ServiceFeature {
   serviceId: number;
 }
 
+// Definimos la estructura exacta de tus filtros
+export interface ServiceFilters {
+  businessType: string;
+  painPoint: string;
+  search: string;
+}
+
+
 export interface Service {
   id: number;
   title: string;

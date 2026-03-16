@@ -1,5 +1,7 @@
 // src/features/auth/login/components/LoginBranding.tsx
-import * as motion from "framer-motion/client"; // Framer motion en Server Components (Next 15+)
+"use client";
+
+import { motion } from "framer-motion"; // Framer motion en Server Components (Next 15+)
 
 export const LoginBranding = () => (
   <div className="hidden lg:flex bg-slate-900 relative overflow-hidden items-center justify-center p-20">

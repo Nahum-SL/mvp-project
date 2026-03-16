@@ -1,31 +1,13 @@
 // features/admin/intranet/components/form/IconPicker.tsx
 "use client";
 
+import { iconMap, IconName } from "@/src/lib/icons";
 import { useState } from "react";
-import * as Icons from "lucide-react";
-import { LucideIcon } from "lucide-react"; // Importamos el tipo específico
+import { Search } from "lucide-react"; // Importamos el tipo específico
 import { cn } from "@/src/lib/utils";
 import { motion } from "framer-motion";
 
-const ICON_LIST = [
-  "Link",
-  "FileText",
-  "Users",
-  "Briefcase",
-  "Calendar",
-  "Shield",
-  "HardDrive",
-  "Mail",
-  "Globe",
-  "MessageSquare",
-  "BarChart",
-  "ClipboardList",
-  "Settings",
-  "HelpCircle",
-  "ExternalLink",
-] as const; // 'as const' es vital para que IconName no sea solo string[]
-
-export type IconName = (typeof ICON_LIST)[number];
+const ICON_LIST = Object.keys(iconMap) as IconName[];
 
 interface Props {
   value: IconName; // Mantenemos string para compatibilidad con el schema de Zod
@@ -38,8 +20,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
 
   // Buscamos el componente de forma segura
   // Usamos el casting 'as LucideIcon' para que React sepa cómo renderizarlo
-  const SelectedIcon =
-    (Icons[value as keyof typeof Icons] as LucideIcon) || null;
+  const SelectedIcon = iconMap[value];
 
   const filteredIcons = ICON_LIST.filter((name) =>
     name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -66,7 +47,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
       </div>
 
       <div className="relative">
-        <Icons.Search
+        <Search
           className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300"
           size={14}
         />
@@ -81,10 +62,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
       <div className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
         {filteredIcons.map((iconName) => {
           // Tipado estricto en el mapeo
-          const IconComponent = Icons[
-            iconName as keyof typeof Icons
-          ] as LucideIcon;
-
+          const IconComponent = iconMap[iconName];
           return (
             <motion.button
               key={iconName}
@@ -95,7 +73,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
               className={cn(
                 "p-3 rounded-2xl flex items-center justify-center transition-all border-2",
                 value === iconName
-                  ? "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-200"
+                  ? "bg-sky-600 text-white border-slate-50 shadow-lg shadow-blue-200"
                   : "bg-white text-slate-400 border-slate-50 hover:border-slate-200 hover:text-slate-600",
               )}
             >

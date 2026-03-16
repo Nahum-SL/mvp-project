@@ -11,7 +11,7 @@ export async function createCategoryAction(data: { name: string }) {
   if (!token) return { success: false, error: "No autorizado" };
 
   try {
-    const res = await fetch(`${API_URL}/category`, {
+    const res = await fetch(`${API_URL}/blog/category`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,28 +1,25 @@
 import { CreateServicioForm } from "@/src/features/admin/servicios/components/CreateServicesForm";
 import { getAdminServicioById } from "@/src/features/admin/servicios/action";
 import { notFound } from "next/navigation";
+import PageHeader from "@/src/features/admin/components/PageHeader";
 
-export default async function EditarServicioPage({
-  params,
-}: {
+interface Props {
   params: Promise<{ id: string }>;
-}) {
+}
+
+export default async function EditarServicioPage({ params }: Props) {
   const { id } = await params;
   const servicio = await getAdminServicioById(Number(id));
 
   if (!servicio) notFound();
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-4xl font-black tracking-tighter text-slate-900">
-          Editar Servicio
-        </h1>
-        <p className="text-slate-500 font-medium font-mono text-sm uppercase">
-          ID: #{id}
-        </p>
-      </div>
-
+    <div className="max-w-6xl mx-auto space-y-8">
+      <PageHeader
+        title="Editar Servicio"
+        subtitle="Reformula el servicio comercial para el selector inteligente"
+        backHref="/admin/servicios"
+      />
       <CreateServicioForm initialData={servicio} />
     </div>
   );

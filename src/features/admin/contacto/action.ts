@@ -118,3 +118,18 @@ export async function deleteContactAction(id: string) {
     return { success: false, error: "Error de conexión" };
   }
 }
+
+// Obtener leads de clientes
+export async function getLeads() {
+  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
+
+  const res = await fetch(`${API_URL}/contacto/admin/all`, {
+    headers: { Authorization: `Bearer ${token}` },
+    next: { tags: ["leads"] },
+  });
+
+  if (!res.ok) return [];
+  return res.json();
+}

@@ -1,6 +1,7 @@
 // src/features/admin/servicios/components/form/ServiceHeader.tsx
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { ServicioFormInput } from "../schema";
+import { slugify } from "zod";
 
 interface Props {
   register: UseFormRegister<ServicioFormInput>;
@@ -38,7 +39,12 @@ export const ServiceHeaderForm = ({ register, errors, disabled }: Props) => (
           {...register("slug")}
           disabled={disabled}
           placeholder="auditoria-financiera"
-          className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-mono text-sm text-blue-600 transition-all"
+          className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 
+          focus:ring-blue-600 font-mono text-sm text-blue-600 transition-all"
+          onChange={(e) => {
+            const formatted = slugify(e.target.value);
+            setValue("slug", formatted)
+          }}
         />
         {errors.slug && (
           <p className="text-red-500 text-[10px] font-bold uppercase">
@@ -46,22 +52,6 @@ export const ServiceHeaderForm = ({ register, errors, disabled }: Props) => (
           </p>
         )}
       </div>
-    </div>
-
-    {/* Icon Selector (Lucide ID) */}
-    <div className="space-y-3">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-        ID del Icono (Lucide)
-      </label>
-      <input
-        {...register("icon")}
-        disabled={disabled}
-        placeholder="Ej: Shield, Briefcase, Calculator..."
-        className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-700 transition-all"
-      />
-      <p className="text-[9px] text-slate-400 italic">
-        Usa nombres de iconos de lucide.dev
-      </p>
     </div>
   </section>
 );

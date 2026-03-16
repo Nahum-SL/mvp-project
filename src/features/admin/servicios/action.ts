@@ -48,7 +48,8 @@ export async function updateServicioAction(id: number, formData: FormData) {
     if (!response.ok) throw new Error("Error al actualizar el servicio");
 
     revalidateTag("servicio", "max");
-    revalidatePath("/admin/servicio");
+    revalidatePath("/admin/servicios");
+    revalidatePath("/servicios");
 
     return { success: true };
   } catch (error) {
@@ -72,7 +73,8 @@ export async function deleteServicioAction(id: number) {
     if (!response.ok) throw new Error("Error al eliminar el servicio");
 
     revalidateTag("servicio", "max");
-    revalidatePath("/admin/servicio");
+    revalidatePath("/admin/servicios");
+    revalidatePath("/servicios");
     return { success: true };
   } catch (error) {
     return { success: false, error: (error as Error).message };
@@ -109,6 +111,7 @@ export async function getAdminServicioById(id: number) {
   try {
     const res = await fetch(`${API_URL}/servicio/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
+      next: { tags: ["servico", `servicio-${id}`] }, // Tag específico para este servicio
       cache: "no-store",
     });
 
@@ -120,3 +123,4 @@ export async function getAdminServicioById(id: number) {
     return null;
   }
 }
+

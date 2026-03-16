@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import { CreatePostForm } from "@/src/features/admin/blog/components/CreatePostForm";
 import { getPostByIdAction, getCategories } from "@/src/features/admin/blog/action";
+import PageHeader from "@/src/features/admin/components/PageHeader";
 
-export default async function EditPostPage({
-  params,
-}: {
-  params: Promise<{ id: number }>;
-}) {
+interface Props {
+  params: Promise<{id: number}>
+}
+
+export default async function EditPostPage({params}: Props) {
   const { id } = await params;
 
   // Paralelizamos las peticiones para máxima velocidad
@@ -18,13 +19,12 @@ export default async function EditPostPage({
   if (!post) notFound();
 
   return (
-    <div className="space-y-6">
-      <header>
-        <h1 className="text-2xl font-black italic uppercase">
-          Editar <span className="text-blue-600">Artículo</span>
-        </h1>
-        <p className="text-slate-500">Modificando: {post.title}</p>
-      </header>
+    <div className="max-w-6xl mx-auto space-y-8">
+      <PageHeader 
+      title="Editar blog"
+      subtitle="Modificando el articulo que aparecera publicamente"
+      backHref="/admin/blog"
+      />
 
       <CreatePostForm categories={categories} initialData={post} />
     </div>

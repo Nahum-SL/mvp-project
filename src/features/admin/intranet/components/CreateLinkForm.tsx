@@ -8,17 +8,20 @@ import { toast } from "sonner";
 import { Save, Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
+
 import {
   intranetLinkSchema,
   type IntranetLinkValues,
   type IntranetLinkFormInput,
 } from "../schema";
+// Acciones ( CREATE / UPDATE )
 import { createLinkAction, updateLinkAction } from "../action";
 import { LinkHeader } from "./form/LinkHeader";
-import { IconName, IconPicker } from "./form/IconPicker";
 import { LinkConfigCard } from "./form/LinkConfigCard";
 import { IntranetLink } from "@/src/types/intranet/intranet-links";
-
+// Iconos
+import { IconPicker } from "./form/IconPicker";
+import { IconName } from "@/src/lib/icons";
 interface Props {
   initialData?: IntranetLink;
 }

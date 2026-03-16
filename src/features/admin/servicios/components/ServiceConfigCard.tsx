@@ -1,7 +1,8 @@
-import { Loader2, Save } from "lucide-react";
+import { Loader2, Save, ArrowLeft } from "lucide-react";
 import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { ServicioFormInput } from "../schema";
 import { cn } from "@/src/lib/utils";
+import Link from "next/link";
 
 interface Props {
   register: UseFormRegister<ServicioFormInput>;
@@ -11,6 +12,7 @@ interface Props {
 
 export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
   <aside className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 sticky top-6">
+    {/* Tipo de empresa */}
     <section className="space-y-4">
       <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
         Tipo de Empresa
@@ -49,7 +51,8 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
         {["impuestos", "legal", "planillas", "estrategia"].map((pain) => (
           <label
             key={pain}
-            className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors"
+            className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl 
+            cursor-pointer hover:bg-slate-100 transition-colors"
           >
             <input
               type="checkbox"
@@ -63,26 +66,69 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
           </label>
         ))}
       </div>
+      {errors.painPoints && (
+        <p className="text-red-500 text-[10px] font-bold uppercase">
+          {errors.painPoints.message}
+        </p>
+      )}
     </section>
-    
-    <button
-      type="submit"
-      disabled={isPending}
-      className={cn(
-        `w-full py-5 rounded-4xl bg-slate-900 text-white 
-      font-black uppercase tracking-widest text-xs hover:bg-blue-600 
-      transition-all flex items-center justify-center gap-3`,
-        isPending
-          ? "bg-slate-100 text-slate-400 shadow-none"
-          : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200 active:scale-95",
-      )}
-    >
-      {isPending ? (
-        <Loader2 className="animate-spin" size={18} />
-      ) : (
-        <Save size={18} />
-      )}
-      {isPending ? "Procesando..." : "Guardar Servicio"}
-    </button>
+
+    {/* Sección: Visibilidad y Orden (Importante para el Admin) */}
+    <section className="space-y-4 pt-6 border-t border-slate-50">
+      <div className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
+        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
+          Visible en Web
+        </label>
+        <input
+          type="checkbox"
+          {...register("isVisible")}
+          className="w-10 h-5 bg-slate-200 rounded-full appearance-none checked:bg-blue-600 transition-all cursor-pointer relative after:content-[''] after:absolute after:top-1 after:left-1 after:bg-white after:w-3 after:h-3 after:rounded-full after:transition-all checked:after:left-6"
+        />
+      </div>
+      <div className="space-y-2">
+        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+          Prioridad / Orden
+        </label>
+        <input
+          type="number"
+          {...register("order", { valueAsNumber: true })}
+          className="w-full p-3 bg-slate-50 rounded-xl border-none font-bold text-slate-600 focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+    </section>
+
+    {/* Acciones */}
+    <div className="space-y-3">
+      <button
+        type="submit"
+        disabled={isPending}
+        className={cn(
+          `w-full py-5 rounded-4xl font-black uppercase tracking-widest text-[10px] 
+          transition-all flex items-center justify-center gap-3`,
+          isPending
+            ? "bg-slate-100 text-slate-400"
+            : "bg-slate-900 text-white hover:bg-blue-600 shadow-xl shadow-blue-100 active:scale-95",
+        )}
+      >
+        {isPending ? (
+          <Loader2 className="animate-spin" size={18} />
+        ) : (
+          <Save size={18} />
+        )}
+        {isPending ? "Guardando..." : "Guardar Servicio"}
+      </button>
+
+      <Link
+        href="/admin/servicios" // Corregido el path
+        className="
+        w-full bg-white text-slate-400 font-black py-4 rounded-4xl 
+        border border-slate-100 hover:bg-slate-50 
+        transition-all flex items-center justify-center 
+        gap-3 uppercase text-[10px] tracking-widest
+        "
+      >
+        <ArrowLeft size={16} /> Cancelar
+      </Link>
+    </div>
   </aside>
 );

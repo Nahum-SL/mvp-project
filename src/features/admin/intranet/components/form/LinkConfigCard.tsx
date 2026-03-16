@@ -11,7 +11,7 @@ interface Props {
 
 export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
   return (
-    <div className="p-6 bg-slate-900 rounded-[2rem] text-white space-y-6 shadow-xl">
+    <div className="p-6 bg-slate-900 rounded-4xl text-white space-y-6 shadow-xl">
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <Link2 size={16} className="text-blue-400" />
@@ -23,7 +23,9 @@ export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
           {...register("url")}
           placeholder="https://..."
           disabled={isPending}
-          className="w-full bg-white/10 border-none rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-blue-500 outline-none"
+          className="w-full bg-white/10 border-none rounded-xl 
+          px-4 py-3 text-sm font-medium 
+          focus:ring-2 focus:ring-blue-500 outline-none"
         />
         {errors.url && (
           <p className="text-red-400 text-[10px] font-bold uppercase italic">
