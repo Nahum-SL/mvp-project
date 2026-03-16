@@ -3,6 +3,7 @@ import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { ServicioFormInput } from "../schema";
 import { cn } from "@/src/lib/utils";
 import Link from "next/link";
+import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 
 interface Props {
   register: UseFormRegister<ServicioFormInput>;
@@ -18,19 +19,19 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
         Tipo de Empresa
       </label>
       <div className="grid grid-cols-1 gap-2">
-        {["mype", "startup", "corporativo"].map((type) => (
+        {BUSINESS_TYPES.map((type) => (
           <label
-            key={type}
+            key={type.id}
             className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors"
           >
             <input
               type="checkbox"
-              value={type}
+              value={type.id}
               {...register("businessTypes")}
               className="rounded border-slate-300 text-blue-600"
             />
             <span className="text-sm font-bold capitalize text-slate-600">
-              {type}
+              {type.id}
             </span>
           </label>
         ))}
@@ -48,20 +49,20 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
         Puntos de Dolor (Pain Points)
       </label>
       <div className="grid grid-cols-1 gap-2">
-        {["impuestos", "legal", "planillas", "estrategia"].map((pain) => (
+        {PAIN_POINTS.map((pain) => (
           <label
-            key={pain}
+            key={pain.id}
             className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl 
             cursor-pointer hover:bg-slate-100 transition-colors"
           >
             <input
               type="checkbox"
-              value={pain}
+              value={pain.id}
               {...register("painPoints")}
               className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
             />
             <span className="text-sm font-bold capitalize text-slate-600">
-              {pain}
+              {pain.id}
             </span>
           </label>
         ))}
@@ -119,7 +120,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
       </button>
 
       <Link
-        href="/admin/servicios" // Corregido el path
+        href="/admin/servicio" // Corregido el path
         className="
         w-full bg-white text-slate-400 font-black py-4 rounded-4xl 
         border border-slate-100 hover:bg-slate-50 

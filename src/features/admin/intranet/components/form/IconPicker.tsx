@@ -54,12 +54,15 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
         <input
           type="text"
           placeholder="Buscar icono..."
-          className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-blue-500/20 transition-all outline-none font-medium"
+          className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border-none 
+          rounded-xl focus:ring-2 focus:ring-blue-500/20 
+          transition-all outline-none font-medium"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
+      <div className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto 
+      pr-2 scrollbar-thin scrollbar-thumb-slate-200">
         {filteredIcons.map((iconName) => {
           // Tipado estricto en el mapeo
           const IconComponent = iconMap[iconName];

@@ -42,7 +42,7 @@ export const ServiceCard = ({
       )}
     >
       {/* Badge de Recomendado (Solo si está resaltado) */}
-      {matchScore && matchScore >= 85 && (
+      {highlighted && matchScore && matchScore >= 85 && (
         <div className="absolute -top-4 right-6 bg-emerald-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
           <Sparkles size={12} />
           Top recomendado
@@ -144,7 +144,7 @@ export const ServiceCard = ({
       {/* Footer: Acciones */}
       <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
         <Link
-          href={`/servicios/${service.slug}`}
+          href={`/servicio/${service.slug}`}
           className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 hover:text-blue-600 transition-all"
         >
           Ver Detalles <ArrowRight size={16} />

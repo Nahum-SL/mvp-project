@@ -4,13 +4,12 @@ import {
   Users,
   Settings,
   FileText,
-  BarChart3,
   Link as LinkIcon, // Evitar errores de duplicacion con Link de next/navigation
   Shield,
   Database,
-
+  
   //EXPORT -->
-  // src/features/admin/intranet/components/form/IconPicker.tsx 
+  // src/features/admin/intranet/components/form/IconPicker.tsx
   Briefcase,
   Calendar,
   HardDrive,
@@ -18,9 +17,17 @@ import {
   Globe,
   MessageSquare,
   BarChart,
-  ClipboardList,
   HelpCircle,
   ExternalLink,
+  // Contabilidad General
+  Calculator,
+  ReceiptText,
+  // Estados Financieros / Reportes
+  LineChart,
+  BarChart3,
+  // Auditoria / Revisión
+  BookOpenCheck,
+  ClipboardList,
 } from "lucide-react";
 
 export const iconMap = {
@@ -41,6 +48,10 @@ export const iconMap = {
   ClipboardList,
   HelpCircle,
   ExternalLink,
+  Calculator,
+  ReceiptText,
+  LineChart,
+  BookOpenCheck,
 };
 
 export type IconName = keyof typeof iconMap;

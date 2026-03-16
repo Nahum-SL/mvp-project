@@ -1,4 +1,4 @@
-import { CreateServicioForm } from "@/src/features/admin/servicios/components/CreateServicesForm";
+import { CreateServicioForm } from "@/src/features/admin/servicio/components/CreateServicesForm";
 import PageHeader from "@/src/features/admin/components/PageHeader";
 
 export default function NuevoServicioPage() {
@@ -7,7 +7,7 @@ export default function NuevoServicioPage() {
       <PageHeader 
       title="Crear Nuevo Servicio"
       subtitle="Configura la oferta comercial para el selector inteligente."
-       backHref="/admin/servicios"
+       backHref="/admin/servicio"
       />
       <CreateServicioForm />
     </div>

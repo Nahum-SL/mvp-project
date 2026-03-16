@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Cloud } from "lucide-react";
 
-export default function DashboardLoader() {
+export default function AdminLoader() {
   return (
     <div
       className="

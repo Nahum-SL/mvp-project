@@ -92,7 +92,7 @@ export default function AsesconHero({
 
             {/* Botón Secundario */}
             <Link
-              href="/servicios"
+              href="/servicio"
               className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-black rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
             >
               Ver Servicios

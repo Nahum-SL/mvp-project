@@ -1,6 +1,3 @@
-// src/data/services.ts
-import { Service } from "../types/service";
-
 export const servicesData: Service[] = [
   // Outsourcing
   {
@@ -70,6 +67,7 @@ export const servicesData: Service[] = [
     ],
     src: "/outsourcing-tributario.webp"
   },
+
   {
     id: 3,
     category: "Outsourcing",

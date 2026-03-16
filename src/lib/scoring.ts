@@ -1,25 +1,25 @@
-import { Service, ServiceFilters } from "@/src/types/servicio/servicio";
+import { Service, ServiceFilters } from "../types/servicio/servicio";
 
-export function calculateServiceScore(
+export const calculateServiceScore = (
   service: Service,
   filters: ServiceFilters,
-): number {
+): number => {
   let score = 0;
 
-  // match tipo empresa
+  // 1. Coincidencia por Tipo de Negocio (Peso: 2)
   if (
     filters.businessType &&
     service.businessTypes.includes(filters.businessType)
   ) {
+    score += 20;
+  }
+
+  // 2. Coincidencia por Punto de Dolor (Peso: 5 - Es lo más importante)
+  if (filters.painPoint && service.painPoints.includes(filters.painPoint)) {
     score += 50;
   }
 
-  // match problema
-  if (filters.painPoint && service.painPoints.includes(filters.painPoint)) {
-    score += 40;
-  }
-
-  // match búsqueda
+  // 3. Bonus por búsqueda de texto (Peso: 1)
   if (
     filters.search &&
     service.title.toLowerCase().includes(filters.search.toLowerCase())
@@ -27,5 +27,5 @@ export function calculateServiceScore(
     score += 10;
   }
 
-  return Math.min(score, 100);
-}
+  return score;
+};

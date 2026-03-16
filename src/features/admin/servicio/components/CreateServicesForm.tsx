@@ -120,30 +120,28 @@ export const CreateServicioForm = ({ initialData }: Props) => {
     });
 
     const file = fileInputRef.current?.files?.[0];
-    if (file) {
-      formData.append("image", file);
-    } else if (isEditing && initialData?.image) {
-      // Opcional: Si no hay archivo nuevo pero ya había uno,
-      // NestJS suele ignorarlo si no envías nada, pero es bueno tenerlo en mente.
-      startTransition(async () => {
-        if (isEditing && !initialData?.id) {
-          toast.error("ID no encontrado");
-          return;
-        }
-        const result = isEditing
-          ? await updateServicioAction(initialData.id, formData)
-          : await createServicioAction(formData);
+    if (file) formData.append("image", file);
 
-        if (result.success) {
-          toast.success(
-            isEditing ? "¡Servicio Actualizado!" : "¡Servicio Creado!",
-          );
-          router.push("/admin/servicios");
-        } else {
-          toast.error(result.error);
-        }
-      });
-    }
+    // Opcional: Si no hay archivo nuevo pero ya había uno,
+    // NestJS suele ignorarlo si no envías nada, pero es bueno tenerlo en mente.
+    startTransition(async () => {
+      if (isEditing && !initialData?.id) {
+        toast.error("ID no encontrado");
+        return;
+      }
+      const result = isEditing
+        ? await updateServicioAction(initialData.id, formData)
+        : await createServicioAction(formData);
+
+      if (result.success) {
+        toast.success(
+          isEditing ? "¡Servicio Actualizado!" : "¡Servicio Creado!",
+        );
+        router.push("/admin/servicio");
+      } else {
+        toast.error(result.error);
+      }
+    });
   };
 
   return (

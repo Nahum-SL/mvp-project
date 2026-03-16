@@ -3,6 +3,7 @@ import { Building2, AlertCircle, Search } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { ServiceFilters } from "@/src/types/servicio/servicio";
 import { cn } from "@/src/lib/utils";
+import { BUSINESS_TYPES, type PainPointID, PAIN_POINTS } from "@/src/types/servicio/constants";
 
 interface Props {
   // Tipamos la función del useState correctamente
@@ -11,13 +12,6 @@ interface Props {
 }
 
 export const SmartSelector = ({ onFilterChange, filters }: Props) => {
-  // Opciones
-  const businessTypes = [
-    { label: "MYPE", value: "mype" },
-    { label: "Startup", value: "startup" },
-    { label: "Corporativo", value: "corporativo" },
-  ];
-
   return (
     <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl shadow-slate-200/50 border border-slate-100 -mt-32 relative z-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -26,23 +20,23 @@ export const SmartSelector = ({ onFilterChange, filters }: Props) => {
           <div className="flex items-center gap-2 text-blue-600">
             <Building2 size={18} />
             <span className="text-[10px] font-black uppercase tracking-widest">
-              Soy una...
+              Mi empresa es ..
             </span>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {businessTypes.map((type) => (
+            {BUSINESS_TYPES.map((type) => (
               <button
-                key={type.value}
+                key={type.id}
                 onClick={() =>
                   onFilterChange((prev) => ({
                     ...prev,
-                    businessType: type.value,
+                    businessType: type.id,
                   }))
                 }
                 className={cn(
                   "px-4 py-2 rounded-xl text-xs font-bold border transition-all",
-                  filters.businessType == type.value
+                  filters.businessType == type.id
                     ? "bg-blue-600 text-white border-blue-600"
                     : "border-slate-200 bg-slate-50 hover:bg-blue-50",
                 )}
@@ -62,16 +56,21 @@ export const SmartSelector = ({ onFilterChange, filters }: Props) => {
             </span>
           </div>
           <select
+            value={filters.painPoint}
             onChange={(e) =>
-              onFilterChange((prev) => ({ ...prev, painPoint: e.target.value }))
+              onFilterChange((prev) => ({
+                ...prev,
+                painPoint: e.target.value as PainPointID | "",
+              }))
             }
-            className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-600 outline-none"
+            className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-600 outline-none appearance-none"
           >
             <option value="">Todos los temas</option>
-            <option value="impuestos">Reducir Impuestos</option>
-            <option value="planillas">Gestión de Planillas</option>
-            <option value="legal">Cumplimiento Legal</option>
-            <option value="estrategia">Estrategia y Finanzas</option>
+            {PAIN_POINTS.map((point) => (
+              <option key={point.id} value={point.id}>
+                {point.label}
+              </option>
+            ))}
           </select>
         </div>
 

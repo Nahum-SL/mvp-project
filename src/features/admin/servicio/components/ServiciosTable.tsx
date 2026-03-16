@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { deleteServicioAction } from "../action";
 import { toast } from "sonner";
+import { BUSINESS_TYPES } from "@/src/types/servicio/constants";
 
 export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
   // Manejamos los Servicios en un estado local
@@ -96,14 +97,18 @@ export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
                 </td>
                 <td className="p-6">
                   <div className="flex flex-wrap gap-1">
-                    {svc.businessTypes.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-1 bg-blue-50 text-blue-600 text-[9px] font-black uppercase rounded-md"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                    {svc.businessTypes.map((id) => {
+                      // Buscamos el objeto que corresponde al ID para obtener el label
+                      const config = BUSINESS_TYPES.find((t) => t.id === id);
+                      return (
+                        <span
+                          key={id}
+                          className="px-2 py-1 bg-blue-50 text-blue-600 text-[9px] font-black uppercase rounded-md border border-blue-100"
+                        >
+                          {config ? config.label : id}
+                        </span>
+                      );
+                    })}
                   </div>
                 </td>
                 <td className="p-6">
@@ -120,7 +125,7 @@ export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
                 <td className="p-6">
                   <div className="flex justify-end gap-2">
                     <Link
-                      href={`/admin/servicios/editar/${svc.id}`}
+                      href={`/admin/servicio/editar/${svc.id}`}
                       className="p-3 text-slate-400 hover:text-blue-600 hover:bg-white rounded-xl transition-all hover:shadow-sm"
                     >
                       <Edit3 size={18} />

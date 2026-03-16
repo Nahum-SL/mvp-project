@@ -45,7 +45,7 @@ export async function createPostAction(formData: FormData) {
   }
 }
 
-// 2. Actualizar el post
+// 2. Actualizar el post. 
 export async function updatePostAction(
   id: number,
   formData: FormData,
@@ -158,7 +158,7 @@ export async function getAdminPost() {
 
     if (!res.ok) return "Error al comunicarse con el servidor de NestJS";
 
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.error("GET_POST_ERROR", e);
     return [];

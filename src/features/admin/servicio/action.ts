@@ -1,6 +1,7 @@
 // src/features/admin/servicio/action.ts
 "use server";
 
+import { Service } from "@/src/types/servicio/servicio";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -24,13 +25,14 @@ export async function createServicioAction(formData: FormData) {
 
     revalidateTag("servicio", "max");
     revalidatePath("/servicio");
+    revalidatePath("/admin/servicio")
 
     return { success: true };
   } catch (error) {
     return { success: false, error: (error as Error).message };
   }
 }
-
+// Actualizar
 export async function updateServicioAction(id: number, formData: FormData) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
@@ -48,8 +50,8 @@ export async function updateServicioAction(id: number, formData: FormData) {
     if (!response.ok) throw new Error("Error al actualizar el servicio");
 
     revalidateTag("servicio", "max");
-    revalidatePath("/admin/servicios");
-    revalidatePath("/servicios");
+    revalidatePath("/admin/servicio");
+    revalidatePath("/servicio");
 
     return { success: true };
   } catch (error) {
@@ -73,8 +75,8 @@ export async function deleteServicioAction(id: number) {
     if (!response.ok) throw new Error("Error al eliminar el servicio");
 
     revalidateTag("servicio", "max");
-    revalidatePath("/admin/servicios");
-    revalidatePath("/servicios");
+    revalidatePath("/admin/servicio");
+    revalidatePath("/servicio");
     return { success: true };
   } catch (error) {
     return { success: false, error: (error as Error).message };
@@ -94,7 +96,7 @@ export async function getAdminServicios() {
       next: { tags: ["servicio"] },
     });
 
-    if (!response.ok) throw new Error("No se pudieron cargar los servicios");
+    if (!response.ok) throw new Error("No se pudieron cargar los servicio");
 
     return await response.json();
   } catch (error) {
@@ -104,7 +106,7 @@ export async function getAdminServicios() {
 }
 
 // Obtener por Id
-export async function getAdminServicioById(id: number) {
+export async function getServicioById(id: number) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
@@ -124,3 +126,10 @@ export async function getAdminServicioById(id: number) {
   }
 }
 
+export async function getServiceBySlug(slug: string): Promise<Service | null>{
+  const res = await fetch(`${API_URL}/servicio/slug/${slug}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) return null;
+  return res.json();
+}

@@ -1,8 +1,8 @@
 // src/app/admin/servicios/page.tsx
 import Link from "next/link";
 import { Plus, LayoutGrid } from "lucide-react";
-import { getAdminServicios } from "@/src/features/admin/servicios/action";
-import { ServiciosTable } from "@/src/features/admin/servicios/components/ServiciosTable";
+import { getAdminServicios } from "@/src/features/admin/servicio/action";
+import { ServiciosTable } from "@/src/features/admin/servicio/components/ServiciosTable";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 
 export default async function AdminServiciosPage() {
@@ -18,7 +18,7 @@ export default async function AdminServiciosPage() {
         variant="flat"
         actions={
           <Link
-            href="/admin/servicios/crear"
+            href="/admin/servicio/crear"
             className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
             font-black uppercase text-xs tracking-widest transition-all flex items-center }
             gap-2 shadow-xl shadow-blue-100"

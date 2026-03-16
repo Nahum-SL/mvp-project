@@ -1,5 +1,6 @@
 // src/features/admin/servicios/schema.ts
 import { z } from "zod";
+import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 
 export const servicioSchema = z.object({
   title: z.string().min(5, "El título debe tener al menos 5 caracteres"),
@@ -10,12 +11,12 @@ export const servicioSchema = z.object({
 
   // Selector Inteligente
   businessTypes: z
-    .array(z.string())
-    .min(1, "Selecciona al menos un tipo de empresa"),
-  painPoints: z
-    .array(z.string())
-    .min(1, "Selecciona al menos un punto de dolor"),
+    .array(z.enum(BUSINESS_TYPES.map((t) => t.id) as [string, ...string[]]))
+    .min(1, "Selecciona al menos un tipo"),
 
+  painPoints: z
+    .array(z.enum(PAIN_POINTS.map((p) => p.id) as [string, ...string[]]))
+    .min(1, "Selecciona al menos un problema"),
   // Características dinámicas
   features: z.array(z.string()).min(1, "Agrega al menos una característica"),
 

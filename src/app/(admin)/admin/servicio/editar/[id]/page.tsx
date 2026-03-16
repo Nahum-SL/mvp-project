@@ -1,5 +1,5 @@
-import { CreateServicioForm } from "@/src/features/admin/servicios/components/CreateServicesForm";
-import { getAdminServicioById } from "@/src/features/admin/servicios/action";
+import { CreateServicioForm } from "@/src/features/admin/servicio/components/CreateServicesForm";
+import { getServicioById } from "@/src/features/admin/servicio/action";
 import { notFound } from "next/navigation";
 import PageHeader from "@/src/features/admin/components/PageHeader";
 
@@ -9,7 +9,7 @@ interface Props {
 
 export default async function EditarServicioPage({ params }: Props) {
   const { id } = await params;
-  const servicio = await getAdminServicioById(Number(id));
+  const servicio = await getServicioById(Number(id));
 
   if (!servicio) notFound();
 
@@ -18,7 +18,7 @@ export default async function EditarServicioPage({ params }: Props) {
       <PageHeader
         title="Editar Servicio"
         subtitle="Reformula el servicio comercial para el selector inteligente"
-        backHref="/admin/servicios"
+        backHref="/admin/servicio"
       />
       <CreateServicioForm initialData={servicio} />
     </div>

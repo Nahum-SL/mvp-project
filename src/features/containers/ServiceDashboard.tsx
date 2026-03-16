@@ -18,6 +18,7 @@ import { ServiceFilters } from "@/src/types/servicio/servicio";
 import { Service } from "@/src/types/servicio/servicio";
 // Logica para calcular el Score
 import { calculateServiceScore } from "@/src/lib/scoring";
+import { BusinessTypeID, PainPointID } from "@/src/types/servicio/constants";
 
 export default function ServiceDashboard() {
   const router = useRouter();
@@ -30,8 +31,8 @@ export default function ServiceDashboard() {
   // Pensado para cuando copien y compartan la URL de un servicio
   // Inicializar estado desde la URL
   const [filters, setFilters] = useState<ServiceFilters>({
-    businessType: searchParams.get("type") || "",
-    painPoint: searchParams.get("pain") || "",
+    businessType: searchParams.get("type") as BusinessTypeID || "",
+    painPoint: searchParams.get("pain") as PainPointID || "",
     search: searchParams.get("q") || "",
   });
 
@@ -65,19 +66,31 @@ export default function ServiceDashboard() {
     );
   };
 
-  // Filtrar los servicios
+  // Filtrar y Ordenar los servicios por relevancia
   const filteredServices = useMemo(() => {
-    return services.filter((svc: Service) => {
-      const matchType =
-        !filters.businessType ||
-        svc.businessTypes.includes(filters.businessType);
-      const matchPain =
-        !filters.painPoint || svc.painPoints.includes(filters.painPoint);
-      const matchSearch = svc.title
-        .toLowerCase()
-        .includes(filters.search.toLowerCase());
-      return matchType && matchPain && matchSearch;
-    });
+    // 1. Primero filtramos por búsqueda de texto (esto sí suele ser estricto)
+    const searched = services.filter(
+      (svc: Service) =>
+        svc.title.toLowerCase().includes(filters.search.toLowerCase()) ||
+        svc.description.toLowerCase().includes(filters.search.toLowerCase()),
+    );
+
+    // 2. Si no hay filtros de SmartSelector, devolvemos por orden de prioridad (order)
+    if (!filters.businessType && !filters.painPoint) {
+      return [...searched].sort((a, b) => (a.order || 0) - (b.order || 0));
+    }
+
+    // 3. Si hay filtros, calculamos el score y ordenamos de mayor a menor coincidencia
+    return (
+      searched
+        .map((svc) => ({
+          ...svc,
+          relevanceScore: calculateServiceScore(svc, filters),
+        }))
+        // Mantenemos solo los que tienen alguna relevancia o son visibles
+        .filter((svc) => svc.relevanceScore > 0 || !filters.businessType)
+        .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    );
   }, [services, filters]);
 
   // Muestra el mejor match
@@ -96,7 +109,7 @@ export default function ServiceDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">
-      <SmartSelector onFilterChange={setFilters} filters={filters}/>
+      <SmartSelector onFilterChange={setFilters} filters={filters} />
 
       <div className="space-y-8">
         <div className="flex items-center justify-between border-b border-slate-200 pb-6">

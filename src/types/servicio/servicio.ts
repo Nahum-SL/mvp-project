@@ -1,3 +1,5 @@
+import { type BusinessTypeID, type PainPointID } from "./constants";
+
 export interface ServiceFeature {
   id: number;
   name: string;
@@ -6,11 +8,10 @@ export interface ServiceFeature {
 
 // Definimos la estructura exacta de tus filtros
 export interface ServiceFilters {
-  businessType: string;
-  painPoint: string;
+  businessType: BusinessTypeID | "";
+  painPoint: PainPointID | "";
   search: string;
 }
-
 
 export interface Service {
   id: number;
@@ -19,9 +20,9 @@ export interface Service {
   description: string;
   icon?: string | null;
   image?: string;
-  
-  businessTypes: string[];
-  painPoints: string[];
+
+  businessTypes: BusinessTypeID[];
+  painPoints: PainPointID[];
 
   features: ServiceFeature[];
 

@@ -32,7 +32,7 @@ export async function generateMetadata({
   };
 }
 
-export default function ServiciosPage({ searchParams }: Props) {
+export default function ServiciosPage() {
   return (
     <main>
       <ServiceHeader
