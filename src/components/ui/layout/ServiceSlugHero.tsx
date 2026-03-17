@@ -57,9 +57,10 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
               {service.painPoints.map((point) => (
                 <span
                   key={point}
-                  className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white/80 text-[10px] font-bold uppercase tracking-wider"
+                  className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/10 
+                  rounded-full text-white/80 text-[10px] font-bold uppercase tracking-wider"
                 >
-                  # {point}
+                  {point}
                 </span>
               ))}
             </div>

@@ -8,6 +8,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 // Componentes
 import { SmartSelector } from "../components/servicios/SmartSelector";
 import { ServiceGrid } from "../components/servicios/ServiceGrid";
+// Comparador de servicios por features
 import { ComparisonModal } from "../components/servicios/ComparisonModal";
 // Hook para optimizar y evitar errores con el llamado a la API de NestJS
 import { useServices } from "@/src/hooks/useServices";

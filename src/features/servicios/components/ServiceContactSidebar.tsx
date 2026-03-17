@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, Calendar, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   serviceTitle: string;
@@ -27,17 +28,30 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
         </div>
 
         <div className="space-y-3">
-          <button className="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl flex items-center justify-center gap-3 transition-all group shadow-lg shadow-blue-600/20">
-            <Calendar size={18} />
-            <span className="text-[10px] font-black uppercase tracking-widest">
-              Agendar Cita
-            </span>
-            <ArrowRight
-              size={16}
-              className="group-hover:translate-x-1 transition-transform"
-            />
-          </button>
+          <Link
+            href="/#contacto"
+            className="
+            group relative w-full py-4 bg-white text-slate-950
+            font-black rounded-2xl overflow-hidden
+            transition-all hover:scale-[1.02] active:scale-95
+            flex items-center justify-center gap-3
+            shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+          >
+            {/* Capa hover */}
+            <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 
+            {/* Contenido */}
+            <div className="relative flex items-center gap-3 group-hover:text-white transition-colors duration-300">
+              <Calendar size={18} />
+              <span className="text-[10px] font-black uppercase tracking-widest">
+                Agendar Cita
+              </span>
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </div>
+          </Link>
           <button className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl flex items-center justify-center gap-3 transition-all">
             <Mail size={18} className="text-blue-400" />
             <span className="text-[10px] font-black uppercase tracking-widest">

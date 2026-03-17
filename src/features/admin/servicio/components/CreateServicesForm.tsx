@@ -39,6 +39,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
 
   const {
     register,
+    reset,
     handleSubmit,
     setValue,
     control,
@@ -88,6 +89,11 @@ export const CreateServicioForm = ({ initialData }: Props) => {
       setValue("slug", slugify(watchedTitle), { shouldValidate: true });
     }
   }, [watchedTitle, setValue, isEditing]);
+
+  // Limpiar el Formulario 
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   const handleEditorChange = (html: string) =>
     setValue("description", html, { shouldValidate: true });
@@ -155,6 +161,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
           register={register}
           errors={errors}
           disabled={isPending}
+          setValue={slugify}
         />
         {/* Renderizado del IconPicker reutilizado */}
         <div className={isPending ? "opacity-50 pointer-events-none" : ""}>

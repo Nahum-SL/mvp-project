@@ -48,6 +48,7 @@ export const ComparisonModal = ({ services, onClose }: Props) => {
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((svc) => (
+              
               <div
                 key={svc.id}
                 className="p-8 bg-slate-50 rounded-4xl border border-slate-100 space-y-4"

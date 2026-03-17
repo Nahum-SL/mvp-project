@@ -28,6 +28,7 @@ import {
   // Auditoria / Revisión
   BookOpenCheck,
   ClipboardList,
+  Scale,
 } from "lucide-react";
 
 export const iconMap = {
@@ -52,6 +53,7 @@ export const iconMap = {
   ReceiptText,
   LineChart,
   BookOpenCheck,
+  Scale,
 };
 
 export type IconName = keyof typeof iconMap;

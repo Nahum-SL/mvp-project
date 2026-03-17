@@ -24,9 +24,11 @@ export default function ServiceContent({ service }: { service: Service }) {
           {service.features.map((feature) => (
             <div
               key={feature.id}
-              className="flex gap-4 p-6 rounded-3xl bg-slate-50 border border-slate-100 group hover:border-blue-500 transition-colors"
+              className="flex gap-4 p-6 rounded-3xl 
+              bg-slate-50 border border-slate-100 group 
+              hover:border-green-500/60 transition-colors"
             >
-              <CheckCircle2 className="text-blue-600 shrink-0" size={24} />
+              <CheckCircle2 className="text-green-500 shrink-0" size={24} />
               <div>
                 <p className="font-black text-slate-900 uppercase text-xs tracking-wide">
                   {feature.name}
