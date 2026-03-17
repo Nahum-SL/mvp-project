@@ -64,7 +64,8 @@ export default function AsesconHero({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-10 text-lg md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-md"
+            className="mt-10 text-lg md:text-2xl text-slate-200 max-w-3xl 
+            mx-auto leading-relaxed font-medium drop-shadow-md"
           >
             {subtitle}
           </motion.p>
@@ -76,8 +77,9 @@ export default function AsesconHero({
             transition={{ duration: 0.5, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12"
           >
-            {/* Botón Principal (WhatsApp) */}
-            <button
+            {/* Link Principal (WhatsApp) */}
+            <Link
+            href="https://wa.me/51974770644"
               onClick={onCtaClick}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
@@ -85,14 +87,20 @@ export default function AsesconHero({
               transition-all hover:scale-105 active:scale-95 
               flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
-                <div className="absolute inset-0 bg-[#25D366] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <div className="relative flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+              <div
+                className="absolute inset-0 bg-[#25D366] translate-y-full 
+              group-hover:translate-y-0 transition-transform duration-300"
+              />
+              <div
+                className="relative flex items-center gap-2 
+              group-hover:text-white transition-colors duration-300"
+              >
                 <FaWhatsapp size={22} className="shrink-0" />
                 <span className="uppercase tracking-widest text-sm">
                   {ctaText}
                 </span>
               </div>
-            </button>
+            </Link>
 
             {/* Botón Secundario */}
             <Link

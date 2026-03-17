@@ -25,20 +25,20 @@ export default function UneteHeader({
         alt={alt}
         fill
         priority
-        sizes="(max-width: 1024px) 100vw, 33vw"
+        sizes="100vw"
         quality={75}
-        className="object-cover object-center brightness-50"
+        className="object-cover object-center"
       />
 
       {/* Overlay oscuro para legibilidad */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/50" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }} // Mismo efecto x: -30 que ServiceHeader
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             {/* Subtítulo dinámico para coherencia */}
             <span className="text-green-500 text-sm md:text-base font-semibold leading-relaxed">

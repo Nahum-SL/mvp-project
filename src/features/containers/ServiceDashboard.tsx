@@ -16,10 +16,11 @@ import { useServices } from "@/src/hooks/useServices";
 import { AnimatePresence } from "framer-motion";
 // Types
 import { ServiceFilters } from "@/src/types/servicio/servicio";
-import { Service } from "@/src/types/servicio/servicio";
 // Logica para calcular el Score
 import { calculateServiceScore } from "@/src/lib/scoring";
 import { BusinessTypeID, PainPointID } from "@/src/types/servicio/constants";
+
+import { useDebounce } from "use-debounce";
 
 export default function ServiceDashboard() {
   const router = useRouter();
@@ -32,28 +33,29 @@ export default function ServiceDashboard() {
   // Pensado para cuando copien y compartan la URL de un servicio
   // Inicializar estado desde la URL
   const [filters, setFilters] = useState<ServiceFilters>({
-    businessType: searchParams.get("type") as BusinessTypeID || "",
-    painPoint: searchParams.get("pain") as PainPointID || "",
+    businessType: (searchParams.get("type") as BusinessTypeID) || "",
+    painPoint: (searchParams.get("pain") as PainPointID) || "",
     search: searchParams.get("q") || "",
   });
+
+  const [debouncedFilters] = useDebounce(filters, 400);
 
   // Sincronizar filtros -> URL
   useEffect(() => {
     const params = new URLSearchParams();
-    if (filters.businessType) params.set("type", filters.businessType);
-    if (filters.painPoint) params.set("pain", filters.painPoint);
-    if (filters.search) params.set("q", filters.search);
 
-    // replace para no llenar el historial de navegación con cada letra del buscador
-    // scroll: false es vital para evitar confundir a Nextjs generando un scroll hacia la parte de arriba
-    // Rompiendo la UX
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  }, [filters, pathname, router]);
+    if (debouncedFilters.businessType)
+      params.set("type", debouncedFilters.businessType);
 
-  // 1. Obtener los objetos completos de los servicios a comparar
-  const selectedServicesToCompare = useMemo(() => {
-    return services.filter((s) => compareIds.includes(s.id));
-  }, [services, compareIds]);
+    if (debouncedFilters.painPoint)
+      params.set("pain", debouncedFilters.painPoint);
+
+    if (debouncedFilters.search) params.set("q", debouncedFilters.search);
+
+    router.replace(`${pathname}?${params.toString()}`, {
+      scroll: false,
+    });
+  }, [debouncedFilters, pathname, router]);
 
   // 2. Controlar la comparación
   const toggleCompare = (id: number) => {
@@ -67,46 +69,46 @@ export default function ServiceDashboard() {
     );
   };
 
-  // Filtrar y Ordenar los servicios por relevancia
+  // 1. Obtener los objetos completos de los servicios a comparar
+  const selectedServicesToCompare = useMemo(() => {
+    return services.filter((s) => compareIds.includes(s.id));
+  }, [services, compareIds]);
+
+  // Centraliza el Scoring
+  const scoredServices = useMemo(() => {
+    return services.map((svc) => ({
+      ...svc,
+      relevanceScore: calculateServiceScore(svc, filters),
+    }));
+  }, [services, filters]);
+
+  // Filtrar y Ordenar los servicios por relevancia1111
   const filteredServices = useMemo(() => {
-    // 1. Primero filtramos por búsqueda de texto (esto sí suele ser estricto)
-    const searched = services.filter(
-      (svc: Service) =>
+    const searched = scoredServices.filter(
+      (svc) =>
         svc.title.toLowerCase().includes(filters.search.toLowerCase()) ||
         svc.description.toLowerCase().includes(filters.search.toLowerCase()),
     );
 
-    // 2. Si no hay filtros de SmartSelector, devolvemos por orden de prioridad (order)
     if (!filters.businessType && !filters.painPoint) {
       return [...searched].sort((a, b) => (a.order || 0) - (b.order || 0));
     }
 
-    // 3. Si hay filtros, calculamos el score y ordenamos de mayor a menor coincidencia
-    return (
-      searched
-        .map((svc) => ({
-          ...svc,
-          relevanceScore: calculateServiceScore(svc, filters),
-        }))
-        // Mantenemos solo los que tienen alguna relevancia o son visibles
-        .filter((svc) => svc.relevanceScore > 0 || !filters.businessType)
-        .sort((a, b) => b.relevanceScore - a.relevanceScore)
-    );
-  }, [services, filters]);
+    return searched
+      .filter((svc) => svc.relevanceScore > 0 || !filters.businessType)
+      .sort((a, b) => b.relevanceScore - a.relevanceScore);
+  }, [scoredServices, filters]);
 
   // Muestra el mejor match
   const bestMatchId = useMemo(() => {
-    if (!services.length) return null;
+    if (!scoredServices.length) return null;
 
-    const scored = services.map((svc) => ({
-      id: svc.id,
-      score: calculateServiceScore(svc, filters),
-    }));
+    const best = [...scoredServices].sort(
+      (a, b) => b.relevanceScore - a.relevanceScore,
+    )[0];
 
-    const best = scored.sort((a, b) => b.score - a.score)[0];
-
-    return best?.score > 0 ? best.id : null;
-  }, [services, filters]);
+    return best?.relevanceScore > 0 ? best.id : null;
+  }, [scoredServices]);
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">

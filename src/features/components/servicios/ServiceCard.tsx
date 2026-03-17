@@ -43,7 +43,11 @@ export const ServiceCard = ({
     >
       {/* Badge de Recomendado (Solo si está resaltado) */}
       {highlighted && matchScore && matchScore >= 85 && (
-        <div className="absolute -top-4 right-6 bg-emerald-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest flex items-center gap-1 shadow-lg">
+        <div
+          className="absolute -top-4 right-6 bg-emerald-500 text-white 
+        px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest 
+        flex items-center gap-1 shadow-lg"
+        >
           <Sparkles size={12} />
           Top recomendado
         </div>
@@ -55,7 +59,7 @@ export const ServiceCard = ({
           className={cn(
             "p-4 rounded-2xl transition-colors",
             highlighted
-              ? "bg-blue-600 text-white"
+              ? "bg-green-400 text-white"
               : "bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600",
           )}
         >
@@ -65,7 +69,8 @@ export const ServiceCard = ({
           {service.businessTypes.slice(0, 2).map((type) => (
             <span
               key={type}
-              className="text-[9px] font-black uppercase tracking-tighter text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
+              className="text-[9px] font-black uppercase tracking-tighter
+              text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
             >
               {type}
             </span>
@@ -73,17 +78,24 @@ export const ServiceCard = ({
         </div>
       </div>
 
+      {/* TItulo del Servicio */}
       <div className="grow">
-        <h3 className="text-xl font-black text-slate-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors">
+        <h3
+          className="text-xl font-black text-slate-900 mb-3 leading-tight 
+        group-hover:text-blue-600 transition-colors"
+        >
           {service.title}
         </h3>
 
-        {/* Si se hace un match mayor al %80
+        {/* Si se hace un match mayor al 80%
             Muestra un comentario relevante
             para evitar falsos positivos se agrego "highlighted"
         */}
         {highlighted && matchScore && matchScore >= 80 && (
-          <div className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase rounded-lg mb-2">
+          <div
+            className="inline-block px-3 py-1 bg-emerald-100 
+          text-emerald-700 text-[10px] font-black uppercase rounded-lg mb-2"
+          >
             Recomendación Top
           </div>
         )}

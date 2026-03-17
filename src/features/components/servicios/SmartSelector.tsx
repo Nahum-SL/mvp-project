@@ -1,9 +1,15 @@
 // src/components/ui/layout/servicios/SmartSelector.tsx
+
+import { useState, useEffect } from "react";
 import { Building2, AlertCircle, Search } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 import { ServiceFilters } from "@/src/types/servicio/servicio";
 import { cn } from "@/src/lib/utils";
-import { BUSINESS_TYPES, type PainPointID, PAIN_POINTS } from "@/src/types/servicio/constants";
+import {
+  BUSINESS_TYPES,
+  type PainPointID,
+  PAIN_POINTS,
+} from "@/src/types/servicio/constants";
 
 interface Props {
   // Tipamos la función del useState correctamente
@@ -12,6 +18,16 @@ interface Props {
 }
 
 export const SmartSelector = ({ onFilterChange, filters }: Props) => {
+  const [searchTerm, setSearchTerm] = useState(filters.search);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onFilterChange((prev) => ({ ...prev, search: searchTerm }));
+    }, 300); // Espera 300ms después de dejar de escribir
+
+    return () => clearTimeout(handler);
+  }, [searchTerm, onFilterChange]);
+
   return (
     <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl shadow-slate-200/50 border border-slate-100 -mt-32 relative z-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -84,9 +100,10 @@ export const SmartSelector = ({ onFilterChange, filters }: Props) => {
           </div>
           <input
             type="text"
+            value={searchTerm}
             placeholder="Ej: Auditoría..."
             onChange={(e) =>
-              onFilterChange((prev) => ({ ...prev, search: e.target.value }))
+                setSearchTerm(e.target.value)
             }
             className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-600 placeholder:text-slate-300 outline-none"
           />
