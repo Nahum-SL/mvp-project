@@ -1,8 +1,9 @@
 // src/features/public-pages/blog/components/tools/GratificacionCalc.tsx
+// CALCULAR - CALCULA GRATIFICACIÓN 
 "use client";
 import { useState } from "react";
 import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
-import { PERU_CONSTANTS } from "@/src/lib/constants";
+import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 import { ToolSmartAd } from "./ToolSmartAd";
 
 export const GratificationCalc = () => {
@@ -51,10 +52,12 @@ export const GratificationCalc = () => {
               type="number"
               onChange={(e) => setSalary(Number(e.target.value))}
               placeholder="S/ 0.00"
-              className="w-full bg-slate-950 border border-slate-800 
+              className="
+              w-full bg-slate-950 border border-slate-800 
               group-hover:border-slate-700 rounded-2xl px-5 py-4 
               text-white font-bold outline-hidden transition-all 
-              focus:border-emerald-500/50"
+              focus:border-emerald-500/50
+              "
             />
           </div>
 

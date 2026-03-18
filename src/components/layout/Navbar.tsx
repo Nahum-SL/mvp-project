@@ -25,7 +25,7 @@ function NavbarCard() {
 
           <div
             className="hidden lg:flex ml-auto
-         items-center gap-10 text-white font-medium"
+            items-center gap-10 text-white font-medium"
           >
             <Link
               href="/"

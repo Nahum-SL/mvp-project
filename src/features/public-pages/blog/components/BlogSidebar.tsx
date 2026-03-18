@@ -7,10 +7,19 @@ import { GratificationCalc } from "./tools/GratificacionCal";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { PenaltyCalc } from "./tools/PenaltyCalc";
 
 export const BlogSidebar = ({ post }: { post: BlogPost }) => {
   const renderTool = () => {
     const categorySlug = post.category.slug.toLowerCase();
+
+    if (
+      categorySlug.includes("tributario") ||
+      categorySlug.includes("auditoria")
+    ) {
+      return <PenaltyCalc />;
+    }
+
     if (
       categorySlug.includes("laboral") ||
       categorySlug.includes("recursos-humanos")
@@ -21,7 +30,7 @@ export const BlogSidebar = ({ post }: { post: BlogPost }) => {
   };
 
   return (
-    <aside className="space-y-10">
+    <div className="space-y-10">
       {/* Widget de Herramienta Dinámica */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -115,6 +124,6 @@ export const BlogSidebar = ({ post }: { post: BlogPost }) => {
           </div>
         </div>
       </div>
-    </aside>
+    </div>
   );
 };

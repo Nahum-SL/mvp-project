@@ -19,6 +19,7 @@ import {
   BarChart,
   HelpCircle,
   ExternalLink,
+  ShieldCheck,
   // Contabilidad General
   Calculator,
   ReceiptText,
@@ -49,6 +50,7 @@ export const iconMap = {
   ClipboardList,
   HelpCircle,
   ExternalLink,
+  ShieldCheck,
   Calculator,
   ReceiptText,
   LineChart,

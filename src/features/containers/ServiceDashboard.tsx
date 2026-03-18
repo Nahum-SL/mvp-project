@@ -17,7 +17,7 @@ import { AnimatePresence } from "framer-motion";
 // Types
 import { ServiceFilters } from "@/src/types/servicio/servicio";
 // Logica para calcular el Score
-import { calculateServiceScore } from "@/src/lib/scoring";
+import { calculateServiceScore } from "@/src/utils/scoring";
 import { BusinessTypeID, PainPointID } from "@/src/types/servicio/constants";
 
 import { useDebounce } from "use-debounce";

@@ -1,5 +1,9 @@
+'use client';
+
 import { Service } from "@/src/types/servicio/servicio";
 import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/src/lib/utils";
 
 export default function ServiceContent({ service }: { service: Service }) {
   return (

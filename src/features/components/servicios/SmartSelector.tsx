@@ -15,9 +15,11 @@ interface Props {
   // Tipamos la función del useState correctamente
   onFilterChange: Dispatch<SetStateAction<ServiceFilters>>;
   filters: ServiceFilters;
+  isPending?: boolean;
+  
 }
 
-export const SmartSelector = ({ onFilterChange, filters }: Props) => {
+export const SmartSelector = ({ onFilterChange, filters, isPending }: Props) => {
   const [searchTerm, setSearchTerm] = useState(filters.search);
 
   useEffect(() => {

@@ -79,6 +79,7 @@ export default async function BlogContent() {
           </section>
         </section>
       )}
+      {/* Linea separadora para encajar con el Footer */}
       <div className="h-px bg-slate-700 flex-1" />
     </>
   );

@@ -33,37 +33,45 @@ export default function AsesconHero({
           src={image}
           alt="Background"
           fill
-          sizes="(max-width: 1024px) 100vw, 33vw"
-          quality={75}
-          className="object-cover object-center scale-105" // Ligeramente escalada para efecto de profundidad
-          priority
+          sizes="100vw" // CORREGIDO: Ocupa todo el ancho
+          quality={80} // Ajuste ligero de calidad para balancear peso/visual
+          priority // Mantenemos prioridad para LCP
+          className="object-cover object-center" // Eliminado scale-105 para mejor LCP
         />
-        {/* Capas de degradado para legibilidad (Estilo NexaSAP) */}
-        <div className="absolute inset-0 bg-slate-950/70" />{" "}
-        {/* Oscurecimiento general */}
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-slate-950/40" />
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/20 via-transparent to-transparent" />
+
+        {/* CORREGIDO: CAPA DE DEGRADADO UNIFICADA Y EFICIENTE */}
+        {/* Usamos estilos en línea (inline styles) para combinar los degradados complejos en una sola capa */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{
+            background: `
+              linear-gradient(to right, rgba(30, 58, 138, 0.2), transparent, transparent), /* Degradado Azul Izquierdo */
+              linear-gradient(to top, #020617 0%, transparent 50%, rgba(2, 6, 17, 0.4) 100%), /* Degradado Vertical (from-via-to) */
+              rgba(2, 6, 17, 0.7) /* Oscurecimiento general (Overley) */
+            `,
+          }}
+        />
       </div>
 
-      <div className="max-7xl mx-auto px-6 relative z-10 text-center">
+      <div className="max-7xl mx-auto px-6 relative z-20 text-center">
+        {" "}
+        {/* Subimos z-index del contenido */}
         <div className="max-w-3xl mx-auto">
           {/* Título */}
-          <motion.h1
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          {/* OPTIMIZACIÓN LCP: Quitamos la animación inicial de opacity: 0 para que pinte instantáneamente */}
+          <h1
             className="text-5xl md:text-5xl lg:text-5xl 
             font-black text-white tracking-tighter 
             leading-[0.9]"
           >
             {mainTitle}
-          </motion.h1>
+          </h1>
 
           {/* Subtítulo con máximo contraste */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }} // Reducimos delay ligeramente
             className="mt-10 text-lg md:text-2xl text-slate-200 max-w-3xl 
             mx-auto leading-relaxed font-medium drop-shadow-md"
           >
@@ -74,12 +82,12 @@ export default function AsesconHero({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.4 }} // Reducimos delay ligeramente
             className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12"
           >
             {/* Link Principal (WhatsApp) */}
             <Link
-            href="https://wa.me/51974770644"
+              href="https://wa.me/51974770644"
               onClick={onCtaClick}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
@@ -90,6 +98,10 @@ export default function AsesconHero({
               <div
                 className="absolute inset-0 bg-[#25D366] translate-y-full 
               group-hover:translate-y-0 transition-transform duration-300"
+              />
+              <div
+                className="relative flex items-center gap-2 
+              group-hover:text-white transition-colors duration-300"
               />
               <div
                 className="relative flex items-center gap-2 
@@ -133,8 +145,11 @@ export default function AsesconHero({
         </div>
       </div>
 
-      {/* Luz inferior decorativa */}
-      <div className="absolute bottom-0 w-full h-32 bg-linear-to-t from-slate-950 to-transparent" />
+      {/* Luz inferior decorativa - Mantenemos esta para el desvanecimiento final */}
+      <div
+        className="absolute bottom-0 w-full h-32 bg-linear-to-t 
+      from-slate-950 to-transparent z-10"
+      />
     </section>
   );
 }

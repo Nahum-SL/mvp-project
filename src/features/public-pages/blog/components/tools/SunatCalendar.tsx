@@ -1,39 +1,41 @@
 // src/features/public-pages/blog/components/tools/SunatCalendar.tsx
 "use client";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
+import { getDynamicDeadline } from "@/src/utils/sunat";
+
+// 1. Suscriptor externo para el almacenamiento local
+const subscribe = (callback: () => void) => {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+};
+
+// 2. Función para leer el valor (evita errores de hidratación)
+const getServerSnapshot = () => ""; // En el servidor siempre es vacío
+const getClientSnapshot = () =>
+  localStorage.getItem("asescon_last_ruc_digit") || "";
 
 export const SunatCalendar = () => {
-  // Inicialización perezosa para evitar re-renders y errores de SSR
-  const [rucDigit, setRucDigit] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("asescon_last_ruc_digit") || "";
-    }
-    return "";
-  });
+  // useSyncExternalStore es el hook oficial para sincronizar datos externos (como localStorage)
+  // sin causar errores de hidratación ni necesitar useEffects de montaje.
+  const rucDigit = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
+
+  // Estado local solo para cuando el usuario escribe manualmente
+  const [tempDigit, setTempDigit] = useState<string | null>(null);
+
+  // El valor real es el del store, a menos que el usuario esté escribiendo
+  const currentDigit = tempDigit !== null ? tempDigit : rucDigit;
 
   const handleDigitChange = (val: string) => {
     const digit = val.slice(-1);
-    setRucDigit(digit);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("asescon_last_ruc_digit", digit);
-    }
-  };
-
-  const getDeadline = (digit: string) => {
-    const dates: Record<string, string> = {
-      "0": "15 de Marzo",
-      "1": "16 de Marzo",
-      "2": "17 de Marzo",
-      "3": "18 de Marzo",
-      "4": "19 de Marzo",
-      "5": "20 de Marzo",
-      "6": "21 de Marzo",
-      "7": "22 de Marzo",
-      "8": "23 de Marzo",
-      "9": "24 de Marzo",
-    };
-    return dates[digit] || "Ingresa tu RUC";
+    setTempDigit(digit); // Actualización instantánea de la UI
+    localStorage.setItem("asescon_last_ruc_digit", digit);
+    // Notificamos manualmente el cambio
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -63,26 +65,35 @@ export const SunatCalendar = () => {
           </span>
           <input
             type="number"
-            value={rucDigit}
+            value={currentDigit}
             onChange={(e) => handleDigitChange(e.target.value)}
             placeholder="0"
-            className="w-24 bg-slate-950 border border-slate-800 rounded-2xl py-6 text-white font-black text-center text-3xl focus:border-sky-500/50 outline-hidden transition-all"
+            className="w-24 bg-slate-950 border border-slate-800 
+            rounded-2xl py-6 text-white font-black text-center 
+            text-3xl focus:border-sky-500/50 outline-hidden transition-all"
           />
         </div>
 
         <div className="flex-1 flex flex-col gap-1">
-          <span className="text-[9px] font-black text-slate-600 uppercase ml-2 tracking-widest">
+          <span
+            className="text-[9px] font-black text-slate-600 
+          uppercase ml-2 tracking-widest"
+          >
             Fecha Límite
           </span>
-          <div className="flex-1 bg-slate-950 border border-slate-800 rounded-2xl px-6 flex items-center justify-between group-hover:border-slate-700 transition-all">
+          <div
+            className="flex-1 bg-slate-950 border border-slate-800 
+          rounded-2xl px-6 flex items-center justify-between 
+          group-hover:border-slate-700 transition-all"
+          >
             <span className="text-sky-400 font-black tracking-tighter text-lg md:text-xl">
-              {getDeadline(rucDigit)}
+              {getDynamicDeadline(currentDigit)}
             </span>
           </div>
         </div>
       </div>
 
-      {rucDigit && (
+      {currentDigit && (
         <div className="mt-6 flex items-center gap-2 text-slate-500">
           <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
           <p className="text-[10px] font-black uppercase tracking-widest">

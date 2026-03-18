@@ -82,7 +82,7 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
   // 2. onSubmit recibe PostFormValues (datos ya transformados/coerceados)
   const onSubmit = async (data: PostFormValues) => {
     const formData = new FormData();
-    
+
     Object.entries(data).forEach(([key, value]) => {
       formData.append(key, String(value));
     });

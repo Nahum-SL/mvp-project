@@ -9,7 +9,9 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <Navbar />
+      <Suspense fallback={<div className="h-20 bg-slate-950" />}>
+        <Navbar />
+      </Suspense>
       <main className="flex-1">{children}</main>
 
       <Suspense fallback={null}>

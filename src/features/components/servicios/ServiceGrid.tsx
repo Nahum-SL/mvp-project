@@ -7,7 +7,7 @@ import { useMemo } from "react";
 // Card del Servicio
 import { ServiceCard } from "./ServiceCard";
 // Manejar el score con logica matematica
-import { calculateServiceScore } from "@/src/lib/scoring";
+import { calculateServiceScore } from "@/src/utils/scoring";
 // Types
 import { Service } from "@/src/types/servicio/servicio";
 import { ServiceFilters } from "@/src/types/servicio/servicio";
