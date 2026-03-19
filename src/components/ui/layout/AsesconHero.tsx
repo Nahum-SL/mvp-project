@@ -34,7 +34,7 @@ export default function AsesconHero({
           alt="Background"
           fill
           sizes="100vw" // CORREGIDO: Ocupa todo el ancho
-          quality={80} // Ajuste ligero de calidad para balancear peso/visual
+          quality={75} // Ajuste ligero de calidad para balancear peso/visual
           priority // Mantenemos prioridad para LCP
           className="object-cover object-center" // Eliminado scale-105 para mejor LCP
         />

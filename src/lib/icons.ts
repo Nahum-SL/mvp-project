@@ -7,7 +7,7 @@ import {
   Link as LinkIcon, // Evitar errores de duplicacion con Link de next/navigation
   Shield,
   Database,
-  
+
   //EXPORT -->
   // src/features/admin/intranet/components/form/IconPicker.tsx
   Briefcase,
@@ -19,6 +19,9 @@ import {
   BarChart,
   HelpCircle,
   ExternalLink,
+  Zap,
+  Target,
+  Eye,
   ShieldCheck,
   // Contabilidad General
   Calculator,
@@ -49,6 +52,9 @@ export const iconMap = {
   BarChart,
   ClipboardList,
   HelpCircle,
+  Zap,
+  Target,
+  Eye,
   ExternalLink,
   ShieldCheck,
   Calculator,

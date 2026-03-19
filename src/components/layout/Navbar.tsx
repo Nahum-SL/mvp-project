@@ -25,7 +25,7 @@ function NavbarCard() {
 
           <div
             className="hidden lg:flex ml-auto
-            items-center gap-10 text-white font-medium"
+            items-center gap-6 text-white font-medium"
           >
             <Link
               href="/"
@@ -51,21 +51,27 @@ function NavbarCard() {
             >
               RECURSOS
             </Link>
+            <Link
+              href="/nosotros"
+              className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
+            >
+              NOSOTROS
+            </Link>
           </div>
 
           {/* Desktop menu */}
           <div className="hidden lg:flex items-center text-white font-semibold ml-auto gap-4">
             <Link
-              href="/login"
-              className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
-            >
-              INICIAR SESION
-            </Link>
-            <Link
               href="/unete"
               className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
             >
               UNETE
+            </Link>
+            <Link
+              href="/login"
+              className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
+            >
+              INICIAR SESION
             </Link>
           </div>
 
