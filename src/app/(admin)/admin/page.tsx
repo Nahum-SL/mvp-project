@@ -84,12 +84,14 @@ export default async function AdminDashboardPage() {
           <Link key={stat.link} href={stat.link}>
             <div
               key={stat.name}
-              className={`group relative bg-white p-7 rounded-[2.5rem] border ${stat.bgHover}
-             border-slate-100 shadow-sm hover:shadow-2xl 
-            hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
+              className={`group relative bg-white p-7 rounded-[2.5rem] 
+              border ${stat.bgHover} border-slate-100 
+              shadow-sm hover:shadow-2xl 
+              hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
             >
               <div
-                className={`absolute top-0 right-0 w-24 h-24 ${stat.bg} opacity-20 rounded-bl-[5rem] -mr-8 -mt-8 transition-transform group-hover:scale-110`}
+                className={`absolute top-0 right-0 w-24 h-24 ${stat.bg} opacity-20 rounded-bl-[5rem] 
+                -mr-8 -mt-8 transition-transform group-hover:scale-110`}
               />
 
               <div className="relative">
@@ -167,7 +169,11 @@ export default async function AdminDashboardPage() {
               </button>
               <Link
                 href="/intranet"
-                className="flex items-center justify-center w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10"
+                className="flex items-center justify-center w-full py-4 
+                bg-white/10 hover:bg-white 
+                text-white hover:text-slate-900 rounded-2xl 
+                text-[10px] font-black uppercase 
+                tracking-widest transition-all border border-white/10"
               >
                 Ver la Intranet
               </Link>

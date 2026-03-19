@@ -83,7 +83,7 @@ export const BlogSidebar = ({ post }: { post: BlogPost }) => {
               >
                 <FaWhatsapp size={18} className="shrink-0" />
                 <span className="uppercase tracking-widest text-[10px]">
-                  WhatsApp Directo
+                  Hablar con un Asesor
                 </span>
               </div>
             </Link>

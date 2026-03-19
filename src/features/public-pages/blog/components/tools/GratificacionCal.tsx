@@ -113,13 +113,13 @@ export const GratificationCalc = () => {
         <ToolSmartAd
           condition={salary > 4000}
           text="Tu sueldo supera el límite de exoneración. Podrías estar pagando exceso de Renta de 5ta."
-          link="/servicios/planeamiento-tributario"
+          link="/servicio/planeamiento-tributario?from=calendario_sunat"
           label="Optimizar impuestos"
         />
         <ToolSmartAd
           condition={salary > 0 && months < 6}
           text="Los cálculos por periodos truncos requieren validación legal para evitar multas SUNAFIL."
-          link="/servicios/asesoria-laboral"
+          link="/servicio/asesoria-laboral?from=calculadora_gratificacion"
           label="Consultar normativa"
         />
       </div>

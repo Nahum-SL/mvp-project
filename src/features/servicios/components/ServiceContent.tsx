@@ -2,21 +2,20 @@
 
 import { Service } from "@/src/types/servicio/servicio";
 import { CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
-import { cn } from "@/src/lib/utils";
 
 export default function ServiceContent({ service }: { service: Service }) {
   return (
     <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl shadow-slate-200/50 border border-slate-100">
       {/* Descripción Principal */}
       <div className="prose prose-slate prose-lg max-w-none mb-16">
-        <h2 className="text-3xl font-black text-slate-900 mb-8 tracking-tight uppercase italic">
+        <h2 className="text-3xl font-black text-slate-900 mb-8 tracking-tight uppercase">
           Sobre el Servicio
-        </h2>
+        </h2>        
         <div
           className="text-slate-600 leading-relaxed font-medium"
           dangerouslySetInnerHTML={{ __html: service.description }}
         />
+        
       </div>
 
       {/* Grid de Beneficios / Features */}
