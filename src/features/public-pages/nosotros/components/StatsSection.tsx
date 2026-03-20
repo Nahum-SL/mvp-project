@@ -19,10 +19,10 @@ const stats = [
   },
   {
     id: 3,
-    value: 98,
+    value: 90,
     suffix: "%",
-    label: "Fidelidad",
-    description: "Tasa de retención anual",
+    label: "Eficacia",
+    description: "Casos resueltos",
   },
   {
     id: 4,

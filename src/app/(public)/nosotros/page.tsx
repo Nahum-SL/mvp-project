@@ -45,49 +45,60 @@ const asesconTeam: TeamMember[] = [
 export default function NosotrosPage() {
   return (
     <main className="bg-slate-950 min-h-screen">
-      {/* Video */}
       <NosotrosHero />
 
-      {/* SECCIÓN 1: TEAM (Dark) */}
-      <section className="pt-32 pb-24 px-6">
-        <div className="text-center mb-20 max-w-2xl mx-auto space-y-4">
-          <span className="text-sky-500 font-black uppercase tracking-[0.4em] text-xs">
-            El Capital Humano
-          </span>
-          <h2 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tighter italic">
-            Nuestros <span className="text-sky-500">Especialistas</span>
-          </h2>
-          <p className="text-slate-400 text-lg leading-relaxed font-medium">
-            Un equipo multidisciplinario comprometido con la precisión
-            financiera
-          </p>
-        </div>
-      </section>
-
-      {/* SECCIÓN 2: STATS (Cambio sutil de fondo para romper el negro) */}
-      <section className="bg-slate-900/50 border-y border-slate-800">
+      {/* SECCIÓN 1: STATS (Inmediatamente después del video para validar la autoridad) */}
+      <section className="bg-slate-900/50 border-b border-slate-800">
         <StatsSection />
       </section>
 
-      {/* SECCIÓN 3: VALORES (Dark con Glows) */}
-      <section className="py-24">
+      {/* SECCIÓN 2: TEAM */}
+      <section className="pt-24 pb-12 px-6">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 max-w-2xl mx-auto space-y-4">
+            <span className="text-sky-500 font-black uppercase tracking-[0.4em] text-xs">
+              El Capital Humano
+            </span>
+            <h2 className="text-5xl md:text-6xl font-black text-white leading-tight tracking-tighter italic">
+              Nuestros <span className="text-sky-500">Especialistas</span>
+            </h2>
+            <p className="text-slate-400 text-lg leading-relaxed font-medium">
+              Un equipo multidisciplinario comprometido con la precisión
+              financiera y legal.
+            </p>
+          </div>
+          <TeamGrid members={asesconTeam} />
+        </div>
+      </section>
+
+      {/* SECCIÓN 3: VALORES */}
+      <section className="py-24 bg-slate-950/50">
         <ValuesManifesto />
       </section>
 
-      <section className="py-24 px-6 bg-slate-950 border-t border-slate-800">
-        <div className="container mx-auto">
-          {/* IMPLEMENTACIÓN DEL VIDEO BOX */}
+      {/* SECCIÓN 4: VIDEO BOX (El "Grand Finale") */}
+      <section className="py-32 px-6 bg-slate-950 border-t border-slate-800 relative overflow-hidden">
+        {/* Decoración de fondo para cerrar con fuerza */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="container mx-auto relative z-10">
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter italic mb-8">
+              ¿Por qué elegir <span className="text-sky-600">ASESCON</span>?
+            </h2>
+          </div>
           <InteractiveVideoBox
             title="Tranquilidad Jurídica. Impulsada por Datos."
-            description="En ASESCON, fusionamos la interpretación legal experta con algoritmos de cumplimiento tributario. No solo declaramos impuestos; blindamos el crecimiento de tu empresa contra contingencias de SUNAT y SUNAFIL, usando tecnología para anticipar riesgos."
-            posterSrc="/images/about/experience-placeholder.webp" // NECESITAS ESTA IMAGEN
-            // videoSrc="/videos/nosotros/experience-asescon.mp4" // COMENTADO HASTA QUE TENGAS EL VIDEO
+            description="En ASESCON, fusionamos la interpretación legal 
+            experta con algoritmos de cumplimiento tributario. No solo declaramos 
+            impuestos; blindamos el crecimiento de tu empresa 
+            contra contingencias de SUNAT y SUNAFIL, usando tecnología para anticipar riesgos."
+            posterSrc="/nosotros-card.webp"
+            videoSrc="/interactive-video-2.webm"
             className="w-full"
           />
         </div>
       </section>
-
-      <TeamGrid members={asesconTeam} />
     </main>
   );
 }

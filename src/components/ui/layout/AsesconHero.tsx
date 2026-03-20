@@ -11,7 +11,7 @@ interface HeroProps {
   mainTitle: string;
   subtitle: string;
   ctaText: string;
-  image: string; // La imagen de fondo
+  image?: string; // La imagen de fondo
   onCtaClick?: () => void;
 }
 
@@ -29,15 +29,17 @@ export default function AsesconHero({
     >
       {/* 1. IMAGEN DE FONDO INMERSIVA */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={image}
-          alt="Background"
-          fill
-          sizes="100vw" // CORREGIDO: Ocupa todo el ancho
-          quality={75} // Ajuste ligero de calidad para balancear peso/visual
-          priority // Mantenemos prioridad para LCP
-          className="object-cover object-center" // Eliminado scale-105 para mejor LCP
-        />
+      {/* El Video de fondo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        {/* Video de Prueba */}
+        <source src="/nosotros-hero-video.webm" type="video/webm" />
+      </video>
 
         {/* CORREGIDO: CAPA DE DEGRADADO UNIFICADA Y EFICIENTE */}
         {/* Usamos estilos en línea (inline styles) para combinar los degradados complejos en una sola capa */}

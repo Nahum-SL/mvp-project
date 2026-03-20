@@ -41,7 +41,8 @@ export const RecentPostsSection = async () => {
         <div className="mt-14 flex justify-center">
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 text-sm md:text-base font-medium text-sky-400 hover:text-sky-500 transition-colors"
+            className="group inline-flex items-center gap-2 text-sm md:text-base 
+            font-medium text-sky-400 hover:text-sky-500 transition-colors"
           >
             Ver todas las publicaciones
             <ArrowRight

@@ -14,7 +14,7 @@ export default function PublicLayout({
       </Suspense>
       <main className="flex-1">{children}</main>
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="h-20 bg-slate-950" />}>
         <Footer />
       </Suspense>
     </>

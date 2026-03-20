@@ -23,6 +23,8 @@ import {
   Target,
   Eye,
   ShieldCheck,
+  FileBarChart,
+  Gavel,
   // Contabilidad General
   Calculator,
   ReceiptText,
@@ -48,6 +50,8 @@ export const iconMap = {
   HardDrive,
   Mail,
   Globe,
+  FileBarChart,
+  Gavel,
   MessageSquare,
   BarChart,
   ClipboardList,
