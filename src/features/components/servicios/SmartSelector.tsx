@@ -16,10 +16,13 @@ interface Props {
   onFilterChange: Dispatch<SetStateAction<ServiceFilters>>;
   filters: ServiceFilters;
   isPending?: boolean;
-  
 }
 
-export const SmartSelector = ({ onFilterChange, filters, isPending }: Props) => {
+export const SmartSelector = ({
+  onFilterChange,
+  filters,
+  isPending,
+}: Props) => {
   const [searchTerm, setSearchTerm] = useState(filters.search);
 
   useEffect(() => {
@@ -31,7 +34,22 @@ export const SmartSelector = ({ onFilterChange, filters, isPending }: Props) => 
   }, [searchTerm, onFilterChange]);
 
   return (
-    <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl shadow-slate-200/50 border border-slate-100 -mt-32 relative z-10">
+    <div
+      className={cn(
+        "bg-white p-8 md:p-12 rounded-[3rem] transition-all duration-500 shadow-xl border border-slate-100 -mt-32 relative z-10",
+        isPending && "opacity-70 cursor-wait", // Feedback visual de carga
+      )}
+    >
+      {/* Indicador de carga sutil */}
+      {isPending && (
+        <div className="absolute top-4 right-10 flex items-center gap-2">
+          <div className="w-2 h-2 bg-blue-600 rounded-full animate-ping" />
+          <span className="text-[10px] font-bold text-blue-600 uppercase">
+            Actualizando...
+          </span>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Paso 1: Tipo de Empresa */}
         <div className="space-y-4">
@@ -46,6 +64,7 @@ export const SmartSelector = ({ onFilterChange, filters, isPending }: Props) => 
             {BUSINESS_TYPES.map((type) => (
               <button
                 key={type.id}
+                disabled={isPending}
                 onClick={() =>
                   onFilterChange((prev) => ({
                     ...prev,
@@ -104,9 +123,7 @@ export const SmartSelector = ({ onFilterChange, filters, isPending }: Props) => 
             type="text"
             value={searchTerm}
             placeholder="Ej: Auditoría..."
-            onChange={(e) =>
-                setSearchTerm(e.target.value)
-            }
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-600 placeholder:text-slate-300 outline-none"
           />
         </div>

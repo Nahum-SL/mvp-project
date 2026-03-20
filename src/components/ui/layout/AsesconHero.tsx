@@ -29,17 +29,17 @@ export default function AsesconHero({
     >
       {/* 1. IMAGEN DE FONDO INMERSIVA */}
       <div className="absolute inset-0 z-0">
-      {/* El Video de fondo */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        {/* Video de Prueba */}
-        <source src="/nosotros-hero-video.webm" type="video/webm" />
-      </video>
+        {/* El Video de fondo */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          {/* Video de Prueba */}
+          <source src="/nosotros-hero-video.webm" type="video/webm" />
+        </video>
 
         {/* CORREGIDO: CAPA DE DEGRADADO UNIFICADA Y EFICIENTE */}
         {/* Usamos estilos en línea (inline styles) para combinar los degradados complejos en una sola capa */}

@@ -4,6 +4,7 @@ import {
   Users,
   Settings,
   FileText,
+  Layers,
   Link as LinkIcon, // Evitar errores de duplicacion con Link de next/navigation
   Shield,
   Database,
@@ -41,6 +42,7 @@ export const iconMap = {
   Users,
   Settings,
   FileText,
+  Layers,
   BarChart3,
   LinkIcon,
   Shield,

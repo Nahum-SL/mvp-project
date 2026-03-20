@@ -6,25 +6,42 @@ import { X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ComparisonTableStripe } from "./ComparisonTableStripe";
 import Link from "next/link";
+import { cn } from "@/src/lib/utils";
 
 interface Props {
   services: Service[];
   onClose: () => void;
+  isPending?: boolean;
 }
 
-export const ComparisonModal = ({ services, onClose }: Props) => {
+export const ComparisonModal = ({ services, onClose, isPending }: Props) => {
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-100 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4"
+        className={cn(
+          `fixed inset-0 z-100 bg-slate-900/80 backdrop-blur-md flex 
+          items-center justify-center p-4`,
+          isPending && "opacity-70 cursor-wait",
+        )}
       >
+        {/* Indicador de carga sutil */}
+        {isPending && (
+          <div className="absolute top-4 right-10 flex items-center gap-2">
+            <div className="w-2 h-2 bg-blue-600 rounded-full animate-ping" />
+            <span className="text-[10px] font-bold text-blue-600 uppercase">
+              Cargando...
+            </span>
+          </div>
+        )}
+
         <motion.div
-          initial={{ scale: 0.9, y: 20 }}
-          animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.9, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", damping: 25, stiffness: 400 }}
+          exit={{ y: 20 }}
           className="bg-white w-full max-w-6xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-y-auto relative"
         >
           <div className="sticky top-0 bg-white/80 backdrop-blur-md p-8 border-b border-slate-100 z-10 flex justify-between items-center">

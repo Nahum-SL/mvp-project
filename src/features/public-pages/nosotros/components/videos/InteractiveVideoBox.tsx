@@ -157,7 +157,9 @@ export const InteractiveVideoBox = ({
       </div>
 
       {/* Glow Decorativo de Hover (Look de Ingeniería) */}
-      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-sky-500/10 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-sky-500/10 
+      blur-[100px] rounded-full opacity-0 group-hover:opacity-100 
+      transition-opacity duration-700" />
     </motion.div>
   );
 };

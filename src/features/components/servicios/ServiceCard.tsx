@@ -165,7 +165,7 @@ export const ServiceCard = ({
         <button
           onClick={onCompare}
           className={cn(
-            "text-[10px] font-bold transition-colors underline-offset-4 hover:underline",
+            "text-[10px] font-bold transition-all active:scale-95 underline-offset-4 hover:underline", // Añadido active:scale-95
             isComparing ? "text-blue-600 underline" : "text-slate-400",
           )}
         >

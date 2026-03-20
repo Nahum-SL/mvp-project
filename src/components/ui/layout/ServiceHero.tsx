@@ -9,7 +9,7 @@ interface Props {
   alt: string;
 }
 
-export default function ServiceHeader({ title, subtitle, src, alt }: Props) {
+export default function ServiceHero({ title, subtitle, src, alt }: Props) {
   return (
     <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden">
       {/* h-[60vh] en móvil y h-[75vh] en desktop (aprox 600px - 750p */}

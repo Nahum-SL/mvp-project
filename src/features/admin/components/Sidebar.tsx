@@ -47,18 +47,18 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 
       {/* Sidebar Principal */}
       <aside
-        className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white transform transition-transform duration-300 ease-in-out
-          lg:relative lg:translate-x-0
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          flex flex-col min-h-screen
-        `}
+        className={cn(
+          `
+          fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white 
+          transform transition-transform duration-300 ease-in-out
+          lg:relative lg:translate-x-0`,
+          isOpen ? "translate-x-0" : "-translate-x-full",
+          "flex flex-col min-h-screen",
+        )}
       >
         <div className="p-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black tracking-tighter">
-              ASESCON
-            </h2>
+            <h2 className="text-2xl font-black tracking-tighter">ASESCON</h2>
             <p className="text-[10px] text-slate-400 uppercase tracking-widest mt-1">
               Admin Panel
             </p>

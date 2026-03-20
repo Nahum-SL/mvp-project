@@ -6,7 +6,7 @@ import BlogSkeleton from "@/src/components/skeletons/BlogSkeleton";
 
 export default function BlogPage() {
   return (
-    <main className="bg-slate-950 min-h-screen">
+    <main className="bg-slate-950">
       <BlogHeader
         title="Recursos y Artículos"
         subtitle="Descubre análisis, tips y contenido actualizado sobre contabilidad, finanzas y normativa empresarial."

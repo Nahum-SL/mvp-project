@@ -2,7 +2,7 @@
 "use client";
 
 // Optimizar los datos y refrescar la pagina
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useDeferredValue } from "react";
 // Manejo con las URLs
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 // Componentes
@@ -38,7 +38,8 @@ export default function ServiceDashboard() {
     search: searchParams.get("q") || "",
   });
 
-  const [debouncedFilters] = useDebounce(filters, 400);
+  // Este debounce es clave
+  const [debouncedFilters] = useDebounce(filters, 300);
 
   // Sincronizar filtros -> URL
   useEffect(() => {
@@ -74,30 +75,37 @@ export default function ServiceDashboard() {
     return services.filter((s) => compareIds.includes(s.id));
   }, [services, compareIds]);
 
-  // Centraliza el Scoring
+  // Mejora la latencia de los botones de ComparisonModal
+  const deferredCompareServices = useDeferredValue(selectedServicesToCompare);
+
+  // USAMOS 'debouncedFilters' para que el cálculo no bloquee el input
   const scoredServices = useMemo(() => {
     return services.map((svc) => ({
       ...svc,
-      relevanceScore: calculateServiceScore(svc, filters),
+      relevanceScore: calculateServiceScore(svc, debouncedFilters),
     }));
-  }, [services, filters]);
+  }, [services, debouncedFilters]); // <--- Antes era 'filters'
 
   // Filtrar y Ordenar los servicios por relevancia1111
   const filteredServices = useMemo(() => {
+    const searchVal = debouncedFilters.search.toLowerCase();
+
     const searched = scoredServices.filter(
       (svc) =>
-        svc.title.toLowerCase().includes(filters.search.toLowerCase()) ||
-        svc.description.toLowerCase().includes(filters.search.toLowerCase()),
+        svc.title.toLowerCase().includes(searchVal) ||
+        svc.description.toLowerCase().includes(searchVal),
     );
 
-    if (!filters.businessType && !filters.painPoint) {
+    if (!debouncedFilters.businessType && !debouncedFilters.painPoint) {
       return [...searched].sort((a, b) => (a.order || 0) - (b.order || 0));
     }
 
     return searched
-      .filter((svc) => svc.relevanceScore > 0 || !filters.businessType)
+      .filter((svc) => svc.relevanceScore > 0 || !debouncedFilters.businessType)
       .sort((a, b) => b.relevanceScore - a.relevanceScore);
-  }, [scoredServices, filters]);
+  }, [scoredServices, debouncedFilters]); // <--- Antes era 'filters'
+
+  const isProcessing = filters !== debouncedFilters;
 
   // Muestra el mejor match
   const bestMatchId = useMemo(() => {
@@ -112,7 +120,11 @@ export default function ServiceDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">
-      <SmartSelector onFilterChange={setFilters} filters={filters} />
+      <SmartSelector
+        onFilterChange={setFilters}
+        filters={filters}
+        isPending={isProcessing || isLoading}
+      />
 
       <div className="space-y-8">
         <div className="flex items-center justify-between border-b border-slate-200 pb-6">
@@ -137,20 +149,25 @@ export default function ServiceDashboard() {
           )}
         </div>
 
-        <ServiceGrid
-          services={filteredServices}
-          onCompare={toggleCompare} // Pasamos la función al Grid
-          compareIds={compareIds}
-          highlightedIds={bestMatchId !== null ? [bestMatchId] : []} // Pasamos los IDs para resaltar el botón activo
-          filters={filters}
-        />
+        {/* Si isLoading es true (primera carga), podemos mostrar un Skeleton */}
+        {isLoading ? (
+          <div className="grid grid-cols-3 gap-6">Cargando servicios...</div>
+        ) : (
+          <ServiceGrid
+            services={filteredServices}
+            onCompare={toggleCompare} // Pasamos la función al Grid
+            compareIds={compareIds}
+            highlightedIds={bestMatchId !== null ? [bestMatchId] : []} // Pasamos los IDs para resaltar el botón activo
+            filters={filters}
+          />
+        )}
       </div>
 
       {/* 3. Renderizado del Modal con Animación */}
       <AnimatePresence>
         {compareIds.length === 2 && (
           <ComparisonModal
-            services={selectedServicesToCompare}
+            services={deferredCompareServices}
             onClose={() => setCompareIds([])}
           />
         )}

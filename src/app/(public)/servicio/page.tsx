@@ -1,5 +1,5 @@
 import ServiceDashboard from "@/src/features/containers/ServiceDashboard";
-import ServiceHeader from "@/src/components/ui/layout/ServiceHeader";
+import ServiceHero from "@/src/components/ui/layout/ServiceHero";
 import ServiceDashboardSkeleton from "@/src/components/skeletons/ServiceDashboardSkeleton";
 import { Suspense } from "react";
 import { Metadata } from "next";
@@ -35,7 +35,7 @@ export async function generateMetadata({
 export default function ServiciosPage() {
   return (
     <main>
-      <ServiceHeader
+      <ServiceHero
         title="Expertos en Asesoría y Consultoría Empresarial"
         subtitle="Nuestras Soluciones"
         src="/servicios-hero.webp"

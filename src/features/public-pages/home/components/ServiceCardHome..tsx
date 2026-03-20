@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { iconMap } from "@/src/lib/icons";
 import { ServiceHome } from "@/src/types/servicio/servicio-home";
+import { cn } from "@/src/lib/utils";
 
 // Paleta estratégica por ID o Slug
 const COLOR_THEMES: Record<string, string> = {
@@ -44,7 +45,7 @@ export const ServiceCardHome = ({
       }}
       className="group relative h-112"
     >
-      <Link href={`/servicios/${service.slug}`}>
+      <Link href={`/servicio/${service.slug}`}>
         <div
           className={`h-full p-8 rounded-[2.5rem] bg-white border-b-8 ${theme.split(" ")[0]} 
           shadow-2xl shadow-slate-200/50 hover:shadow-blue-900/10 transition-all duration-500 
@@ -52,28 +53,33 @@ export const ServiceCardHome = ({
         >
           {/* VIDEO BACKGROUND (Solo visible en hover) */}
           <div
-            className={`absolute inset-0 z-0 transition-opacity duration-700 ${isHovered ? "opacity-30" : "opacity-0"}`}
+            className={cn(
+              "absolute inset-0 z-0 transition-opacity duration-700",
+              isHovered ? "opacity-30" : "opacity-0",
+            )}
           >
             <video
               ref={videoRef}
               muted
               loop
               playsInline
-              className="w-full h-full object-cover grayscale brightness-125"
+              className="w-full h-full object-cover brightness-125"
             >
               <source
-                src={`/videos/services/${service.slug}.webm`}
+                src={`/video/servicios/${service.slug}.webm`}
                 type="video/webm"
               />
             </video>
             {/* Overlay para mantener legibilidad */}
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]" />
+            <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
           </div>
 
           <div className="relative z-10">
             <div
-              className={`w-14 h-14 rounded-2xl ${theme.split(" ")[2]} flex items-center justify-center 
-              ${theme.split(" ")[1]} group-hover:scale-110 transition-transform duration-500`}
+              className={`w-14 h-14 rounded-2xl ${theme.split(" ")[2]} 
+              flex items-center justify-center 
+              ${theme.split(" ")[1]} group-hover:scale-110 
+              transition-transform duration-500`}
             >
               {IconComponent && <IconComponent size={28} strokeWidth={2.5} />}
             </div>
@@ -89,8 +95,12 @@ export const ServiceCardHome = ({
             </p>
 
             <div
-              className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] 
-              ${theme.split(" ")[1]} pt-4 transition-all translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100`}
+              className={`flex items-center gap-2 
+                text-[10px] font-black uppercase tracking-[0.2em] 
+              ${theme.split(" ")[1]} 
+              pt-4 transition-all translate-y-2 
+              opacity-0 group-hover:translate-y-0 
+              group-hover:opacity-100 group-hover:text-sky-600`}
             >
               Consultar ahora <ArrowUpRight size={14} />
             </div>

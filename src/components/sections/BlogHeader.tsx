@@ -18,8 +18,8 @@ export const BlogHeader = ({
 }: BlogHeroHeaderProps) => {
   return (
     <section
-      className="relative w-full h-[60vh] md:h-[75vh] min-h-125 flex 
-    items-center justify-center text-center"
+      className="relative w-full h-[60vh] md:h-[75vh] flex 
+    items-center justify-center text-center min-h-screen"
     >
       {/* Imagen o gradiente de fondo */}
       {backgroundImage ? (

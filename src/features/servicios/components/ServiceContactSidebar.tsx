@@ -52,12 +52,14 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
               />
             </div>
           </Link>
-          <button className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl flex items-center justify-center gap-3 transition-all">
+          <Link 
+          href="/servicio"
+          className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl flex items-center justify-center gap-3 transition-all">
             <Mail size={18} className="text-blue-400" />
             <span className="text-[10px] font-black uppercase tracking-widest">
               Ver Servicios
             </span>
-          </button>
+          </Link>
         </div>
 
         <div className="pt-6 border-t border-white/10 flex items-center gap-4">
