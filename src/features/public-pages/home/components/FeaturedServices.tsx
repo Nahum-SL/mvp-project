@@ -21,12 +21,14 @@ export const FeaturedServices = ({ isLoading = false }: Props) => {
 
       <div className="container mx-auto">
         {/* Header con color Azul para transmitir autoridad en servicios */}
-        <SectionHeaderHome
-          title="Soluciones Estratégicas"
-          description="Transformamos la complejidad administrativa en tranquilidad operativa para su empresa."
-          lineColor="yellow"
-          mode="light"
-        />
+        <div className="min-h-30">
+          <SectionHeaderHome
+            title="Soluciones Estratégicas"
+            description="Transformamos la complejidad administrativa en tranquilidad operativa para su empresa."
+            lineColor="yellow"
+            mode="light"
+          />
+        </div>
 
         <div className="px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {isLoading

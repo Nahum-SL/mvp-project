@@ -3,7 +3,7 @@
 
 import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Inbox, Search, Filter, X } from "lucide-react";
+import { Inbox, Search} from "lucide-react";
 import { LeadRow } from "./LeadRow";
 import { Contacto } from "@/src/types/contacto/contacto";
 import { STATUS_CONFIG } from "../constante";

@@ -3,7 +3,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 
 interface HeroProps {
@@ -19,11 +18,12 @@ export default function AsesconHero({
   mainTitle,
   subtitle,
   ctaText,
+  videoPoster,
   onCtaClick,
 }: HeroProps) {
   return (
     <section
-      className="relative w-full min-h-screen flex items-center justify-center 
+      className="relative w-full min-h-svh flex items-center justify-center 
     overflow-hidden bg-slate-950"
     >
       {/* 1. IMAGEN DE FONDO INMERSIVA */}
@@ -34,44 +34,39 @@ export default function AsesconHero({
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover transition-opacity"
+          poster={videoPoster}
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
         >
           {/* Video de Prueba */}
           <source src="/asescon-hero-video.webm" type="video/webm" />
         </video>
 
-        {/* CORREGIDO: CAPA DE DEGRADADO UNIFICADA Y EFICIENTE */}
-        {/* Usamos estilos en línea (inline styles) para combinar los degradados complejos en una sola capa */}
+        {/* Overlay de gradiente para que el texto sea legible */}
         <div
-          className="absolute inset-0 z-10"
-          style={{
-            background: `
-              linear-gradient(to right, rgba(30, 58, 138, 0.2), transparent, transparent), /* Degradado Azul Izquierdo */
-              linear-gradient(to top, #020617 0%, transparent 50%, rgba(2, 6, 17, 0.4) 100%), /* Degradado Vertical (from-via-to) */
-              rgba(2, 6, 17, 0.7) /* Oscurecimiento general (Overley) */
-            `,
-          }}
+          className="absolute inset-0 bg-linear-to-b 
+      from-slate-950/20 via-slate-950/80 to-slate-950"
         />
       </div>
 
       <div className="max-7xl mx-auto px-6 relative z-20 text-center">
         {" "}
         {/* Subimos z-index del contenido */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           {/* Título */}
           {/* OPTIMIZACIÓN LCP: Quitamos la animación inicial de opacity: 0 para que pinte instantáneamente */}
           <h1
-            className="text-5xl md:text-5xl lg:text-5xl 
-            font-black text-white tracking-tighter 
-            leading-[0.9]"
+            className="text-4xl md:text-5xl lg:text-5xl 
+            font-extrabold text-white tracking-tighter 
+            leading-tight"
           >
             {mainTitle}
           </h1>
 
           {/* Subtítulo con máximo contraste */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }} // Reducimos delay ligeramente
             className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
             mx-auto leading-relaxed font-medium drop-shadow-md"
@@ -81,8 +76,8 @@ export default function AsesconHero({
 
           {/* Contenedor de Botones */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }} // Reducimos delay ligeramente
             className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12"
           >
@@ -92,7 +87,7 @@ export default function AsesconHero({
               onClick={onCtaClick}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
-              text-slate-950 font-black rounded-full overflow-hidden 
+              text-slate-950 font-extrabold rounded-full overflow-hidden 
               transition-all hover:scale-105 active:scale-95 
               flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >

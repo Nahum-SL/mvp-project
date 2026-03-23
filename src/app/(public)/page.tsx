@@ -18,12 +18,13 @@ export default function Home() {
             mainTitle="Impulsamos el crecimiento de su empresa"
             subtitle="Respaldo estratégico y seguridad jurídica para una operación con total tranquilidad."
             ctaText="Hablar con un asesor"
+            videoPoster="/planeamiento-tributario.webp"
           />
         </section>
 
         {/* 2. SERVICIOS POPULARES: El "catálogo" de soluciones */}
         <section className="bg-slate-50 z-14">
-          <FeaturedServices isLoading={false} />
+          <FeaturedServices />
         </section>
 
         {/* Usamos colores Blanco, Azul y acentos Amarillos */}

@@ -5,43 +5,40 @@ const ROLE_ROUTES = {
   ADMIN: "/admin",
 };
 
+// src/proxy.ts
 export function proxy(request: NextRequest) {
   const token = request.cookies.get("asescon_token")?.value;
-  const { pathname } = request.nextUrl; 
+  const { pathname } = request.nextUrl;
 
-  // 1. SI NO HAY TOKEN
-  if (!token) {
-    // Solo redirigir si intenta entrar a zonas privadas
-    if (pathname.startsWith("/admin")) {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-    // Si no hay token y va a /login o raíz, permitir (NextResponse.next)
+  // 0. SIEMPRE PERMITIR /intranet (Punto de entrada público)
+  if (pathname.startsWith("/intranet")) {
     return NextResponse.next();
   }
 
-  // 2. SI HAY TOKEN
+  // 1. SI NO HAY TOKEN
+  if (!token) {
+    // Si intenta ir a /admin sin token -> al login
+    if (pathname.startsWith("/admin")) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+    return NextResponse.next();
+  }
+
+  // 2. SI HAY TOKEN (Admin logueado)
   const payload = decodeJWT(token);
-  const userRole = payload?.role as keyof typeof ROLE_ROUTES;
+  const userRole = payload?.role;
 
-  // Si el token es inválido o no tiene rol, borrar cookie y mandar al login
-  if (!userRole) {
-    const response = NextResponse.redirect(new URL("/login", request.url));
-    response.cookies.delete("asescon_token");
-    return response;
-  }
-
-  // A. Evitar que un logueado entre al /login
+  // A. Si intenta ir a /login ya estando logueado -> directo al Dashboard
   if (pathname.startsWith("/login")) {
-    const dest = ROLE_ROUTES[userRole] || "/intranet";
-    return NextResponse.redirect(new URL(dest, request.url));
+    return NextResponse.redirect(new URL("/admin", request.url));
   }
 
-  // B. Protección de /admin (Solo para ADMIN)
+  // B. Protección de /admin
   if (pathname.startsWith("/admin") && userRole !== "ADMIN") {
+    // Si el token no es de admin, lo regresamos a la intranet
     return NextResponse.redirect(new URL("/intranet", request.url));
   }
 
-  // C. Si todo está ok, continuar
   return NextResponse.next();
 }
 
@@ -51,7 +48,6 @@ function decodeJWT(token: string) {
     const base64Url = token.split(".")[1];
     if (!base64Url) return null;
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    // atob es nativo en el Edge Runtime de Next.js
     const jsonPayload = atob(base64);
     return JSON.parse(jsonPayload);
   } catch (e) {
@@ -61,9 +57,6 @@ function decodeJWT(token: string) {
 
 export const config = {
   matcher: [
-    /*
-     * Match de todas las rutas excepto archivos estáticos y API
-     */
     "/((?!api|_next/static|_next/image|favicon.ico|public|.*\\.(?:svg|png|jpg|jpeg|webp)$).*)",
   ],
 };

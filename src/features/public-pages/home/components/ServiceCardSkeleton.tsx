@@ -1,7 +1,8 @@
 // src/features/public-pages/home/components/ServiceCardSkeleton.tsx
 export const ServiceCardSkeleton = () => {
   return (
-    <div className="h-112 p-8 rounded-[2.5rem] bg-slate-50 border-b-8 border-slate-100 flex flex-col justify-between animate-pulse">
+    <div className="h-112 p-8 rounded-[2.5rem] bg-slate-50 border-b-8 
+    border-slate-100 flex flex-col justify-between animate-pulse">
       {/* Icon Placeholder */}
       <div className="relative z-10">
         <div className="w-14 h-14 rounded-2xl bg-slate-200" />

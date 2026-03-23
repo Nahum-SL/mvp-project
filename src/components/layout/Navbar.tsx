@@ -68,7 +68,7 @@ function NavbarCard() {
               UNETE
             </Link>
             <Link
-              href="/login"
+              href="/intranet"
               className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
             >
               INTRANET
