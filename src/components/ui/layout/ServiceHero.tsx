@@ -19,7 +19,7 @@ export default function ServiceHero({ title, subtitle, src, alt }: Props) {
         alt={alt}
         fill
         priority
-        sizes="(max-width: 1024px) 100vw, 33vw"
+        sizes="100vw"
         quality={75}
         className="object-cover object-center brightness-50" // Opacidad para el sombreado
       />

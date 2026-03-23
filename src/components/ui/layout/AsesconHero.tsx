@@ -11,7 +11,7 @@ interface HeroProps {
   mainTitle: string;
   subtitle: string;
   ctaText: string;
-  image?: string; // La imagen de fondo
+  videoPoster?: string; // La imagen de fondo
   onCtaClick?: () => void;
 }
 
@@ -19,7 +19,6 @@ export default function AsesconHero({
   mainTitle,
   subtitle,
   ctaText,
-  image,
   onCtaClick,
 }: HeroProps) {
   return (
@@ -35,7 +34,7 @@ export default function AsesconHero({
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity"
         >
           {/* Video de Prueba */}
           <source src="/asescon-hero-video.webm" type="video/webm" />
@@ -74,7 +73,7 @@ export default function AsesconHero({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }} // Reducimos delay ligeramente
-            className="mt-10 text-lg md:text-2xl text-slate-200 max-w-3xl 
+            className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
             mx-auto leading-relaxed font-medium drop-shadow-md"
           >
             {subtitle}

@@ -18,7 +18,6 @@ export default function Home() {
             mainTitle="Impulsamos el crecimiento de su empresa"
             subtitle="Respaldo estratégico y seguridad jurídica para una operación con total tranquilidad."
             ctaText="Hablar con un asesor"
-            image="/constitucion-de-empresas.webp"
           />
         </section>
 

@@ -18,7 +18,7 @@ export default function UneteHeader({
   alt,
 }: Props) {
   return (
-    <section className="relative w-full h-[60vh] md:h-[75vh] min-h-125 overflow-hidden flex items-center">
+    <section className="relative w-full h-[60vh] md:h-[75vh] min-h-screen overflow-hidden flex items-center">
       {/* Imagen de fondo */}
       <Image
         src={src}

@@ -100,7 +100,9 @@ export const SmartSelector = ({
                 painPoint: e.target.value as PainPointID | "",
               }))
             }
-            className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-bold text-slate-600 outline-none appearance-none"
+            className="w-full p-4 bg-slate-50 rounded-2xl 
+            border-none focus:ring-2 focus:ring-blue-600 font-bold 
+            text-slate-600 outline-none appearance-none"
           >
             <option value="">Todos los temas</option>
             {PAIN_POINTS.map((point) => (
@@ -135,7 +137,7 @@ export const SmartSelector = ({
               search: "",
             })
           }
-          className="mx-auto text-xs font-bold text-slate-400 justify-center items-center hover:text-blue-600 transition"
+          className="flex text-xs font-bold text-slate-400 justify-center items-center hover:text-blue-600 transition"
         >
           Limpiar filtros
         </button>

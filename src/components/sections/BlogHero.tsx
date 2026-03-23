@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 import { Newspaper } from "lucide-react";
 import Image from "next/image";
 
-interface BlogHeroHeaderProps {
+interface Props {
   title: string;
   subtitle?: string;
   backgroundImage?: string; // opcional, para un hero con imagen
 }
 
-export const BlogHeader = ({
+export const BlogHero = ({
   title,
   subtitle,
   backgroundImage,
-}: BlogHeroHeaderProps) => {
+}: Props) => {
   return (
     <section
       className="relative w-full h-[60vh] md:h-[75vh] flex 
@@ -28,7 +28,7 @@ export const BlogHeader = ({
           alt="Background"
           fill
           priority
-          sizes="(max-width: 1024px) 100vw, 33vw"
+          sizes="100vw"
           quality={75}
           className="object-cover object-center brightness-50"
         />
@@ -53,12 +53,15 @@ export const BlogHeader = ({
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-bold text-white leading-snug">
+        <h1 className="text-5xl md:text-5xl lg:text-5xl 
+        font-black text-white tracking-tighter leading-[0.9]">
           {title}
         </h1>
 
         {subtitle && (
-          <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+          <p className="text-slate-300 text-lg md:text-2xl 
+          max-w-3xl mx-auto font-medium drop-shadow-md
+          leading-relaxed">
             {subtitle}
           </p>
         )}

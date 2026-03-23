@@ -11,6 +11,7 @@ export const NosotrosHero = () => {
         loop
         muted
         playsInline
+        poster="/"
         className="absolute inset-0 w-full h-full object-cover"
       >
         {/* Video de Prueba */}

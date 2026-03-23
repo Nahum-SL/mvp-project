@@ -35,7 +35,7 @@ export const ValueProposition = () => {
     <section className="py-20 bg-slate-950">
       <div className="container mx-auto px-6">
         <div className="bg-slate-950 rounded-[4rem] p-10 md:p-20 relative overflow-hidden shadow-3xl min-h-125 lg:min-h-162.5 transition-all">
-          <div className="absolute top-0 right-0 w-full h-full bg-[url('/grid-pattern.svg')] opacity-5 pointer-events-none will-change-auto" />
+          <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none will-change-auto" />
           <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full transform-gpu" />
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full transform-gpu" />
 
