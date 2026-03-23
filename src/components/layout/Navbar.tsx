@@ -71,7 +71,7 @@ function NavbarCard() {
               href="/login"
               className="hover:bg-blue-900/40 p-4 rounded-2xl transition-colors"
             >
-              INICIAR SESION
+              INTRANET
             </Link>
           </div>
 

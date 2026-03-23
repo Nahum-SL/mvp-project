@@ -11,32 +11,29 @@ import { ValueProposition } from "@/src/features/public-pages/home/components/Va
 export default function Home() {
   return (
     <main className="bg-white text-slate-900">
-      <div className="relative z-10">
-        
+      <div className="relative z-15">
         {/* 1. HERO: Impacto visual inicial */}
         <section id="home">
           <AsesconHero
             mainTitle="Impulsamos el crecimiento de su empresa"
             subtitle="Respaldo estratégico y seguridad jurídica para una operación con total tranquilidad."
-            ctaText="Iniciar Consultoría"
+            ctaText="Hablar con un asesor"
             image="/constitucion-de-empresas.webp"
           />
         </section>
 
         {/* 2. SERVICIOS POPULARES: El "catálogo" de soluciones */}
-        <section className="bg-slate-50">
-          <FeaturedServices isLoading={false}/>
+        <section className="bg-slate-50 z-14">
+          <FeaturedServices isLoading={false} />
         </section>
 
         {/* Usamos colores Blanco, Azul y acentos Amarillos */}
         <ValueProposition />
 
         {/* 4. CONTENIDO: Posts recientes para SEO y autoridad */}
-        <div className="bg-slate-50 py-24">
-          <Suspense fallback={<RecentPostSkeleton />}>
-            <RecentPostsSection />
-          </Suspense>
-        </div>
+        <Suspense fallback={<RecentPostSkeleton />}>
+          <RecentPostsSection />
+        </Suspense>
 
         {/* 5. CONTACTO: Cierre de embudo */}
         <div className="relative z-9 bg-white">
@@ -44,6 +41,7 @@ export default function Home() {
             title="¿Listo para comenzar?"
             description="Únete a las empresas que ya han transformado su gestión con el respaldo estratégico de ASESCON"
             lineColor="green"
+            mode="light"
           />
           <section id="contacto" className="pb-20">
             <div className="container mx-auto px-6">

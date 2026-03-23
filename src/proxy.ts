@@ -3,7 +3,6 @@ import { NextResponse, NextRequest } from "next/server";
 
 const ROLE_ROUTES = {
   ADMIN: "/admin",
-  COLABORADOR: "/intranet",
 };
 
 export function proxy(request: NextRequest) {
@@ -13,7 +12,7 @@ export function proxy(request: NextRequest) {
   // 1. SI NO HAY TOKEN
   if (!token) {
     // Solo redirigir si intenta entrar a zonas privadas
-    if (pathname.startsWith("/admin") || pathname.startsWith("/intranet")) {
+    if (pathname.startsWith("/admin")) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
     // Si no hay token y va a /login o raíz, permitir (NextResponse.next)

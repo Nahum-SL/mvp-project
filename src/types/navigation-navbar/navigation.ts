@@ -1,4 +1,5 @@
 // navigation.ts
+// Opciones para el Sidebar publico
 import {
   LayoutDashboard,
   FileText,
@@ -15,6 +16,6 @@ export const NAV_ITEMS = [
   { name: "Contacto", href: "/#contacto", icon: BookOpenText },
   { name: "Recursos", href: "/blog", icon: FileText },
   { name: "Nosotros", href: "/nosotros", icon: Users },
-  { name: "Iniciar Sesión", href: "/login", icon: LinkIcon },
+  { name: "Intranet", href: "/intranet", icon: LinkIcon },
   { name: "Únete", href: "/unete", icon: UserPlus },
 ];

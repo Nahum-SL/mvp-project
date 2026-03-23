@@ -1,8 +1,8 @@
 import Link from "next/link";
 import BlogCardHome from "./BlogCardHome";
 import { BlogPost } from "@/src/types/blog/blogPost";
-import { HeaderRecentPost } from "./HeaderRecenPost";
 import { ArrowRight } from "lucide-react";
+import { SectionHeaderHome } from "../ui/layout/contacto/SectionHeaderHome";
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
@@ -24,11 +24,20 @@ export const RecentPostsSection = async () => {
       </div>
     );
   return (
-    <section className="py-20 bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <section
+      className="py-20 bg-linear-to-b 
+    from-slate-950 via-slate-900 to-slate-950 text-white"
+    >
       <div className="container mx-auto px-6">
         {/* Header centrado */}
-        <HeaderRecentPost />
-
+        <SectionHeaderHome
+          title="Actualidad Contable"
+          description="Análisis y contenido actualizado sobre normativa tributaria, gestión
+          financiera y tendencias empresariales."
+          lineColor="blue"
+          mode="dark"
+        />
+        
         <section className="container mx-auto px-15">
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-1 gap-8">
             {posts.map((pos, i) => (

@@ -38,7 +38,7 @@ export default function AsesconHero({
           className="absolute inset-0 w-full h-full object-cover"
         >
           {/* Video de Prueba */}
-          <source src="/nosotros-hero-video.webm" type="video/webm" />
+          <source src="/asescon-hero-video.webm" type="video/webm" />
         </video>
 
         {/* CORREGIDO: CAPA DE DEGRADADO UNIFICADA Y EFICIENTE */}

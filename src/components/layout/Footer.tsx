@@ -1,11 +1,41 @@
-'use client';
+"use client";
 // src/components/ui/layout/Footer.tsx
 import Link from "next/link";
-import { Mail, MessageCircle, MapPin, Clock, ArrowUpRight } from "lucide-react";
+import {
+  Mail,
+  MessageCircle,
+  MapPin,
+  Clock,
+  ArrowUpRight,
+  ExternalLink,
+} from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  // URLs de Google Maps (Coordenadas o Direcciones exactas)
+  const locations = [
+    {
+      city: "Surco, Lima",
+      address: "Av. Tomásal 475, Urbanización Las Lagunas, Santiago de Surco, Lima.",
+      // Reemplaza con el link de compartir de Google Maps de tu oficina
+      mapUrl:
+        "",
+    },
+    {
+      city: "Chincha, Ica",
+      address: "Av. Gálvez Ronceros 143 / Av. Primavera 236.",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=Av.+Gálvez+Ronceros+143+Chincha+Ica",
+    },
+    {
+      city: "Pueblo Nuevo, Chincha",
+      address: "Av. Primavera 236, Pueblo Nuevo, Chincha",
+      mapUrl:
+        "",
+    }
+  ];
 
   const footerLinks = [
     { name: "Inicio", href: "/#home" },
@@ -17,7 +47,6 @@ export default function Footer() {
 
   return (
     <footer className="bg-slate-950 text-slate-300 relative overflow-hidden border-t border-slate-900">
-      {/* Glow decorativo de fondo */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-sky-500/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-8 relative z-10">
@@ -51,7 +80,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Columna 2: Navegación (Nueva) */}
+          {/* Columna 2: Navegación */}
           <div className="space-y-6">
             <h4 className="text-white font-black uppercase italic tracking-[0.4em] text-xs">
               Explorar
@@ -119,42 +148,48 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Columna 4: Sedes */}
+          {/* Columna 4: Ubicaciones con Google Maps API Links */}
           <div className="space-y-6">
             <h4 className="text-white font-black uppercase italic tracking-[0.2em] text-xs">
               Ubicaciones
             </h4>
             <div className="space-y-6">
-              <div className="flex gap-3 group">
-                <MapPin
-                  size={18}
-                  className="text-sky-500 shrink-0 group-hover:animate-bounce"
-                />
-                <p className="text-xs leading-relaxed text-slate-400 group-hover:text-slate-200 transition-colors">
-                  <strong className="text-slate-100 block text-sm mb-1 uppercase tracking-tight">
-                    Surco, Lima
-                  </strong>
-                  Av. Tomásal 475, Urb. Las Lagunas.
-                </p>
-              </div>
-              <div className="flex gap-3 group">
-                <MapPin
-                  size={18}
-                  className="text-sky-500 shrink-0 group-hover:animate-bounce"
-                />
-                <p className="text-xs leading-relaxed text-slate-400 group-hover:text-slate-200 transition-colors">
-                  <strong className="text-slate-100 block text-sm mb-1 uppercase tracking-tight">
-                    Chincha, Ica
-                  </strong>
-                  Av. Gálvez Ronceros 143 / Av. Primavera 236.
-                </p>
-              </div>
+              {locations.map((loc, idx) => (
+                <a
+                  key={idx}
+                  href={loc.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex gap-3 group cursor-pointer"
+                >
+                  <div className="mt-1">
+                    <MapPin
+                      size={18}
+                      className="text-sky-500 shrink-0 group-hover:animate-bounce transition-all"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <strong className="text-slate-100 block text-sm uppercase tracking-tight group-hover:text-sky-400 transition-colors">
+                        {loc.city}
+                      </strong>
+                      <ExternalLink
+                        size={10}
+                        className="text-slate-600 group-hover:text-sky-500 opacity-0 group-hover:opacity-100 transition-all"
+                      />
+                    </div>
+                    <p className="text-xs leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                      {loc.address}
+                    </p>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="pt-8 border-t border-slate-900 flex flex-col md:row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">
           <div className="flex items-center gap-4">
             <p>© {currentYear} ASESCON</p>
             <span className="w-1 h-1 bg-slate-800 rounded-full" />
