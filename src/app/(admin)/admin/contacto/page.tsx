@@ -4,6 +4,7 @@ import { LeadsTable } from "@/src/features/admin/contacto/components/LeadsTable"
 import { Suspense } from "react";
 import { LeadsTableSkeleton } from "@/src/features/admin/contacto/components/LeadsTableSkeleton";
 import { getLeads } from "@/src/features/admin/contacto/action";
+import { ContactoDrawer } from "@/src/features/admin/contacto/components/ContactoDrawer";
 
 export default async function AdminContactoPage() {
   const leads = await getLeads();
@@ -36,6 +37,7 @@ export default async function AdminContactoPage() {
       <Suspense fallback={<LeadsTableSkeleton />}>
         <LeadsTable leads={leads} />
       </Suspense>
+
     </main>
   );
 }

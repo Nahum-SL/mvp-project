@@ -37,8 +37,8 @@ export default function IntranetHero({
         {/* MÁSCARAS DE GRADIENTE: Para que el texto "explote" visualmente */}
         {/* 1. Gradiente desde la izquierda (oscuridad para el texto) */}
         <div
-          className="absolute inset-0 bg-linear-to-r 
-        from-slate-950 via-slate-950/70 to-transparent z-1"
+          className="absolute inset-0 bg-linear-to-r
+        from-slate-950 via-slate-950/70 to-transparent z-10"
         />
 
         {/* 2. Gradiente inferior (para suavizar la unión con los Cards) */}
@@ -90,11 +90,11 @@ export default function IntranetHero({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="mt-10 flex items-center gap-2 text-slate-500 text-[10px] 
+            className="mt-10 flex items-center gap-2 text-slate-300 text-[10px] 
             uppercase tracking-[0.2em] font-semibold"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
-            Acceso Encriptado de Nivel Empresarial
+            Acceso Encriptado
           </motion.div>
         </div>
       </div>

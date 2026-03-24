@@ -161,12 +161,33 @@ export default async function AdminDashboardPage() {
               Rápidas
             </h3>
             <div className="space-y-4 relative z-10">
-              <button className="w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10">
+              {/* <button className="w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10">
                 Gestionar Usuarios
               </button>
               <button className="w-full py-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10">
                 Reporte de Leads
-              </button>
+              </button> */}
+              <Link
+                href="/contacto"
+                className="flex items-center justify-center w-full py-4 
+                bg-white/10 hover:bg-white 
+                text-white hover:text-slate-900 rounded-2xl 
+                text-[10px] font-black uppercase 
+                tracking-widest transition-all border border-white/10"
+              >
+                Gestionar Clientes
+              </Link>
+              {/* El lead es el que aun me falta, y la ruta de leads aun no existe */}
+              <Link
+                href="/"
+                className="flex items-center justify-center w-full py-4 
+                bg-white/10 hover:bg-white 
+                text-white hover:text-slate-900 rounded-2xl 
+                text-[10px] font-black uppercase 
+                tracking-widest transition-all border border-white/10"
+              >
+                Reporte de Leads
+              </Link>
               <Link
                 href="/intranet"
                 className="flex items-center justify-center w-full py-4 
@@ -181,7 +202,7 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
       </div>
-      <DashboardCharts />
+      <DashboardCharts data={data.ChartData}/>
     </div>
   );
 }

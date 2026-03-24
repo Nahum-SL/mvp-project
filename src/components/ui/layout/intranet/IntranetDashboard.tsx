@@ -32,7 +32,8 @@ export default function IntranetDashboard({ initialLinks }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {initialLinks.map((item, index) => {
             // Renderizado dinámico del icono guardado por el admin
-            const IconComponent = iconMap[item.icon as keyof typeof iconMap] || iconMap.LinkIcon;
+            const IconComponent =
+              iconMap[item.icon as keyof typeof iconMap] || iconMap.LinkIcon;
 
             return (
               <motion.div
@@ -51,11 +52,21 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                   )}
                 >
                   {/* Contenedor del Icono Dinámico */}
-                  <div className="w-14 h-14 rounded-2xl bg-blue-600/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 transition-all duration-500">
-                    <IconComponent className="w-7 h-7 text-blue-400 group-hover:text-white transition-colors" />
+                  <div
+                    className="w-14 h-14 rounded-2xl bg-blue-600/20 
+                  flex items-center justify-center mb-6 group-hover:scale-110 
+                  group-hover:bg-blue-600/30 transition-all duration-500"
+                  >
+                    <IconComponent
+                      className="w-7 h-7 text-blue-400 
+                    group-hover:text-white transition-colors"
+                    />
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors uppercase italic tracking-tight">
+                  <h3
+                    className="text-xl font-bold text-white mb-3 
+                  group-hover:text-blue-400 transition-colors uppercase italic tracking-tight"
+                  >
                     {item.title}
                   </h3>
 
@@ -65,11 +76,22 @@ export default function IntranetDashboard({ initialLinks }: Props) {
 
                   {/* Footer del Card */}
                   <div className="flex items-center justify-between mt-auto relative z-20">
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-blue-500 font-black italic">
+                    <span
+                      className="text-[10px] uppercase tracking-[0.2em] 
+                    text-blue-500 font-black italic"
+                    >
                       Acceder ahora
                     </span>
-                    <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-300">
-                      <FaArrowRight className="text-white text-xs -rotate-45 group-hover:rotate-0 transition-transform" />
+                    <div
+                      className="w-10 h-10 rounded-full border border-white/10 
+                    flex items-center justify-center 
+                    group-hover:bg-blue-700 group-hover:border-blue-600 
+                    transition-all duration-300"
+                    >
+                      <FaArrowRight
+                        className="text-white text-xs -rotate-45 
+                      group-hover:rotate-0 transition-transform"
+                      />
                     </div>
                   </div>
 

@@ -15,6 +15,6 @@ export async function getDashboardStats() {
     if (!res.ok) throw new Error();
     return await res.json();
   } catch (e) {
-    return { leads: 0, posts: 0, links: 0, views: "0" };
+    return { leads: 0, posts: 0, links: 0, views: "0", chartData: [] };
   }
 }

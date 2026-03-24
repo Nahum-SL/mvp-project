@@ -6,6 +6,15 @@ import { ValuesManifesto } from "@/src/features/public-pages/nosotros/components
 import { NosotrosHero } from "@/src/features/public-pages/nosotros/components/videos/NosotrosHero";
 import { InteractiveVideoBox } from "@/src/features/public-pages/nosotros/components/videos/InteractiveVideoBox";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: `
+  Conoce al equipo detrás de ASESCON. Más de 30 años 
+  brindando confianza y soluciones contables personalizadas 
+  para Mypes y grandes empresas en todo el Perú.`,
+};
+
 // Datos de ejemplo (Esto vendría de tu API o CMS)
 const asesconTeam: TeamMember[] = [
   {

@@ -8,6 +8,29 @@ import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHe
 import { FeaturedServices } from "@/src/features/public-pages/home/components/FeaturedServices";
 import { ValueProposition } from "@/src/features/public-pages/home/components/ValueProposition";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Asescon",
+    default: "Asesoría Empresarial y Contable en Perú | ASESCON",
+  },
+  description: `Nuestra firma está conformada por un grupo humano de primer nivel 
+  con más de 30 años de experiencia en el rubro de 
+  Asesoramiento Contable, Laboral, Tributario y Financiero, 
+  experiencia que ponemos a su servicio para que usted y su empresa cumplan sus objetivos.
+  `,
+  keywords: [
+    "contabilidad",
+    "asesoría tributaria",
+    "Perú",
+    "gestión empresarial",
+  ],
+  metadataBase: new URL("https://asescon.pe"),
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

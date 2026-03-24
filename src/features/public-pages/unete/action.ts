@@ -29,7 +29,7 @@ export async function sendUneteAction(data: UneteFormValues) {
     if (!response.ok) {
       return {
         success: false,
-        message: result.message || "Error al enviar postulación",
+        error: result.message || "Error al enviar postulación",
       };
     }
 

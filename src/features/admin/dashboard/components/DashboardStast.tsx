@@ -8,17 +8,8 @@ interface ChartData {
   value: number;
 }
 
-const mockData: ChartData[] = [
-  { day: "Lun", value: 45 },
-  { day: "Mar", value: 70 },
-  { day: "Mie", value: 55 },
-  { day: "Jue", value: 90 },
-  { day: "Vie", value: 65 },
-  { day: "Sab", value: 40 },
-  { day: "Dom", value: 85 },
-];
-
-export const DashboardCharts = () => {
+export const DashboardCharts = ({ data }: { data: ChartData[] }) => {
+  const maxValue = Math.max(...data.map((d) => d.value), 1);
   return (
     <div className="w-full">
       {/* Header del Gráfico */}
@@ -42,43 +33,29 @@ export const DashboardCharts = () => {
 
       {/* Contenedor del Gráfico */}
       <div className="relative h-64 flex items-end gap-3 sm:gap-6 px-2">
-        {/* Líneas de Guía Horizontales */}
-        <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="w-full border-t border-slate-50" />
-          ))}
-        </div>
-
-        {/* Barras Animadas */}
-        {mockData.map((item, index) => (
+        {data.map((item, index) => (
           <div
-            key={item.day}
+            key={index}
             className="flex-1 flex flex-col items-center gap-4 group relative z-10"
           >
-            {/* Tooltip al hacer hover */}
-            <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100 pointer-events-none">
-              <div className="bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-xl">
+            {/* Tooltip */}
+            <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="bg-slate-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg">
                 {item.value} leads
               </div>
-              <div className="w-2 h-2 bg-slate-900 rotate-45 mx-auto -mt-1" />
             </div>
 
-            {/* Barra */}
+            {/* Barra con altura proporcional */}
             <div className="w-full bg-slate-50 rounded-2xl relative overflow-hidden h-full flex items-end">
               <motion.div
                 initial={{ height: 0 }}
-                animate={{ height: `${item.value}%` }}
-                transition={{
-                  duration: 1.2,
-                  delay: index * 0.1,
-                  ease: [0.23, 1, 0.32, 1],
-                }}
-                className="w-full bg-linear-to-t from-blue-600 to-blue-400 rounded-t-xl shadow-lg shadow-blue-100 group-hover:to-blue-300 transition-colors"
+                animate={{ height: `${(item.value / maxValue) * 100}%` }}
+                transition={{ duration: 1, delay: index * 0.1 }}
+                className="w-full bg-linear-to-t from-blue-600 to-blue-400 rounded-t-xl shadow-lg shadow-blue-100"
               />
             </div>
 
-            {/* Etiqueta del día */}
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-600 transition-colors">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
               {item.day}
             </span>
           </div>

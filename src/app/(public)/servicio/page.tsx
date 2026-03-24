@@ -23,8 +23,8 @@ export async function generateMetadata({
 
   return {
     title,
-    description:
-      "Explora nuestro catálogo de soluciones contables, legales y tributarias diseñadas para potenciar tu empresa.",
+    description: `Constitución de Empresas. Ofrecemos el servicio de Constitución de Empresas, 
+      que le permitirá constituir su empresa de manera efectiva y ágil.`,
     openGraph: {
       title,
       images: ["/servicios-hero.webp"], // Imagen genérica de la sección

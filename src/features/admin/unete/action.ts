@@ -32,7 +32,34 @@ export async function updateCandidatoStatus(id: string, status: JobAppStatus) {
 
     return { success: true };
   } catch (error) {
-    console.error(":( Error en updateCandidatoStatus:", error);
+    console.error(error);
     return { success: false, error: "No se pudo actualizar el estado" };
+  }
+}
+
+export async function getCandidatos() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
+
+  try {
+    if (!token) {
+      throw new Error("No estás autenticado");
+    }
+
+    const response = await fetch(`${API_URL}/unete`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      next: { tags: ["unete"] },
+    });
+
+    if (!response.ok) throw new Error("Error al obtener los candidatos");
+
+    return response.json();
+  } catch (e) {
+    console.error(e);
+    return { success: false, error: "No se pudo conectar con el servidor" };
   }
 }

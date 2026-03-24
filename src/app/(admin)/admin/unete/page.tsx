@@ -1,6 +1,6 @@
 // src/app/(admin)/admin/unete/page.tsx
 import { Suspense } from "react";
-import { getCandidatos } from "@/src/features/admin/unete/services/candidatos";
+import { getCandidatos } from "@/src/features/admin/unete/action";
 import { CandidatosTable } from "@/src/features/admin/unete/components/CandidatosTable";
 import { TableSkeleton } from "@/src/components/skeletons/TableSkeleton";
 

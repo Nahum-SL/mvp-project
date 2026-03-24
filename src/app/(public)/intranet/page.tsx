@@ -4,6 +4,14 @@ import IntranetDashboard from "@/src/components/ui/layout/intranet/IntranetDashb
 import { IntranetSkeleton } from "@/src/components/ui/layout/intranet/IntranetSkeleton";
 import { getLinks } from "@/src/features/admin/intranet/action";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Portal de Clientes",
+  description:
+    "Accede a nuestros sistemas de gestión y recursos exclusivos para clientes de ASESCON.",
+};
+
 export default async function IntranetPage() {
   const { links } = await getLinks();
 
