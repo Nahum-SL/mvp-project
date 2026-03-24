@@ -30,7 +30,7 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
 
   // Lógica de filtrado
   const filteredData = data.filter((c) =>
-    filter === "TODOS" ? true : c.status === filter
+    filter === "TODOS" ? true : c.status === filter,
   );
 
   const handleUpdateStatus = (id: string, status: JobAppStatus) => {
@@ -47,7 +47,10 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
   return (
     <div className="space-y-6">
       {/* --- SELECTOR DE FILTROS --- */}
-      <div className="flex items-center justify-between bg-white/50 p-2 rounded-3xl border border-slate-100 backdrop-blur-sm">
+      <div
+        className="flex items-center justify-between bg-white/50 p-2 
+      rounded-3xl border border-slate-100 backdrop-blur-sm"
+      >
         <div className="flex gap-1">
           {["TODOS", ...Object.values(JobAppStatus)].map((s) => (
             <button
@@ -56,9 +59,9 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
               onClick={() => setFilter(s as any)}
               className={cn(
                 "px-4 py-2 text-xs font-black uppercase tracking-tighter rounded-2xl transition-all",
-                filter === s 
-                  ? "bg-slate-900 text-white shadow-lg shadow-slate-200" 
-                  : "text-slate-400 hover:bg-slate-100"
+                filter === s
+                  ? "bg-slate-900 text-white shadow-lg shadow-slate-200"
+                  : "text-slate-400 hover:bg-slate-100",
               )}
             >
               {s.replace("_", " ")}
@@ -75,11 +78,21 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50/50 border-b border-slate-100">
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Postulante</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">Puesto / Exp.</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Fecha</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Estado</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Acciones</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                Postulante
+              </th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                Puesto / Exp.
+              </th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">
+                Fecha
+              </th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-center">
+                Estado
+              </th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">
+                Acciones
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-50">
@@ -100,22 +113,32 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
                         {candidato.fullName.charAt(0)}
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-slate-900">{candidato.fullName}</p>
-                        <p className="text-xs text-slate-500">{candidato.email}</p>
+                        <p className="text-sm font-bold text-slate-900">
+                          {candidato.fullName}
+                        </p>
+                        <p className="text-xs text-slate-500">
+                          {candidato.email}
+                        </p>
                       </div>
                     </div>
                   </td>
 
                   <td className="px-6 py-5">
-                    <p className="text-sm font-medium text-slate-700">{candidato.position}</p>
-                    <p className="text-xs text-slate-400 font-bold tracking-tighter italic">{candidato.experience} AÑOS EXP.</p>
+                    <p className="text-sm font-medium text-slate-700">
+                      {candidato.position}
+                    </p>
+                    <p className="text-xs text-slate-400 font-bold tracking-tighter italic">
+                      {candidato.experience} AÑOS EXP.
+                    </p>
                   </td>
 
                   <td className="px-6 py-5 text-center">
                     <div className="flex items-center justify-center gap-2 text-slate-400">
                       <Calendar size={12} />
                       <span className="text-[10px] font-bold uppercase">
-                        {format(new Date(candidato.createdAt), "dd MMM yy", { locale: es })}
+                        {format(new Date(candidato.createdAt), "dd MMM yy", {
+                          locale: es,
+                        })}
                       </span>
                     </div>
                   </td>
@@ -130,35 +153,62 @@ export const CandidatosTable = ({ data }: { data: Candidato[] }) => {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => handleUpdateStatus(candidato.id, JobAppStatus.REVISADO)}
-                        disabled={isPending || candidato.status === JobAppStatus.REVISADO}
+                        onClick={() =>
+                          handleUpdateStatus(
+                            candidato.id,
+                            JobAppStatus.REVISADO,
+                          )
+                        }
+                        disabled={
+                          isPending ||
+                          candidato.status === JobAppStatus.REVISADO
+                        }
                         className={cn(
                           "p-2 rounded-xl transition-all",
-                          candidato.status === JobAppStatus.REVISADO 
-                            ? "text-emerald-600 bg-emerald-50" 
-                            : "text-slate-300 hover:text-emerald-600 hover:bg-emerald-50"
+                          candidato.status === JobAppStatus.REVISADO
+                            ? "text-emerald-600 bg-emerald-50"
+                            : "text-slate-300 hover:text-emerald-600 hover:bg-emerald-50",
                         )}
                       >
-                        <CheckCircle size={18} className={cn(isPending && candidato.status !== JobAppStatus.REVISADO && "animate-spin")} />
+                        <CheckCircle
+                          size={18}
+                          className={cn(
+                            isPending &&
+                              candidato.status !== JobAppStatus.REVISADO &&
+                              "animate-spin",
+                          )}
+                        />
                       </motion.button>
 
                       {/* BOTÓN RECHAZAR */}
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => handleUpdateStatus(candidato.id, JobAppStatus.RECHAZADO)}
-                        disabled={isPending || candidato.status === JobAppStatus.RECHAZADO}
+                        onClick={() =>
+                          handleUpdateStatus(
+                            candidato.id,
+                            JobAppStatus.RECHAZADO,
+                          )
+                        }
+                        disabled={
+                          isPending ||
+                          candidato.status === JobAppStatus.RECHAZADO
+                        }
                         className={cn(
                           "p-2 rounded-xl transition-all",
-                          candidato.status === JobAppStatus.RECHAZADO 
-                            ? "text-rose-600 bg-rose-50" 
-                            : "text-slate-300 hover:text-rose-600 hover:bg-rose-50"
+                          candidato.status === JobAppStatus.RECHAZADO
+                            ? "text-rose-600 bg-rose-50"
+                            : "text-slate-300 hover:text-rose-600 hover:bg-rose-50",
                         )}
                       >
                         <XCircle size={18} />
                       </motion.button>
 
-                      <a href={candidato.cvUrl} target="_blank" className="p-2 text-slate-300 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all">
+                      <a
+                        href={candidato.cvUrl}
+                        target="_blank"
+                        className="p-2 text-slate-300 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
+                      >
                         <FileText size={18} />
                       </a>
                     </div>

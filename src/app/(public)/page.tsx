@@ -8,6 +8,7 @@ import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHe
 import { FeaturedServices } from "@/src/features/public-pages/home/components/FeaturedServices";
 import { ValueProposition } from "@/src/features/public-pages/home/components/ValueProposition";
 
+
 export default function Home() {
   return (
     <main className="bg-white text-slate-900">

@@ -45,7 +45,7 @@ export const ServiceCardHome = ({
       }}
       className="group relative h-112"
     >
-      <Link href={`/servicio/${service.slug}`}>
+      <Link href={`/servicio/${service.slug}?from=servicios_populares`}>
         <div
           className={`h-full p-8 rounded-[2.5rem] bg-white border-b-8 ${theme.split(" ")[0]} 
           shadow-2xl shadow-slate-200/50 hover:shadow-blue-900/10 transition-all duration-500 

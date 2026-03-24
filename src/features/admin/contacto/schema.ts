@@ -33,9 +33,13 @@ export const contactoSchema = z.object({
     .max(500, "El comentario no puede exceder los 500 caracteres")
     .optional()
     .or(z.literal("")),
-  status: ContactStatusEnum.default("PENDING"),
 });
 
 // Tipos para el formulario y uso en componentes
 export type ContactoFormInput = z.input<typeof contactoSchema>;
 export type ContactoFormValues = z.output<typeof contactoSchema>;
+
+// Si necesitas el status para la tabla del Admin, puedes crear un esquema extendido
+export const adminContactoSchema = contactoSchema.extend({
+  status: ContactStatusEnum
+});

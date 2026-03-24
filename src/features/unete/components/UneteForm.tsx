@@ -26,7 +26,7 @@ interface Props {
   alt: string;
 }
 
-export const UneteSection = ({ title, subtitle, src, alt }: Props) => {
+export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
   // 1. Forzamos a useForm a usar exactamente el tipo que infiere Zod
   const {
     reset,

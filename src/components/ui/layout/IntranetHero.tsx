@@ -18,7 +18,7 @@ export default function IntranetHero({
 }: Props) {
   return (
     <section
-      className="relative w-full h-[65vh] md:h-[75vh] min-h-150 
+      className="relative w-full h-[65vh] md:h-[75vh] min-h-svh 
     overflow-hidden bg-slate-950 flex items-center"
     >
       {/* BACKGROUND LAYER: Video + Poster */}
