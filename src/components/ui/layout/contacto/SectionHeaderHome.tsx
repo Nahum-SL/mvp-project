@@ -31,7 +31,7 @@ export const SectionHeaderHome = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className={cn(
-          "text-3xl md:text-4xl font-black leading-tight tracking-tighter",
+          "text-3xl md:text-4xl font-extrabold leading-tight tracking-tighter",
           isDark ? "text-white" : "text-slate-900",
         )}
       >

@@ -65,7 +65,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
 
                   <h3
                     className="text-xl font-bold text-white mb-3 
-                  group-hover:text-blue-400 transition-colors uppercase italic tracking-tight"
+                  group-hover:text-blue-400 transition-colors uppercase tracking-tight"
                   >
                     {item.title}
                   </h3>
@@ -78,7 +78,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                   <div className="flex items-center justify-between mt-auto relative z-20">
                     <span
                       className="text-[10px] uppercase tracking-[0.2em] 
-                    text-blue-500 font-black italic"
+                    text-blue-500 font-extrabold"
                     >
                       Acceder ahora
                     </span>

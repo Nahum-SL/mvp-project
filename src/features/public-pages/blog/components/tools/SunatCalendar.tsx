@@ -48,7 +48,7 @@ export const SunatCalendar = () => {
         <div className="p-3 bg-sky-500/10 rounded-2xl">
           <FaCalendarAlt className="text-sky-500" />
         </div>
-        <h3 className="text-xl font-black text-white uppercase tracking-tighter">
+        <h3 className="text-xl font-extrabold text-white uppercase tracking-tighter">
           Próximos <span className="text-sky-500">Vencimientos</span>
         </h3>
       </div>
@@ -60,7 +60,7 @@ export const SunatCalendar = () => {
 
       <div className="flex gap-3">
         <div className="flex flex-col gap-1">
-          <span className="text-[9px] font-black text-slate-600 uppercase ml-2 tracking-widest">
+          <span className="text-[9px] font-extrabold text-slate-600 uppercase ml-2 tracking-widest">
             Último Dígito
           </span>
           <input
@@ -69,14 +69,14 @@ export const SunatCalendar = () => {
             onChange={(e) => handleDigitChange(e.target.value)}
             placeholder="0"
             className="w-24 bg-slate-950 border border-slate-800 
-            rounded-2xl py-6 text-white font-black text-center 
+            rounded-2xl py-6 text-white font-extrabold text-center 
             text-3xl focus:border-sky-500/50 outline-hidden transition-all"
           />
         </div>
 
         <div className="flex-1 flex flex-col gap-1">
           <span
-            className="text-[9px] font-black text-slate-600 
+            className="text-[9px] font-extrabold text-slate-600 
           uppercase ml-2 tracking-widest"
           >
             Fecha Límite
@@ -86,7 +86,7 @@ export const SunatCalendar = () => {
           rounded-2xl px-6 flex items-center justify-between 
           group-hover:border-slate-700 transition-all"
           >
-            <span className="text-sky-400 font-black tracking-tighter text-lg md:text-xl">
+            <span className="text-sky-400 font-extrabold tracking-tighter text-lg md:text-xl">
               {getDynamicDeadline(currentDigit)}
             </span>
           </div>
@@ -96,7 +96,7 @@ export const SunatCalendar = () => {
       {currentDigit && (
         <div className="mt-6 flex items-center gap-2 text-slate-500">
           <div className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
-          <p className="text-[10px] font-black uppercase tracking-widest">
+          <p className="text-[10px] font-extrabold uppercase tracking-widest">
             Dato guardado para tu próxima visita
           </p>
         </div>

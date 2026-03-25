@@ -18,7 +18,7 @@ export const ServiceFeatures = ({ register, errors, isPending, control }: Props)
   return (
     <section className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-6">
       <div className="flex justify-between items-center">
-        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+        <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
           Beneficios incluidos
         </label>
         <button

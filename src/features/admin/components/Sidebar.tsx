@@ -58,7 +58,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       >
         <div className="p-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-black tracking-tighter">ASESCON</h2>
+            <h2 className="text-2xl font-extrabold tracking-tighter">ASESCON</h2>
             <p className="text-[10px] text-slate-400 uppercase tracking-widest mt-1">
               Admin Panel
             </p>

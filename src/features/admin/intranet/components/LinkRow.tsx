@@ -48,7 +48,8 @@ export const LinkRow = ({ link }: Props) => {
     >
       {/* Columna Orden */}
       <td className="px-8 py-6">
-        <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 text-slate-500 font-black text-xs italic">
+        <span className="inline-flex items-center justify-center w-8 h-8 
+        rounded-lg bg-slate-100 text-slate-500 font-extrabold text-xs italic">
           #{link.order}
         </span>
       </td>
@@ -78,7 +79,7 @@ export const LinkRow = ({ link }: Props) => {
       <td className="px-8 py-6">
         <span
           className={cn(
-            "px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic border",
+            "px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest italic border",
             link.isVisible
               ? "bg-emerald-50 text-emerald-600 border-emerald-100"
               : "bg-amber-50 text-amber-600 border-amber-100",

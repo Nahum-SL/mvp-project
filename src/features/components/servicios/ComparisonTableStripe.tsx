@@ -33,7 +33,7 @@ export const ComparisonTableStripe = memo(
             <thead>
               <tr className="bg-slate-50/50">
                 <th
-                  className="p-6 md:p-8 text-[10px] font-black uppercase 
+                  className="p-6 md:p-8 text-[10px] font-extrabold uppercase 
                 tracking-widest text-slate-400 sticky left-0 
                 bg-slate-50 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]"
                 >
@@ -41,7 +41,7 @@ export const ComparisonTableStripe = memo(
                 </th>
                 {services.map((svc) => (
                   <th key={svc.id} className="p-6 md:p-8 text-center min-w-50">
-                    <span className="text-sm font-black text-blue-600 uppercase">
+                    <span className="text-sm font-extrabold text-blue-600 uppercase">
                       {svc.title}
                     </span>
                   </th>

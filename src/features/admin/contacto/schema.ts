@@ -15,7 +15,7 @@ export const contactoSchema = z.object({
     .trim()
     .min(3, "El nombre debe tener al menos 3 caracteres")
     .max(100, "Nombre demasiado largo"),
-  email: z.string().email("Correo electrónico no válido").toLowerCase(),
+  email: z.email("Correo electrónico no válido").toLowerCase(),
   telefono: z
     .string()
     .trim()

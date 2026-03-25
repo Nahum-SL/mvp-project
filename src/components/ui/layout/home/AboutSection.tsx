@@ -43,7 +43,7 @@ export default function AboutSection({ data }: Props) {
                   Nuestra Trayectoria
                 </span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
+              <h2 className="text-5xl md:text-6xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
                 {data.title}
               </h2>
               <p className="mt-8 text-lg md:text-xl text-slate-600 leading-relaxed font-light border-l-2 border-slate-200 pl-6">
@@ -84,7 +84,7 @@ export default function AboutSection({ data }: Props) {
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-5xl font-black text-slate-900 tracking-tighter italic">
+                    <h3 className="text-5xl font-extrabold text-slate-900 tracking-tighter">
                       {item.number}
                       <span className="text-blue-600 ml-1">+</span>
                     </h3>

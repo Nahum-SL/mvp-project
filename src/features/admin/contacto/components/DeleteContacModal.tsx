@@ -41,7 +41,7 @@ export const DeleteContactModal = ({
               <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6">
                 <AlertTriangle size={32} />
               </div>
-              <h3 className="text-xl font-black uppercase italic text-slate-900 tracking-tight">
+              <h3 className="text-xl font-extrabold uppercase text-slate-900 tracking-tight">
                 ¿Eliminar Prospecto?
               </h3>
               <p className="mt-2 text-slate-500 text-sm leading-relaxed">
@@ -61,7 +61,7 @@ export const DeleteContactModal = ({
                 <button
                   onClick={onConfirm}
                   disabled={isPending}
-                  className="flex-1 px-6 py-4 rounded-2xl bg-red-500 text-white font-black text-xs uppercase tracking-widest shadow-lg shadow-red-200 hover:bg-red-600 disabled:bg-red-300 transition-all flex items-center justify-center gap-2"
+                  className="flex-1 px-6 py-4 rounded-2xl bg-red-500 text-white font-extrabold text-xs uppercase tracking-widest shadow-lg shadow-red-200 hover:bg-red-600 disabled:bg-red-300 transition-all flex items-center justify-center gap-2"
                 >
                   {isPending && <Loader2 size={16} className="animate-spin" />}
                   Eliminar

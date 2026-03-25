@@ -30,9 +30,7 @@ export const NosotrosHero = () => {
           className="text-4xl md:text-5xl lg:text-5xl 
           font-extrabold text-white tracking-tighter leading-tight"
         >
-          RIGOR{" "}
-          <span className="text-sky-500 decoration-sky-500/30">TÉCNICO</span>
-          .<br />
+          RIGOR TÉCNICO .<br />
           VISIÓN HUMANA.
         </motion.h1>
       </div>

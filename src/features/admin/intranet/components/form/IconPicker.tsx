@@ -29,7 +29,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
   return (
     <div className="space-y-4 p-6 bg-white rounded-4xl border border-slate-200 shadow-sm">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 italic">
+        <h3 className="text-sm font-extrabold uppercase tracking-widest text-slate-400 italic">
           Icono del Acceso
         </h3>
         {SelectedIcon && (
@@ -90,7 +90,7 @@ export const IconPicker = ({ value, onChange, error }: Props) => {
       </div>
 
       {error && (
-        <p className="text-red-500 text-[10px] font-black italic uppercase tracking-widest bg-red-50 p-2 rounded-lg border border-red-100">
+        <p className="text-red-500 text-[10px] font-extrabold italic uppercase tracking-widest bg-red-50 p-2 rounded-lg border border-red-100">
           {error}
         </p>
       )}

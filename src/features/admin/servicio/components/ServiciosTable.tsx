@@ -43,16 +43,16 @@ export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="border-b border-slate-50">
-            <th className="p-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <th className="p-6 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
               Servicio
             </th>
-            <th className="p-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <th className="p-6 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
               Target
             </th>
-            <th className="p-6 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <th className="p-6 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
               Estado
             </th>
-            <th className="p-6 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right">
+            <th className="p-6 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 text-right">
               Acciones
             </th>
           </tr>
@@ -104,7 +104,7 @@ export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
                       return (
                         <span
                           key={id}
-                          className="px-2 py-1 bg-blue-50 text-blue-600 text-[9px] font-black uppercase rounded-md border border-blue-100"
+                          className="px-2 py-1 bg-blue-50 text-blue-600 text-[9px] font-extrabold uppercase rounded-md border border-blue-100"
                         >
                           {config ? config.label : id}
                         </span>
@@ -114,11 +114,11 @@ export const ServiciosTable = ({ initialData }: { initialData: Service[] }) => {
                 </td>
                 <td className="p-6">
                   {svc.isVisible ? (
-                    <span className="flex items-center gap-1.5 text-emerald-600 text-[10px] font-black uppercase">
+                    <span className="flex items-center gap-1.5 text-emerald-600 text-[10px] font-extrabold uppercase">
                       <Eye size={14} /> Visible
                     </span>
                   ) : (
-                    <span className="flex items-center gap-1.5 text-slate-300 text-[10px] font-black uppercase">
+                    <span className="flex items-center gap-1.5 text-slate-300 text-[10px] font-extrabold uppercase">
                       <EyeOff size={14} /> Oculto
                     </span>
                   )}

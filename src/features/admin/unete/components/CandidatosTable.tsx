@@ -104,7 +104,7 @@ export const CandidatosTable = ({ data }: { data: JobApplication[] }) => {
         </table>
 
         {filteredData.length === 0 && (
-          <div className="p-20 text-center text-slate-300 uppercase font-black tracking-widest text-xs italic">
+          <div className="p-20 text-center text-slate-300 uppercase font-extrabold tracking-widest text-xs">
             No hay registros en esta categoría
           </div>
         )}

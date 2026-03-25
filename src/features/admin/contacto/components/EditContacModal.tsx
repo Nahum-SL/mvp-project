@@ -57,7 +57,7 @@ export const EditContactModal = ({
             className="relative w-full max-w-lg bg-white rounded-[2.5rem] p-8 shadow-2xl"
           >
             <div className="flex justify-between items-center mb-8">
-              <h3 className="text-xl font-black uppercase italic text-slate-900">
+              <h3 className="text-xl font-extrabold uppercase text-slate-900">
                 Editar Lead
               </h3>
               <button
@@ -94,7 +94,7 @@ export const EditContactModal = ({
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full mt-6 bg-blue-600 py-4 rounded-2xl text-white font-black uppercase text-xs tracking-widest flex items-center justify-center gap-2 shadow-xl shadow-blue-100"
+                className="w-full mt-6 bg-blue-600 py-4 rounded-2xl text-white font-extrabold uppercase text-xs tracking-widest flex items-center justify-center gap-2 shadow-xl shadow-blue-100"
               >
                 {isPending ? (
                   <Loader2 size={16} className="animate-spin" />

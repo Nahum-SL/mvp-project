@@ -15,15 +15,18 @@ export const DashboardCharts = ({ data }: { data: ChartData[] }) => {
       {/* Header del Gráfico */}
       <div className="flex justify-between items-end mb-10">
         <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 mb-1">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-blue-600 mb-1">
             Rendimiento Semanal
           </p>
-          <h3 className="font-black text-slate-900 uppercase italic text-2xl tracking-tighter">
+          <h3 className="font-extrabold text-slate-900 uppercase text-2xl tracking-tighter">
             Tráfico de Leads
           </h3>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-xl border border-slate-100">
+        <div
+          className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-xl 
+        border border-slate-100"
+        >
           <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
           <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
             En Vivo
@@ -55,7 +58,7 @@ export const DashboardCharts = ({ data }: { data: ChartData[] }) => {
               />
             </div>
 
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
               {item.day}
             </span>
           </div>

@@ -100,7 +100,9 @@ export const ContactForm = () => {
             type="submit"
             animate={{ backgroundColor: isPending ? "#94a3b8" : "#2563eb" }}
             disabled={isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-black py-5 rounded-2xl shadow-xl shadow-blue-200 transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-[0.2em]"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 
+            text-white font-extrabold py-5 rounded-2xl shadow-xl shadow-blue-200 
+            transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-[0.2em]"
           >
             {isPending ? (
               <Loader2 className="animate-spin" size={20} />

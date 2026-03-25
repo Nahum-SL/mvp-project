@@ -1,14 +1,17 @@
 // src/features/public-pages/blog/components/tools/PenaltyCalc.tsx
+//
+// EXPORTADO --> src/features/public-pages/blog/components/BlogSidebar.tsx
 // CALCULAR - SIMULADOR DE MULTAS
 "use client";
 import { useState } from "react";
-import { FaShieldAlt, FaExclamationTriangle, FaPercent } from "react-icons/fa";
+import { FaShieldAlt, FaExclamationTriangle } from "react-icons/fa";
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 import { ToolSmartAd } from "./ToolSmartAd";
 import { cn } from "@/src/lib/utils";
+import { usePersistedState } from "@/src/hooks/usePersistedState";
 
 export const PenaltyCalc = () => {
-  const [regimen, setRegimen] = useState<"mype" | "general">("general");
+  const [regimen, setRegimen] = usePersistedState<"mype" | "general">("asescon_penalty_regimen","general");
   const [subsanado, setSubsanado] = useState<boolean>(true);
 
   const calculatePenalty = () => {
@@ -39,14 +42,14 @@ export const PenaltyCalc = () => {
           <div className="p-3 bg-amber-500/10 rounded-2xl">
             <FaExclamationTriangle className="text-amber-500" />
           </div>
-          <h3 className="text-xl font-black text-white uppercase tracking-tighter">
+          <h3 className="text-xl font-extrabold text-white uppercase tracking-tighter">
             Simulador <span className="text-amber-500">Multas SUNAT</span>
           </h3>
         </div>
 
         <div className="space-y-4 relative z-10">
           <div className="group">
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-2 mb-1 block">
+            <label className="text-[10px] font-extrabold text-slate-500 uppercase ml-2 mb-1 block">
               Régimen de la Empresa
             </label>
             <div
@@ -55,13 +58,13 @@ export const PenaltyCalc = () => {
             >
               <button
                 onClick={() => setRegimen("mype")}
-                className={`py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${regimen === "mype" ? "bg-amber-500 text-slate-950" : "text-slate-500 hover:text-slate-300"}`}
+                className={`py-3 rounded-xl text-[10px] font-extrabold uppercase tracking-widest transition-all ${regimen === "mype" ? "bg-amber-500 text-slate-950" : "text-slate-500 hover:text-slate-300"}`}
               >
                 MYPE / RER
               </button>
               <button
                 onClick={() => setRegimen("general")}
-                className={`py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${regimen === "general" ? "bg-amber-500 text-slate-950" : "text-slate-500 hover:text-slate-300"}`}
+                className={`py-3 rounded-xl text-[10px] font-extrabold uppercase tracking-widest transition-all ${regimen === "general" ? "bg-amber-500 text-slate-950" : "text-slate-500 hover:text-slate-300"}`}
               >
                 R. General
               </button>
@@ -113,14 +116,14 @@ export const PenaltyCalc = () => {
       <div className="mt-8">
         <div className="bg-amber-500/5 p-6 rounded-3xl border border-amber-500/20">
           <div className="flex justify-between items-end mb-1">
-            <span className="text-[9px] text-amber-500/70 font-black uppercase tracking-[0.2em]">
+            <span className="text-[9px] text-amber-500/70 font-extrabold uppercase tracking-[0.2em]">
               Costo de Infracción
             </span>
             <span className="text-[10px] text-slate-500 font-bold italic">
               UIT 2026: S/ {PERU_CONSTANTS.UIT_2026}
             </span>
           </div>
-          <p className="text-4xl font-black text-white tracking-tighter">
+          <p className="text-4xl font-extrabold text-white tracking-tighter">
             S/ {calculatePenalty()}
           </p>
         </div>

@@ -7,6 +7,7 @@ import { SunatCalendar } from "./tools/SunatCalendar";
 import { GratificationCalc } from "./tools/GratificacionCal";
 
 import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
+import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
 
 export default async function BlogContent() {
   const allPosts = await getBlogPosts();
@@ -28,15 +29,12 @@ export default async function BlogContent() {
   return (
     <>
       <section className="py-20 container mx-auto px-6">
-        <div className="text-center mb-15 space-y-4">
-          <h2 className="text-3xl md:text-6xl lg:text-4xl font-black text-white leading-tights tracking-tighter">
-            Artículo <span className="text-sky-500">Reciente</span>
-          </h2>
-          <p className="text-slate-400 text-sm md:text-xl font-medium leading-relaxed">
-            Únete a las empresas que ya han transformado su gestión con el
-            respaldo estratégico de{" "}
-          </p>
-        </div>
+        <SectionHeaderHome
+          title="Articulo Reciente"
+          description="Testeando"
+          lineColor="yellow"
+          mode="dark"
+        />
         <FeaturedPost post={featured} />
       </section>
 
@@ -48,7 +46,7 @@ export default async function BlogContent() {
             <GratificationCalc />
           </div>
           <div className="mt-8 text-center">
-            <p className="text-[10px] text-slate-600 font-black uppercase tracking-[0.4em]">
+            <p className="text-[10px] text-slate-600 font-extrabold uppercase tracking-[0.4em]">
               Herramientas Gratuitas para Empresas Peruanas by ASESCON
             </p>
           </div>
@@ -58,18 +56,13 @@ export default async function BlogContent() {
       {/* --- LISTADO DE POSTS ANTERIORES --- */}
       {rest.length > 0 && (
         <section className="py-20 container px-6">
-          <div className="text-center mb-15 space-y-4">
-            <h2
-              className="text-3xl md:text-6xl lg:text-4xl font-black text-white 
-            leading-tights tracking-tighter"
-            >
-              Artículos anteriores
-            </h2>
-            <p className="text-slate-400 text-sm md:text-xl font-medium leading-relaxed">
-              Únete a las empresas que ya han transformado su gestión con el
-              respaldo estratégico de{" "}
-            </p>
-          </div>
+          <SectionHeaderHome
+            title="Articulos Siguientes"
+            description="Testeando por segunda vez"
+            lineColor="green"
+            mode="dark"
+          />
+
           <section className="container mx-auto px-15">
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-1 gap-8">
               {rest.map((pos, i) => (

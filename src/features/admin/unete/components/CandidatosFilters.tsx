@@ -57,9 +57,9 @@ export const CandidatoFilters = ({
             key={s}
             onClick={() => onFilterChange(s)}
             className={cn(
-              "px-4 py-2 text-xs font-black uppercase tracking-tighter rounded-2xl transition-all",
+              "px-4 py-2 text-xs font-extrabold uppercase tracking-tighter rounded-2xl transition-all",
               activeFilter === s
-                ? "bg-slate-900 text-white shadow-lg shadow-slate-200"
+                ? "bg-emerald-500 text-white shadow-lg shadow-slate-200"
                 : "text-slate-400 hover:bg-slate-100",
             )}
           >
@@ -70,7 +70,7 @@ export const CandidatoFilters = ({
 
       {/* --- CONTADOR --- */}
       <div
-        className="hidden lg:flex px-4 text-[10px] font-black 
+        className="hidden lg:flex px-4 text-[10px] font-extrabold 
       text-slate-300 uppercase tracking-widest items-center gap-2"
       >
         <Filter size={12} /> {totalResults} Resultados

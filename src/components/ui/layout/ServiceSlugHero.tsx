@@ -43,12 +43,12 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
             {/* Badge de Categoría */}
             <div className="flex items-center gap-3 mb-6">
               <span className="h-px w-8 bg-blue-500" />
-              <span className="text-blue-400 font-black uppercase tracking-[0.3em] text-[10px]">
+              <span className="text-blue-400 font-extrabold uppercase tracking-[0.3em] text-[10px]">
                 {service.businessTypes[0] || "Consultoría Especializada"}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-[1.1]">
+            <h1 className="text-4xl md:text-7xl font-extrabold text-white tracking-tighter leading-[1.1]">
               {service.title}
             </h1>
 

@@ -21,7 +21,7 @@ export const LoginBranding = () => (
           impecable.
         </span>
       </blockquote>
-      <p className="mt-8 text-slate-400 font-black uppercase tracking-[0.3em] text-[10px]">
+      <p className="mt-8 text-slate-400 font-extrabold uppercase tracking-[0.3em] text-[10px]">
         Asescon Internal Systems <span className="text-slate-600">v2.0</span>
       </p>
     </motion.div>

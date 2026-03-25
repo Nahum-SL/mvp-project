@@ -55,7 +55,7 @@ export const SmartSelector = ({
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-blue-600">
             <Building2 size={18} />
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Mi empresa es ..
             </span>
           </div>
@@ -88,7 +88,7 @@ export const SmartSelector = ({
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-red-500">
             <AlertCircle size={18} />
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Ayuda con...
             </span>
           </div>
@@ -117,7 +117,7 @@ export const SmartSelector = ({
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-slate-400">
             <Search size={18} />
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Búsqueda rápida
             </span>
           </div>

@@ -65,7 +65,7 @@ export const LoginForm = () => {
   return (
     <div className="w-full">
       <header className="text-center mb-10">
-        <h2 className="text-4xl font-black text-slate-900 tracking-tighter">
+        <h2 className="text-4xl font-extrabold text-slate-900 tracking-tighter">
           ASESCON
         </h2>
         <p className="text-slate-400 text-xs mt-3 font-medium uppercase tracking-widest">
@@ -88,7 +88,7 @@ export const LoginForm = () => {
               )}
             >
               {error ? <AlertCircle size={18} /> : <CheckCircle2 size={18} />}
-              <p className="text-[10px] font-black uppercase">
+              <p className="text-[10px] font-extrabold uppercase">
                 {error || "Sesión cerrada de forma segura."}
               </p>
             </motion.div>
@@ -129,7 +129,7 @@ export const LoginForm = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-slate-900 hover:bg-blue-700 text-white font-black py-5 rounded-3xl transition-all duration-300 uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.98]"
+          className="w-full bg-slate-900 hover:bg-blue-700 text-white font-extrabold py-5 rounded-3xl transition-all duration-300 uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-3 disabled:opacity-50 active:scale-[0.98]"
         >
           {isLoading ? (
             <Loader2 className="animate-spin" size={18} />

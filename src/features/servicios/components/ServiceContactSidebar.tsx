@@ -19,7 +19,7 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
     >
       <div className="space-y-6">
         <div>
-          <h3 className="text-xl font-black uppercase tracking-tighter leading-tight">
+          <h3 className="text-xl font-extrabold uppercase tracking-tighter leading-tight">
             ¿Listo para empezar con {serviceTitle}?
           </h3>
           <p className="text-slate-400 text-xs font-bold mt-2">
@@ -32,7 +32,7 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
             href="/#contacto"
             className="
             group relative w-full py-4 bg-white text-slate-950
-            font-black rounded-2xl overflow-hidden
+            font-extrabold rounded-2xl overflow-hidden
             transition-all hover:scale-[1.02] active:scale-95
             flex items-center justify-center gap-3
             shadow-[0_0_20px_rgba(59,130,246,0.25)]"
@@ -43,7 +43,7 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
             {/* Contenido */}
             <div className="relative flex items-center gap-3 group-hover:text-white transition-colors duration-300">
               <Calendar size={18} />
-              <span className="text-[10px] font-black uppercase tracking-widest">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest">
                 Agendar Cita
               </span>
               <ArrowRight
@@ -56,7 +56,7 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
           href="/servicio"
           className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl flex items-center justify-center gap-3 transition-all">
             <Mail size={18} className="text-blue-400" />
-            <span className="text-[10px] font-black uppercase tracking-widest">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Ver Servicios
             </span>
           </Link>
@@ -67,10 +67,10 @@ export default function ServiceContactSidebar({ serviceTitle }: Props) {
             <Phone size={20} className="text-blue-400" />
           </div>
           <div>
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+            <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
               Llámanos ahora
             </p>
-            <p className="text-sm font-black">+51 - 974 770 644</p>
+            <p className="text-sm font-extrabold">+51 - 974 770 644</p>
           </div>
         </div>
       </div>

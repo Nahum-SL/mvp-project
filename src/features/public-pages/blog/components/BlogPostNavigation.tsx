@@ -21,7 +21,7 @@ export const BlogPostNavigation = ({
               ←
             </span>
             <div className="text-left">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+              <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1">
                 Anterior
               </p>
               <h4 className="text-slate-900 font-bold group-hover:text-blue-600 transition-colors line-clamp-1">
@@ -36,7 +36,7 @@ export const BlogPostNavigation = ({
         >
           <div className="flex items-center justify-between gap-4">
             <div className="text-left">
-              <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-1">
+              <p className="text-[10px] font-extrabold text-blue-400 uppercase tracking-widest mb-1">
                 Siguiente
               </p>
               <h4 className="text-white font-bold line-clamp-1">

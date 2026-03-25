@@ -46,7 +46,7 @@ export const ComparisonModal = ({ services, onClose, isPending }: Props) => {
         >
           <div className="sticky top-0 bg-white/80 backdrop-blur-md p-8 border-b border-slate-100 z-10 flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">
+              <h2 className="text-2xl font-extrabold text-slate-900 uppercase tracking-tighter">
                 Comparador Avanzado
               </h2>
               <p className="text-xs text-slate-500 font-bold">
@@ -71,7 +71,7 @@ export const ComparisonModal = ({ services, onClose, isPending }: Props) => {
                   key={svc.id}
                   className="p-8 bg-slate-50 rounded-4xl border border-slate-100 space-y-4"
                 >
-                  <h4 className="font-black text-slate-900 uppercase text-sm tracking-tight">
+                  <h4 className="font-extrabold text-slate-900 uppercase text-sm tracking-tight">
                     {svc.title}
                   </h4>
                   <p
@@ -83,7 +83,7 @@ export const ComparisonModal = ({ services, onClose, isPending }: Props) => {
                     className="flex w-full py-4 
                   items-center justify-center
                   bg-blue-600 text-white rounded-xl 
-                  font-black text-[10px] uppercase 
+                  font-extrabold text-[10px] uppercase 
                   tracking-widest hover:bg-blue-700 
                   transition-all shadow-lg shadow-blue-200"
                   >

@@ -21,7 +21,7 @@ export default async function AdminIntranetPage() {
         actions={
           <Link
             href="/admin/intranet/crear"
-            className="bg-white text-slate-900 hover:bg-blue-50 px-6 py-4 rounded-2xl font-black uppercase text-xs tracking-widest transition-all flex items-center gap-2 shadow-lg"
+            className="bg-white text-slate-900 hover:bg-blue-50 px-6 py-4 rounded-2xl font-extrabold uppercase text-xs tracking-widest transition-all flex items-center gap-2 shadow-lg"
           >
             <Plus size={18} /> Nuevo Acceso
           </Link>

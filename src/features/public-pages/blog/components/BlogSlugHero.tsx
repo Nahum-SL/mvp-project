@@ -8,10 +8,9 @@ export const BlogSlugHero = ({ post }: { post: BlogPost }) => (
       src={post.image}
       alt={post.title}
       fill
-      loading="eager"
-      sizes="(max-width: 1024px) 100vw, 33vw"
+      sizes="100vw"
       quality={75}
-      className="object-cover brightness-[0.2] scale-105"
+      className="object-cover brightness-[0.2]"
     />
     {/* Transparencia */}
     <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent" />
@@ -19,13 +18,16 @@ export const BlogSlugHero = ({ post }: { post: BlogPost }) => (
     <div className="absolute inset-0 flex items-center">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl">
-          <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 font-black uppercase tracking-[0.3em] text-[10px]">
+          <span
+            className="inline-block mb-4 px-4 py-1.5 rounded-full bg-sky-500/10 border 
+          border-sky-500/20 text-sky-400 font-extrabold uppercase tracking-[0.3em] text-[10px]"
+          >
             {post.category.name}
           </span>
-          <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.9] mb-8 tracking-tighter italic">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.9] mb-8 tracking-tighter">
             {post.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-8 text-slate-400 text-xs font-black uppercase tracking-widest">
+          <div className="flex flex-wrap items-center gap-8 text-slate-400 text-xs font-extrabold uppercase tracking-widest">
             <span className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">
                 {post.author.name.charAt(0)}

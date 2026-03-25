@@ -8,7 +8,7 @@ export const IntranetNavHint = () => {
         {/* Pequeña línea decorativa */}
         <div className="h-px w-8 bg-blue-500/50 hidden lg:block" />
 
-        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500 italic">
+        <span className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-blue-500">
           Navegación del Sistema
         </span>
       </div>

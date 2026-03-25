@@ -30,13 +30,13 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
               transition={{ duration: 0.8 }}
               className="max-w-3xl"
             >
-              <span className="bg-cyan-500 text-white text-[10px] font-black uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 inline-block">
+              <span className="bg-cyan-500 text-white text-[10px] font-extrabold uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 inline-block">
                 Lectura Destacada
               </span>
 
               {/* Titulo legible */}
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-black
+                className="text-4xl md:text-5xl lg:text-6xl font-extrabold
                text-white leading-tight mb-4 md:mb-6 tracking-tighter"
               >
                 {post.title}

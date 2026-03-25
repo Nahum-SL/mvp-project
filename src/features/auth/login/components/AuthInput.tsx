@@ -56,7 +56,7 @@ export const AuthInput = ({
       </div>
 
       {error && (
-        <p className="text-red-500 text-[10px] mt-1 ml-1 font-bold italic uppercase animate-in fade-in slide-in-from-left-1">
+        <p className="text-red-500 text-[10px] mt-1 ml-1 font-bold uppercase animate-in fade-in slide-in-from-left-1">
           {error}
         </p>
       )}

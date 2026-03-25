@@ -58,7 +58,7 @@ export const ConfirmModal = ({
                 <AlertCircle size={32} />
               </div>
 
-              <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2">
+              <h3 className="text-xl font-extrabold text-slate-900 uppercase tracking-tight mb-2">
                 {title}
               </h3>
               <p className="text-sm text-slate-500 font-medium leading-relaxed">

@@ -128,7 +128,7 @@ export default function ServiceDashboard() {
 
       <div className="space-y-8">
         <div className="flex items-center justify-between border-b border-slate-200 pb-6">
-          <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">
+          <h2 className="text-2xl font-extrabold text-slate-900 uppercase tracking-tighter">
             {filters.businessType || filters.painPoint
               ? "Soluciones Recomendadas"
               : "Nuestros Servicios"}

@@ -15,7 +15,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
   <aside className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 sticky top-6">
     {/* Tipo de empresa */}
     <section className="space-y-4">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+      <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
         Tipo de Empresa
       </label>
       <div className="grid grid-cols-1 gap-2">
@@ -45,7 +45,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
 
     {/* Pain Points Section en ServiceConfigCard */}
     <section className="space-y-4 pt-6 border-t border-slate-50">
-      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+      <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
         Puntos de Dolor (Pain Points)
       </label>
       <div className="grid grid-cols-1 gap-2">
@@ -77,7 +77,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
     {/* Sección: Visibilidad y Orden (Importante para el Admin) */}
     <section className="space-y-4 pt-6 border-t border-slate-50">
       <div className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl">
-        <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">
+        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500">
           Visible en Web
         </label>
         <input
@@ -90,7 +90,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
         />
       </div>
       <div className="space-y-2">
-        <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
           Prioridad / Orden
         </label>
         <input
@@ -107,7 +107,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
         type="submit"
         disabled={isPending}
         className={cn(
-          `w-full py-5 rounded-4xl font-black uppercase tracking-widest text-[10px] 
+          `w-full py-5 rounded-4xl font-extrabold uppercase tracking-widest text-[10px] 
           transition-all flex items-center justify-center gap-3`,
           isPending
             ? "bg-slate-100 text-slate-400"
@@ -125,7 +125,7 @@ export const ServiceConfigCard = ({ register, errors, isPending }: Props) => (
       <Link
         href="/admin/servicio" // Corregido el path
         className="
-        w-full bg-white text-slate-400 font-black py-4 rounded-4xl 
+        w-full bg-white text-slate-400 font-extrabold py-4 rounded-4xl 
         border border-slate-100 hover:bg-slate-50 
         transition-all flex items-center justify-center 
         gap-3 uppercase text-[10px] tracking-widest

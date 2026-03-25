@@ -1,6 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
-import { raleway } from "../lib/fonts";
+import { googleSansflex } from "../lib/fonts";
 import { Toaster } from "sonner";
 
 import "../styles/globals.css";
@@ -54,12 +54,12 @@ export const metadata: Metadata = {
     follow: true,
   },
 
-  // --- ICONOS ---
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
-  },
+  // // --- ICONOS ---
+  // icons: {
+  //   icon: "/favicon.ico",
+  //   shortcut: "/favicon-32x32.png",
+  //   apple: "/apple-touch-icon.png",
+  // },
   manifest: "/site.webmanifest",
 };
 export default function RootLayout({
@@ -89,7 +89,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${raleway.className} antialiased min-h-screen flex flex-col`}
+        className={`${googleSansflex.className} antialiased min-h-screen flex flex-col`}
       >
         {children}
         <Toaster position="top-right" richColors closeButton />

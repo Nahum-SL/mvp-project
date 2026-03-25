@@ -54,7 +54,7 @@ export default function SectionHeader({
           <div className="space-y-1">
             <h1
               className={cn(
-                "font-black tracking-tighter uppercase leading-none",
+                "font-extrabold tracking-tighter uppercase leading-none",
                 isDark ? "text-2xl" : "text-4xl text-slate-900",
               )}
             >

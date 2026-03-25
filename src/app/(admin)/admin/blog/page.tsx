@@ -24,7 +24,7 @@ export default async function AdminBlogPage() {
           <Link
             href="/admin/blog/categoria"
             className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
-            font-black uppercase text-xs tracking-widest transition-all flex items-center }
+            font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
             gap-2 shadow-xl shadow-blue-100"
           >
             <Plus size={18} />
@@ -35,7 +35,7 @@ export default async function AdminBlogPage() {
           <Link
             href="/admin/blog/crear"
             className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
-            font-black uppercase text-xs tracking-widest transition-all flex items-center }
+            font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
             gap-2 shadow-xl shadow-blue-100"
           >
             <Plus size={18} />

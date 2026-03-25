@@ -112,7 +112,9 @@ export const CreateLinkForm = ({ initialData }: Props) => {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-black py-4 rounded-2xl shadow-xl shadow-blue-200 transition-all flex items-center justify-center gap-3 uppercase text-sm tracking-widest"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 
+            text-white font-extrabold py-4 rounded-2xl shadow-xl shadow-blue-200 
+            transition-all flex items-center justify-center gap-3 uppercase text-sm tracking-widest"
           >
             {isPending ? (
               <Loader2 className="animate-spin" size={20} />

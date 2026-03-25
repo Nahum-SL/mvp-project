@@ -20,7 +20,7 @@ export const ImagePicker = ({
   fileInputRef,
 }: ImagePickerProps) => (
   <section>
-    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block">
+    <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400 mb-4 block">
       Portada
     </label>
     <div
@@ -62,7 +62,7 @@ export const ImagePicker = ({
             <div className="p-4 bg-white rounded-full shadow-sm mb-3 text-slate-400 group-hover:text-blue-600">
               <ImageIcon size={24} />
             </div>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">
+            <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-tighter">
               Seleccionar Archivo
             </span>
           </div>

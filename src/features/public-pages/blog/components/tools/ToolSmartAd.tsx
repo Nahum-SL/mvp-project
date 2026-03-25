@@ -23,7 +23,7 @@ export const ToolSmartAd = ({ condition, text, link, label }: Props) => (
         </p>
         <Link
           href={link}
-          className="text-[10px] text-sky-400 font-black uppercase tracking-widest mt-2 flex items-center gap-1 hover:text-sky-300 transition-colors"
+          className="text-[10px] text-sky-400 font-extrabold uppercase tracking-widest mt-2 flex items-center gap-1 hover:text-sky-300 transition-colors"
         >
           {label} →
         </Link>

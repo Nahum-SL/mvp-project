@@ -22,7 +22,7 @@ export const PostConfigCard = ({
 }: Props) => (
   <aside className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 sticky top-6">
     <section>
-      <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block">
+      <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400 mb-4 block">
         Clasificación
       </label>
       <select
@@ -72,7 +72,7 @@ export const PostConfigCard = ({
       type="submit"
       disabled={isPending}
       className={cn(
-        "w-full py-5 rounded-4xl font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
+        "w-full py-5 rounded-4xl font-extrabold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
         isPending
           ? "bg-slate-100 text-slate-400 shadow-none"
           : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200 active:scale-95",

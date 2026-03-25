@@ -25,7 +25,7 @@ export default function StatsGrid() {
             >
               <span
                 className={cn(
-                  "text-5xl md:text-7xl font-black tracking-tighter",
+                  "text-5xl md:text-7xl font-extrabold tracking-tighter",
                   stat.color,
                 )}
               >

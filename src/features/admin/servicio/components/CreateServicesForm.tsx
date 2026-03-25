@@ -173,7 +173,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
         </div>
 
         <div className="space-y-4">
-          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+          <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
             Descripción detallada
           </label>
           <div className={isPending ? "opacity-50 pointer-events-none" : ""}>

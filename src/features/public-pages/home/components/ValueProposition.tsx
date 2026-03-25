@@ -47,13 +47,13 @@ export const ValueProposition = () => {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="text-blue-400 font-black uppercase text-xs tracking-[0.4em] block"
+                  className="text-blue-400 font-extrabold uppercase text-xs tracking-[0.4em] block"
                 >
                   ¿Por qué ASESCON?
                 </motion.span>
 
-                <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] italic tracking-tighter">
-                  Seguridad que <span className="text-blue-500">impulsa</span>{" "}
+                <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] tracking-tighter">
+                  Seguridad que <span className="text-sky-600 to-cyan-500 from-amber-50">impulsa</span>{" "}
                   su negocio.
                 </h2>
 
@@ -66,8 +66,8 @@ export const ValueProposition = () => {
 
               <div className="pt-4">
                 <Link
-                  href="/nosotros"
-                  className="inline-flex items-center gap-3 text-white font-black 
+                  href="/nosotros?from=nuestra_metodologia"
+                  className="inline-flex items-center gap-3 text-white font-extrabold 
                   uppercase text-xs tracking-widest hover:text-blue-400 transition-colors group"
                 >
                   Conoce nuestra metodología
@@ -106,7 +106,7 @@ export const ValueProposition = () => {
                         />
                       </div>
                       <div>
-                        <h3 className="text-white font-black text-xl tracking-tight mb-1">
+                        <h3 className="text-white font-extrabold text-xl tracking-tight mb-1">
                           {item.title}
                         </h3>
                         <p className="text-slate-400 text-sm font-medium leading-snug">

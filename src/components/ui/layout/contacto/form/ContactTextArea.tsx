@@ -14,7 +14,7 @@ export const ContactTextArea = ({
   placeholder,
 }: Props) => (
   <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 italic">
+    <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-2">
       {label}
     </label>
     <div className="relative">

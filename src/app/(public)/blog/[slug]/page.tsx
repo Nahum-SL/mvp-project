@@ -31,7 +31,6 @@ export default async function BlogSlugPage({ params }: Props) {
         <PostSlugContent params={params} />
       </Suspense>
 
-      <div className="mt-10 h-px bg-slate-700 flex-1" />
     </main>
   );
 }

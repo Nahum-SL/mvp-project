@@ -59,7 +59,7 @@ export const DeletePostModal = ({
                   <AlertTriangle size={32} />
                 </div>
 
-                <h3 className="text-xl font-black italic text-slate-900">
+                <h3 className="text-xl font-extrabold text-slate-900">
                   ¿ELIMINAR ARTÍCULO?
                 </h3>
 
@@ -76,7 +76,7 @@ export const DeletePostModal = ({
                   <button
                     onClick={handleDelete}
                     disabled={isPending}
-                    className="w-full py-4 bg-red-600 text-white font-black rounded-2xl hover:bg-red-700 transition-colors uppercase text-xs tracking-widest flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-red-600 text-white font-extrabold rounded-2xl hover:bg-red-700 transition-colors uppercase text-xs tracking-widest flex items-center justify-center gap-2"
                   >
                     {isPending ? (
                       <Loader2 className="animate-spin" size={16} />
@@ -89,7 +89,7 @@ export const DeletePostModal = ({
                   <button
                     onClick={onClose}
                     disabled={isPending}
-                    className="w-full py-4 bg-slate-100 text-slate-600 font-black rounded-2xl hover:bg-slate-200 transition-colors uppercase text-xs tracking-widest disabled:opacity-50"
+                    className="w-full py-4 bg-slate-100 text-slate-600 font-extrabold rounded-2xl hover:bg-slate-200 transition-colors uppercase text-xs tracking-widest disabled:opacity-50"
                   >
                     Cancelar
                   </button>

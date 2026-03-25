@@ -11,7 +11,7 @@ export default function CreateHeaderLink() {
         <ArrowLeft size={20} />
       </Link>
       <div>
-        <h1 className="text-2xl font-black text-slate-900 tracking-tighter uppercase italic">
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tighter uppercase">
           Crear nuevo <span className="text-blue-600">Artículo</span>
         </h1>
         <p className="text-slate-500 text-sm font-medium">

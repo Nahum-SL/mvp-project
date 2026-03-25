@@ -61,12 +61,12 @@ export const TeamMemberCard = ({ member, index }: Props) => {
       <div className="absolute bottom-0 left-0 right-0 p-8 pt-0 z-10 text-center">
         <span
           className="inline-block mb-2 text-sky-400 
-        font-black uppercase tracking-[0.3em] text-[10px]"
+        font-extrabold uppercase tracking-[0.3em] text-[10px]"
         >
           {member.role}
         </span>
         <h4
-          className="text-2xl font-black text-white leading-tight 
+          className="text-2xl font-extrabold text-white leading-tight 
         tracking-tighter mb-1 italic"
         >
           {member.name}

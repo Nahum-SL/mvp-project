@@ -141,10 +141,10 @@ export const InteractiveVideoBox = ({
           animate={{ y: isHovered ? 0 : 20 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="inline-block text-sky-500 font-black uppercase tracking-[0.4em] text-xs">
+          <span className="inline-block text-sky-500 font-extrabold uppercase tracking-[0.4em] text-xs">
             Experiencia ASESCON
           </span>
-          <h3 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tighter italic max-w-xl">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tighter italic max-w-xl">
             {title}
           </h3>
           <p

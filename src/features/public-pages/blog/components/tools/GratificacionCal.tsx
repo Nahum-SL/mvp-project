@@ -5,10 +5,11 @@ import { useState } from "react";
 import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 import { ToolSmartAd } from "./ToolSmartAd";
+import { usePersistedState } from "@/src/hooks/usePersistedState";
 
 export const GratificationCalc = () => {
-  const [salary, setSalary] = useState<number>(0);
-  const [months, setMonths] = useState<number>(6);
+  const [salary, setSalary] = usePersistedState<number>("asescon_salary",0);
+  const [months, setMonths] = usePersistedState<number>("asescon_months",6);
   const [copied, setCopied] = useState(false);
 
   const calculate = () => {
@@ -38,18 +39,19 @@ export const GratificationCalc = () => {
           <div className="p-3 bg-emerald-500/10 rounded-2xl">
             <FaCalculator className="text-emerald-500" />
           </div>
-          <h3 className="text-xl font-black text-white uppercase tracking-tighter">
+          <h3 className="text-xl font-extrabold text-white uppercase tracking-tighter">
             Calculadora <span className="text-emerald-500">Gratificación</span>
           </h3>
         </div>
 
         <div className="space-y-4">
           <div className="group">
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-2 mb-1 block">
+            <label className="text-[10px] font-extrabold text-slate-500 uppercase ml-2 mb-1 block">
               Sueldo Mensual Bruto
             </label>
             <input
               type="number"
+              value={salary || ""}
               onChange={(e) => setSalary(Number(e.target.value))}
               placeholder="S/ 0.00"
               className="
@@ -62,10 +64,11 @@ export const GratificationCalc = () => {
           </div>
 
           <div className="group">
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-2 mb-1 block">
+            <label className="text-[10px] font-extrabold text-slate-500 uppercase ml-2 mb-1 block">
               Tiempo Laborado (Meses)
             </label>
             <select
+              value={months}
               onChange={(e) => setMonths(Number(e.target.value))}
               className="w-full bg-slate-950 border border-slate-800
               group-hover:border-slate-700 rounded-2xl px-5 py-4 
@@ -90,10 +93,10 @@ export const GratificationCalc = () => {
           "
         >
           <div>
-            <span className="text-[9px] text-slate-500 font-black uppercase tracking-widest">
+            <span className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest">
               Monto Estimado
             </span>
-            <p className="text-3xl font-black text-white tracking-tighter">
+            <p className="text-3xl font-extrabold text-white tracking-tighter">
               S/ {result}
             </p>
           </div>

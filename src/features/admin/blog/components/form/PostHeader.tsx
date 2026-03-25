@@ -17,7 +17,7 @@ export const PostHeader = ({ register, errors, disabled }: PostHeaderProps) => (
       disabled={disabled}
       placeholder="Título impactante del post..."
       className={cn(
-        `w-full bg-transparent text-4xl font-black focus:outline-none 
+        `w-full bg-transparent text-4xl font-extrabold focus:outline-none 
       border-b-2 border-slate-100 focus:border-blue-600 transition-all pb-4 
       placeholder:text-slate-300 disabled:opacity-50`,
         errors.title && "border-red-500",
@@ -34,7 +34,7 @@ export const PostHeader = ({ register, errors, disabled }: PostHeaderProps) => (
       placeholder="Resumen ejecutivo para SEO..."
       className=
       {cn(`w-full p-6 bg-slate-50 rounded-4xl] focus:outline-none 
-      focus:ring-2 focus:ring-blue-100 resize-none text-slate-600 italic 
+      focus:ring-2 focus:ring-blue-100 resize-none text-slate-600 
       border border-transparent focus:border-blue-200 transition-all 
       disabled:opacity-50`,
       errors.excerpt && "border-red-500"

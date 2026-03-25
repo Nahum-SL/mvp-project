@@ -45,7 +45,7 @@ export const ServiceCard = ({
       {highlighted && matchScore && matchScore >= 85 && (
         <div
           className="absolute -top-4 right-6 bg-emerald-500 text-white 
-        px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest 
+        px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest 
         flex items-center gap-1 shadow-lg"
         >
           <Sparkles size={12} />
@@ -69,7 +69,7 @@ export const ServiceCard = ({
           {service.businessTypes.slice(0, 2).map((type) => (
             <span
               key={type}
-              className="text-[9px] font-black uppercase tracking-tighter
+              className="text-[9px] font-extrabold uppercase tracking-tighter
               text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
             >
               {type}
@@ -81,7 +81,7 @@ export const ServiceCard = ({
       {/* TItulo del Servicio */}
       <div className="grow">
         <h3
-          className="text-xl font-black text-slate-900 mb-3 leading-tight 
+          className="text-xl font-extrabold text-slate-900 mb-3 leading-tight 
         group-hover:text-blue-600 transition-colors"
         >
           {service.title}
@@ -94,7 +94,7 @@ export const ServiceCard = ({
         {highlighted && matchScore && matchScore >= 80 && (
           <div
             className="inline-block px-3 py-1 bg-emerald-100 
-          text-emerald-700 text-[10px] font-black uppercase rounded-lg mb-2"
+          text-emerald-700 text-[10px] font-extrabold uppercase rounded-lg mb-2"
           >
             Recomendación Top
           </div>
@@ -103,7 +103,7 @@ export const ServiceCard = ({
         {/* Linea colorida del card que aumenta y cambia de color mientras mayor sea el match */}
         {matchScore !== undefined && matchScore > 0 && (
           <div className="mb-4 space-y-1.5">
-            <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-slate-400">
+            <div className="flex justify-between items-center text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
               <span>Compatibilidad</span>
               <span
                 className={cn(
@@ -157,7 +157,7 @@ export const ServiceCard = ({
       <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
         <Link
           href={`/servicio/${service.slug}`}
-          className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 hover:text-blue-600 transition-all"
+          className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-slate-900 hover:text-blue-600 transition-all"
         >
           Ver Detalles <ArrowRight size={16} />
         </Link>

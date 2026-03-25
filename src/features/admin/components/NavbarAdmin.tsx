@@ -81,8 +81,8 @@ export default function NavbarAdmin({ onOpenSidebar }: NavbarAdminProps) {
         {/* Informacion (Nombre-Rol) del admin*/}
           <div className="text-left hidden sm:block">
             <p
-              className="text-xs font-black text-slate-900 leading-none 
-            mb-1 uppercase italic tracking-tight"
+              className="text-xs font-extrabold text-slate-900 leading-none 
+            mb-1 uppercase tracking-tight"
             >
               {author.name}
             </p>
@@ -137,7 +137,7 @@ export default function NavbarAdmin({ onOpenSidebar }: NavbarAdminProps) {
                     size={16}
                     className="group-hover:-translate-x-1 transition-transform"
                   />
-                  <span className="text-[10px] font-black uppercase tracking-widest">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest">
                     Cerrar Sesión
                   </span>
                 </button>
@@ -168,7 +168,7 @@ function MenuLink({
       <span className="text-slate-400 group-hover:text-blue-500 transition-colors">
         {icon}
       </span>
-      <span className="text-[10px] font-black uppercase tracking-widest">
+      <span className="text-[10px] font-extrabold uppercase tracking-widest">
         {label}
       </span>
     </Link>

@@ -86,7 +86,7 @@ export const ServiceCardHome = ({
           </div>
 
           <div className="relative z-10 space-y-3">
-            <h3 className="text-2xl font-black text-slate-900 italic tracking-tighter leading-[1.1]">
+            <h3 className="text-2xl font-extrabold text-slate-900 italic tracking-tighter leading-[1.1]">
               {service.title}
             </h3>
 
@@ -96,7 +96,7 @@ export const ServiceCardHome = ({
 
             <div
               className={`flex items-center gap-2 
-                text-[10px] font-black uppercase tracking-[0.2em] 
+                text-[10px] font-extrabold uppercase tracking-[0.2em] 
               ${theme.split(" ")[1]} 
               pt-4 transition-all translate-y-2 
               opacity-0 group-hover:translate-y-0 

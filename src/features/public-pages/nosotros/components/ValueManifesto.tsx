@@ -11,12 +11,13 @@ export const ValuesManifesto = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           
           <div className="max-w-2xl">
-            <span className="text-sky-500 font-black uppercase tracking-[0.4em] text-[10px] md:text-xs mb-4 block">
+            <span className="text-sky-500 font-extrabold uppercase tracking-[0.4em] text-[10px] md:text-xs mb-4 block">
               Nuestra Filosofía
             </span>
-            <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9] tracking-tighter italic">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white 
+            leading-[0.9] tracking-tighter">
               El Manifiesto <br />
-              <span className="text-sky-600">ASESCON</span>
+              ASESCON
             </h2>
           </div>
 

@@ -70,7 +70,7 @@ export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
             className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm"
           >
             <div className="mb-10">
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
                 {title}
               </h2>
               <p className="text-slate-500 mt-2 font-light">{subtitle}</p>
@@ -153,7 +153,7 @@ export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
               <button
                 type="submit"
                 disabled={isPending}
-                className="md:col-span-2 mt-4 w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white font-black py-4 rounded-xl uppercase tracking-[0.2em] transition-all shadow-lg active:scale-[0.98]"
+                className="md:col-span-2 mt-4 w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white font-extrabold py-4 rounded-xl uppercase tracking-[0.2em] transition-all shadow-lg active:scale-[0.98]"
               >
                 {isPending ? "Enviando..." : "Enviar Postulación"}
               </button>

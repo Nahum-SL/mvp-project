@@ -113,7 +113,7 @@ export default function AsesconHero({
             {/* Botón Secundario */}
             <Link
               href="/servicio"
-              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-black rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-extrabold rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
             >
               Ver Servicios
             </Link>
@@ -126,7 +126,7 @@ export default function AsesconHero({
         <div className="container mx-auto px-6">
           <div
             className="flex justify-between items-center text-white/50 text-[10px] 
-          font-black tracking-widest uppercase border-t border-white/10 pt-8"
+          font-extrabold tracking-widest uppercase border-t border-white/10 pt-8"
           >
             <span className="hover:text-blue-400 transition-colors cursor-default">
               Estrategia Fiscal

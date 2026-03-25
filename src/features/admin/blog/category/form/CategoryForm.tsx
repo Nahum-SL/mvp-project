@@ -74,7 +74,7 @@ export function CategoryForm() {
           </p>
         )}
         {serverError && (
-          <p className="text-amber-600 text-xs font-medium ml-1 italic">
+          <p className="text-amber-600 text-xs font-medium ml-1">
             {serverError}
           </p>
         )}

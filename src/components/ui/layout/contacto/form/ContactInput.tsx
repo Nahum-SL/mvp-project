@@ -21,7 +21,7 @@ export const ContactInput = ({
   registration,
 }: Props) => (
   <div className="space-y-2">
-    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 italic">
+    <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 ml-2">
       {label}
     </label>
     <div className="relative">
@@ -40,7 +40,7 @@ export const ContactInput = ({
       />
     </div>
     {error && (
-      <p className="text-red-500 text-[10px] font-bold italic ml-2 uppercase">
+      <p className="text-red-500 text-[10px] font-bold ml-2 uppercase">
         {error}
       </p>
     )}

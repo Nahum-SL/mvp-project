@@ -9,7 +9,7 @@ import {
   ArrowUpRight,
   ExternalLink,
 } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,10 +18,10 @@ export default function Footer() {
   const locations = [
     {
       city: "Surco, Lima",
-      address: "Av. Tomásal 475, Urbanización Las Lagunas, Santiago de Surco, Lima.",
+      address:
+        "Av. Tomásal 475, Urbanización Las Lagunas, Santiago de Surco, Lima.",
       // Reemplaza con el link de compartir de Google Maps de tu oficina
-      mapUrl:
-        "",
+      mapUrl: "",
     },
     {
       city: "Chincha, Ica",
@@ -32,9 +32,8 @@ export default function Footer() {
     {
       city: "Pueblo Nuevo, Chincha",
       address: "Av. Primavera 236, Pueblo Nuevo, Chincha",
-      mapUrl:
-        "",
-    }
+      mapUrl: "",
+    },
   ];
 
   const footerLinks = [
@@ -46,16 +45,22 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-950 text-slate-300 relative overflow-hidden border-t border-slate-900">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-sky-500/50 to-transparent" />
+    <footer
+      className="bg-slate-950 text-slate-300 relative 
+    overflow-hidden border-t border-slate-900"
+    >
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 
+      w-full h-px bg-linear-to-r from-transparent via-sky-500/50 to-transparent"
+      />
 
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Columna 1: Brand & Bio */}
           <div className="space-y-8">
             <Link href="/#home" className="inline-block group">
-              <span className="text-3xl font-black text-white tracking-tighter italic group-hover:text-sky-500 transition-colors">
-                Asescon<span className="text-sky-500 italic">.</span>
+              <span className="text-3xl font-extrabold text-white tracking-tighter group-hover:text-sky-500 transition-colors">
+                Asescon<span className="text-sky-500">.</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-400 font-medium">
@@ -65,9 +70,14 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               {[
-                { icon: <FaFacebookF />, href: "#" },
-                { icon: <FaLinkedinIn />, href: "#" },
-                { icon: <FaInstagram />, href: "#" },
+                {
+                  icon: <FaFacebookF />,
+                  href: "https://www.facebook.com/asescon.pe",
+                },
+                {
+                  icon: <FaInstagram />,
+                  href: "https://www.instagram.com/asescon.pe",
+                },
               ].map((social, i) => (
                 <Link
                   key={i}
@@ -82,7 +92,7 @@ export default function Footer() {
 
           {/* Columna 2: Navegación */}
           <div className="space-y-6">
-            <h4 className="text-white font-black uppercase italic tracking-[0.4em] text-xs">
+            <h4 className="text-white font-extrabold uppercase tracking-[0.4em] text-xs">
               Explorar
             </h4>
             <ul className="space-y-3">
@@ -105,7 +115,7 @@ export default function Footer() {
 
           {/* Columna 3: Contacto */}
           <div className="space-y-6">
-            <h4 className="text-white font-black uppercase italic tracking-[0.2em] text-xs">
+            <h4 className="text-white font-extrabold uppercase tracking-[0.2em] text-xs">
               Soporte Directo
             </h4>
             <ul className="space-y-4">
@@ -141,16 +151,14 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-500">
                   <Clock size={16} />
                 </div>
-                <span className="text-xs italic">
-                  Lun - Vie | 08:00 - 20:00
-                </span>
+                <span className="text-xs">Lun - Vie | 08:00 - 20:00</span>
               </li>
             </ul>
           </div>
 
           {/* Columna 4: Ubicaciones con Google Maps API Links */}
           <div className="space-y-6">
-            <h4 className="text-white font-black uppercase italic tracking-[0.2em] text-xs">
+            <h4 className="text-white font-extrabold uppercase tracking-[0.2em] text-xs">
               Ubicaciones
             </h4>
             <div className="space-y-6">

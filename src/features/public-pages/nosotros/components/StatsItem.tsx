@@ -49,15 +49,15 @@ export const StatItem = ({
 
       <div className="space-y-2">
         <div className="flex items-baseline justify-center gap-1">
-          <motion.span className="text-6xl md:text-7xl font-black text-white tracking-tighter">
+          <motion.span className="text-6xl md:text-7xl font-extrabold text-white tracking-tighter">
             {displayValue}
           </motion.span>
-          <span className="text-4xl font-black text-green-500">{suffix}</span>
+          <span className="text-4xl font-extrabold text-green-500">{suffix}</span>
         </div>
 
         <div className="text-center">
           <h4
-            className="text-sm font-black uppercase tracking-[0.3em] 
+            className="text-sm font-extrabold uppercase tracking-[0.3em] 
           text-slate-200 mb-1"
           >
             {label}

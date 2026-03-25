@@ -58,7 +58,10 @@ export default function IntranetHero({
             className="flex items-center gap-3 mb-6"
           >
             <div className="w-10 h-0.5 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-            <span className="text-blue-400 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">
+            <span
+              className="text-blue-400 font-bold uppercase tracking-[0.4em] 
+            text-[10px] md:text-xs"
+            >
               Ecosistema Digital
             </span>
           </motion.div>
@@ -68,7 +71,8 @@ export default function IntranetHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-8xl font-extrabold text-white tracking-tighter
+            className="text-5xl md:text-7xl font-extrabold 
+            text-white tracking-tighter
             leading-none uppercase drop-shadow-2xl"
           >
             {title}
@@ -80,7 +84,7 @@ export default function IntranetHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 text-slate-400 text-lg md:text-xl max-w-xl 
-            leading-relaxed font-light italic"
+            leading-relaxed font-light"
           >
             {subtitle}
           </motion.p>

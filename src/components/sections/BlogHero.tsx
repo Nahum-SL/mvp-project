@@ -53,13 +53,13 @@ export const BlogHero = ({
           {/* Badge de Sección */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400">
             <Newspaper size={16} className="animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em]">
+            <span className="text-[10px] font-extrabold uppercase tracking-[0.3em]">
               Centro de Inteligencia Fiscal
             </span>
           </div>
 
-          {/* Título: Usamos font-black e italic para consistencia */}
-          <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] italic">
+          {/* Título: Usamos font-extrabold para consistencia */}
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter leading-[0.9]">
             {title}
           </h1>
 

@@ -46,7 +46,7 @@ export const ContactoDrawer = ({
 
           <div className="mt-10 space-y-8">
             <header>
-              <h3 className="text-3xl font-black text-slate-900 leading-tight uppercase italic">
+              <h3 className="text-3xl font-extrabold text-slate-900 leading-tight uppercase">
                 {contacto.name}
               </h3>
               <p className="text-blue-600 font-bold text-xs tracking-widest mt-2">
@@ -58,7 +58,7 @@ export const ContactoDrawer = ({
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-slate-50 rounded-2xl">
                 <Phone size={16} className="text-slate-400 mb-2" />
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
                   Teléfono
                 </p>
                 <p className="text-sm font-bold text-slate-900">
@@ -67,7 +67,7 @@ export const ContactoDrawer = ({
               </div>
               <div className="p-4 bg-slate-50 rounded-2xl">
                 <Mail size={16} className="text-slate-400 mb-2" />
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
                   Email
                 </p>
                 <p className="text-sm font-bold text-slate-900 truncate">
@@ -78,17 +78,17 @@ export const ContactoDrawer = ({
 
             {/* Mensaje/Comentario */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-slate-900 font-black text-xs uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-slate-900 font-extrabold text-xs uppercase tracking-widest">
                 <MessageSquare size={14} /> Mensaje del Cliente
               </div>
-              <div className="p-6 bg-blue-50/50 rounded-4xl border border-blue-100/50 text-slate-700 leading-relaxed text-sm italic">
+              <div className="p-6 bg-blue-50/50 rounded-4xl border border-blue-100/50 text-slate-700 leading-relaxed text-sm">
                 {contacto.comentario || "Sin comentarios adicionales"}
               </div>
             </div>
 
             {/* Acciones de Estado */}
             <div className="pt-6 border-t border-slate-100">
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 text-center">
+              <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.2em] mb-4 text-center">
                 Gestionar Proceso
               </p>
               <div className="flex flex-wrap gap-2">
@@ -96,7 +96,7 @@ export const ContactoDrawer = ({
                   <button
                     key={status}
                     onClick={() => onUpdateStatus(contacto.id, status)}
-                    className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-tighter transition-all ${
+                    className={`flex-1 py-3 rounded-xl text-[10px] font-extrabold uppercase tracking-tighter transition-all ${
                       contacto.status === status
                         ? "bg-slate-900 text-white shadow-xl scale-105"
                         : "bg-white border border-slate-100 text-slate-400 hover:border-blue-400 hover:text-blue-600"

@@ -51,7 +51,7 @@ export const CandidatoRow = ({
         <p className="text-sm font-medium text-slate-700">
           {candidato.position}
         </p>
-        <p className="text-xs text-slate-400 font-bold tracking-tighter italic">
+        <p className="text-xs text-slate-400 font-bold tracking-tighter">
           {candidato.experience} AÑOS EXP.
         </p>
       </td>

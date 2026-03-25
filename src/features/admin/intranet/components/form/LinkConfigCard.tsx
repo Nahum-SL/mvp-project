@@ -15,7 +15,7 @@ export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <Link2 size={16} className="text-blue-400" />
-          <h3 className="text-xs font-black uppercase tracking-[0.2em] italic">
+          <h3 className="text-xs font-extrabold uppercase tracking-[0.2em]">
             Destino
           </h3>
         </div>
@@ -28,7 +28,7 @@ export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
           focus:ring-2 focus:ring-blue-500 outline-none"
         />
         {errors.url && (
-          <p className="text-red-400 text-[10px] font-bold uppercase italic">
+          <p className="text-red-400 text-[10px] font-bold uppercase">
             {errors.url.message}
           </p>
         )}
@@ -38,7 +38,7 @@ export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <ListOrdered size={16} className="text-blue-400" />
-            <span className="text-[10px] font-black uppercase tracking-widest italic">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Orden
             </span>
           </div>
@@ -53,7 +53,7 @@ export const LinkConfigCard = ({ register, errors, isPending }: Props) => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Eye size={16} className="text-blue-400" />
-            <span className="text-[10px] font-black uppercase tracking-widest italic">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest">
               Estado
             </span>
           </div>

@@ -9,7 +9,7 @@ export default function BlogPage() {
     <main className="bg-slate-950">
       <BlogHero
         title="Recursos y Artículos"
-        subtitle="Descubre análisis, tips y contenido actualizado sobre con/tabilidad, finanzas y normativa empresarial."
+        subtitle="Descubre análisis, tips y contenido actualizado sobre contabilidad, finanzas y normativa empresarial."
       />
 
       {/* Suspense solo envuelve el contenido que requiere la API */}

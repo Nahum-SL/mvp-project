@@ -20,7 +20,7 @@ export const ServiceHeaderForm = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Título */}
       <div className="space-y-3">
-        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+        <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
           Nombre del Servicio
         </label>
         <input
@@ -38,7 +38,7 @@ export const ServiceHeaderForm = ({
 
       {/* Slug */}
       <div className="space-y-3">
-        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+        <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
           Slug / URL Amigable
         </label>
         <input

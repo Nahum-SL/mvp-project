@@ -50,7 +50,7 @@ export const BlogEditor = ({ onChange, initialContent }: Props) => {
         </button>
         <button
           onClick={() => editor?.chain().focus().toggleItalic().run()}
-          className="p-2 hover:bg-white rounded-lg italic"
+          className="p-2 hover:bg-white rounded-lg"
         >
           I
         </button>

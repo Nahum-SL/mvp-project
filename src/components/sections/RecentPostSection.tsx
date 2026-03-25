@@ -18,7 +18,7 @@ export const RecentPostsSection = async () => {
   if (!posts || posts.length === 0)
     return (
       <div className="py-20 text-center">
-        <p className="text-slate-400 italic">
+        <p className="text-slate-400">
           No hay artículos publicados aún.
         </p>
       </div>

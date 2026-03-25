@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
 export async function getDashboardStats() {
-  const token = (await cookies()).get("asescon_token")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("asescon_token")?.value;
 
   try {
     const res = await fetch(`${API_URL}/admin/stats`, {
