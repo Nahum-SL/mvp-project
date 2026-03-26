@@ -8,7 +8,7 @@ export default function ServiceContent({ service }: { service: Service }) {
     <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl shadow-slate-200/50 border border-slate-100">
       {/* Descripción Principal */}
       <div className="prose prose-slate prose-lg max-w-none mb-16">
-        <h2 className="text-3xl font-extrabold text-slate-900 mb-8 tracking-tight uppercase">
+        <h2 className="text-3xl font-medium text-slate-900 mb-8 tracking-tight uppercase">
           Sobre el Servicio
         </h2>        
         <div
@@ -20,7 +20,7 @@ export default function ServiceContent({ service }: { service: Service }) {
 
       {/* Grid de Beneficios / Features */}
       <div className="border-t border-slate-100 pt-16">
-        <h3 className="text-xl font-extrabold text-slate-900 mb-10 uppercase tracking-tighter">
+        <h3 className="text-xl font-medium text-slate-900 mb-10 uppercase tracking-tighter">
           ¿Qué incluye nuestra solución?
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

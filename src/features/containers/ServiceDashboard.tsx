@@ -2,11 +2,18 @@
 "use client";
 
 // Optimizar los datos y refrescar la pagina
-import { useState, useMemo, useEffect, useDeferredValue } from "react";
+import {
+  useState,
+  useMemo,
+  useEffect,
+  useDeferredValue,
+  useTransition,
+} from "react";
 // Manejo con las URLs
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 // Componentes
-import { SmartSelector } from "../components/servicios/SmartSelector";
+// import { SmartSelector } from "../components/servicios/SmartSelector";
+import { SmartSelector } from "../components/servicios/selector/SmartSelector";
 import { ServiceGrid } from "../components/servicios/ServiceGrid";
 // Comparador de servicios por features
 import { ComparisonModal } from "../components/servicios/ComparisonModal";
@@ -18,6 +25,7 @@ import { AnimatePresence } from "framer-motion";
 import { ServiceFilters } from "@/src/types/servicio/servicio";
 // Logica para calcular el Score
 import { calculateServiceScore } from "@/src/utils/scoring";
+// Types
 import { BusinessTypeID, PainPointID } from "@/src/types/servicio/constants";
 
 import { useDebounce } from "use-debounce";
@@ -29,6 +37,8 @@ export default function ServiceDashboard() {
 
   const { services, isLoading } = useServices();
   const [compareIds, setCompareIds] = useState<number[]>([]);
+
+  const [isPending, startTransition] = useTransition();
 
   // Pensado para cuando copien y compartan la URL de un servicio
   // Inicializar estado desde la URL
@@ -58,6 +68,7 @@ export default function ServiceDashboard() {
     });
   }, [debouncedFilters, pathname, router]);
 
+  
   // 2. Controlar la comparación
   const toggleCompare = (id: number) => {
     setCompareIds(

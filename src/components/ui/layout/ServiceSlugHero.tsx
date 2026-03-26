@@ -48,7 +48,7 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-7xl font-extrabold text-white tracking-tighter leading-[1.1]">
+            <h1 className="text-4xl md:text-7xl text-white tracking-tighter leading-[1.1]">
               {service.title}
             </h1>
 

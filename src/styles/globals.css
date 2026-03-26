@@ -8,6 +8,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 @theme {
   /* --animate-scroll: scroll 30s linear infinite;
    */
@@ -19,6 +20,7 @@ html {
   --color-surface-950: #09090b; /* Fondo general */
   --color-surface-900: #18181b; /* Cards */
   --color-surface-800: #27272a; /* Hovers */
+  
 }
 
 @keyframes scroll {

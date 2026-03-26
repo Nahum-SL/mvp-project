@@ -45,7 +45,7 @@ export default function AsesconHero({
         {/* Overlay de gradiente para que el texto sea legible */}
         <div
           className="absolute inset-0 bg-linear-to-b 
-      from-slate-950/20 via-slate-950/80 to-slate-950"
+      from-slate-950/20 via-slate-950/30 to-slate-950"
         />
       </div>
 
@@ -57,8 +57,7 @@ export default function AsesconHero({
           {/* OPTIMIZACIÓN LCP: Quitamos la animación inicial de opacity: 0 para que pinte instantáneamente */}
           <h1
             className="text-4xl md:text-5xl lg:text-5xl 
-            font-extrabold text-white tracking-tighter 
-            leading-tight"
+            text-white tracking-tighter leading-tight"
           >
             {mainTitle}
           </h1>
@@ -87,7 +86,7 @@ export default function AsesconHero({
               onClick={onCtaClick}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
-              text-slate-950 font-extrabold rounded-full overflow-hidden 
+              text-slate-950 font-medium rounded-full overflow-hidden 
               transition-all hover:scale-105 active:scale-95 
               flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             >
@@ -112,8 +111,8 @@ export default function AsesconHero({
 
             {/* Botón Secundario */}
             <Link
-              href="/servicio"
-              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-extrabold rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
+              href="/servicio?from=ver_servicios"
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-medium rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
             >
               Ver Servicios
             </Link>
@@ -126,7 +125,7 @@ export default function AsesconHero({
         <div className="container mx-auto px-6">
           <div
             className="flex justify-between items-center text-white/50 text-[10px] 
-          font-extrabold tracking-widest uppercase border-t border-white/10 pt-8"
+          font-medium tracking-widest uppercase border-t border-white/10 pt-8"
           >
             <span className="hover:text-blue-400 transition-colors cursor-default">
               Estrategia Fiscal

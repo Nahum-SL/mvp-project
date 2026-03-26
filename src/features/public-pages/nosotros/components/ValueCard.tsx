@@ -36,8 +36,8 @@ export const ValueCard = ({ value }: Props) => {
       </div>
 
       <h3
-        className="text-2xl font-extrabold text-white tracking-tighter 
-      mb-4 italic relative z-10"
+        className="text-2xl font-bold text-white tracking-tighter 
+      mb-4 relative z-10"
       >
         {value.title}
       </h3>

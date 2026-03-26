@@ -45,7 +45,7 @@ export default function UneteHeader({
               {subtitle}
             </span>
 
-            <h1 className="text-3xl md:text-5xl font-bold text-white leading-snug">
+            <h1 className="text-3xl md:text-5xl text-white leading-snug">
               {title}
             </h1>
 

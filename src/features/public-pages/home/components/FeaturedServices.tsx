@@ -48,13 +48,13 @@ export const FeaturedServices = ({ isLoading = false }: Props) => {
       </div>
       <div className="mt-14 flex justify-center">
         <Link
-          href="/servicio"
+          href="/servicio?from=explorar_servicios"
           className="group inline-flex items-center gap-2 text-sm md:text-base 
-                  font-medium text-amber-400 hover:text-amber-500 transition-colors"
+          font-bold text-slate-900 hover:text-sky-600 transition-colors uppercase tracking-widest"
         >
-          Ver todos los Servicios
+          Explorar todos los Servicios
           <ArrowRight
-            size={16}
+            size={18}
             className="transition-transform group-hover:translate-x-1"
           />
         </Link>

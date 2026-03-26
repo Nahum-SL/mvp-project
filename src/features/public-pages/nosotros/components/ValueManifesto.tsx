@@ -14,7 +14,7 @@ export const ValuesManifesto = () => {
             <span className="text-sky-500 font-extrabold uppercase tracking-[0.4em] text-[10px] md:text-xs mb-4 block">
               Nuestra Filosofía
             </span>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white 
+            <h2 className="text-5xl md:text-6xl font-medium text-white 
             leading-[0.9] tracking-tighter">
               El Manifiesto <br />
               ASESCON

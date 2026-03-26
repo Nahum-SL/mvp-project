@@ -15,6 +15,6 @@ export const inter = Inter({
 
 export const googleSansflex = Google_Sans_Flex({
   subsets: ["latin"],
-  weight: ["400", "700"],
   display: "swap",
+  variable: "--font-google-sans",
 }) 

@@ -52,7 +52,7 @@ export const ValueProposition = () => {
                   ¿Por qué ASESCON?
                 </motion.span>
 
-                <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-[1.1] tracking-tighter">
+                <h2 className="text-4xl md:text-6xl text-white leading-[1.1] tracking-tighter">
                   Seguridad que <span className="text-sky-600 to-cyan-500 from-amber-50">impulsa</span>{" "}
                   su negocio.
                 </h2>
@@ -67,7 +67,7 @@ export const ValueProposition = () => {
               <div className="pt-4">
                 <Link
                   href="/nosotros?from=nuestra_metodologia"
-                  className="inline-flex items-center gap-3 text-white font-extrabold 
+                  className="inline-flex items-center gap-3 text-white font-bold 
                   uppercase text-xs tracking-widest hover:text-blue-400 transition-colors group"
                 >
                   Conoce nuestra metodología
@@ -106,7 +106,7 @@ export const ValueProposition = () => {
                         />
                       </div>
                       <div>
-                        <h3 className="text-white font-extrabold text-xl tracking-tight mb-1">
+                        <h3 className="text-white text-xl tracking-tight mb-1">
                           {item.title}
                         </h3>
                         <p className="text-slate-400 text-sm font-medium leading-snug">

@@ -64,7 +64,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                   </div>
 
                   <h3
-                    className="text-xl font-bold text-white mb-3 
+                    className="text-xl text-white mb-3 
                   group-hover:text-blue-400 transition-colors uppercase tracking-tight"
                   >
                     {item.title}

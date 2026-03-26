@@ -4,105 +4,96 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { iconMap } from "@/src/lib/icons";
 import { ServiceHome } from "@/src/types/servicio/servicio-home";
 import { cn } from "@/src/lib/utils";
 
-// Paleta estratégica por ID o Slug
-const COLOR_THEMES: Record<string, string> = {
-  "contabilidad-integral": "border-blue-600 text-blue-600 bg-blue-50",
-  "asesoria-tributaria": "border-emerald-500 text-emerald-600 bg-emerald-50",
-  "gestion-planillas": "border-yellow-500 text-yellow-600 bg-yellow-50",
-  "legal-corporativo": "border-slate-800 text-slate-800 bg-slate-100",
-};
-
 export const ServiceCardHome = ({
   service,
-  index,
 }: {
   service: ServiceHome;
   index: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const IconComponent = iconMap[service.icon];
-  const theme =
-    COLOR_THEMES[service.slug] || "border-slate-200 text-slate-600 bg-slate-50";
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    videoRef.current?.play();
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current?.pause();
+    }
+  };
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      onMouseEnter={() => {
-        setIsHovered(true);
-        videoRef.current?.play();
-      }}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        videoRef.current?.pause();
-      }}
-      className="group relative h-112"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative h-112.5 w-full overflow-hidden rounded-[2.5rem] 
+      bg-slate-50 border border-slate-200"
     >
-      <Link href={`/servicio/${service.slug}?from=servicios_populares`}>
-        <div
-          className={`h-full p-8 rounded-[2.5rem] bg-white border-b-8 ${theme.split(" ")[0]} 
-          shadow-2xl shadow-slate-200/50 hover:shadow-blue-900/10 transition-all duration-500 
-          overflow-hidden relative flex flex-col justify-between border-2`}
-        >
-          {/* VIDEO BACKGROUND (Solo visible en hover) */}
-          <div
+      <Link href={`/servicio/${service.slug}`}>
+        {/* VIDEO DE FONDO: Ahora ocupa todo el espacio con un filtro elegante */}
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            muted
+            loop
+            playsInline
+            preload="auto"
             className={cn(
-              "absolute inset-0 z-0 transition-opacity duration-700",
-              isHovered ? "opacity-30" : "opacity-0",
+              "w-full h-full object-cover transition-transform duration-1000 scale-105",
+              isHovered ? "scale-100 opacity-100" : "",
             )}
           >
-            <video
-              ref={videoRef}
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover brightness-125"
-            >
-              <source
-                src={`/video/servicios/${service.slug}.webm`}
-                type="video/webm"
-              />
-            </video>
-            {/* Overlay para mantener legibilidad */}
-            <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]" />
-          </div>
+            <source
+              src={`/video/servicios/${service.slug}.webm`}
+              type="video/webm"
+            />
+          </video>
+          {/* Overlay de gradiente para legibilidad (Estilo Squarespace) */}
+          <div
+            className={cn(
+              "absolute inset-0 transition-colors duration-500",
+              isHovered ? "bg-slate-950/40" : "bg-transparent",
+            )}
+          />
+        </div>
 
-          <div className="relative z-10">
-            <div
-              className={`w-14 h-14 rounded-2xl ${theme.split(" ")[2]} 
-              flex items-center justify-center 
-              ${theme.split(" ")[1]} group-hover:scale-110 
-              transition-transform duration-500`}
+        {/* CONTENIDO */}
+        <div className="relative z-10 h-full p-10 flex flex-col justify-between">
+          <div className="space-y-4">
+            <h3
+              className={cn(
+                "text-3xl font-medium tracking-tighter sm:text-white transition-colors tex-white duration-500",
+                isHovered ? "text-white" : "text-black",
+              )}
             >
-              {IconComponent && <IconComponent size={28} strokeWidth={2.5} />}
-            </div>
-          </div>
-
-          <div className="relative z-10 space-y-3">
-            <h3 className="text-2xl font-extrabold text-slate-900 italic tracking-tighter leading-[1.1]">
               {service.title}
             </h3>
+          </div>
 
-            <p className="text-slate-500 text-sm leading-relaxed font-semibold">
+          <div className="space-y-6">
+            <p
+              className={cn(
+                "text-sm leading-relaxed max-w-70 transition-colors duration-500",
+                isHovered ? "text-slate-200" : "text-slate-500",
+              )}
+            >
               {service.description}
             </p>
 
+            {/* Botón Estilo "CTA Minimal" */}
             <div
-              className={`flex items-center gap-2 
-                text-[10px] font-extrabold uppercase tracking-[0.2em] 
-              ${theme.split(" ")[1]} 
-              pt-4 transition-all translate-y-2 
-              opacity-0 group-hover:translate-y-0 
-              group-hover:opacity-100 group-hover:text-sky-600`}
+              className={cn(
+                "flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-all",
+                isHovered ? "text-sky-400 translate-x-2" : "text-slate-900",
+              )}
             >
-              Consultar ahora <ArrowUpRight size={14} />
+              Explorar Servicio <ArrowUpRight size={16} />
             </div>
           </div>
         </div>

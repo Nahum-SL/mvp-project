@@ -8,7 +8,12 @@ import {
   Link as LinkIcon, // Evitar errores de duplicacion con Link de next/navigation
   Shield,
   Database,
-
+  Store,
+  Rocket,
+  Building2,
+  TrendingUp,
+  Search,
+  X,
   //EXPORT -->
   // src/features/admin/intranet/components/form/IconPicker.tsx
   Briefcase,
@@ -52,6 +57,12 @@ export const iconMap = {
   HardDrive,
   Mail,
   Globe,
+  Store,
+  Rocket,
+  Building2,
+  TrendingUp,
+  Search,
+  X,
   FileBarChart,
   Gavel,
   MessageSquare,

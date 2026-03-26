@@ -133,3 +133,28 @@ export async function getServiceBySlug(slug: string): Promise<Service | null>{
   if (!res.ok) return null;
   return res.json();
 }
+
+
+// Export ==> Home()
+// src/app/(public)/page.tsx  
+export async function getPublicServices(): Promise<Service[]> {
+  try {
+    // Traemos los servicios visibles y los ordenamos por el campo 'order'
+    const response = await fetch(`${API_URL}/servicio`, {
+      next: { 
+        revalidate: 3600, // Cache de 1 hora
+        tags: ["servicio-publico"] 
+      },
+    });
+
+    if (!response.ok) throw new Error("Error al cargar servicios");
+    
+    const services: Service[] = await response.json();
+    
+    // Retornamos solo los primeros 7 para mantener la estética del Bento Grid
+    return services.filter(s => s.isVisible).slice(0, 7);
+  } catch (error) {
+    console.error("HOME_SERVICES_ERROR", error);
+    return [];
+  }
+}

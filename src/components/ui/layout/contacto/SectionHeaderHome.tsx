@@ -24,7 +24,7 @@ export const SectionHeaderHome = ({
   const isDark = mode === "dark";
 
   return (
-    <div className="text-center mb-16 mt-15 space-y-4 px-6">
+    <div className="text-center mb-16 mt-10 space-y-4 px-6">
       {/* Título Principal */}
       <motion.h2
         initial={{ opacity: 0, y: 15 }}

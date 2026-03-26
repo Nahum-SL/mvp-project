@@ -15,7 +15,7 @@ export default async function BlogContent() {
   if (allPosts.length === 0) {
     return (
       <div className="py-20 text-center">
-        <p className="text-slate-400 italic">
+        <p className="text-slate-400">
           No hay artículos publicados aún.
         </p>
       </div>
@@ -35,7 +35,9 @@ export default async function BlogContent() {
           lineColor="yellow"
           mode="dark"
         />
-        <FeaturedPost post={featured} />
+        <div id="recentPost">
+          <FeaturedPost post={featured} />
+        </div>
       </section>
 
       <ToolsAnimationWrapper>

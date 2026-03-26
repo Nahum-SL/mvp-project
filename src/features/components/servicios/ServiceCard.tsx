@@ -14,6 +14,8 @@ import Link from "next/link";
 // Manejar iconos
 import { iconMap, IconName } from "@/src/lib/icons";
 
+import { memo } from "react";
+
 interface Props {
   service: Service;
   highlighted?: boolean; // Se activa cuando hay un match en el SmartSelector
@@ -22,7 +24,7 @@ interface Props {
   matchScore?: number;
 }
 
-export const ServiceCard = ({
+export const ServiceCardComponent = ({
   service,
   highlighted,
   onCompare,
@@ -175,3 +177,23 @@ export const ServiceCard = ({
     </article>
   );
 };
+
+// 2. Envolvemos con memo y exportamos
+export const ServiceCard = memo(
+  ServiceCardComponent,
+  (prevProps, nextProps) => {
+    // REGLA DE ORO PARA EL INP:
+    // Solo re-renderizar si cambian los valores visuales críticos.
+
+    return (
+      prevProps.matchScore === nextProps.matchScore &&
+      prevProps.isComparing === nextProps.isComparing &&
+      prevProps.highlighted === nextProps.highlighted &&
+      // Es vital comparar el ID del servicio por si la tarjeta se recicla en la lista
+      prevProps.service.id === nextProps.service.id
+    );
+  },
+);
+
+// Asignamos un displayName para debugging (útil en React 19)
+ServiceCard.displayName = "ServiceCard";

@@ -144,7 +144,7 @@ export const InteractiveVideoBox = ({
           <span className="inline-block text-sky-500 font-extrabold uppercase tracking-[0.4em] text-xs">
             Experiencia ASESCON
           </span>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-tighter italic max-w-xl">
+          <h3 className="text-4xl md:text-5xl text-white leading-tight tracking-tighter max-w-xl">
             {title}
           </h3>
           <p

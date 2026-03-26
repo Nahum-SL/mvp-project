@@ -71,7 +71,7 @@ export default function IntranetHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-extrabold 
+            className="text-5xl md:text-7xl
             text-white tracking-tighter
             leading-none uppercase drop-shadow-2xl"
           >

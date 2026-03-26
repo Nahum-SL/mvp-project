@@ -32,17 +32,19 @@ export async function generateMetadata({
   };
 }
 
+// src/app/(public)/servicio/page.tsx
+
 export default function ServiciosPage() {
   return (
     <main>
       <ServiceHero
-        title="Expertos en Asesoría y Consultoría Empresarial"
-        subtitle="Nuestras Soluciones"
-        src="/servicios-hero.webp"
-        alt="Equipo de asesores trabajando en oficina moderna"
+        title="Nuestros Servicios"
+        subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
+        videoPoster="/servicios-hero.webp"
       />
       <Suspense fallback={<ServiceDashboardSkeleton />}>
-        <section className="bg-slate-50">
+        {/* Agregué un padding superior para que el Dashboard no choque con el fade del Hero */}
+        <section className="bg-slate-50 pt-10">
           <ServiceDashboard />
         </section>
       </Suspense>

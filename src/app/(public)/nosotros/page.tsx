@@ -65,11 +65,11 @@ export default function NosotrosPage() {
       <section className="pt-24 pb-12 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16 max-w-2xl mx-auto space-y-4">
-            <span className="text-sky-500 font-extrabold uppercase tracking-[0.4em] text-xs">
+            <span className="text-amber-500 font-bold uppercase tracking-[0.4em] text-xs">
               El Capital Humano
             </span>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tighter">
-              Nuestros <span className="text-sky-500">Especialistas</span>
+            <h2 className="text-5xl md:text-6xl text-white leading-tight tracking-tighter">
+              Nuestros Especialistas
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed font-medium">
               Un equipo multidisciplinario comprometido con la precisión
@@ -92,12 +92,12 @@ export default function NosotrosPage() {
 
         <div className="container mx-auto relative z-10">
           <div className="mb-12">
-            <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tighter mb-8">
+            <h2 className="text-3xl md:text-5xl text-white tracking-tighter mb-8">
               ¿Por qué elegir <span className="text-sky-600">ASESCON</span>?
             </h2>
           </div>
           <InteractiveVideoBox
-            title="Tranquilidad Jurídica. Impulsada por Datos."
+            title="Tranquilidad Jurídica, Impulsada por Datos."
             description="En ASESCON, fusionamos la interpretación legal 
             experta con algoritmos de cumplimiento tributario. No solo declaramos 
             impuestos; blindamos el crecimiento de tu empresa 

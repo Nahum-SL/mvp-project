@@ -2,16 +2,10 @@
 
 "use client";
 
-// Para optimizar los resultados que se muestren
 import { useMemo } from "react";
-// Card del Servicio
 import { ServiceCard } from "./ServiceCard";
-// Manejar el score con logica matematica
 import { calculateServiceScore } from "@/src/utils/scoring";
-// Types
-import { Service } from "@/src/types/servicio/servicio";
-import { ServiceFilters } from "@/src/types/servicio/servicio";
-// Animaciones
+import { Service, ServiceFilters } from "@/src/types/servicio/servicio";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
@@ -29,39 +23,41 @@ export const ServiceGrid = ({
   highlightedIds,
   filters,
 }: Props) => {
-  // Para mejorar la UX
-  const sortedServices = useMemo(() => {
-    return [...services].sort((a, b) => {
-      const scoreA = calculateServiceScore(a, filters);
-      const scoreB = calculateServiceScore(b, filters);
-      return scoreB - scoreA;
-    });
+  // 1. Calculamos y ordenamos EN UN SOLO PASO
+  const processedServices = useMemo(() => {
+    return services
+      .map((svc) => ({
+        ...svc,
+        // Calculamos el score una sola vez aquí
+        computedScore: calculateServiceScore(svc, filters),
+      }))
+      .sort((a, b) => b.computedScore - a.computedScore);
   }, [services, filters]);
 
   return (
-    // La propiedad Layout ademas de animar la entrada y salida, 
-    // calcula las coordenadas de cada tarjeta y las desplaza suavemente, 
-    // si su indice en el array cambio
     <motion.div
       layout
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
     >
       <AnimatePresence mode="popLayout">
-        {sortedServices.map((svc) => {
-          // Se le añaden los paramatros para que haga el calculo
-          const score = calculateServiceScore(svc, filters);
-
-          return (
+        {processedServices.map((svc) => (
+          <motion.div
+            layout // El layout debe ir en el contenedor inmediato del map
+            key={svc.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+          >
             <ServiceCard
-              key={svc.id}
               service={svc}
               onCompare={() => onCompare(svc.id)}
               isComparing={compareIds.includes(svc.id)}
               highlighted={highlightedIds.includes(svc.id)}
-              matchScore={score}
+              matchScore={svc.computedScore} // Usamos el valor ya calculado
             />
-          );
-        })}
+          </motion.div>
+        ))}
       </AnimatePresence>
     </motion.div>
   );

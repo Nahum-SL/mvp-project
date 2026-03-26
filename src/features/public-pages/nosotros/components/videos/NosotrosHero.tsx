@@ -20,7 +20,7 @@ export const NosotrosHero = () => {
       {/* Overlay de gradiente para que el texto sea legible */}
       <div
         className="absolute inset-0 bg-linear-to-b 
-      from-slate-950/20 via-slate-950/80 to-slate-950"
+      from-slate-950/20 via-slate-950/30 to-slate-950"
       />
 
       <div className="container mx-auto px-6 relative z-10 text-left">
@@ -28,7 +28,7 @@ export const NosotrosHero = () => {
           initial={false}
           animate={{ opacity: 1 }}
           className="text-4xl md:text-5xl lg:text-5xl 
-          font-extrabold text-white tracking-tighter leading-tight"
+          text-white tracking-tighter leading-tight"
         >
           RIGOR TÉCNICO .<br />
           VISIÓN HUMANA.

@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Newspaper, ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   title: string;
@@ -38,7 +39,7 @@ export const BlogHero = ({
         {/* Overlay de profundidad: Oscuro abajo para conectar con el feed de posts */}
         <div
           className="absolute inset-0 bg-linear-to-b 
-          from-slate-950/40 via-slate-950/60 to-slate-950 z-10"
+          from-slate-950/40 via-slate-950/30 to-slate-950 z-10"
         />
       </div>
 
@@ -58,14 +59,15 @@ export const BlogHero = ({
             </span>
           </div>
 
-          {/* Título: Usamos font-extrabold para consistencia */}
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter leading-[0.9]">
+          {/* Título*/}
+          <h1 className="text-5xl md:text-7xl text-white tracking-tighter leading-[0.9]">
             {title}
           </h1>
 
           {/* Subtítulo: Más legible sobre el video */}
           {subtitle && (
-            <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-lg">
+            <p className="text-slate-300 text-lg md:text-xl max-w-2xl 
+            mx-auto font-medium leading-relaxed drop-shadow-md">
               {subtitle}
             </p>
           )}
@@ -86,7 +88,9 @@ export const BlogHero = ({
         transition={{ repeat: Infinity, duration: 2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-blue-500/50"
       >
-        <ChevronDown size={30} strokeWidth={1} />
+        <Link href="/blog/#recentPost">
+          <ChevronDown size={30} strokeWidth={1} />
+        </Link>
       </motion.div>
     </section>
   );

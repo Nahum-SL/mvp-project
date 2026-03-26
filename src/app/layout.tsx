@@ -89,7 +89,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${googleSansflex.className} antialiased min-h-screen flex flex-col`}
+        className={`${googleSansflex.className} antialiased flex flex-col`}
       >
         {children}
         <Toaster position="top-right" richColors closeButton />

@@ -7,31 +7,31 @@ export const FEATURED_HOME: ServiceHome[] = [
     title: "Gestión Contable Integral",
     description:
       "Transformamos tu información financiera en reportes estratégicos para la toma de decisiones con nuestro servicio de outsourcing especializado.",
-    icon: "FileBarChart",
-    slug: "outsourcing-contable", 
+
+    slug: "outsourcing-contable",
   },
   {
     id: 2,
     title: "Blindaje Tributario",
     description:
       "Protección total ante auditorías de SUNAT mediante auditorías preventivas y un planeamiento tributario diseñado a tu medida.",
-    icon: "ShieldCheck",
-    slug: "planeamiento-tributario", 
+
+    slug: "planeamiento-tributario",
   },
   {
     id: 3,
     title: "Outsourcing de Planillas",
     description:
       "Cero contingencias laborales. Gestionamos contratos, boletas y aportes mediante nuestro servicio de outsourcing laboral.",
-    icon: "Users",
-    slug: "outsourcing-laboral", 
+
+    slug: "outsourcing-laboral",
   },
   {
     id: 4,
     title: "Defensa Legal Corporativa",
     description:
       "Soporte legal preventivo y defensa técnica ante fiscalizaciones para proteger el patrimonio de tu organización.",
-    icon: "Gavel",
-    slug: "defensa-tributaria", 
+    slug: "defensa-tributaria",
   },
+
 ];
