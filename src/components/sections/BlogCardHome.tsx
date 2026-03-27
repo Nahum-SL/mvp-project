@@ -1,126 +1,111 @@
+// src/components/sections/BlogCardHome.tsx
 "use client";
-
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
-import { FaRegClock, FaChevronRight } from "react-icons/fa";
+import { cn } from "@/src/lib/utils";
 
 interface Props {
   post: BlogPost;
   index: number;
 }
 
-export default function BlogCardHome({ post, index }: Props) {
+export const BlogCardHome = ({ post, index }: Props) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative h-125 w-full overflow-hidden 
+      rounded-[2.5rem] bg-white border border-slate-200 shadow-sm"
     >
-      <Link href={`/blog/${post.slug}`} className="block relative">
-        <article
-          className="rounded-3xl overflow-hidden 
-          border-2 border-slate-900 shadow-sm
-          transition-bg-linear-to-tl z-0 relative 
-          before:absolute before:w-full 
-          before:aspect-square before:left-0 before:top-0 
-          before:rounded-full before:blur-3xl before:opacity-80 
-          before:-z-10 before:transition 
-          from-[rgba(32,35,91,0.7)] to-[rgba(7,9,33,0.7)] 
-          before:bg-[radial-gradient(circle,#199AFC90_0,#0D102380_100%)] 
-        transition-transform duration-500 hover:shadow-2xl hover:border-slate-700 
-        hover:shadow-blue-500/20 hover:-translate-y-1"
-        >
-          {/* Imagen principal con overlay sutil */}
-          <div className="relative h-56 md:h-64 w-full overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-slate-950/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <Link href={`/blog/${post.slug}`}>
+        {/* IMAGEN DE FONDO CON EFECTO ZOOM */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={post.image || "/placeholder-blog.webp"}
+            alt={post.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={cn(
+              "object-cover transition-all duration-1000 scale-105",
+              isHovered ? "scale-110 blur-[2px] brightness-50" : "",
+            )}
+          />
+          {/* Overlay de color cuando no hay hover (Limpio) */}
+          <div
+            className={cn(
+              "absolute inset-0 transition-opacity duration-500",
+              isHovered ? "bg-[rgb(42,28,21)]/40" : "bg-transparent",
+            )}
+          />
+        </div>
 
-            {/* Badge de categoría */}
-            <div className="absolute top-4 left-4">
-              <span className="bg-sky-600 text-white text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
-                {post.category.name}
-              </span>
+        {/* CONTENIDO */}
+        <div className="relative z-10 h-full p-10 flex flex-col justify-between">
+          {/* Top: Fecha y Categoría */}
+          <div className="flex justify-between items-start">
+            <div
+              className={cn(
+                "px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest transition-colors border",
+                isHovered
+                  ? "bg-white/10 border-white/20 text-white backdrop-blur-md"
+                  : "bg-slate-100 border-slate-200 text-slate-500",
+              )}
+            >
+              {post.category.name}
+            </div>
+            <div
+              className={cn(
+                "flex items-center gap-1.5 text-[10px] font-bold transition-colors",
+                isHovered ? "text-stone-300" : "text-slate-400",
+              )}
+            >
+              <Calendar size={12} />
+              {new Date(post.createdAt).toLocaleDateString("es-PE", {
+                year: "numeric",
+                month: "short",
+              })}
             </div>
           </div>
 
-          {/* Contenido */}
-          <div className="p-6 md:p-8 flex flex-col h-full justify-between">
-            {/* Meta Info */}
-            <div className="flex items-center gap-3 text-slate-400 text-xs mb-2 font-medium">
-              <span className="flex items-center gap-1">
-                <FaRegClock className="text-blue-500" /> {post.readingTime}
-              </span>
-              <span className="w-1 h-1 rounded-full bg-slate-300" />
-              <span>
-                {new Date(post.createdAt).toLocaleDateString("es-PE", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </span>
-            </div>
-
-            {/* Título */}
-            <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors line-clamp-2 leading-snug">
+          {/* Bottom: Título y Acción */}
+          <div className="space-y-6">
+            <h3
+              className={cn(
+                "text-2xl md:text-3xl font-serif font-bold leading-tight tracking-tight transition-colors duration-500",
+                isHovered ? "text-white" : "text-slate-900",
+              )}
+            >
               {post.title}
             </h3>
 
-            {/* Extracto */}
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed line-clamp-3 mb-4">
-              {post.excerpt}
-            </p>
-
-            {/* Footer: Autor + CTA */}
             <div
-              className="flex items-center justify-between pt-4 
-            border-t border-slate-100 group-hover:border-slate-400"
+              className={cn(
+                "flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] transition-all duration-500",
+                isHovered
+                  ? "text-[rgb(190,150,120)] translate-x-2"
+                  : "text-slate-400",
+              )}
             >
-              <div className="flex items-center gap-3">
-                <div
-                  className="relative w-10 h-10 rounded-full overflow-hidden 
-                border-2 border-white shadow-sm"
-                >
-                  {post.author.avatar && (
-                    <Image
-                      src={post.author.avatar}
-                      alt={post.author.name}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-300 leading-none">
-                    {post.author.name}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-medium">
-                    {post.author.role}
-                  </span>
-                </div>
-              </div>
-
-              <div
-                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-50 text-blue-600 flex 
-              items-center justify-center group-hover:bg-sky-400 group-hover:text-white 
-              transition-all duration-300"
+              Leer Artículo
+              <motion.div
+                animate={isHovered ? { x: 5, y: -5 } : { x: 0, y: 0 }}
               >
-                <FaChevronRight className="text-xs md:text-sm" />
-              </div>
+                <ArrowUpRight size={18} />
+              </motion.div>
             </div>
           </div>
-        </article>
+        </div>
       </Link>
     </motion.div>
   );
-}
+};

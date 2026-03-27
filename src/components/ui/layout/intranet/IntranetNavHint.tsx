@@ -14,7 +14,7 @@ export const IntranetNavHint = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <h2 className="text-2xl md:text-3xl text-white tracking-tight">
+        <h2 className="text-2xl md:text-3xl text-white tracking-tight font-serif">
           Seleccione una{" "}
           <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600">
             plataforma de gestión

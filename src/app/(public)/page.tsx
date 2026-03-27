@@ -1,6 +1,5 @@
 // src/app/(public)/page.tsx
 import AsesconHero from "../../components/ui/layout/AsesconHero";
-import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";
 import { Suspense } from "react";
 import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
 import { ContactForm } from "@/src/components/ui/layout/contacto/ContactForm";
@@ -9,6 +8,7 @@ import { FeaturedServices } from "@/src/features/public-pages/home/components/Fe
 import { ValueProposition } from "@/src/features/public-pages/home/components/ValueProposition";
 
 import { Metadata } from "next";
+import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";
 
 export const metadata: Metadata = {
   title: {

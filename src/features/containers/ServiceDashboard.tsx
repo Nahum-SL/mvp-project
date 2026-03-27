@@ -7,7 +7,6 @@ import {
   useMemo,
   useEffect,
   useDeferredValue,
-  useTransition,
 } from "react";
 // Manejo con las URLs
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -37,8 +36,6 @@ export default function ServiceDashboard() {
 
   const { services, isLoading } = useServices();
   const [compareIds, setCompareIds] = useState<number[]>([]);
-
-  const [isPending, startTransition] = useTransition();
 
   // Pensado para cuando copien y compartan la URL de un servicio
   // Inicializar estado desde la URL
@@ -139,11 +136,11 @@ export default function ServiceDashboard() {
 
       <div className="space-y-8">
         <div className="flex items-center justify-between border-b border-slate-200 pb-6">
-          <h2 className="text-2xl font-extrabold text-slate-900 uppercase tracking-tighter">
+          <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter">
             {filters.businessType || filters.painPoint
               ? "Soluciones Recomendadas"
               : "Nuestros Servicios"}
-            <span className="ml-4 px-4 rounded-4xl bg-blue-500 text-white">
+            <span className="ml-4 px-4 rounded-4xl bg-sky-600 text-white">
               {filteredServices.length}
             </span>
           </h2>
@@ -165,9 +162,9 @@ export default function ServiceDashboard() {
           <div className="grid grid-cols-3 gap-6">Cargando servicios...</div>
         ) : (
           <ServiceGrid
-            services={filteredServices}
+            services={filteredServices} 
             onCompare={toggleCompare} // Pasamos la función al Grid
-            compareIds={compareIds}
+            compareIds={compareIds} // IDs 
             highlightedIds={bestMatchId !== null ? [bestMatchId] : []} // Pasamos los IDs para resaltar el botón activo
             filters={filters}
           />

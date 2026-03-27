@@ -13,10 +13,10 @@ export const ToolSmartAd = ({ condition, text, link, label }: Props) => (
   <AnimatePresence>
     {condition && (
       <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0, height: 0 }}
-        className="mt-6 p-4 bg-sky-500/5 border border-sky-500/20 rounded-2xl overflow-hidden"
+        initial={{ opacity: 0, x: -20, scale: 0.95 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="relative mt-6 p-4 bg-sky-500/5 border border-sky-500/20 rounded-2xl overflow-hidden group"
       >
         <p className="text-[11px] text-slate-400 font-medium leading-tight">
           {text}

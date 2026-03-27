@@ -44,7 +44,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link
-                  href={item.url || "#"}
+                  href={item.url}
                   className={cn(
                     "group relative block h-full p-8 rounded-3xl transition-all duration-300",
                     "bg-white/3 border border-white/10 hover:border-blue-500/50",
@@ -55,7 +55,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                   <div
                     className="w-14 h-14 rounded-2xl bg-blue-600/20 
                   flex items-center justify-center mb-6 group-hover:scale-110 
-                  group-hover:bg-blue-600/30 transition-all duration-500"
+                  group-hover:bg-blue-600/40 transition-all duration-500"
                   >
                     <IconComponent
                       className="w-7 h-7 text-blue-400 
@@ -64,7 +64,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                   </div>
 
                   <h3
-                    className="text-xl text-white mb-3 
+                    className="text-xl text-white mb-3 font-serif
                   group-hover:text-blue-400 transition-colors uppercase tracking-tight"
                   >
                     {item.title}
@@ -85,7 +85,7 @@ export default function IntranetDashboard({ initialLinks }: Props) {
                     <div
                       className="w-10 h-10 rounded-full border border-white/10 
                     flex items-center justify-center 
-                    group-hover:bg-blue-700 group-hover:border-blue-600 
+                    group-hover:bg-emerald-500 group-hover:border-emerald-600 
                     transition-all duration-300"
                     >
                       <FaArrowRight

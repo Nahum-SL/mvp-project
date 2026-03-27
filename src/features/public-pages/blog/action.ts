@@ -28,7 +28,14 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   return res.json();
 }
 
-// src/features/public-pages/blog/action.ts
+export async function getRecentPosts(): Promise<BlogPost[]> {
+  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+  const res = await fetch(`${API_URL}/post?limit=3`, {
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) return [];
+  return res.json();
+}
 
 // ... (tu función getPostBySlug ya existente)
 

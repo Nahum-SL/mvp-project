@@ -60,7 +60,7 @@ export default function Footer() {
           <div className="space-y-8">
             <Link href="/#home" className="inline-block group">
               <span className="text-3xl font-extrabold text-white tracking-tighter group-hover:text-sky-500 transition-colors">
-                Asescon<span className="text-sky-500">.</span>
+                Asescon
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-400 font-medium">

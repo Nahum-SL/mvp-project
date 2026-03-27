@@ -33,7 +33,7 @@ export const FilterItem = ({
     >
       <span
         className={cn(
-          "text-[10px] font-black uppercase tracking-[0.2em] mb-0.5 transition-colors",
+          "text-[10px] uppercase tracking-[0.2em] mb-0.5 transition-colors",
           active ? "text-blue-600" : "text-slate-400",
         )}
       >

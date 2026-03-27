@@ -56,7 +56,7 @@ export default function AsesconHero({
           {/* Título */}
           {/* OPTIMIZACIÓN LCP: Quitamos la animación inicial de opacity: 0 para que pinte instantáneamente */}
           <h1
-            className="text-4xl md:text-5xl lg:text-5xl 
+            className="text-4xl md:text-5xl lg:text-5xl font-serif
             text-white tracking-tighter leading-tight"
           >
             {mainTitle}

@@ -15,16 +15,16 @@ export const SearchAction = ({ isExpanded, isPending }: SearchActionProps) => {
         "relative flex items-center justify-center gap-2 rounded-full transition-all duration-500",
         "h-12 md:h-14",
         isExpanded
-          ? "bg-slate-900 w-full md:w-32 px-6 shadow-lg shadow-slate-200"
-          : "bg-blue-600 w-full md:w-14 shadow-lg shadow-blue-200",
+          ? "bg-emerald-500 w-full md:w-32 px-6 shadow-lg shadow-slate-200"
+          : "bg-sky-600 w-full md:w-14 shadow-lg shadow-blue-200",
         isPending && "opacity-70 cursor-wait",
       )}
     >
       {isPending ? (
         <div className="flex gap-1">
-          <span className="w-1 h-1 bg-white rounded-full animate-bounce" />
-          <span className="w-1 h-1 bg-white rounded-full animate-bounce [animation-delay:-0.15s]" />
-          <span className="w-1 h-1 bg-white rounded-full animate-bounce [animation-delay:-0.3s]" />
+          <span className="w-1 h-1 bg-emerald-400 rounded-full animate-bounce" />
+          <span className="w-1 h-1 bg-emerald-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+          <span className="w-1 h-1 bg-emerald-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
         </div>
       ) : (
         <>

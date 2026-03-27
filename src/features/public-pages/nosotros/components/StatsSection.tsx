@@ -26,10 +26,10 @@ const stats = [
   },
   {
     id: 4,
-    value: 0,
-    suffix: "!",
-    label: "Multas",
-    description: "Contingencias no resueltas",
+    value: 20,
+    suffix: "+",
+    label: "disposicion",
+    description: "Areas de Produccion",
   },
 ];
 
@@ -46,7 +46,7 @@ export const StatsSection = () => {
           {stats.map((stat) => (
             <StatItem
               key={stat.id}
-              value={stat.id === 4 ? 0 : stat.value} // El 0 es un statement potente
+              value={stat.value} // El 0 es un statement potente
               suffix={stat.suffix}
               label={stat.label}
               description={stat.description}

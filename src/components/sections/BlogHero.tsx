@@ -20,7 +20,7 @@ export const BlogHero = ({
 }: Props) => {
   return (
     <section
-      className="relative w-full h-[70vh] md:h-[80vh] min-h-150 flex 
+      className="relative w-full h-[70vh] md:h-[80vh] min-h-svh flex 
     items-center justify-center overflow-hidden bg-slate-950"
     >
       {/* 1. FONDO DINÁMICO (Video + Overlay) */}
@@ -60,7 +60,7 @@ export const BlogHero = ({
           </div>
 
           {/* Título*/}
-          <h1 className="text-5xl md:text-7xl text-white tracking-tighter leading-[0.9]">
+          <h1 className="text-5xl md:text-7xl text-white font-serif tracking-tighter leading-[0.9]">
             {title}
           </h1>
 

@@ -1,6 +1,5 @@
 // src/app/(public)/blog/BlogContent.tsx
 import FeaturedPost from "@/src/components/ui/layout/blog/FeaturedPost";
-import BlogCardPage from "@/src/features/blog/components/BlogCardPage";
 import { getBlogPosts } from "@/src/features/public-pages/blog/action";
 // Herramientas / tools
 import { SunatCalendar } from "./tools/SunatCalendar";
@@ -8,6 +7,7 @@ import { GratificationCalc } from "./tools/GratificacionCal";
 
 import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
 import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
+import { BlogCardHome } from "@/src/components/sections/BlogCardHome";
 
 export default async function BlogContent() {
   const allPosts = await getBlogPosts();
@@ -68,7 +68,8 @@ export default async function BlogContent() {
           <section className="container mx-auto px-15">
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-1 gap-8">
               {rest.map((pos, i) => (
-                <BlogCardPage key={pos.id} post={pos} index={i + 1} />
+                // Aca iria otro componente similar pero dedicada a este pagina
+                <BlogCardHome key={pos.id} post={pos} index={i + 1} />
               ))}
             </div>
           </section>

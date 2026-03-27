@@ -28,7 +28,7 @@ export const NosotrosHero = () => {
           initial={false}
           animate={{ opacity: 1 }}
           className="text-4xl md:text-5xl lg:text-5xl 
-          text-white tracking-tighter leading-tight"
+          text-white tracking-tighter leading-tight font-serif"
         >
           RIGOR TÉCNICO .<br />
           VISIÓN HUMANA.

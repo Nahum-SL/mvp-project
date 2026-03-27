@@ -1,6 +1,6 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
-import { googleSansflex } from "../lib/fonts";
+import { inter } from "../lib/fonts";
 import { Toaster } from "sonner";
 
 import "../styles/globals.css";
@@ -89,7 +89,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${googleSansflex.className} antialiased flex flex-col`}
+        className={`${inter.className} antialiased flex flex-col`}
       >
         {children}
         <Toaster position="top-right" richColors closeButton />

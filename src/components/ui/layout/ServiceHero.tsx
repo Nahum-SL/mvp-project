@@ -37,7 +37,7 @@ export default function ServiceHero({
         {/* Overlay degradado para conectar con el Dashboard de abajo */}
         <div
           className="absolute inset-0 bg-linear-to-b from-slate-950/20 
-        via-slate-900/40 to-slate-50 z-10"
+        via-slate-900/40 z-10"
         />
       </div>
 
@@ -61,7 +61,7 @@ export default function ServiceHero({
           </div>
 
           {/* Título Principal */}
-          <h1 className="text-4xl md:text-7xl text-white tracking-tighter leading-[0.95]">
+          <h1 className="text-4xl md:text-7xl text-white font-serif tracking-tighter leading-[0.95]">
             {title}
           </h1>
 

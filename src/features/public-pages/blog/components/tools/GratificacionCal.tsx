@@ -1,15 +1,32 @@
 // src/features/public-pages/blog/components/tools/GratificacionCalc.tsx
-// CALCULAR - CALCULA GRATIFICACIÓN 
+// CALCULAR - CALCULA GRATIFICACIÓN
 "use client";
 import { useState } from "react";
+// Animacion
+import { motion } from "framer-motion";
+import { EyeIcon } from "@/src/features/components/servicios/selector/EyeIcon";
+
 import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 import { ToolSmartAd } from "./ToolSmartAd";
 import { usePersistedState } from "@/src/hooks/usePersistedState";
 
+const AnimatedNumber = ({ value }: { value: number }) => {
+  return (
+    <motion.p
+      key={value}
+      initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      className="text-3xl font-extrabold text-white tracking-tighter"
+    >
+      S/ {value.toLocaleString("es-PE", { minimumFractionDigits: 2 })}
+    </motion.p>
+  );
+};
+
 export const GratificationCalc = () => {
-  const [salary, setSalary] = usePersistedState<number>("asescon_salary",0);
-  const [months, setMonths] = usePersistedState<number>("asescon_months",6);
+  const [salary, setSalary] = usePersistedState<number>("asescon_salary", 0);
+  const [months, setMonths] = usePersistedState<number>("asescon_months", 6);
   const [copied, setCopied] = useState(false);
 
   const calculate = () => {
@@ -92,16 +109,18 @@ export const GratificationCalc = () => {
           border border-slate-800/50
           "
         >
-          <div>
+          <div className="flex items-center gap-2 mb-1">
             <span className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest">
               Monto Estimado
             </span>
-            <p className="text-3xl font-extrabold text-white tracking-tighter">
-              S/ {result}
-            </p>
+            {/* El ojo parpadea cada vez que el sueldo cambia */}
+            <EyeIcon isBlinking={salary > 0} />
           </div>
+          <AnimatedNumber value={result} />
+
           <button
             onClick={handleCopy}
+            title="Copiar"
             className={`p-4 rounded-2xl transition-all ${
               copied
                 ? "bg-emerald-500 text-white"

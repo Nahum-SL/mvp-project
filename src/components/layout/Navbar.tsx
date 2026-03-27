@@ -75,24 +75,11 @@ function NavbarCard() {
             </Link>
           </div>
 
-          {/* Mobile Notificaciones */}
-          <button
-            className="lg:hidden p-4 hover:bg-blue-900/40 rounded-2xl text-white stroke-white transition-color"
-            onClick={() => {
-              setOpenBell((prev) => !prev);
-              setOpenMenu(false);
-            }}
-            aria-label="Toggle Menu"
-          >
-            {openBell ? <X size={27} /> : <Bell size={27} />}
-          </button>
-
           {/* Mobile Menu de Hamburgesa */}
           <button
             className="lg:hidden p-4 ml-auto hover:bg-blue-900/40 rounded-2xl text-white stroke-white  transition-colors"
             onClick={() => {
               setOpenMenu((prev) => !prev);
-              setOpenBell(false);
             }}
             aria-label="Toggle Menu"
           >

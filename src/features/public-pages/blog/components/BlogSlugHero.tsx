@@ -24,16 +24,11 @@ export const BlogSlugHero = ({ post }: { post: BlogPost }) => (
           >
             {post.category.name}
           </span>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.9] mb-8 tracking-tighter">
+          <h1 className="text-5xl md:text-7xl font-serif text-white 
+          leading-[0.9] mb-8 tracking-tighter">
             {post.title}
           </h1>
           <div className="flex flex-wrap items-center gap-8 text-slate-400 text-xs font-extrabold uppercase tracking-widest">
-            <span className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-[10px]">
-                {post.author.name.charAt(0)}
-              </div>
-              <User size={18} className="text-cyan-500" /> {post.author.name}
-            </span>
             <span className="flex items-center gap-2">
               <Calendar size={14} className="text-sky-500" />
               {new Date(post.createdAt).toLocaleDateString()}
