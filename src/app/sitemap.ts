@@ -9,7 +9,7 @@ interface SitemapItem {
 
 
 
-const BASE_URL = "https://asescon.pe";
+const BASE_URL = "https://asescon-frontend.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Rutas Estáticas (Tipado automático por Next.js)
