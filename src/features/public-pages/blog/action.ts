@@ -28,7 +28,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 }
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const res = await fetch(`${API_URL}/api/post?limit=3`, {
     next: { revalidate: 3600 },
   });
