@@ -15,7 +15,13 @@ export const FormImageSection = ({ src, alt }: Props) => (
     className="sticky top-24 space-y-8"
   >
     <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl">
-      <Image src={src} alt={alt} fill className="object-cover" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover"
+      />
       <div className="absolute inset-0 bg-linear-to-t from-blue-950/80 via-transparent to-transparent" />
       <div className="absolute bottom-8 left-8 right-8">
         <p className="text-white text-2xl font-bold leading-tight">

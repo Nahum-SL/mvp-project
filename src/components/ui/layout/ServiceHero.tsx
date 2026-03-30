@@ -27,7 +27,7 @@ export default function ServiceHero({
       <HeroVideoBackground 
       poster={videoPoster}
       videoSrc={videoSrc}
-      delay={1300}
+      delay={500}
       />
 
       {/* 2. CONTENIDO CENTRAL */}

@@ -54,6 +54,8 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                         src={post.author.avatar}
                         alt={post.author.name}
                         fill
+                        width={48}
+                        height={48}
                         className="object-cover"
                       />
                     ) : (

@@ -25,7 +25,7 @@ export default function IntranetHero({
       <HeroVideoBackground
         poster={posterSrc}
         videoSrc={videoSrc}
-        delay={1200}
+        delay={500}
         overlay={
           <>
             {/* Overlay lateral (clave para texto) */}

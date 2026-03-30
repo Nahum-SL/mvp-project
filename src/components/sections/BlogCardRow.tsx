@@ -36,6 +36,7 @@ export const BlogCardRow = ({ post, index }: Props) => {
               src={post.image || "/placeholder.webp"}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 brightness-75 group-hover:brightness-100"
             />
           </motion.div>

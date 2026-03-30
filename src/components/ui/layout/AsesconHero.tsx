@@ -33,7 +33,7 @@ export default function AsesconHero({
       <HeroVideoBackground 
       poster={videoPoster}
       videoSrc={videoSrc}
-      delay={1200}
+      delay={500}
       />
 
       <div className="max-7xl mx-auto px-6 relative z-20 text-center">
