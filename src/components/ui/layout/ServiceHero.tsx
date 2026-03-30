@@ -2,6 +2,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { ShieldCheck, ChevronDown } from "lucide-react";
+import HeroVideoBackground from "./hero-video-background";
 
 interface Props {
   title: string;
@@ -16,30 +17,18 @@ export default function ServiceHero({
   videoSrc = "/video/servicios/servicios-hero-video.webm",
   videoPoster = "/servicios-hero.webp",
 }: Props) {
+
   return (
     <section
       className="relative w-full h-[70vh] md:h-[80vh] 
     min-h-svh flex items-center justify-center overflow-hidden bg-slate-950"
     >
-      {/* 1. BACKGROUND DINÁMICO */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={videoPoster}
-          className="absolute inset-0 w-full h-full object-cover opacity-60 brightness-75"
-        >
-          <source src={videoSrc} type="video/webm" />
-        </video>
 
-        {/* Overlay degradado para conectar con el Dashboard de abajo */}
-        <div
-          className="absolute inset-0 bg-linear-to-b from-slate-950/20 
-        via-slate-900/40 z-10"
-        />
-      </div>
+      <HeroVideoBackground 
+      poster={videoPoster}
+      videoSrc={videoSrc}
+      delay={1300}
+      />
 
       {/* 2. CONTENIDO CENTRAL */}
       <div className="relative z-20 max-w-5xl px-6 text-center">
@@ -61,7 +50,7 @@ export default function ServiceHero({
           </div>
 
           {/* Título Principal */}
-          <h1 className="text-4xl md:text-7xl text-white font-serif tracking-tighter leading-[0.95]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.95]">
             {title}
           </h1>
 

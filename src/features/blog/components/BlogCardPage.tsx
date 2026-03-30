@@ -1,76 +1,56 @@
+// src/features/public-pages/blog/components/BlogCardPage.tsx
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Clock } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
-import { FaRegClock, FaChevronRight } from "react-icons/fa";
 
 interface Props {
   post: BlogPost;
   index: number;
 }
 
-export default function BlogCardPage({ post, index }: Props) {
+export const BlogCardPage = ({ post, index }: Props) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={index === 0 ? false : { opacity: 0, y: 20 }}
+      whileInView={index === 0 ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      className="group relative flex flex-col bg-slate-900/40 
+      border border-slate-800 overflow-hidden hover:border-sky-500/30 transition-all duration-500"
     >
-      <Link href={`/blog/${post.slug}`} className="block relative">
-        <article
-          className="rounded-3xl overflow-hidden 
-          border-2 border-slate-900 shadow-sm
-          transition-bg-linear-to-tl z-0 relative 
-          before:absolute before:w-full 
-          before:aspect-square before:left-0 before:top-0 
-          before:rounded-full before:blur-3xl before:opacity-80 
-          before:-z-10 before:transition 
-          from-[rgba(32,35,91,0.7)] to-[rgba(7,9,33,0.7)] 
-          before:bg-[radial-gradient(circle,#199AFC90_0,#0D102380_100%)] 
-        transition-transform duration-500 hover:shadow-2xl hover:border-slate-700 
-        hover:shadow-blue-500/20 hover:-translate-y-1"
-        >
-          {/* Imagen principal con overlay sutil */}
-          <div className="relative h-56 md:h-64 w-full overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              quality={75}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-
-            {/* Linea separadora */}
-            <div
-              className="absolute inset-0 bg-linear-to-t from-slate-950/50 to-transparent opacity-0
-             group-hover:opacity-100 transition-opacity duration-500"
-            />
-
-            {/* Badge de categoría */}
-            <div className="absolute top-4 left-4">
-              <span
-                className="bg-sky-600 text-white text-[10px] font-semibold 
-                uppercase tracking-wider
-                px-3 py-1 rounded-full shadow-sm"
-              >
-                {post.category.name}
-              </span>
-            </div>
+      <Link href={`/blog/${post.slug}?from=explorar_articulos`} className="flex flex-col h-full">
+        {/* Contenedor de Imagen */}
+        <div className="relative h-64 w-full overflow-hidden">
+          <Image
+            src={post.image || "/placeholder-blog.webp"}
+            alt={post.title}
+            fill
+            priority={index === 0}
+            quality={75}
+            loading={index === 0 ? "eager" : "lazy"}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          {/* Badge de Categoría Flotante */}
+          <div className="absolute top-4 left-4 z-10">
+            <span
+              className="px-3 py-1 rounded-full bg-slate-950/60 backdrop-blur-md 
+            border border-white/10 text-[10px] font-bold text-white uppercase tracking-widest"
+            >
+              {post.category.name}
+            </span>
           </div>
+        </div>
 
-          {/* Contenido */}
-          <div className="p-6 md:p-8 flex flex-col h-full justify-between">
-            {/* Meta Info */}
-            <div className="flex items-center gap-3 text-slate-400 text-xs mb-2 font-medium">
-              <span className="flex items-center gap-1">
-                <FaRegClock className="text-blue-500" /> {post.readingTime}
-              </span>
-              <span className="w-1 h-1 rounded-full bg-slate-300"/>
+        {/* Contenido de la Tarjeta */}
+        <div className="p-8 flex flex-col flex-1 justify-between">
+          <div>
+            <div className="flex items-center gap-2 text-slate-500 text-[10px] uppercase tracking-widest mb-4">
+              <Clock size={12} className="text-sky-500" />
               <span>
                 {new Date(post.createdAt).toLocaleDateString("es-PE", {
                   day: "2-digit",
@@ -80,48 +60,33 @@ export default function BlogCardPage({ post, index }: Props) {
               </span>
             </div>
 
-            {/* Título */}
-            <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors line-clamp-2 leading-snug">
+            <h3
+              className="text-xl md:text-2xl font-serif font-bold text-white leading-tight mb-4 
+            group-hover:text-sky-400 transition-colors"
+            >
               {post.title}
             </h3>
 
-            {/* Extracto */}
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed line-clamp-3 mb-4">
-              {post.excerpt}
-            </p>
+            <div
+              className="text-slate-400 text-sm line-clamp-2 font-light leading-relaxed mb-6"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          </div>
 
-            {/* Footer: Autor + CTA */}
-            <div className="flex items-center justify-between pt-4 border-t border-slate-100 group-hover:border-slate-500">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                  {post.author.avatar && (
-                    <Image
-                      src={post.author.avatar}
-                      alt={post.author.name}
-                      width={48}
-                      height={48}
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-white leading-none">
-                    {post.author.name}
-                  </span>
-                </div>
-              </div>
-
-              <div
-                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-50 text-sky-600 flex 
-              items-center justify-center group-hover:bg-sky-400 group-hover:text-white 
-              transition-all duration-300"
-              >
-                <FaChevronRight className="text-xs md:text-sm" />
-              </div>
+          {/* Acción con animación IA */}
+          <div className="flex items-center justify-between pt-6 border-t border-slate-800/50 mt-auto">
+            <span className="text-[10px] font-bold text-white uppercase tracking-[0.2em] group-hover:tracking-[0.3em] transition-all">
+              Leer más
+            </span>
+            <div
+              className="p-2 rounded-full bg-slate-800 text-white 
+            group-hover:bg-sky-500 group-hover:text-white transition-all transform group-hover:rotate-45]"
+            >
+              <ArrowRight size={16} />
             </div>
           </div>
-        </article>
+        </div>
       </Link>
     </motion.div>
   );
-}
+};

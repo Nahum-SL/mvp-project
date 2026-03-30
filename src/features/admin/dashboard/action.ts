@@ -9,7 +9,7 @@ export async function getDashboardStats() {
   const token = cookieStore.get("asescon_token")?.value;
 
   try {
-    const res = await fetch(`${API_URL}/admin/stats`, {
+    const res = await fetch(`${API_URL}/api/admin/stats`, {
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 60 }, // Cache por 5 minutos
     });

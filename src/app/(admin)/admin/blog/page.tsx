@@ -44,15 +44,9 @@ export default async function AdminBlogPage() {
         }
       />
 
-      {posts.length === 0 ? (
-        <div className="text-center p-20 border-2 border-dashed rounded-[3rem]">
-          ...
-        </div>
-      ) : (
-        <Suspense fallback={<PostListSkeleton />}>
-          <AdminPostList posts={posts} />
-        </Suspense>
-      )}
+      <Suspense fallback={<PostListSkeleton />}>
+        <AdminPostList posts={posts} />
+      </Suspense>
     </div>
   );
 }

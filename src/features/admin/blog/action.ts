@@ -18,7 +18,7 @@ export async function createPostAction(formData: FormData) {
   }
 
   try {
-    const response = await fetch(`${API_URL}/post`, {
+    const response = await fetch(`${API_URL}/api/post`, {
       method: "POST",
       body: formData, // Pasamos el FormData tal cual (incluye la imagen)
       headers: {
@@ -40,7 +40,7 @@ export async function createPostAction(formData: FormData) {
     
     return { success: true, data };
   } catch (error) {
-    console.error("SERVER_ACTION_ERROR:", error);
+    // console.error("SERVER_ACTION_ERROR:", error);
     return { success: false, error: "Error crítico de conexión." };
   }
 }
@@ -54,7 +54,7 @@ export async function updatePostAction(
   const token = cookieStore.get("asescon_token")?.value;
   
   try {
-    const res = await fetch(`${API_URL}/post/${id}`, {
+    const res = await fetch(`${API_URL}/api/post/${id}`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -74,7 +74,7 @@ export async function updatePostAction(
     revalidateTag("post", "max");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
@@ -85,10 +85,9 @@ export async function updatePostAction(
 export async function deletePostAction(id: number) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
-  const API_URL = process.env.NEST_API_URL;
 
   try {
-    const res = await fetch(`${API_URL}/post/${id}`, {
+    const res = await fetch(`${API_URL}/api/post/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -109,7 +108,7 @@ export async function deletePostAction(id: number) {
 
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión con el servidor" };
   }
 }
@@ -125,7 +124,7 @@ export async function getCategories() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/blog/category`, {
+    const res = await fetch(`${API_URL}/api/blog/category`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -137,7 +136,7 @@ export async function getCategories() {
 
     return res.json();
   } catch (error) {
-    console.error("SERVER_ACTION_ERROR:", error);
+    // console.error("SERVER_ACTION_ERROR:", error);
     return [];
   }
 }
@@ -146,21 +145,27 @@ export async function getAdminPost() {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
-  if (!token) return [];
-
   try {
-    const res = await fetch(`${API_URL}/post`, {
+    if (!token) return [];
+
+    const res = await fetch(`${API_URL}/api/post`, {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      next: { tags: ["post"] },
+      next: { tags: ["post"], revalidate: 0 },
     });
 
-    if (!res.ok) return "Error al comunicarse con el servidor de NestJS";
+    if (!res.ok) {
+      // console.error("Error al comunicarse con el servidor de NestJS", res.status);
+      return [];
+    }
+      
+    const data = await res.json();
 
-    return await res.json();
+    return Array.isArray(data) ? data : [];
   } catch (e) {
-    console.error("GET_POST_ERROR", e);
+    // console.error("GET_POST_ERROR", e);
     return [];
   }
 }
@@ -171,7 +176,9 @@ export async function getPostByIdAction(id: number) {
   const token = cookieStore.get("asescon_token")?.value;
 
   try {
-    const res = await fetch(`${API_URL}/post/${id}`, {
+    if(!token) return null;
+
+    const res = await fetch(`${API_URL}/api/post/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
       cache: "no-store",
     });
@@ -180,7 +187,7 @@ export async function getPostByIdAction(id: number) {
     return await res.json();
 
   } catch (error) {
-    console.log("SERVER_NOT_FOUND", error);
+    // console.log("SERVER_NOT_FOUND", error);
     return null;
   }
 }

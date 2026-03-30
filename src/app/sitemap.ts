@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 2. Rutas de Servicios (Consumo de NestJS)
   let serviceRoutes: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${API_URL}/services`);
+    const res = await fetch(`${API_URL}/api/services`);
     const services: SitemapItem[] = await res.json(); // <--- Tipado aquí
 
     serviceRoutes = services.map((s) => ({
@@ -39,13 +39,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
   } catch (e) {
-    console.error("Sitemap Services Error:", e);
+    // console.error("Sitemap Services Error:", e);
+    return staticRoutes; // Si falla, devolvemos solo las rutas estáticas
   }
 
   // 3. Rutas de Blog (Consumo de NestJS)
   let blogRoutes: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${API_URL}/blog/posts`);
+    const res = await fetch(`${API_URL}/api/blog/posts`);
     const posts: SitemapItem[] = await res.json(); // <--- Tipado aquí
 
     blogRoutes = posts.map((p) => ({
@@ -55,7 +56,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }));
   } catch (e) {
-    console.error("Sitemap Blog Error:", e);
+    // console.error("Sitemap Blog Error:", e);
+    return [...staticRoutes, ...serviceRoutes]; // Si falla, devolvemos estáticas + servicios
   }
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes];

@@ -97,7 +97,6 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
       // Validación para que no dispare un ID si no existe
       if (isEditing && !initialData?.id) {
         toast.error("Error: No se encontró el ID del artículo para editar.");
-        console.error("No se puede editar: initialData.id es undefined");
         return;
       }
 
@@ -125,6 +124,7 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
 
         <div className={isPending ? "opacity-50 pointer-events-none" : ""}>
           <BlogEditor
+            
             initialContent={initialData?.content}
             onChange={handleEditorChange}
           />

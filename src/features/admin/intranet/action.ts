@@ -19,7 +19,7 @@ export async function createLinkAction(data: IntranetLinkValues) {
   const headers = await getAuthHeaders();
 
   try {
-    const res = await fetch(`${API_URL}/intranet/admin/create`, {
+    const res = await fetch(`${API_URL}/api/intranet/admin/create`, {
       method: "POST",
       headers,
       body: JSON.stringify(data),
@@ -38,7 +38,7 @@ export async function createLinkAction(data: IntranetLinkValues) {
     revalidatePath("/intranet"); // Revalidar el dashboard del usuario
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
@@ -47,7 +47,7 @@ export async function updateLinkAction(id: number, data: IntranetLinkValues) {
   const headers = await getAuthHeaders();
 
   try {
-    const res = await fetch(`${API_URL}/intranet/admin/update/${id}`, {
+    const res = await fetch(`${API_URL}/api/intranet/admin/update/${id}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify(data),
@@ -58,7 +58,7 @@ export async function updateLinkAction(id: number, data: IntranetLinkValues) {
     revalidatePath("/admin/intranet");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
@@ -67,7 +67,7 @@ export async function deleteLinkAction(id: number) {
   const headers = await getAuthHeaders();
 
   try {
-    const res = await fetch(`${API_URL}/intranet/admin/delete/${id}`, {
+    const res = await fetch(`${API_URL}/api/intranet/admin/delete/${id}`, {
       method: "DELETE",
       headers,
     });
@@ -77,20 +77,19 @@ export async function deleteLinkAction(id: number) {
     revalidatePath("/admin/intranet");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
 
 // Obtener link por ID
 export async function getLinkById(id: string) {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
   // Llamamos al endpoint que configuramos en el IntranetController de NestJS
   // Usamos el ID directamente como lo definimos: @Get('admin/all') o @Get(':id')
-  const res = await fetch(`${API_URL}/intranet/admin/link/${id}`, {
+  const res = await fetch(`${API_URL}/api/intranet/admin/link/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -102,26 +101,39 @@ export async function getLinkById(id: string) {
 }
 
 // Obtener todos los links
+// Obtener todos los links - RECORREGIDO
 export async function getIntranetLinks() {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
-  const res = await fetch(`${API_URL}/intranet/admin/all`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    next: { tags: ["intranet-links"] }, // Para revalidación bajo demanda
-  });
+  try {
+    if (!token) return [];
 
-  if (!res.ok) return [];
-  return res.json();
+    const res = await fetch(`${API_URL}/api/intranet/admin/all`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      // Usamos tags para que cuando crees/edites un link,
+      // puedas usar revalidateTag("intranet-links")
+      next: { tags: ["intranet-links"], revalidate: 0 },
+    });
+
+    if (!res.ok) return [];
+
+    const data = await res.json();
+
+    // IMPORTANTE: Retorna la data, NO un objeto {success: true}
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    // console.error("FETCH_LINKS_ERROR", e);
+    return [];
+  }
 }
 
 export async function getLinks() {
   // 1. Ya no buscamos el token aquí para la vista pública
   try {
-    const res = await fetch(`${API_URL}/intranet/public-links`, {
+    const res = await fetch(`${API_URL}/api/intranet/public-links`, {
       // 2. Quitamos el Authorization Header
       next: { revalidate: 3600 }, // Como es público, podemos cachear más tiempo (1 hora)
     });
@@ -129,7 +141,7 @@ export async function getLinks() {
     if (!res.ok) return { links: [] };
     return res.json();
   } catch (e) {
-    console.error("FETCH_PUBLIC_LINKS_ERROR", e);
+    // console.error("FETCH_PUBLIC_LINKS_ERROR", e);
     return { links: [] };
   }
 }

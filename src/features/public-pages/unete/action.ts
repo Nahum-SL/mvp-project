@@ -19,7 +19,7 @@ export async function sendUneteAction(data: UneteFormValues) {
     // El archivo CV (recuerda que en el input de Hook Form es una FileList)
     formData.append("cv", data.cv[0]);
 
-    const response = await fetch(`${API_URL}/unete`, {
+    const response = await fetch(`${API_URL}/api/unete`, {
       method: "POST",
       body: formData, // Enviamos el FormData directamente
     });
@@ -38,7 +38,7 @@ export async function sendUneteAction(data: UneteFormValues) {
       message: "¡Postulación enviada! Éxitos en el proceso.",
     };
   } catch (error) {
-    console.error("Unete Action Error:", error);
+    // console.error("Unete Action Error:", error);
     return { success: false, message: "No se pudo conectar con el servidor" };
   }
 }

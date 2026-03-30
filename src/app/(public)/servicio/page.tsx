@@ -40,7 +40,6 @@ export default function ServiciosPage() {
       <ServiceHero
         title="Nuestros Servicios"
         subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
-        videoPoster="/servicios-hero.webp"
       />
       <Suspense fallback={<ServiceDashboardSkeleton />}>
         {/* Agregué un padding superior para que el Dashboard no choque con el fade del Hero */}

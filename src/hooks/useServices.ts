@@ -21,7 +21,7 @@ export const useServices = () => {
       try {
         setIsLoading(true);
         // Consumimos la ruta pública de tu controlador de NestJS
-        const response = await fetch(`${API_URL}/servicio`, {
+        const response = await fetch(`${API_URL}/api/servicio`, {
           // Usamos caché de Next.js pero permitimos revalidación
           next: { tags: ["servicio"] },
         });
@@ -34,7 +34,7 @@ export const useServices = () => {
         setServices(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error desconocido");
-        console.error("FETCH_SERVICES_ERROR:", err);
+        // console.error("FETCH_SERVICES_ERROR:", err);
       } finally {
         setIsLoading(false);
       }

@@ -9,6 +9,7 @@ import {
   Link as LinkIcon,
   BookOpenText as Book,
   Layers,
+  UserPen,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/src/lib/utils";
@@ -17,9 +18,10 @@ const menuItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Gestionar Blog", href: "/admin/blog", icon: FileText },
   { name: "Gestionar Servicios", href: "/admin/servicio", icon: Layers },
-  { name: "Candidatos", href: "/admin/unete", icon: Users },
+  { name: "Candidatos", href: "/admin/unete", icon: UserPen},
   { name: "Intranet Links", href: "/admin/intranet", icon: LinkIcon },
-  { name: "Gestionar Clientes", href: "/admin/contacto", icon: Book },
+  { name: "Gestionar Clientes", href: "/admin/contacto", icon: Users },
+  { name: "Auditoria", href: "/admin/audit", icon: Book },
 ];
 
 interface SidebarProps {

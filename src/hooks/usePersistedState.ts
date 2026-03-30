@@ -39,7 +39,7 @@ export function usePersistedState<T>(key: string, defaultValue: T) {
       // se entere del cambio en la misma pestaña inmediatamente.
       window.dispatchEvent(new Event("storage"));
     } catch (error) {
-      console.error("Error saving to localStorage", error);
+      // console.error("Error saving to localStorage", error);
     }
   };
 

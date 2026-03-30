@@ -7,7 +7,7 @@ const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 export async function getBlogPosts(): Promise<BlogPost[]> {
   // Traemos los posts. Puedes añadir filtros en NestJS para traer solo los "published: true"
   try {
-    const res = await fetch(`${API_URL}/post`, {
+    const res = await fetch(`${API_URL}/api/post`, {
       next: { revalidate: 60 },
     });
   
@@ -15,13 +15,13 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     return res.json();
 
   } catch (e) {
-    console.log("ERROR:", e)
+    // console.log("ERROR:", e)
     return []
   }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const res = await fetch(`${API_URL}/post/slug/${slug}`, {
+  const res = await fetch(`${API_URL}/api/post/slug/${slug}`, {
     next: { revalidate: 60 }, // Cache por 1 minuto
   });
   if (!res.ok) return null;
@@ -30,7 +30,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
   const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
-  const res = await fetch(`${API_URL}/post?limit=3`, {
+  const res = await fetch(`${API_URL}/api/post?limit=3`, {
     next: { revalidate: 3600 },
   });
   if (!res.ok) return [];
@@ -41,7 +41,7 @@ export async function getRecentPosts(): Promise<BlogPost[]> {
 
 export async function getNavigationPosts(currentSlug: string) {
   try {
-    const res = await fetch(`${API_URL}/post`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_URL}/api/post`, { next: { revalidate: 3600 } });
     const response = await res.json();
     const posts: BlogPost[] = Array.isArray(response)
       ? response
@@ -55,7 +55,7 @@ export async function getNavigationPosts(currentSlug: string) {
       nextPost: posts[(currentIndex + 1) % posts.length],
     };
   } catch (error) {
-    console.error("NAV_ERROR: ", error);
+    // console.error("NAV_ERROR: ", error);
     return { prevPost: null, nextPost: null };
   }
 }

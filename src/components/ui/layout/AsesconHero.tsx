@@ -4,13 +4,15 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
-
+//Componente Reutilizable
+import HeroVideoBackground from "./hero-video-background";
 interface HeroProps {
   companyName?: string;
   mainTitle: string;
   subtitle: string;
   ctaText: string;
   videoPoster?: string; // La imagen de fondo
+  videoSrc?: string;
   onCtaClick?: () => void;
 }
 
@@ -18,36 +20,21 @@ export default function AsesconHero({
   mainTitle,
   subtitle,
   ctaText,
-  videoPoster,
+  videoPoster = "/planeamiento-tributario.webp",
+  videoSrc = "/asescon-hero-video.webm",
   onCtaClick,
 }: HeroProps) {
+
   return (
     <section
       className="relative w-full min-h-svh flex items-center justify-center 
     overflow-hidden bg-slate-950"
     >
-      {/* 1. IMAGEN DE FONDO INMERSIVA */}
-      <div className="absolute inset-0 z-0">
-        {/* El Video de fondo */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={videoPoster}
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          {/* Video de Prueba */}
-          <source src="/asescon-hero-video.webm" type="video/webm" />
-        </video>
-
-        {/* Overlay de gradiente para que el texto sea legible */}
-        <div
-          className="absolute inset-0 bg-linear-to-b 
-      from-slate-950/20 via-slate-950/30 to-slate-950"
-        />
-      </div>
+      <HeroVideoBackground 
+      poster={videoPoster}
+      videoSrc={videoSrc}
+      delay={1200}
+      />
 
       <div className="max-7xl mx-auto px-6 relative z-20 text-center">
         {" "}

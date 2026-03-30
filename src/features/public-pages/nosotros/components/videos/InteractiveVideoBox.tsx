@@ -35,7 +35,7 @@ export const InteractiveVideoBox = ({
     if (isHovered) {
       // Intentar reproducir si está precargado y no hay error
       video.play().catch((error) => {
-        console.error("Video autoplay failed:", error);
+        // console.error("Video autoplay failed:", error);
         // Si falla la reproducción automática (ej: políticas del navegador), ignoramos
       });
     } else {
@@ -50,7 +50,7 @@ export const InteractiveVideoBox = ({
   const handleVideoError = () => {
     setIsVideoLoading(false);
     setVideoError(true);
-    console.error(`Failed to load video: ${videoSrc}`);
+    // console.error(`Failed to load video: ${videoSrc}`);
   };
 
   return (

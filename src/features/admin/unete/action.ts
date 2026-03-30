@@ -13,7 +13,7 @@ export async function updateCandidatoStatus(id: string, status: JobAppStatus) {
 
     if (!token) throw new Error("No autorizado");
 
-    const response = await fetch(`${API_URL}/unete/${id}/status`, {
+    const response = await fetch(`${API_URL}/api/unete/${id}/status`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function updateCandidatoStatus(id: string, status: JobAppStatus) {
 
     return { success: true };
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return { success: false, error: "No se pudo actualizar el estado" };
   }
 }
@@ -46,20 +46,25 @@ export async function getCandidatos() {
       throw new Error("No estás autenticado");
     }
 
-    const response = await fetch(`${API_URL}/unete`, {
+    const response = await fetch(`${API_URL}/api/unete`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      next: { tags: ["unete"] },
+      next: { revalidate: 0 },
     });
 
-    if (!response.ok) throw new Error("Error al obtener los candidatos");
+    if (!response.ok) {
+      // console.error("Error al obtener los candidatos");
+      return [];
+    }
 
-    return response.json();
+    const data = await response.json();
+
+    return Array.isArray(data) ? data : [] // Aseguramos que siempre devolvemos un array;
   } catch (e) {
-    console.error(e);
-    return { success: false, error: "No se pudo conectar con el servidor" };
+    // console.error("Fetch Failed:",e);
+    return [];
   }
 }

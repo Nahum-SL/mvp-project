@@ -1,18 +1,25 @@
+// src/features/auth/login/action.ts
 "use server";
 
 import { cookies } from "next/headers";
 import { LoginFormValues } from "./schema";
 import { revalidatePath } from "next/cache";
+import {
+  AuthResponse,
+  type LoginActionResult,
+} from "@/src/types/auth/auth-response";
 
 const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
-export async function loginAction(data: LoginFormValues) {
+export async function loginAction(
+  data: LoginFormValues,
+): Promise<LoginActionResult> {
   try {
-    const response = await fetch( `${API_URL}/auth/login`, {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-      cache: "no-store"
+      cache: "no-store",
     });
 
     const result = await response.json();
@@ -21,21 +28,56 @@ export async function loginAction(data: LoginFormValues) {
       return { error: result.message || "Error al iniciar sesión" };
     }
 
-    // Guardar el token en una Cookie segura
-    const cookieStore = await cookies();
-    cookieStore.set("asescon_token", result.backendToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 60 * 60 * 8, // 8 horas (igual que tu JWT)
-      path: "/",
+    if (result.requires2FA) {
+      return {
+        requires2FA: true,
+        email: result.email,
+        message: result.message,
+      };
+    }
+
+    // Usamos el helper saveSession pero aseguramos que retorne el tipo correcto
+    return (await saveSession(result)) as LoginActionResult;
+  } catch (e) {
+    // console.error("Error en loginAction:", e);
+    return {error: "No se pudo conectar con el servidor"};
+  }
+}
+
+// Nueva acción para verificar el código
+export async function verify2FAAction(email: string, code: string) {
+  try {
+    const response = await fetch(`${API_URL}/api/auth/verify-2fa`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, code }),
     });
 
-    revalidatePath('/login')
+    const result = await response.json();
 
-    return { success: true, user: result.user };
+    if (!response.ok) return { error: result.message || "Código inválido" };
+
+    return await saveSession(result);
   } catch (e) {
-    console.log(e)
-    return { error: "No se pudo conectar con el servidor de autenticación" };
+    return {
+      error: "Error en la verificación",
+      details: e instanceof Error ? e.message : String(e),
+    };
   }
+}
+
+// Helper para no repetir lógica de cookies
+async function saveSession(result: AuthResponse) {
+  if (!result.backendToken) return { error: "Token no proporcionado" };
+
+  const cookieStore = await cookies();
+  cookieStore.set("asescon_token", result.backendToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 60 * 60 * 8,
+    path: "/",
+  });
+  revalidatePath("/login");
+  return { success: true, user: result.user };
 }

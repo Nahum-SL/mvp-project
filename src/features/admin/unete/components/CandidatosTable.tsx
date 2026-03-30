@@ -10,7 +10,11 @@ import { CandidatoFilters } from "./CandidatosFilters";
 import { CandidatoRow } from "./CandidatoRow";
 import { ConfirmModal } from "./ConfirmModal";
 
-export const CandidatosTable = ({ data }: { data: JobApplication[] }) => {
+interface Props {
+  data: JobApplication[];
+}
+
+export const CandidatosTable = ({ data }: Props) => {
   const [isPending, startTransition] = useTransition();
   const [filter, setFilter] = useState<JobAppStatus | "TODOS">("TODOS");
   const [search, setSearch] = useState(""); // <--- Nuevo estado de búsqueda

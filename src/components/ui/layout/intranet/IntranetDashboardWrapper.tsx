@@ -7,7 +7,7 @@ async function getLinks() {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
-  const res = await fetch(`${API_URL}/intranet/links`, {
+  const res = await fetch(`${API_URL}/api/intranet/links`, {
     headers: { Authorization: `Bearer ${token}` },
     next: { revalidate: 60 },
   });

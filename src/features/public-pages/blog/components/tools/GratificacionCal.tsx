@@ -10,6 +10,7 @@ import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 import { ToolSmartAd } from "./ToolSmartAd";
 import { usePersistedState } from "@/src/hooks/usePersistedState";
+import { cn } from "@/src/lib/utils";
 
 const AnimatedNumber = ({ value }: { value: number }) => {
   return (
@@ -17,7 +18,10 @@ const AnimatedNumber = ({ value }: { value: number }) => {
       key={value}
       initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      className="text-3xl font-extrabold text-white tracking-tighter"
+      className={cn(
+        "text-3xl font-light tracking-tighter",
+        value > 10000 ? "text-green-400" : "text-white",
+      )}
     >
       S/ {value.toLocaleString("es-PE", { minimumFractionDigits: 2 })}
     </motion.p>
@@ -121,11 +125,12 @@ export const GratificationCalc = () => {
           <button
             onClick={handleCopy}
             title="Copiar"
-            className={`p-4 rounded-2xl transition-all ${
+            className={cn(
+              "p-4 rounded-2xl transition-all",
               copied
                 ? "bg-emerald-500 text-white"
-                : "bg-slate-800 text-slate-400 hover:bg-slate-700"
-            }`}
+                : "bg-slate-800 text-slate-400 hover:bg-slate-700",
+            )}
           >
             {copied ? <FaCheck size={14} /> : <FaCopy size={14} />}
           </button>

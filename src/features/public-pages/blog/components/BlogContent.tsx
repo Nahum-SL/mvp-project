@@ -7,7 +7,7 @@ import { GratificationCalc } from "./tools/GratificacionCal";
 
 import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
 import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
-import { BlogCardHome } from "@/src/components/sections/BlogCardHome";
+import { BlogCardPage } from "@/src/features/blog/components/BlogCardPage";
 
 export default async function BlogContent() {
   const allPosts = await getBlogPosts();
@@ -15,9 +15,7 @@ export default async function BlogContent() {
   if (allPosts.length === 0) {
     return (
       <div className="py-20 text-center">
-        <p className="text-slate-400">
-          No hay artículos publicados aún.
-        </p>
+        <p className="text-slate-400">No hay artículos publicados aún.</p>
       </div>
     );
   }
@@ -57,24 +55,22 @@ export default async function BlogContent() {
 
       {/* --- LISTADO DE POSTS ANTERIORES --- */}
       {rest.length > 0 && (
-        <section className="py-20 container px-6">
+        <section className="py-24 container mx-auto px-6">
           <SectionHeaderHome
-            title="Articulos Siguientes"
-            description="Testeando por segunda vez"
+            title="Explorar más artículos"
+            description="Mantente al día con las últimas actualizaciones contables y legales."
             lineColor="green"
             mode="dark"
           />
 
-          <section className="container mx-auto px-15">
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-1 gap-8">
-              {rest.map((pos, i) => (
-                // Aca iria otro componente similar pero dedicada a este pagina
-                <BlogCardHome key={pos.id} post={pos} index={i + 1} />
-              ))}
-            </div>
-          </section>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {rest.map((post, i) => (
+              <BlogCardPage key={post.id} post={post} index={i} />
+            ))}
+          </div>
         </section>
       )}
+
       {/* Linea separadora para encajar con el Footer */}
       <div className="h-px bg-slate-700 flex-1" />
     </>

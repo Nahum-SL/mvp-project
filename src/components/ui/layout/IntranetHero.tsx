@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
+import HeroVideoBackground from "./hero-video-background";
 
 interface Props {
   title: string;
@@ -13,40 +14,28 @@ interface Props {
 export default function IntranetHero({
   title,
   subtitle,
-  videoSrc = "/video/intranet/intranet-hero-video.webm",
   posterSrc = "/fondo-intranet.webp",
+  videoSrc = "/video/intranet/intranet-hero-video.webm",
 }: Props) {
   return (
     <section
-      className="relative w-full h-[65vh] md:h-[75vh] min-h-svh 
+      className="relative w-full h-[80vh] md:h-[75vh] min-h-svh 
     overflow-hidden bg-slate-950 flex items-center"
     >
-      {/* BACKGROUND LAYER: Video + Poster */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={posterSrc}
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-        >
-          <source src={videoSrc} type="video/webm" />
-        </video>
+      <HeroVideoBackground
+        poster={posterSrc}
+        videoSrc={videoSrc}
+        delay={1200}
+        overlay={
+          <>
+            {/* Overlay lateral (clave para texto) */}
+            <div className="absolute inset-0 z-10 bg-linear-to-r from-slate-950 via-slate-950/70 to-transparent" />
 
-        {/* MÁSCARAS DE GRADIENTE: Para que el texto "explote" visualmente */}
-        {/* 1. Gradiente desde la izquierda (oscuridad para el texto) */}
-        <div
-          className="absolute inset-0 bg-linear-to-r
-        from-slate-950 via-slate-950/70 to-transparent z-10"
-        />
-
-        {/* 2. Gradiente inferior (para suavizar la unión con los Cards) */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t 
-        from-slate-950 to-transparent z-2"
-        />
-      </div>
+            {/* Overlay inferior */}
+            <div className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-slate-950 to-transparent z-10" />
+          </>
+        }
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">

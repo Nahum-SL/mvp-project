@@ -24,7 +24,7 @@ export const BlogForm = ({ categories }: { categories: Category[] }) => {
 
     // Aquí llamarías a tu API de NestJS
     // const res = await fetch('/api/v1/posts', { method: 'POST', body: formData });
-    console.log("Enviando a NestJS...", data);
+    // console.log("Enviando a NestJS...", data);
   };
 
   return (

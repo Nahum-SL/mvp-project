@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { User, Calendar, Clock } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
 export const BlogSlugHero = ({ post }: { post: BlogPost }) => (

@@ -4,7 +4,7 @@
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { ContactoFormValues, ContactStatusEnum } from "./schema";
-import { z } from "zod";
+import { success, z } from "zod";
 
 const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
@@ -22,7 +22,7 @@ async function getAuthHeaders() {
  */
 export async function sendContactAction(data: ContactoFormValues) {
   try {
-    const res = await fetch(`${API_URL}/contacto/enviar`, {
+    const res = await fetch(`${API_URL}/api/contacto/enviar`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -39,7 +39,7 @@ export async function sendContactAction(data: ContactoFormValues) {
 
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión con el servidor" };
   }
 }
@@ -54,7 +54,7 @@ export async function updateContactStatusAction(
   const headers = await getAuthHeaders();
 
   try {
-    const res = await fetch(`${API_URL}/contacto/admin/status/${id}`, {
+    const res = await fetch(`${API_URL}/api/contacto/admin/status/${id}`, {
       method: "PATCH",
       headers,
       body: JSON.stringify({ status }),
@@ -66,7 +66,7 @@ export async function updateContactStatusAction(
     revalidatePath("/admin/contactos");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
@@ -79,7 +79,7 @@ export async function updateContactAction(
 ) {
   const headers = await getAuthHeaders();
   try {
-    const res = await fetch(`${API_URL}/contacto/admin/update/${id}`, {
+    const res = await fetch(`${API_URL}/api/contacto/admin/update/${id}`, {
       method: "PUT", // O PATCH según tu NestJS
       headers,
       body: JSON.stringify(data),
@@ -91,7 +91,7 @@ export async function updateContactAction(
     revalidatePath("/admin/contacto");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR:", e)
+    // console.log("SERVER_ERROR:", e);
     return { success: false, error: "Error de red" };
   }
 }
@@ -103,7 +103,7 @@ export async function deleteContactAction(id: string) {
   const headers = await getAuthHeaders();
 
   try {
-    const res = await fetch(`${API_URL}/contacto/admin/delete/${id}`, {
+    const res = await fetch(`${API_URL}/api/contacto/admin/delete/${id}`, {
       method: "DELETE",
       headers,
     });
@@ -114,22 +114,38 @@ export async function deleteContactAction(id: string) {
     revalidatePath("/admin/contacto");
     return { success: true };
   } catch (e) {
-    console.log("SERVER_ERROR", e);
+    // console.log("SERVER_ERROR", e);
     return { success: false, error: "Error de conexión" };
   }
 }
 
 // Obtener leads de clientes
+// Obtener leads de clientes - CORREGIDO
 export async function getLeads() {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 
-  const res = await fetch(`${API_URL}/contacto/admin/all`, {
-    headers: { Authorization: `Bearer ${token}` },
-    next: { tags: ["leads"] },
-  });
+  try {
+    if (!token) return [];
 
-  if (!res.ok) return [];
-  return res.json();
+    const res = await fetch(`${API_URL}/api/contacto/admin/all`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+      // Usamos tags para poder revalidar desde las acciones de UPDATE/DELETE
+      next: { tags: ["leads"], revalidate: 0 },
+    });
+
+    if (!res.ok) {
+      // console.error("Error al obtener leads:", res.status);
+      return [];
+    }
+
+    const data = await res.json();
+
+    // IMPORTANTE: Retornamos directamente el array, no un objeto de éxito
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    // console.error("FETCH_LEADS_ERROR", e);
+    return [];
+  }
 }
