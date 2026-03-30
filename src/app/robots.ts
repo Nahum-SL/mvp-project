@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         "/_next/", // Archivos de sistema de Next.js
       ],
     },
-    sitemap: "https://asescon.pe/sitemap.xml",
+    sitemap: "https://asescon-frontend.vercel.app",
   };
 }
