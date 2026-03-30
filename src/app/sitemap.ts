@@ -1,5 +1,6 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from "next";
+import { API_URL } from "@/src/lib/api-url";
 
 interface SitemapItem {
   slug: string;
@@ -7,7 +8,7 @@ interface SitemapItem {
 }
 
 
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+
 const BASE_URL = "https://asescon.pe";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -29,11 +30,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 2. Rutas de Servicios (Consumo de NestJS)
   let serviceRoutes: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${API_URL}/api/services`);
+    const res = await fetch(`${API_URL}/api/servicio`);
     const services: SitemapItem[] = await res.json(); // <--- Tipado aquí
 
     serviceRoutes = services.map((s) => ({
-      url: `${BASE_URL}/servicios/${s.slug}`,
+      url: `${BASE_URL}/servicio/${s.slug}`,
       lastModified: new Date(s.updatedAt),
       changeFrequency: "weekly",
       priority: 0.7,
@@ -46,18 +47,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. Rutas de Blog (Consumo de NestJS)
   let blogRoutes: MetadataRoute.Sitemap = [];
   try {
-    const res = await fetch(`${API_URL}/api/blog/posts`);
+    const res = await fetch(`${API_URL}/api/post`);
     const posts: SitemapItem[] = await res.json(); // <--- Tipado aquí
 
     blogRoutes = posts.map((p) => ({
-      url: `${BASE_URL}/blog/${p.slug}`,
+      url: `${BASE_URL}/post/${p.slug}`,
       lastModified: new Date(p.updatedAt),
       changeFrequency: "weekly",
       priority: 0.6,
     }));
   } catch (e) {
-    // console.error("Sitemap Blog Error:", e);
-    return [...staticRoutes, ...serviceRoutes]; // Si falla, devolvemos estáticas + servicios
+    console.error("Sitemap Dynamic Error:", e);
   }
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes];

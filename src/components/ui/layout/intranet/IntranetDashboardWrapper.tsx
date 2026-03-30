@@ -1,9 +1,9 @@
 // src/components/ui/layout/intranet/IntranetDashboardWrapper.tsx
 import { cookies } from "next/headers";
 import IntranetDashboard from "./IntranetDashboard";
+import { API_URL } from "@/src/lib/api-url";
 
 async function getLinks() {
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
 

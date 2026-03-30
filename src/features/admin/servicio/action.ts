@@ -4,8 +4,7 @@
 import { Service } from "@/src/types/servicio/servicio";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 export async function createServicioAction(formData: FormData) {
   const cookieStore = await cookies();

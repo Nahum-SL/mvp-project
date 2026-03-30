@@ -8,8 +8,7 @@ import {
   AuthResponse,
   type LoginActionResult,
 } from "@/src/types/auth/auth-response";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 export async function loginAction(
   data: LoginFormValues,

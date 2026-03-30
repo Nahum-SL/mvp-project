@@ -1,7 +1,6 @@
 "use server";
 import { UneteFormValues } from "./schema";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001/api/v1";
+import { API_URL } from "@/src/lib/api-url";
 
 export async function sendUneteAction(data: UneteFormValues) {
   try {

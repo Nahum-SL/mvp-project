@@ -2,8 +2,7 @@
 
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 // 1. Crear Post
 export async function createPostAction(formData: FormData) {

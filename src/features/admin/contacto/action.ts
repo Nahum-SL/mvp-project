@@ -4,9 +4,8 @@
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { ContactoFormValues, ContactStatusEnum } from "./schema";
-import { success, z } from "zod";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { z } from "zod";
+import { API_URL } from "@/src/lib/api-url";
 
 async function getAuthHeaders() {
   const cookieStore = await cookies();

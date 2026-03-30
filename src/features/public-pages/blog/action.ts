@@ -1,8 +1,7 @@
 "use server";
 
 import { BlogPost } from "@/src/types/blog/blogPost";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   // Traemos los posts. Puedes añadir filtros en NestJS para traer solo los "published: true"

@@ -3,8 +3,7 @@
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { IntranetLinkValues } from "./schema";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 async function getAuthHeaders() {
   const cookieStore = await cookies();

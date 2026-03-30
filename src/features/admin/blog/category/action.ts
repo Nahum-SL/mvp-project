@@ -1,8 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-
-const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
+import { API_URL } from "@/src/lib/api-url";
 
 export async function createCategoryAction(data: { name: string }) {
   const cookieStore = await cookies();

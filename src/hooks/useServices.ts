@@ -8,13 +8,12 @@
 
 import { useState, useEffect } from "react";
 import { Service } from "@/src/types/servicio/servicio";
+import { API_URL } from "@/src/lib/api-url";
 
 export const useServices = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const API_URL = process.env.NEST_API_URL || "http://localhost:3001";
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -41,7 +40,7 @@ export const useServices = () => {
     };
 
     fetchServices();
-  }, [API_URL]);
+  }, []);
 
   return { services, isLoading, error };
 };
