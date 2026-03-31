@@ -1,4 +1,3 @@
-// src/features/public-pages/home/components/ServiceCardHome.tsx
 "use client";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
@@ -16,10 +15,9 @@ export const ServiceCardHome = ({
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Funciones de control mejoradas
   const activateVisuals = () => {
     setIsHovered(true);
-    videoRef.current?.play().catch(() => {}); // Catch por si el navegador bloquea el play
+    videoRef.current?.play().catch(() => {});
   };
 
   const deactivateVisuals = () => {
@@ -34,20 +32,21 @@ export const ServiceCardHome = ({
       onTouchStart={activateVisuals}
       onTouchEnd={deactivateVisuals}
       className="group relative h-112.5 w-full overflow-hidden rounded-[2.5rem] 
-      bg-slate-50 border border-slate-200"
+      bg-slate-100 border border-slate-200"
     >
       <Link href={`/servicio/${service.slug}`}>
-        {/* VIDEO DE FONDO: Ahora ocupa todo el espacio con un filtro elegante */}
+        {/* VIDEO Y OVERLAY */}
         <div className="absolute inset-0 z-0">
           <video
             ref={videoRef}
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             className={cn(
-              "w-full h-full object-cover transition-transform duration-1000 scale-105",
-              isHovered ? "scale-100 opacity-100" : "",
+              "w-full h-full object-cover transition-all duration-1000 scale-105",
+              // En móvil lo dejamos con un poco de opacidad base si quieres que se note el video
+              isHovered ? "scale-100 opacity-100" : "opacity-0 sm:opacity-0",
             )}
           >
             <source
@@ -55,11 +54,14 @@ export const ServiceCardHome = ({
               type="video/webm"
             />
           </video>
-          {/* Overlay de gradiente para legibilidad (Estilo Squarespace) */}
+
+          {/* Capa de protección de legibilidad: 
+              Gradiente oscuro constante en móvil para aguantar el texto blanco */}
           <div
             className={cn(
-              "absolute inset-0 transition-colors duration-500",
-              isHovered ? "bg-slate-950/40" : "bg-transparent",
+              "absolute inset-0 transition-all duration-500",
+              "bg-linear-to-t from-slate-950/90 via-slate-950/20 to-transparent sm:bg-transparent",
+              isHovered ? "sm:bg-slate-950/40" : "",
             )}
           />
         </div>
@@ -69,8 +71,10 @@ export const ServiceCardHome = ({
           <div className="space-y-4">
             <h3
               className={cn(
-                "text-3xl font-medium tracking-tighter sm:text-white transition-colors tex-white duration-500",
-                isHovered ? "text-white" : "text-black",
+                "text-3xl font-medium tracking-tighter transition-colors duration-500",
+                // Blanco en móvil por el gradiente, Negro en Desktop por el fondo claro
+                "text-white sm:text-slate-900",
+                isHovered ? "text-white" : "",
               )}
             >
               {service.title}
@@ -81,17 +85,19 @@ export const ServiceCardHome = ({
             <p
               className={cn(
                 "text-sm leading-relaxed max-w-70 transition-colors duration-500",
-                isHovered ? "text-slate-200" : "text-slate-500",
+                "text-slate-200 sm:text-slate-500",
+                isHovered ? "text-slate-200" : "",
               )}
             >
               {service.description}
             </p>
 
-            {/* Botón Estilo "CTA Minimal" */}
             <div
               className={cn(
                 "flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-all",
-                isHovered ? "text-sky-400 translate-x-2" : "text-slate-900",
+                // En móvil usamos un color que resalte sobre oscuro (sky o blanco)
+                "text-sky-400 sm:text-slate-900",
+                isHovered ? "text-sky-400 sm:translate-x-2" : "",
               )}
             >
               Explorar Servicio <ArrowUpRight size={16} />
