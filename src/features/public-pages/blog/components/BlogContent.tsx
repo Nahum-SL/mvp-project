@@ -13,10 +13,6 @@ export default async function BlogContent() {
   const allPosts = await getBlogPosts();
   const hasPosts = allPosts && allPosts.length > 0;
 
-  if (!allPosts || allPosts.length === 0) return null;
-
-  const [featured, ...rest] = allPosts;
-
   return (
     <>
       <section className="py-20 container mx-auto px-6">
@@ -49,7 +45,7 @@ export default async function BlogContent() {
       </ToolsAnimationWrapper>
 
       {/* --- LISTADO DE POSTS ANTERIORES --- */}
-      {rest.length > 0 && (
+      {allPosts.length > 0 && (
         <section className="py-24 container mx-auto px-6">
           <SectionHeaderHome
             title="Explorar más artículos"
@@ -59,7 +55,7 @@ export default async function BlogContent() {
           />
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {rest.map((post, i) => (
+            {allPosts.map((post, i) => (
               <BlogCardPage key={post.id} post={post} index={i} />
             ))}
           </div>
