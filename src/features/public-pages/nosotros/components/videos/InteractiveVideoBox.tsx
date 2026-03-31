@@ -52,7 +52,8 @@ export const InteractiveVideoBox = ({
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        "relative group overflow-hidden rounded-[3.5rem] bg-slate-900 border border-slate-800 shadow-2xl aspect-4/5 md:aspect-16/10",
+        "relative group overflow-hidden rounded-[3.5rem] bg-slate-900 border border-slate-800",
+        "shadow-2xl aspect-3/4 sm:aspect-4/5 md:aspect-16/10",
         className,
       )}
     >
@@ -119,7 +120,7 @@ export const InteractiveVideoBox = ({
           className="space-y-4"
         >
           <span className="inline-block text-sky-500 font-extrabold uppercase tracking-[0.4em] text-[10px] md:text-xs">
-            Experiencia ASESCON
+            Experiencia
           </span>
 
           <h3

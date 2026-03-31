@@ -9,6 +9,7 @@ export const FEATURED_HOME: ServiceHome[] = [
       "Transformamos tu información financiera en reportes estratégicos para la toma de decisiones con nuestro servicio de outsourcing especializado.",
 
     slug: "outsourcing-contable",
+    image: "outsourcing-contable",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ export const FEATURED_HOME: ServiceHome[] = [
       "Protección total ante auditorías de SUNAT mediante auditorías preventivas y un planeamiento tributario diseñado a tu medida.",
 
     slug: "planeamiento-tributario",
+    image: "planeamiento-tributario",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const FEATURED_HOME: ServiceHome[] = [
       "Cero contingencias laborales. Gestionamos contratos, boletas y aportes mediante nuestro servicio de outsourcing laboral.",
 
     slug: "outsourcing-laboral",
+    image: "outsourcing-laboral",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const FEATURED_HOME: ServiceHome[] = [
     description:
       "Soporte legal preventivo y defensa técnica ante fiscalizaciones para proteger el patrimonio de tu organización.",
     slug: "defensa-tributaria",
+    image:"reestructuracion-de-empresas"
   },
 
 ];

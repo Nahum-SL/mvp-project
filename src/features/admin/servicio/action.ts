@@ -169,3 +169,26 @@ export async function getPublicServices(): Promise<Service[]> {
     return [];
   }
 }
+// Export ==> Home()
+// src/app/(public)/page.tsx
+export async function getPublic4Services(): Promise<Service[]> {
+  try {
+    // Traemos los servicios visibles y los ordenamos por el campo 'order'
+    const response = await fetch(`${API_URL}/api/servicio?limit=4`, {
+      next: {
+        revalidate: 600, // Cache de 1 hora
+        tags: ["servicio-publico"],
+      },
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+
+    // Validamos si NestJS envía el array directo o dentro de un objeto { data: [...] }
+    return Array.isArray(data) ? data : data.data || [];
+  } catch (error) {
+    // console.error("HOME_SERVICES_ERROR", error);
+    return [];
+  }
+}

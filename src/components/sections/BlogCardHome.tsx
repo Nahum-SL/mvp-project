@@ -64,7 +64,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
                 "px-4 py-1.5 rounded-full text-[10px] sm:text-white font-medium uppercase tracking-widest transition-colors border",
                 isHovered
                   ? "bg-white/10 border-white/20 text-white backdrop-blur-md"
-                  : "bg-slate-100 border-slate-200 text-slate-500",
+                  : "bg-slate-100 border-slate-200 md:text-slate-500",
               )}
             >
               {post.category.name}
@@ -72,7 +72,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
             <div
               className={cn(
                 "flex items-center gap-1.5 text-[10px] font-bold sm:text-stone-300 transition-colors",
-                isHovered ? "text-stone-300" : "text-slate-400",
+                isHovered ? "md:text-stone-300" : "text-slate-400",
               )}
             >
               <Calendar size={12} />
@@ -91,7 +91,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
                 // Blanco/Claro por defecto en móvil, Negro por defecto en Desktop (sm)
                 "text-white sm:text-slate-900",
                 // Al hacer hover en desktop, se vuelve blanco
-                isHovered ? "text-white" : "",
+                isHovered ? "md:text-white" : "",
               )}
             >
               {post.title}
