@@ -24,6 +24,8 @@ export const BlogCardHome = ({ post, index }: Props) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
       className="group relative h-125 w-full overflow-hidden 
       rounded-[2.5rem] bg-white border border-slate-200 shadow-sm"
     >

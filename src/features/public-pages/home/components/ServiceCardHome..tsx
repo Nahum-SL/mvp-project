@@ -16,22 +16,23 @@ export const ServiceCardHome = ({
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleMouseEnter = () => {
+  // Funciones de control mejoradas
+  const activateVisuals = () => {
     setIsHovered(true);
-    videoRef.current?.play();
+    videoRef.current?.play().catch(() => {}); // Catch por si el navegador bloquea el play
   };
 
-  const handleMouseLeave = () => {
+  const deactivateVisuals = () => {
     setIsHovered(false);
-    if (videoRef.current) {
-      videoRef.current?.pause();
-    }
+    videoRef.current?.pause();
   };
-  
+
   return (
     <motion.div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={activateVisuals}
+      onMouseLeave={deactivateVisuals}
+      onTouchStart={activateVisuals}
+      onTouchEnd={deactivateVisuals}
       className="group relative h-112.5 w-full overflow-hidden rounded-[2.5rem] 
       bg-slate-50 border border-slate-200"
     >
