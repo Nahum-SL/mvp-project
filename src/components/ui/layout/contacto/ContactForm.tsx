@@ -52,7 +52,8 @@ export const ContactForm = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="w-full max-w-2xl mx-auto p-8 md:p-12 bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-blue-400"
+        className="w-full max-w-2xl mx-auto p-8 md:p-12 bg-white rounded-[2.5rem] 
+        shadow-2xl shadow-blue-900/5 border border-emerald-500"
       >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

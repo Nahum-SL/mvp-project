@@ -33,8 +33,8 @@ export const NosotrosHero = ({
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-3 mb-6"
           >
-            <span className="h-px w-8 bg-sky-500" />
-            <span className="text-xs font-bold tracking-[0.3em] text-sky-400 uppercase">
+            <span className="h-px w-8 bg-emerald-500" />
+            <span className="text-xs font-bold tracking-[0.3em] text-emerald-400 uppercase">
               {badge}
             </span>
           </motion.div>

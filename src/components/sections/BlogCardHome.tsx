@@ -89,9 +89,9 @@ export const BlogCardHome = ({ post, index }: Props) => {
               className={cn(
                 "text-2xl md:text-3xl font-serif font-bold leading-tight tracking-tight transition-colors duration-500",
                 // Blanco/Claro por defecto en móvil, Negro por defecto en Desktop (sm)
-                "text-white sm:text-slate-900",
+                "text-white",
                 // Al hacer hover en desktop, se vuelve blanco
-                isHovered ? "md:text-white" : "",
+                isHovered ? "md:text-amber-200" : "",
               )}
             >
               {post.title}

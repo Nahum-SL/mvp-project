@@ -25,7 +25,8 @@ export default async function PostSlugContent({ params }: Props) {
       <BlogSlugHero post={post} />
 
       <PostLayoutWrapper sidebar={<BlogSidebar post={post} />}>
-        <p className="text-sm md:text-xl lg:text-2xl text-slate-400 font-medium leading-relaxed mb-12 border-l-4 border-sky-500 pl-8 italic">
+        <p className="text-sm md:text-[13px] lg:text-xl text-slate-400 font-medium 
+        leading-relaxed mb-12 border-l-4 border-purple-600 pl-8 italic">
           {post.excerpt}
         </p>
         <div

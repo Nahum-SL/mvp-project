@@ -52,7 +52,7 @@ export const ValueProposition = () => {
                   ¿Por qué ASESCON?
                 </motion.span>
 
-                <h2 className="text-4xl md:text-6xl text-white leading-[1.1] tracking-tighter">
+                <h2 className="text-4xl md:text-6xl text-white leading-[1.1] font-serif tracking-tighter">
                   Seguridad que <span className="text-sky-600 to-cyan-500 from-amber-50">impulsa</span>{" "}
                   su negocio.
                 </h2>

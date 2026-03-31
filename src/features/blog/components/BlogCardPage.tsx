@@ -49,7 +49,8 @@ export const BlogCardPage = ({ post, index }: Props) => {
         {/* Contenido de la Tarjeta */}
         <div className="p-8 flex flex-col flex-1 justify-between">
           <div>
-            <div className="flex items-center gap-2 text-slate-500 text-[10px] uppercase tracking-widest mb-4">
+            <div className="flex items-center gap-2 text-slate-500 text-[10px] uppercase 
+            tracking-widest mb-4">
               <Clock size={12} className="text-sky-500" />
               <span>
                 {new Date(post.createdAt).toLocaleDateString("es-PE", {

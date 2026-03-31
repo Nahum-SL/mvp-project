@@ -18,7 +18,7 @@ export default async function BlogContent() {
       <section className="py-20 container mx-auto px-6">
         <SectionHeaderHome
           title="Articulo Reciente"
-          description="Testeando"
+          description="Análisis actualizado sobre normativas y gestión empresarial en el Perú."
           lineColor="yellow"
           mode="dark"
         />
@@ -45,7 +45,7 @@ export default async function BlogContent() {
       </ToolsAnimationWrapper>
 
       {/* --- LISTADO DE POSTS ANTERIORES --- */}
-      {allPosts.length > 0 && (
+      {hasPosts && (
         <section className="py-24 container mx-auto px-6">
           <SectionHeaderHome
             title="Explorar más artículos"
@@ -55,7 +55,7 @@ export default async function BlogContent() {
           />
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {allPosts.map((post, i) => (
+            {allPosts.slice(1).map((post, i) => (
               <BlogCardPage key={post.id} post={post} index={i} />
             ))}
           </div>

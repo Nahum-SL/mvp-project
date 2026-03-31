@@ -8,7 +8,10 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
   return (
     <section className="relative w-full py-6">
       <Link href={`/blog/${post.slug}`} className="group block">
-        <div className="relative h-[70vh] min-h-130 w-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-slate-800 shadow-2xl">
+        <div
+          className="relative h-[70vh] min-h-130 w-full rounded-[2.5rem] 
+        md:rounded-[3.5rem] overflow-hidden border border-slate-800 shadow-2xl"
+        >
           {/* 1. IMAGEN: Con priority={true} para el mejor LCP posible */}
           <Image
             src={post.image}
@@ -16,7 +19,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
-            quality={70}
+            quality={75}
             className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
           />
 
@@ -25,19 +28,13 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
           <div className="absolute inset-0 bg-linear-to-r from-slate-950/40 via-transparent to-transparent hidden md:block" />
 
           {/* 3. CONTENIDO */}
-          <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-20">
-            <div className="max-w-4xl">
-              {/* Badge con efecto Glass */}
-              <div className="inline-flex items-center gap-2 bg-sky-500/20 backdrop-blur-md border border-sky-500/30 text-sky-400 text-[10px] font-bold uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                </span>
-                Lectura Destacada
-              </div>
-
+          <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-24 lg:p-32">
+            <div className="max-w-5xl">
               {/* Título: Sin animación inicial para optimizar LCP */}
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.1] mb-6 tracking-tight">
+              <h2
+                className="text-4xl md:text-5xl lg:text-7xl font-serif font-medium
+              text-white leading-[1.2] mb-8 tracking-tight"
+              >
                 {post.title}
               </h2>
 
@@ -49,12 +46,14 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
               {/* Footer del Post: Autor y Metadata */}
               <div className="flex flex-wrap items-center gap-6 pt-8 border-t border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-12 rounded-full border border-white/20 overflow-hidden bg-slate-800">
+                  <div
+                    className="relative w-12 h-12 rounded-full border 
+                  border-white/20 overflow-hidden bg-slate-800"
+                  >
                     {post.author?.avatar ? (
                       <Image
                         src={post.author.avatar}
                         alt={post.author.name}
-                        fill
                         width={48}
                         height={48}
                         className="object-cover"
@@ -85,7 +84,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock size={14} className="text-slate-500" />
-                    {post.readingTime || "6 min"} lectura
+                    {post.readingTime || "6 min"} MIN lectura
                   </div>
                 </div>
               </div>

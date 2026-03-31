@@ -17,7 +17,7 @@ export const PostLayoutWrapper = ({
   const [isZenMode, setIsZenMode] = useState(false);
 
   return (
-    <div className="container mx-auto px-6 -mt-24 relative z-10 min-h-screen">
+    <div className="container mx-auto px-6 -mt-20 relative z-10 min-h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
         {/* BOTÓN ZEN FLOTANTE */}
         <button
