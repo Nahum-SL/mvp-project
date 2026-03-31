@@ -14,8 +14,9 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
             src={post.image}
             alt={post.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
-            quality={85}
+            quality={70}
             className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
           />
 

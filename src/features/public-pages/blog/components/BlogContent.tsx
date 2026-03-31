@@ -11,14 +11,7 @@ import { BlogCardPage } from "@/src/features/blog/components/BlogCardPage";
 
 export default async function BlogContent() {
   const allPosts = await getBlogPosts();
-
-  if (allPosts.length === 0) {
-    return (
-      <div className="py-20 text-center">
-        <p className="text-slate-400">No hay artículos publicados aún.</p>
-      </div>
-    );
-  }
+  const hasPosts = allPosts && allPosts.length > 0;
 
   if (!allPosts || allPosts.length === 0) return null;
 
@@ -33,9 +26,11 @@ export default async function BlogContent() {
           lineColor="yellow"
           mode="dark"
         />
-        <div id="recentPost">
-          <FeaturedPost post={featured} />
-        </div>
+        {hasPosts ? (
+          <FeaturedPost post={allPosts[0]} />
+        ) : (
+          <p className="text-slate-400 text-center">No hay artículos aún.</p>
+        )}
       </section>
 
       <ToolsAnimationWrapper>

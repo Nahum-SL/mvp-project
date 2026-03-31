@@ -4,18 +4,20 @@ import { BlogPost } from "@/src/types/blog/blogPost";
 import { API_URL } from "@/src/lib/api-url";
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  // Traemos los posts. Puedes añadir filtros en NestJS para traer solo los "published: true"
   try {
     const res = await fetch(`${API_URL}/api/post`, {
       next: { revalidate: 60 },
     });
   
     if (!res.ok) return [];
-    return res.json();
+    
+    const data = await res.json();
+
+    // Validamos si NestJS envía el array directo o dentro de un objeto { data: [...] }
+    return Array.isArray(data) ? data : (data.data || []);
 
   } catch (e) {
-    // console.log("ERROR:", e)
-    return []
+    return [];
   }
 }
 
