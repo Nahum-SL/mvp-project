@@ -1,7 +1,7 @@
 // src/components/ui/layout/contacto/ContactForm.tsx
 "use client";
 
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
@@ -20,8 +20,12 @@ import { ContactInput } from "./form/ContactInput";
 import { ContactDateInput } from "./form/ContactDateInput";
 import { ContactTextArea } from "./form/ContactTextArea";
 
+// Contacto Enviado
+import { ContactSuccessModal } from "./ContactSucessModal";
+
 export const ContactForm = () => {
   const [isPending, startTransition] = useTransition();
+  const [showSuccessModal, setShowSuccessModal] = useState(false); // Estado para el modal
 
   const {
     register,
@@ -36,9 +40,8 @@ export const ContactForm = () => {
     startTransition(async () => {
       const result = await sendContactAction(data);
       if (result.success) {
-        toast.success("¡Mensaje enviado!", {
-          description: "Pronto nos comunicaremos contigo.",
-        });
+        // En lugar de solo toast, activamos el modal
+        setShowSuccessModal(true);
         reset();
       } else {
         toast.error("Error", { description: result.error });
@@ -114,6 +117,11 @@ export const ContactForm = () => {
           </motion.button>
         </form>
       </motion.div>
+
+      <ContactSuccessModal 
+      isOpen={showSuccessModal}
+      onClose={() => setShowSuccessModal(false)}
+      />
     </>
   );
 };
