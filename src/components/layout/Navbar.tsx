@@ -18,11 +18,8 @@ function NavbarCard() {
       <GlassNavbar>
         <div className="flex items-center h-20 px-6 md:px-10">
           {/* Logo */}
-          <Link href="/#home" className="text-3xl font-extrabold text-white mr-8">
-              Ases
-              <span className="text-[rgb(92,89,89)]">
-                con
-              </span>
+          <Link href="/#home" className="text-2xl font-extrabold text-white mr-8">
+              asescon
           </Link>
 
           <div

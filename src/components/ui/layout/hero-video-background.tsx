@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { VideoControl } from "./VideoControl";
+import { cn } from "@/src/lib/utils";
 
 // Tipado para la Network Information API
 interface NetworkInformation extends EventTarget {
@@ -68,6 +69,7 @@ export default function HeroVideoBackground({
         }
       } else {
         video.pause();
+        video.currentTime = 0; // Reiniciamos para evitar que quede en pausa a mitad
       }
     };
 
@@ -78,14 +80,17 @@ export default function HeroVideoBackground({
       ref={containerRef}
       className="absolute inset-0 z-0 overflow-hidden bg-slate-950"
     >
-      {(!videoSrc || !allowVideo) && (
+      {(!showVideo || !allowVideo) && (
         <Image
           src={poster}
           alt="Hero background"
           fill
           priority
           sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ${showVideo ? "opacity-0" : "opacity-100"}`}
+          className={cn(
+            "object-cover transition-opacity duration-700",
+            showVideo ? "opacity-0" : "opacity-100",
+          )}
         />
       )}
 
@@ -95,12 +100,14 @@ export default function HeroVideoBackground({
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none
-        backdrop-blur-md md:backdrop-blur-xl
-        "
+          preload="metadata"
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover pointer-events-none",
+            "transition-opacity duration-700",
+            showVideo ? "opacity-70 md:opacity-100" : "opacity-0",
+          )}
         >
           <source src={videoSrc} type="video/webm" />
-          <source src={videoSrc.replace(".webm", ".mp4")} type="video/mp4" />
         </video>
       )}
 
@@ -115,7 +122,7 @@ export default function HeroVideoBackground({
       <VideoControl
         isPlaying={isPlaying}
         togglePlay={() => setIsPlaying((prev) => !prev)}
-        isVisible={showVideo && allowVideo}
+        isVisible={showVideo && allowVideo && isInView}
       />
     </div>
   );
