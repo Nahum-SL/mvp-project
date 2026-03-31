@@ -8,8 +8,17 @@ import { ArrowRight } from "lucide-react";
 export async function RecentPostsSection() {
   const posts = await getRecentPosts();
 
-  if (!posts || posts.length === 0) return null;
-
+  // Si no hay posts, no mostramos la sección vacía (esto está bien en Home)
+  // Pero asegúrate de que 'posts' sea realmente un array antes de hacer .slice
+  if (posts.length === 0) {
+    return (
+      <div className="py-10 text-center bg-slate-50">
+        <p className="text-slate-400 text-sm">
+          No se encontraron artículos recientes en producción.
+        </p>
+      </div>
+    );
+  }
   return (
     <section className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-6">

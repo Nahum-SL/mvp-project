@@ -8,14 +8,13 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     const res = await fetch(`${API_URL}/api/post`, {
       next: { revalidate: 60 },
     });
-  
+
     if (!res.ok) return [];
-    
+
     const data = await res.json();
 
     // Validamos si NestJS envía el array directo o dentro de un objeto { data: [...] }
-    return Array.isArray(data) ? data : (data.data || []);
-
+    return Array.isArray(data) ? data : data.data || [];
   } catch (e) {
     return [];
   }
@@ -30,18 +29,28 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 }
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
-  const res = await fetch(`${API_URL}/api/post?limit=3`, {
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) return [];
-  return res.json();
+  try {
+    const res = await fetch(`${API_URL}/api/post?limit=3`, {
+      next: { revalidate: 600 },
+    });
+    if (!res.ok) return [];
+
+    const data = await res.json();
+
+    // Validamos si NestJS envía el array directo o dentro de un objeto { data: [...] }
+    return Array.isArray(data) ? data : data.data || [];
+  } catch (e) {
+    return [];
+  }
 }
 
 // ... (tu función getPostBySlug ya existente)
 
 export async function getNavigationPosts(currentSlug: string) {
   try {
-    const res = await fetch(`${API_URL}/api/post`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_URL}/api/post`, {
+      next: { revalidate: 3600 },
+    });
     const response = await res.json();
     const posts: BlogPost[] = Array.isArray(response)
       ? response
