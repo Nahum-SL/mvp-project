@@ -31,7 +31,7 @@ export const BlogHero = ({
           alt="Hero background"
           fill
           sizes="100vw"
-          quality={60}
+          quality={75}
           priority
           className="object-cover object-center"
         />
