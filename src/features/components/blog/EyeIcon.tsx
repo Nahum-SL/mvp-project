@@ -63,7 +63,7 @@ export const EyeIcon = ({ isOpen }: { isOpen: boolean }) => {
           duration: 0.25,
           ease: "easeInOut",
           repeat: isOpen ? Infinity : 0,
-          repeatDelay: 3.5,
+          repeatDelay: 6,
         }}
       />
 

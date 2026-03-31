@@ -43,10 +43,14 @@ export const BlogCardHome = ({ post, index }: Props) => {
             )}
           />
           {/* Overlay de color cuando no hay hover (Limpio) */}
+          {/* Overlay mejorado */}
           <div
             className={cn(
-              "absolute inset-0 transition-opacity duration-500",
-              isHovered ? "bg-[rgb(42,28,21)]/40" : "bg-transparent",
+              "absolute inset-0 transition-all duration-500",
+              // En móvil (no-hover) tiene un gradiente negro abajo para que el texto blanco se lea
+              "bg-linear-to-t from-black/80 via-black/20 to-transparent sm:bg-transparent",
+              // En hover (o touch) se oscurece todo por igual
+              isHovered ? "bg-[rgb(42,28,21)]/60 opacity-100" : "",
             )}
           />
         </div>
@@ -57,7 +61,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
           <div className="flex justify-between items-start">
             <div
               className={cn(
-                "px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest transition-colors border",
+                "px-4 py-1.5 rounded-full text-[10px] sm:text-white font-medium uppercase tracking-widest transition-colors border",
                 isHovered
                   ? "bg-white/10 border-white/20 text-white backdrop-blur-md"
                   : "bg-slate-100 border-slate-200 text-slate-500",
@@ -67,7 +71,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
             </div>
             <div
               className={cn(
-                "flex items-center gap-1.5 text-[10px] font-bold transition-colors",
+                "flex items-center gap-1.5 text-[10px] font-bold sm:text-stone-300 transition-colors",
                 isHovered ? "text-stone-300" : "text-slate-400",
               )}
             >
@@ -84,12 +88,14 @@ export const BlogCardHome = ({ post, index }: Props) => {
             <h3
               className={cn(
                 "text-2xl md:text-3xl font-serif font-bold leading-tight tracking-tight transition-colors duration-500",
-                isHovered ? "text-white" : "text-slate-900",
+                // Blanco/Claro por defecto en móvil, Negro por defecto en Desktop (sm)
+                "text-white sm:text-slate-900",
+                // Al hacer hover en desktop, se vuelve blanco
+                isHovered ? "text-white" : "",
               )}
             >
               {post.title}
             </h3>
-
             <div
               className={cn(
                 "flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] transition-all duration-500",
