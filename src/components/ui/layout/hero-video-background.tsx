@@ -46,7 +46,13 @@ export default function HeroVideoBackground({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const isInView = useInView(containerRef, { amount: 0.1 });
+  const isInView = useInView(containerRef, {
+    amount: 0.1,
+    once: true,
+  });
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     if (!isInView || !videoSrc || !allowVideo || showVideo) return;
@@ -81,17 +87,24 @@ export default function HeroVideoBackground({
       className="absolute inset-0 z-0 overflow-hidden bg-slate-950"
     >
       {(!showVideo || !allowVideo) && (
-        <Image
-          src={poster}
-          alt="Hero background"
-          fill
-          priority
-          sizes="100vw"
-          className={cn(
-            "object-cover transition-opacity duration-700",
-            showVideo ? "opacity-0" : "opacity-100",
-          )}
-        />
+        <>
+          {/* Fondo base (evita pantallazo) */}
+          <div className="absolute inset-0 bg-slate-950" />
+
+          <Image
+            src={poster}
+            alt="Hero background"
+            fill
+            priority
+            sizes="100vw"
+            onLoadingComplete={() => setImageLoaded(true)}
+            className={cn(
+              "object-cover transition-opacity duration-700",
+              imageLoaded ? "opacity-100" : "opacity-0",
+              videoReady ? "opacity-0" : "opacity-100"
+            )}
+          />
+        </>
       )}
 
       {videoSrc && allowVideo && showVideo && (
@@ -100,11 +113,12 @@ export default function HeroVideoBackground({
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
+          onCanPlay={() => setVideoReady(true)}
           className={cn(
             "absolute inset-0 w-full h-full object-cover pointer-events-none",
             "transition-opacity duration-700",
-            showVideo ? "opacity-70 md:opacity-100" : "opacity-0",
+            showVideo && videoReady ? "opacity-70 md:opacity-100" : "opacity-0",
           )}
         >
           <source src={videoSrc} type="video/webm" />
