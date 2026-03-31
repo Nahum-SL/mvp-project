@@ -124,7 +124,7 @@ export const InteractiveVideoBox = ({
 
           <h3
             className={cn(
-              "text-3xl md:text-5xl text-white leading-tight tracking-tighter max-w-xl transition-all duration-500",
+              "text-3xl md:text-5xl sm:text-2xl text-white leading-tight tracking-tighter max-w-xl transition-all duration-500",
               isHovered ? "translate-x-2" : "translate-x-0",
             )}
           >
