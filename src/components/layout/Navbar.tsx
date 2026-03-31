@@ -4,14 +4,13 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Equal, X, Bell } from "lucide-react";
+import { Equal, X } from "lucide-react";
 import { NAV_ITEMS } from "@/src/types/navigation-navbar/navigation";
 
 import GlassNavbar from "./GlasNavbar";
 
 function NavbarCard() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [openBell, setOpenBell] = useState(false);
   const pathname = usePathname();
 
   return (
@@ -19,8 +18,11 @@ function NavbarCard() {
       <GlassNavbar>
         <div className="flex items-center h-20 px-6 md:px-10">
           {/* Logo */}
-          <Link href="/#home" className="text-2xl text-white font-bold mr-8">
-            Asescon
+          <Link href="/#home" className="text-3xl font-extrabold text-white mr-8">
+              Ases
+              <span className="text-[rgb(92,89,89)]">
+                con
+              </span>
           </Link>
 
           <div

@@ -20,7 +20,7 @@ export const beneficios = [
   },
   {
     title: "Reducción de Riesgos",
-    desc: "Escudo fiscal preventivo",
+    desc: "Escudo fiscal y preventivo",
     icon: TrendingUp,
   },
   {
