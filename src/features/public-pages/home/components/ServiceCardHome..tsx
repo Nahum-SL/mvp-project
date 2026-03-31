@@ -46,7 +46,7 @@ export const ServiceCardHome = ({
             className={cn(
               "w-full h-full object-cover transition-all duration-1000 scale-105",
               // En móvil lo dejamos con un poco de opacidad base si quieres que se note el video
-              isHovered ? "scale-100 opacity-100" : "opacity-0 sm:opacity-0",
+              isHovered ? "scale-100 opacity-100" : "",
             )}
           >
             <source
