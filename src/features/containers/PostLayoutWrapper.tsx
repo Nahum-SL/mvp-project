@@ -33,7 +33,7 @@ export const PostLayoutWrapper = ({
           title={isZenMode ? "Salir del modo Zen" : "Activar lectura enfocada"}
         >
           {/* Cambiamos la lógica aquí */}
-          <div className="relative w-5 h-5 flex items-center justify-center">
+          <div className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
             <AnimatePresence mode="wait">
               {isZenMode ? (
                 <motion.div
