@@ -8,13 +8,13 @@ export const IntranetNavHint = () => {
         {/* Pequeña línea decorativa */}
         <div className="h-px w-8 bg-blue-500/50 hidden lg:block" />
 
-        <span className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-blue-500">
+        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue-500">
           Navegación del Sistema
         </span>
       </div>
 
       <div className="flex items-center gap-4">
-        <h2 className="text-2xl md:text-3xl text-white tracking-tight font-serif">
+        <h2 className="text-2xl md:text-3xl text-white tracking-tight">
           Seleccione una{" "}
           <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-600">
             plataforma de gestión

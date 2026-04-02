@@ -32,14 +32,11 @@ export default function ServiceHero({
 
       {/* 2. CONTENIDO CENTRAL */}
       <div className="relative z-20 max-w-5xl px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6"
-        >
+        <div className="space-y-6">
           {/* Badge de Confianza */}
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
           bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
           >
@@ -47,7 +44,7 @@ export default function ServiceHero({
             <span className="text-[10px] font-extrabold uppercase tracking-[0.3em]">
               Soporte Empresarial 360°
             </span>
-          </div>
+          </motion.div>
 
           {/* Título Principal */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.95]">
@@ -71,7 +68,7 @@ export default function ServiceHero({
             transition={{ delay: 0.5, duration: 1 }}
             className="h-2 bg-emerald-500 rounded-full mx-auto mt-8 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* Indicador de scroll */}

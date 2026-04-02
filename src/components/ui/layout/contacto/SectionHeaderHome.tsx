@@ -5,7 +5,7 @@ import { cn } from "@/src/lib/utils";
 interface Props {
   title: string;
   description?: string;
-  lineColor?: "green" | "yellow" | "blue";
+  lineColor?: "green" | "yellow" | "blue" | "purple";
   mode?: "light" | "dark"; // Nueva prop para el tema
 }
 
@@ -13,6 +13,7 @@ const COLORS = {
   green: "bg-emerald-500",
   yellow: "bg-yellow-400",
   blue: "bg-blue-600",
+  purple: "bg-purple-500",
 };
 
 export const SectionHeaderHome = ({

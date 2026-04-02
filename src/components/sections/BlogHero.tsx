@@ -45,20 +45,18 @@ export const BlogHero = ({
 
       {/* 2. CONTENIDO INFORMATIVO */}
       <div className="relative z-20 max-w-4xl px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
+        <div className="space-y-6">
           {/* Badge de Sección */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 
+          <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 
           border border-blue-500/20 text-blue-400">
             <Newspaper size={16} className="animate-pulse" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.3em]">
               Centro de Inteligencia Fiscal
             </span>
-          </div>
+          </motion.div>
 
           {/* Título*/}
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.9]">
@@ -82,7 +80,7 @@ export const BlogHero = ({
             transition={{ delay: 0.5, duration: 1 }}
             className="h-1.5 bg-blue-600 rounded-full mx-auto mt-8 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* Indicador de scroll sutil */}

@@ -26,7 +26,7 @@ export async function RecentPostsSection() {
           <SectionHeaderHome
             title="Perspectivas y Actualidad"
             description="Análisis estratégicos sobre el entorno contable, tributario y empresarial del Perú."
-            lineColor="green"
+            lineColor="purple"
             mode="light"
           />
         </div>

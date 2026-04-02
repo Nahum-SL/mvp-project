@@ -27,7 +27,7 @@ interface Props {
 export default function HeroVideoBackground({
   poster,
   videoSrc,
-  delay = 1200,
+  delay = 500,
   overlay,
 }: Props) {
   // Lógica de detección de conexión (Lazy Initializer para evitar el error de setState)
@@ -95,9 +95,8 @@ export default function HeroVideoBackground({
             src={poster}
             alt="Hero background"
             fill
-            priority
             sizes="100vw"
-            onLoadingComplete={() => setImageLoaded(true)}
+            onLoad={() => setImageLoaded(true) }
             className={cn(
               "object-cover transition-opacity duration-700",
               imageLoaded ? "opacity-100" : "opacity-0",

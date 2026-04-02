@@ -29,9 +29,10 @@ export const NosotrosHero = ({
         <div className="max-w-4xl">
           {/* Badge: Puede mantener la animación, no suele ser el LCP */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
+          bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
           >
             <span className="h-px w-8 bg-emerald-500" />
             <span className="text-xs font-bold tracking-[0.3em] text-emerald-400 uppercase">

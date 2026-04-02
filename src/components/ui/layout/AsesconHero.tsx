@@ -24,16 +24,15 @@ export default function AsesconHero({
   videoSrc = "/asescon-hero-video.webm",
   onCtaClick,
 }: HeroProps) {
-
   return (
     <section
       className="relative w-full min-h-svh flex items-center justify-center 
     overflow-hidden bg-slate-950"
     >
-      <HeroVideoBackground 
-      poster={videoPoster}
-      videoSrc={videoSrc}
-      delay={500}
+      <HeroVideoBackground
+        poster={videoPoster}
+        videoSrc={videoSrc}
+        delay={500}
       />
 
       <div className="max-7xl mx-auto px-6 relative z-20 text-center">
@@ -50,15 +49,11 @@ export default function AsesconHero({
           </h1>
 
           {/* Subtítulo con máximo contraste */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }} // Reducimos delay ligeramente
-            className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
+          <p className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
             mx-auto leading-relaxed font-medium drop-shadow-md"
           >
             {subtitle}
-          </motion.p>
+          </p>
 
           {/* Contenedor de Botones */}
           <motion.div

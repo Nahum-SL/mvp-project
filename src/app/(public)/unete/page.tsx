@@ -1,4 +1,4 @@
-import UneteHeader from "@/src/components/ui/layout/UneteHeader";
+import UneteHero from "@/src/components/ui/layout/UneteHero";
 import { UneteForm } from "@/src/features/public-pages/unete/components/UneteForm";
 import { Metadata } from "next";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function UnetePage() {
   return (
     <main>
-      <UneteHeader
+      <UneteHero
         title="Forma parte de nuestra historia"
         subtitle="Talento que inspira"
         src="/unete-header.webp"

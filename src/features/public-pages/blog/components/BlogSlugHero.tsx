@@ -3,7 +3,7 @@ import { Calendar, Clock } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
 
 export const BlogSlugHero = ({ post }: { post: BlogPost }) => (
-  <header className="relative h-[60vh] min-h-100 w-full overflow-hidden">
+  <header className="relative h-[70vh] min-h-125 md:h-[60vh] pt-20 w-full overflow-hidden">
     <Image
       src={post.image}
       alt={post.title}
