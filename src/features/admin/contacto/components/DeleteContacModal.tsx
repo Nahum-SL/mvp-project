@@ -2,8 +2,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { AlertTriangle, X, Loader2 } from "lucide-react";
-import { cn } from "@/src/lib/utils";
+import { AlertTriangle, Loader2 } from "lucide-react";
 
 interface Props {
   isOpen: boolean;
@@ -23,53 +22,70 @@ export const DeleteContactModal = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
+        <>
+          {/* Backdrop (Fondo desenfocado) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-100"
           />
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-[2.5rem] p-8 shadow-2xl border border-slate-100"
-          >
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6">
-                <AlertTriangle size={32} />
-              </div>
-              <h3 className="text-xl font-extrabold uppercase text-slate-900 tracking-tight">
-                ¿Eliminar Prospecto?
-              </h3>
-              <p className="mt-2 text-slate-500 text-sm leading-relaxed">
-                Estás a punto de eliminar a{" "}
-                <span className="font-bold text-slate-700">{name}</span>. Esta
-                acción no se puede deshacer.
-              </p>
 
-              <div className="flex gap-3 mt-8 w-full">
-                <button
-                  onClick={onClose}
-                  className="flex-1 px-6 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest text-slate-400 hover:bg-slate-50 transition-colors"
-                >
-                  <X size={32} />
-                  Cancelar
-                </button>
-                <button
-                  onClick={onConfirm}
-                  disabled={isPending}
-                  className="flex-1 px-6 py-4 rounded-2xl bg-red-500 text-white font-extrabold text-xs uppercase tracking-widest shadow-lg shadow-red-200 hover:bg-red-600 disabled:bg-red-300 transition-all flex items-center justify-center gap-2"
-                >
-                  {isPending && <Loader2 size={16} className="animate-spin" />}
-                  Eliminar
-                </button>
+          {/* Contenedor del Modal */}
+          <div className="fixed inset-0 flex items-center justify-center z-101 p-4">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl overflow-hidden relative border border-slate-100"
+            >
+              <div className="flex flex-col items-center text-center space-y-4">
+                {/* Icono de Alerta */}
+                <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-2">
+                  <AlertTriangle size={32} />
+                </div>
+
+                {/* Título */}
+                <h3 className="text-xl font-extrabold text-slate-900 uppercase tracking-tight">
+                  ¿ELIMINAR PROSPECTO?
+                </h3>
+
+                {/* Descripción */}
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  Estás a punto de eliminar a{" "}
+                  <span className="font-bold text-slate-800">{name}</span>. Esta
+                  acción es irreversible y el registro desaparecerá de la base
+                  de datos de ASESCON.
+                </p>
+
+                {/* Acciones (Botones apilados) */}
+                <div className="flex flex-col w-full gap-3 mt-6">
+                  <button
+                    onClick={onConfirm}
+                    disabled={isPending}
+                    className="w-full py-4 bg-red-600 text-white font-extrabold rounded-2xl hover:bg-red-700 transition-all uppercase text-xs tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-red-100 disabled:bg-red-400"
+                  >
+                    {isPending ? (
+                      <Loader2 className="animate-spin" size={16} />
+                    ) : null}
+                    {isPending
+                      ? "Eliminando..."
+                      : "Sí, eliminar permanentemente"}
+                  </button>
+
+                  <button
+                    onClick={onClose}
+                    disabled={isPending}
+                    className="w-full py-4 bg-slate-100 text-slate-600 font-extrabold rounded-2xl hover:bg-slate-200 transition-colors uppercase text-xs tracking-widest disabled:opacity-50"
+                  >
+                    Cancelar
+                  </button>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
+        </>
       )}
     </AnimatePresence>
   );

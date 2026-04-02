@@ -5,8 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 export const QuickActions = () => {
   const actions = [
     { label: "Gestionar Clientes", href: "/admin/contacto" },
-    { label: "Reporte de Leads", href: "/admin" },
-    { label: "Ver la Intranet", href: "/admin/intranet" },
+    { label: "Gestionar Candidatos", href: "/admin/unete" },
+    { label: "Ver Auditoria", href: "/admin/audit" },
   ];
 
   return (
