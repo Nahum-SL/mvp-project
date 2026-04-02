@@ -31,6 +31,7 @@ export const FilterItem = ({
         className,
       )}
     >
+      {/* Etiqueta del filtro */}
       <span
         className={cn(
           "text-[10px] uppercase tracking-[0.2em] mb-0.5 transition-colors",

@@ -54,7 +54,7 @@ export const SmartSelector = ({
           activeSection && "ring-4 ring-slate-900/5",
         )}
       >
-        {/* SECCIÓN 1: EMPRESA */}
+        {/* SECCIÓN 1: TIPO DE EMPRESA */}
         <div className="relative flex-1">
           <FilterItem
             label="Empresa"
@@ -108,7 +108,7 @@ export const SmartSelector = ({
 
         <div className="hidden md:block h-8 w-px bg-slate-100 mx-1" />
 
-        {/* SECCIÓN 2: NECESIDAD (CORREGIDA) */}
+        {/* SECCIÓN 2: NECESIDAD / PROBLEMA */}
         <div className="relative flex-1">
           <FilterItem
             label="Necesidad"
@@ -162,7 +162,7 @@ export const SmartSelector = ({
 
         <div className="hidden md:block h-8 w-px bg-slate-100 mx-1" />
 
-        {/* SECCIÓN 3: BÚSQUEDA */}
+        {/* SECCIÓN 3: BÚSQUEDA POR ESCRITO*/}
         <div className="flex-[1.5] flex items-center px-4 py-2 md:py-0">
           <div className="flex flex-col flex-1 pl-4 md:pl-2">
             <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400">

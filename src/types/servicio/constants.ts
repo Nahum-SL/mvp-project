@@ -1,3 +1,4 @@
+// Constantes estaticos para tipos de negocio y puntos de dolor, junto con sus tipos derivados
 export const BUSINESS_TYPES = [
   { id: "mype", label: "MYPE / Emprendedor", icon: "Store" },
   { id: "startup", label: "Startup Tech", icon: "Rocket" },

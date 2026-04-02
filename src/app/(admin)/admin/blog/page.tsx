@@ -22,24 +22,24 @@ export default async function AdminBlogPage() {
         variant="flat"
         actions={
           <Link
-            href="/admin/blog/categoria"
-            className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
-            font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
-            gap-2 shadow-xl shadow-blue-100"
+          href="/admin/blog/crear"
+          className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
+          font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
+          gap-2 shadow-xl shadow-blue-100"
           >
             <Plus size={18} />
-            Nuevo Categoria
+            Blog
           </Link>
         }
         actions2={
           <Link
-            href="/admin/blog/crear"
-            className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
+            href="/admin/blog/categoria"
+            className="bg-white text-sky-600 hover:bg-sky-600  hover:text-white px-8 py-4 rounded-2xl 
             font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
             gap-2 shadow-xl shadow-blue-100"
           >
             <Plus size={18} />
-            Nuevo Blog
+            Categoria
           </Link>
         }
       />

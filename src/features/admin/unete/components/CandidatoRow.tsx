@@ -8,6 +8,7 @@ import { es } from "date-fns/locale";
 import { cn } from "@/src/lib/utils";
 import { JobAppStatus, JobApplication } from "@/src/types/unete/unete";
 import { StatusBadge } from "./StatusBadge";
+import Link from "next/link";
 
 interface Props {
   candidato: JobApplication;
@@ -73,6 +74,7 @@ export const CandidatoRow = ({
         <div className="flex justify-end gap-1">
           {/* Botón Revisado */}
           <ActionButton
+            title="Revisado"
             icon={<CheckCircle size={18} />}
             active={candidato.status === JobAppStatus.REVISADO}
             activeClass="text-emerald-600 bg-emerald-50"
@@ -84,6 +86,7 @@ export const CandidatoRow = ({
 
           {/* Botón Rechazado */}
           <ActionButton
+            title="Rechazado"
             icon={<XCircle size={18} />}
             active={candidato.status === JobAppStatus.RECHAZADO}
             activeClass="text-rose-600 bg-rose-50"
@@ -93,13 +96,15 @@ export const CandidatoRow = ({
             loading={isPending && candidato.status === JobAppStatus.PENDIENTE} // Opcional
           />
 
-          <a
+        {/* Botón CV */}
+          <Link
+            title="Ver CV"
             href={candidato.cvUrl}
             target="_blank"
             className="p-2 text-slate-300 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
           >
             <FileText size={18} />
-          </a>
+          </Link>
         </div>
       </td>
     </motion.tr>
@@ -109,6 +114,7 @@ export const CandidatoRow = ({
 // Sub-componente interno para limpiar los botones
 
 interface ActionButtonProps {
+  title?: string;
   icon: React.ReactNode;
   active: boolean;
   activeClass: string;
@@ -120,6 +126,7 @@ interface ActionButtonProps {
 
 const ActionButton = (
   {
+    title,
     icon,
     active,
     activeClass,
@@ -134,6 +141,7 @@ const ActionButton = (
     whileTap={{ scale: 0.9 }}
     onClick={onClick}
     disabled={disabled}
+    title={title}
     className={cn(
       "p-2 rounded-xl transition-all text-slate-300",
       active ? activeClass : hoverClass,

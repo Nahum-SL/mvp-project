@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import BreadcrumbAuto from "./BreadcrumbAuto";
 import { cn } from "@/src/lib/utils";
 
@@ -27,9 +24,7 @@ export default function SectionHeader({
     <div className="flex flex-col gap-4">
       <BreadcrumbAuto />
 
-      <motion.header
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+      <header
         className={cn(
           "flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all",
           isDark
@@ -78,7 +73,7 @@ export default function SectionHeader({
           {actions && <div className="flex items-center">{actions}</div>}
           {actions2 && <div className="flex items-center">{actions2}</div>}
         </div>
-      </motion.header>
+      </header>
     </div>
   );
 }
