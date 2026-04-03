@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 //Componente Reutilizable
 import HeroVideoBackground from "./hero-video-background";
+import { ReflectButton } from "../buttons/ReflectedButton";
 interface HeroProps {
   companyName?: string;
   mainTitle: string;
@@ -92,12 +93,14 @@ export default function AsesconHero({
             </Link>
 
             {/* Botón Secundario */}
-            <Link
+            <ReflectButton
               href="/servicio?from=ver_servicios"
-              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white font-medium rounded-full border border-white/20 hover:bg-white/10 transition-all uppercase tracking-widest text-sm flex items-center justify-center"
+              className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md text-white 
+              font-medium rounded-full border border-white/20 hover:bg-white/10 transition-all 
+              uppercase tracking-widest text-sm flex items-center justify-center"
             >
               Ver Servicios
-            </Link>
+            </ReflectButton>
           </motion.div>
         </div>
       </div>

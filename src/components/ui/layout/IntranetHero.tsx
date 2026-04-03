@@ -56,39 +56,28 @@ export default function IntranetHero({
           </motion.div>
 
           {/* Título */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <h1
             className="text-5xl md:text-7xl
             text-white tracking-tighter font-serif
             leading-none uppercase drop-shadow-2xl"
           >
             {title}
-          </motion.h1>
+          </h1>
 
           {/* Subtítulo */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 text-slate-400 text-lg md:text-xl max-w-xl 
+          <p className="mt-6 text-slate-400 text-lg md:text-xl max-w-xl 
             leading-relaxed font-light"
           >
             {subtitle}
-          </motion.p>
+          </p>
 
           {/* Indicador de Seguridad (Mejorado con Lucide) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-10 flex items-center gap-2 text-slate-300 text-[10px] 
+          <div className="mt-10 flex items-center gap-2 text-slate-300 text-[10px] 
             uppercase tracking-[0.2em] font-semibold"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
             Acceso Encriptado
-          </motion.div>
+          </div>
         </div>
       </div>
 
