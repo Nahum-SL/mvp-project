@@ -6,8 +6,11 @@ import { FileText, CheckCircle, Calendar, XCircle } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { cn } from "@/src/lib/utils";
-import { JobAppStatus, JobApplication } from "@/src/types/unete/unete";
+
+import { JobAppStatus } from "../types";
+import { JobApplication } from "@/src/types/unete/unete";
 import { StatusBadge } from "./StatusBadge";
+
 import Link from "next/link";
 
 interface Props {

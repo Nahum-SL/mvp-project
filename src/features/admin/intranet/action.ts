@@ -1,10 +1,14 @@
 "use server";
-
-import { cookies } from "next/headers";
-import { revalidatePath } from "next/cache";
-import { IntranetLinkValues } from "./schema";
+// URL del backend
 import { API_URL } from "@/src/lib/api-url";
+// Importamos lo necesario para manejar cookies y los tipos del formulario
+import { cookies } from "next/headers";
+// Revalidar paths después de acciones que modifican data
+import { revalidatePath } from "next/cache";
+// Tipos y enums del contacto
+import { IntranetLinkValues } from "./schema";
 
+// Función para obtener los headers de autenticación con el token del cookie
 async function getAuthHeaders() {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
@@ -14,6 +18,7 @@ async function getAuthHeaders() {
   };
 }
 
+// CREAR LINK
 export async function createLinkAction(data: IntranetLinkValues) {
   const headers = await getAuthHeaders();
 
@@ -42,6 +47,8 @@ export async function createLinkAction(data: IntranetLinkValues) {
   }
 }
 
+// --- ACTUALIZAR LINK
+// -- recibe (id, data) para identificar cuál editar y con qué datos nuevos
 export async function updateLinkAction(id: number, data: IntranetLinkValues) {
   const headers = await getAuthHeaders();
 
@@ -62,6 +69,8 @@ export async function updateLinkAction(id: number, data: IntranetLinkValues) {
   }
 }
 
+// --- ELIMINAR LINK
+// recibe solo el ID para identificar cuál eliminar
 export async function deleteLinkAction(id: number) {
   const headers = await getAuthHeaders();
 
@@ -81,7 +90,7 @@ export async function deleteLinkAction(id: number) {
   }
 }
 
-// Obtener link por ID
+// --- OBTENER LINK POR ID
 export async function getLinkById(id: string) {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
@@ -99,8 +108,8 @@ export async function getLinkById(id: string) {
   return res.json();
 }
 
-// Obtener todos los links
-// Obtener todos los links - RECORREGIDO
+// --- OBTENER TODOS LOS LINKS (ADMIN)
+// -- Para la vista de administración (CRUD)
 export async function getIntranetLinks() {
   const cookieStore = await cookies();
   const token = cookieStore.get("asescon_token")?.value;
@@ -129,6 +138,8 @@ export async function getIntranetLinks() {
   }
 }
 
+// -- OBTENER LINKS PUBLICOS 
+// para el dashboard del usuario en --> (public)/intranet
 export async function getLinks() {
   // 1. Ya no buscamos el token aquí para la vista pública
   try {

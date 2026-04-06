@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { badgeVariant } from "@/src/lib/animations";
-import { JobAppStatus } from "@/src/types/unete/unete";
+import { JobAppStatus } from "../types";
 
 const statusStyles: Record<JobAppStatus, string> = {
   [JobAppStatus.PENDIENTE]: "bg-amber-100 text-amber-700 border-amber-200",

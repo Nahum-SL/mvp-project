@@ -3,7 +3,7 @@
 
 import { Filter, Search } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-import { JobAppStatus } from "@/src/types/unete/unete";
+import { JobAppStatus } from "../types";
 
 interface Props {
   activeFilter: JobAppStatus | "TODOS";

@@ -1,5 +1,4 @@
 "use client";
-// src/components/ui/layout/Footer.tsx
 import Link from "next/link";
 import {
   Mail,
@@ -30,7 +29,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* Columna 1: Brand & Bio */}
           <div className="space-y-8">
-            <Link href="/#home" className="inline-block group">
+            <Link href="/" className="inline-block group">
               <span className="text-3xl font-extrabold text-white tracking-tighter group-hover:text-sky-500 transition-colors">
                 Asescon
               </span>

@@ -1,5 +1,5 @@
 // src/components/sections/RecentPostSection.tsx
-import { getRecentPosts } from "@/src/features/public-pages/blog/action";
+import { getRecentPosts } from "@/src/features/public-web/blog/action";
 import { BlogCardHome } from "./BlogCardHome";
 import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
 import Link from "next/link";

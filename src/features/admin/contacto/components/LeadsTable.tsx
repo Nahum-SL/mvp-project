@@ -5,11 +5,13 @@ import { useState, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Inbox, Search } from "lucide-react";
 import { LeadRow } from "./LeadRow";
-import { Contacto } from "@/src/types/contacto/contacto";
 import { STATUS_CONFIG } from "../constante";
+// Acciones
 import { updateContactStatusAction } from "../action";
-import { ContactStatus } from "@/src/types/contacto/contacto";
 import { ContactoDrawer } from "./ContactoDrawer";
+// Types
+import { Contacto } from "../types";
+import { ContactStatus } from "../types";
 
 interface Props {
   leads: Contacto[];

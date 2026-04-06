@@ -7,4 +7,6 @@ export interface ServiceHome {
   description: string;
   slug: string;
   image?: string;
+  pain?: string
+  type?: string;
 }

@@ -1,5 +1,5 @@
-import UneteHero from "@/src/components/ui/layout/UneteHero";
-import { UneteForm } from "@/src/features/public-pages/unete/components/UneteForm";
+import UneteHero from "@/src/features/public-web/unete/UneteHero";
+import { UneteForm } from "@/src/features/public-web/unete/components/UneteForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

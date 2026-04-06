@@ -95,6 +95,7 @@ export default function HeroVideoBackground({
             src={poster}
             alt="Hero background"
             fill
+            priority
             sizes="100vw"
             onLoad={() => setImageLoaded(true) }
             className={cn(
@@ -112,7 +113,7 @@ export default function HeroVideoBackground({
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           onCanPlay={() => setVideoReady(true)}
           className={cn(
             "absolute inset-0 w-full h-full object-cover pointer-events-none",

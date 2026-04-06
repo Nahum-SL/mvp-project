@@ -109,7 +109,7 @@ export const StepLogin = ({ onSuccess, onError }: StepLoginProps) => {
           pero dentro del motion.div para animarse al salir */}
       <div className="mt-8 pt-6 border-t border-slate-50">
         <Link
-          href="/#home"
+          href="/"
           className="group flex items-center justify-center gap-2 text-slate-400 hover:text-slate-900 transition-all text-[10px] uppercase font-bold tracking-widest"
         >
           <span className="w-5 h-px bg-slate-200 group-hover:bg-slate-900 transition-all" />

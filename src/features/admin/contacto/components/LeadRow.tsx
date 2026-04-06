@@ -16,7 +16,7 @@ import {
 import { ContactStatusEnum } from "../schema";
 import { z } from "zod";
 import { STATUS_CONFIG } from "../constante";
-import { Contacto } from "@/src/types/contacto/contacto";
+import { Contacto } from "../types";
 import { ContactoFormValues } from "../schema";
 
 import { DeleteContactModal } from "./DeleteContacModal";

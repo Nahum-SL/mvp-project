@@ -1,14 +1,17 @@
 // src/app/(public)/page.tsx
-import AsesconHero from "../../components/ui/layout/AsesconHero";
+// Para los Skelotons
 import { Suspense } from "react";
-import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
-import { ContactForm } from "@/src/components/ui/layout/contacto/ContactForm";
-import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
-import { FeaturedServices } from "@/src/features/public-pages/home/components/FeaturedServices";
-import { ValueProposition } from "@/src/features/public-pages/home/components/ValueProposition";
-
+// Para generar la metadata dinámica
 import { Metadata } from "next";
+// Componentes de la página
+import AsesconHero from "@/src/features/public-web/home/AsesconHero";
+import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
+import { ContactForm } from "@/src/features/public-web/contacto/components/ContactForm";
+import { FeaturedServices } from "@/src/features/public-web/home/components/FeaturedServices";
+import { ValueProposition } from "@/src/features/public-web/home/components/ValueProposition";
 import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";
+// Componente header
+import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
 
 export const metadata: Metadata = {
   title: {
@@ -37,13 +40,11 @@ export default function Home() {
     <main className="bg-white text-slate-900">
       <div className="relative z-15">
         {/* 1. HERO: Impacto visual inicial */}
-        <section id="home">
-          <AsesconHero
-            mainTitle="Impulsamos el crecimiento de su empresa"
-            subtitle="Respaldo estratégico y seguridad jurídica para una operación con total tranquilidad."
-            ctaText="Hablar con un asesor"
-          />
-        </section>
+        <AsesconHero
+          mainTitle="Impulsamos el crecimiento de su empresa"
+          subtitle="Respaldo estratégico y seguridad jurídica para una operación con total tranquilidad."
+          ctaText="Hablar con un asesor"
+        />
 
         {/* 2. SERVICIOS POPULARES: El "catálogo" de soluciones */}
         <section className="bg-slate-50 z-14">

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import IntranetHero from "@/src/components/ui/layout/IntranetHero";
-import IntranetDashboard from "@/src/components/ui/layout/intranet/IntranetDashboard";
-import { IntranetSkeleton } from "@/src/components/ui/layout/intranet/IntranetSkeleton";
+import IntranetHero from "@/src/features/public-web/intranet/IntranetHero";
+import IntranetDashboard from "@/src/features/public-web/intranet/components/IntranetDashboard";
+import { IntranetSkeleton } from "@/src/components/skeletons/IntranetSkeleton";
 import { getLinks } from "@/src/features/admin/intranet/action";
 
 import { Metadata } from "next";

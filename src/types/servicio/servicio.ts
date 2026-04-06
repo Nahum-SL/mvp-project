@@ -1,6 +1,7 @@
 // Importamos los tipos de ID para los filtros
 import { type BusinessTypeID, type PainPointID } from "./constants";
 
+
 // Definimos la estructura de una característica de servicio
 export interface ServiceFeature {
   id: number;
@@ -22,7 +23,7 @@ export interface Service {
   slug: string;
   description: string;
   icon?: string | null;
-  image?: string;
+  image: string;
 
   businessTypes: BusinessTypeID[];
   painPoints: PainPointID[];
@@ -34,4 +35,15 @@ export interface Service {
 
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ServiceGlobal {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  businessTypes: string[];
+  painPoints: string[];
+  order?: number;
 }

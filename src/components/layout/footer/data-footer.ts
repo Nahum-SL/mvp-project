@@ -21,7 +21,7 @@ export const locations = [
 ];
 
 export const footerLinks = [
-  { name: "Inicio", href: "/#home" },
+  { name: "Inicio", href: "/" },
   { name: "Nosotros", href: "/nosotros" },
   { name: "Servicios", href: "/servicio" },
   { name: "Recursos", href: "/blog" },

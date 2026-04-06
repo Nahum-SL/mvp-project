@@ -1,10 +1,10 @@
 // src/features/public-pages/blog/containers/PostSlugContent.tsx
 // EXPORTADO --> src/app/(public)/blog/[slug]/page.tsx
 import { notFound } from "next/navigation";
-import { getPostBySlug, getNavigationPosts } from "../public-pages/blog/action";
-import { BlogSlugHero } from "../public-pages/blog/components/BlogSlugHero";
-import { BlogPostNavigation } from "../public-pages/blog/components/BlogPostNavigation";
-import { BlogSidebar } from "../public-pages/blog/components/BlogSidebar";
+import { getPostBySlug, getNavigationPosts } from "../public-web/blog/action";
+import { BlogSlugHero } from "../public-web/blog/components/BlogSlugHero";
+import { BlogPostNavigation } from "../public-web/blog/components/BlogPostNavigation";
+import { BlogSidebar } from "../public-web/blog/components/BlogSidebar";
 import { PostLayoutWrapper } from "@/src/features/containers/PostLayoutWrapper";
 import { cn } from "@/src/lib/utils";
 

@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { JobAppStatus } from "@/src/types/unete/unete";
+import { JobAppStatus } from "./types";
 import { API_URL } from "@/src/lib/api-url";
 
 export async function updateCandidatoStatus(id: string, status: JobAppStatus) {

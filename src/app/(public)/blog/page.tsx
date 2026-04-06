@@ -1,7 +1,7 @@
 // src/app/(public)/blog/page.tsx
 import { Suspense } from "react";
 import { BlogHero } from "@/src/components/sections/BlogHero";
-import BlogContent from "@/src/features/public-pages/blog/components/BlogContent";
+import BlogContent from "@/src/features/public-web/blog/components/BlogContent";
 import BlogSkeleton from "@/src/components/skeletons/BlogSkeleton";
 
 export default function BlogPage() {

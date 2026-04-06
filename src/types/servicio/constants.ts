@@ -15,3 +15,6 @@ export const PAIN_POINTS = [
 // Forma correcta de extraer los IDs como Union Types
 export type BusinessTypeID = (typeof BUSINESS_TYPES)[number]["id"];
 export type PainPointID = (typeof PAIN_POINTS)[number]["id"];
+
+// Opcional para priorizar servicios 
+export const FEATURED_PRIORITY_IDS = [3,5]; 

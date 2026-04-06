@@ -1,5 +1,5 @@
-import ServiceDashboard from "@/src/features/containers/ServiceDashboard";
-import ServiceHero from "@/src/components/ui/layout/ServiceHero";
+import ServiceDashboard from "@/src/features/public-web/servicio/container/ServiceDashboard";
+import ServiceHero from "@/src/features/public-web/servicio/ServiceHero";
 import ServiceDashboardSkeleton from "@/src/components/skeletons/ServiceDashboardSkeleton";
 import { Suspense } from "react";
 import { Metadata } from "next";
@@ -27,7 +27,7 @@ export async function generateMetadata({
       que le permitirá constituir su empresa de manera efectiva y ágil.`,
     openGraph: {
       title,
-      images: ["/servicios-hero.webp"], // Imagen genérica de la sección
+      images: "/servicios-hero.webp", // Imagen genérica de la sección
     },
   };
 }

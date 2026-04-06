@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Save, User, Phone, Mail, Loader2 } from "lucide-react";
 import { contactoSchema, type ContactoFormValues, type ContactoFormInput } from "../schema";
-import { ContactInput } from "@/src/components/ui/layout/contacto/form/ContactInput";
-import { Contacto } from "@/src/types/contacto/contacto";
+import { ContactInput } from "@/src/features/public-web/contacto/components/form/ContactInput";
+import { Contacto } from "../types";
 
 interface Props {
   isOpen: boolean;

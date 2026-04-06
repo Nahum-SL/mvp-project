@@ -1,13 +1,15 @@
 // src/features/auth/login/action.ts
 "use server";
 
+// Importamos cookies para manejar la sesión
 import { cookies } from "next/headers";
-import { LoginFormValues } from "./schema";
+// Revalidar la página después de iniciar sesión
 import { revalidatePath } from "next/cache";
-import {
-  AuthResponse,
-  type LoginActionResult,
-} from "@/src/types/auth/auth-response";
+// Types
+import { AuthResponse, type LoginActionResult } from "./types";
+// Valores del formulario
+import { LoginFormValues } from "./schema";
+// URL del backend en NestJS - Railway
 import { API_URL } from "@/src/lib/api-url";
 
 export async function loginAction(
@@ -39,7 +41,7 @@ export async function loginAction(
     return (await saveSession(result)) as LoginActionResult;
   } catch (e) {
     // console.error("Error en loginAction:", e);
-    return {error: "No se pudo conectar con el servidor"};
+    return { error: "No se pudo conectar con el servidor" };
   }
 }
 

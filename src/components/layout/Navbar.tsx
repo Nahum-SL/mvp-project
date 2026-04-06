@@ -18,7 +18,7 @@ function NavbarCard() {
       <GlassNavbar>
         <div className="flex items-center h-20 px-6 md:px-10">
           {/* Logo */}
-          <Link href="/#home" className="text-2xl font-extrabold text-white mr-8">
+          <Link href="/" className="text-2xl font-extrabold text-white mr-8">
               asescon
           </Link>
 

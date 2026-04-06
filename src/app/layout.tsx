@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { inter } from "../lib/fonts";
 import { Toaster } from "sonner";
 
-import "../styles/globals.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://asescon.pe"), // Reemplaza con tu dominio real

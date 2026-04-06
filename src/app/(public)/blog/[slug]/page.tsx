@@ -2,9 +2,9 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/src/features/public-pages/blog/action";
+import { getPostBySlug } from "@/src/features/public-web/blog/action";
 import PostSlugContent from "@/src/features/containers/PostSlugContent";
-import { ReadingProgressBar } from "@/src/features/public-pages/blog/components/ReadingProgressBar";
+import { ReadingProgressBar } from "@/src/features/public-web/blog/components/ReadingProgressBar";
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Esquema de validación para los links de la intranet
 export const intranetLinkSchema = z.object({
   title: z
     .string()
@@ -26,5 +27,6 @@ export const intranetLinkSchema = z.object({
     .default(true),
 });
 
+// Tipos para los formularios y acciones
 export type IntranetLinkFormInput = z.input<typeof intranetLinkSchema>;
 export type IntranetLinkValues = z.output<typeof intranetLinkSchema>;

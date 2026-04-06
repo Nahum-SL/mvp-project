@@ -1,11 +1,19 @@
-// src/components/sections/BlogCardHome.tsx
+
+// -- EXPORTADO --> src/
 "use client";
+
+// Manejar estado hover para efectos visuales
 import { useState } from "react";
+// Animacion
 import { motion } from "framer-motion";
+// Componentes de Next.js
 import Link from "next/link";
 import Image from "next/image";
+// Iconos
 import { ArrowUpRight, Calendar } from "lucide-react";
+// Tipos para el post
 import { BlogPost } from "@/src/types/blog/blogPost";
+// Utilidad para manejar clases condicionales
 import { cn } from "@/src/lib/utils";
 
 interface Props {
@@ -14,6 +22,7 @@ interface Props {
 }
 
 export const BlogCardHome = ({ post, index }: Props) => {
+  // -- Estado para manejar hover (y touch) y aplicar efectos visuales
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -29,6 +38,8 @@ export const BlogCardHome = ({ post, index }: Props) => {
       className="group relative h-125 w-full overflow-hidden 
       rounded-[2.5rem] bg-white border border-slate-200 shadow-sm"
     >
+
+      {/* Referencia al slug del post para enlazar a la página de detalle del blog */}
       <Link href={`/blog/${post.slug}`}>
         {/* IMAGEN DE FONDO CON EFECTO ZOOM */}
         <div className="absolute inset-0 z-0">
@@ -43,7 +54,6 @@ export const BlogCardHome = ({ post, index }: Props) => {
             )}
           />
           {/* Overlay de color cuando no hay hover (Limpio) */}
-          {/* Overlay mejorado */}
           <div
             className={cn(
               "absolute inset-0 transition-all duration-500",
