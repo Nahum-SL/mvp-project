@@ -41,8 +41,8 @@ export const ServiceCardComponent = ({
       className={cn(
         "group relative bg-white rounded-[2.5rem] p-8 border transition-all duration-500 flex flex-col h-full",
         isHigh
-          ? "border-blue-500 shadow-2xl ring-2 ring-blue-500/10 scale-[1.02]"
-          : "border-slate-100 hover:shadow-xl",
+          ? "border-emerald-500 shadow-2xl ring-2 ring-blue-500/10 scale-[1.02]"
+          : "border-slate-100 group-hover:border-blue-500 hover:shadow-xl",
       )}
     >
       {/* Badge de Recomendado (Solo si está resaltado) */}

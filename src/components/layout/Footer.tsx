@@ -171,9 +171,9 @@ export default function Footer() {
         {/* Footer Bottom */}
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">
           <div className="flex items-center gap-4">
-            <p>© {currentYear} ASESCON</p>
+            <p>© {currentYear} ASESCON GROUP S.A.C.</p>
             <span className="w-1 h-1 bg-slate-800 rounded-full" />
-            <p className="text-slate-600 uppercase">RUC: 20452303531</p>
+            <p className="text-slate-600 uppercase">RUC: 20611297972 </p>
           </div>
 
           <p className="flex items-center gap-2">
