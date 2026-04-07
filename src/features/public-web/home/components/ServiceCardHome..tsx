@@ -32,6 +32,7 @@ export const ServiceCardHome = ({
         <Image
           src={`/${service.image}.webp`}
           alt={service.title}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
