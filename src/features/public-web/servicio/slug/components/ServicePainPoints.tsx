@@ -9,7 +9,7 @@ export default function ServicePainPoints({
   painPoints: string[];
 }) {
   return (
-    <section className="py-28 bg-slate-950 text-white relative overflow-hidden">
+    <section id="detalles" className="py-28 bg-slate-950 text-white relative overflow-hidden">
       {/* Top gradient separator */}
       <div className="absolute top-0 left-0 w-full h-24 bg-linear-to-b from-slate-950 to-transparent pointer-events-none" />
       <motion.div

@@ -9,6 +9,8 @@ import ServiceBenefits from "@/src/features/public-web/servicio/slug/components/
 import ServiceProcess from "@/src/features/public-web/servicio/slug/components/ServicesProcess";
 import ServiceTrust from "@/src/features/public-web/servicio/slug/components/ServiceTrust";
 import ServiceCTA from "@/src/features/public-web/servicio/slug/components/ServiceCTA";
+import ServiceMetrics from "@/src/features/public-web/servicio/slug/components/ServiceMetrics";
+import { getServiceMetrics } from "@/src/lib/adapters/serviceMetrics.adapter";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,6 +34,8 @@ export default async function ServicioDetallePage({ params }: Props) {
 
   if (!service) notFound();
 
+  const metrics = getServiceMetrics(service);
+
   return (
     <main className="bg-white">
       <ServiceSlugHero service={service} />
@@ -40,12 +44,17 @@ export default async function ServicioDetallePage({ params }: Props) {
 
       <ServiceBenefits features={service.features} />
 
+      <ServiceMetrics
+        impact={metrics.impact}
+        effort={metrics.effort}
+        risk={metrics.risk}
+      />
+
       <ServiceProcess />
 
       <ServiceTrust />
 
       <ServiceCTA serviceTitle={service.title} />
-
     </main>
   );
 }

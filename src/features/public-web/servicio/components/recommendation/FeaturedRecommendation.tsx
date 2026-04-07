@@ -127,20 +127,46 @@ export default function FeaturedRecommendation({
                 </div>
               </div>
             )}
+          </div>
 
-            {/* Alternativas que tengan compatibilidad  */}
-            <div className="mt-8">
-              <p className="text-xs uppercase tracking-wider text-slate-400 mb-3">
+          {/* Lado Derecho */}
+          <div className="flex flex-col gap-6 sticky top-24">
+            {/* IMAGEN */}
+            <div className="hidden md:block relative w-full h-64 md:h-72 rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden">
+              {/* Glow */}
+              <div className="absolute inset-0 bg-[radial-linear(circle_at_70%_40%,rgba(99,102,241,0.15),transparent_60%)]" />
+
+              {/* Grid decorativo */}
+              <div
+                className="absolute inset-0 opacity-20 
+                  bg-[linear-linear(to_right,#00000010_1px,transparent_1px),linear-gradient(to_bottom,#00000010_1px,transparent_1px)] 
+                  bg-size-[24px_24px]"
+              />
+
+              <Image
+                src={service.image || "/place-holder.webp"}
+                alt={service.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover opacity-90"
+              />
+
+              <div className="absolute inset-0 bg-linear-to-t from-white/80 via-white/40 to-transparent" />
+            </div>
+
+            {/* ALTERNATIVAS */}
+            <div>
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-2">
                 Alternativas evaluadas
               </p>
 
-              <div className="flex gap-2 overflow-auto pb-2 no-scrollbar">
+              <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
                 {alternatives.map((alt) => (
                   <Link
                     key={`${alt.id}-${alt.title}`}
                     href={`/servicio/${alt.slug}?from=featured_recommendation`}
                   >
-                    <div className="px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 bg-slate-50">
+                    <div className="px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 bg-slate-50 whitespace-nowrap hover:bg-slate-100 transition">
                       {alt.title}
                     </div>
                   </Link>
@@ -149,45 +175,18 @@ export default function FeaturedRecommendation({
             </div>
 
             {/* CTA */}
-            <div className="mt-8">
-              <Link
-                href={`/servicio/${service.slug}?from=main_recommendation`}
-                className={cn(
-                  "flex md:inline-flex w-full md:w-fit justify-center items-center gap-2 px-6 py-3 rounded-xl",
-                  "bg-slate-900 text-white text-sm font-semibold",
-                  "hover:bg-slate-800 transition-all duration-300",
-                  "shadow-md hover:shadow-lg",
-                )}
-              >
-                Ver solución
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative w-full h-108 rounded-2xl border border-slate-200 
-          bg-slate-50 overflow-hidden">
-            {/* Glow */}
-            <div className="absolute inset-0 bg-[radial-linear(circle_at_70%_40%,rgba(99,102,241,0.15),transparent_60%)]" />
-
-            {/* Grid decorativo */}
-            <div
-              className="absolute inset-0 opacity-20 
-              bg-[linear-linear(to_right,#00000010_1px,transparent_1px),linear-gradient(to_bottom,#00000010_1px,transparent_1px)] 
-              bg-size-[24px_24px]"
-            />
-
-            {/* Imagen */}
-            <Image
-              src={service.image || "/place-holder.webp"}
-              alt={service.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-              className="object-cover opacity-90"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-white/80 via-white/40 to-transparent" />
+            <Link
+              href={`/servicio/${service.slug}?from=main_recommendation`}
+              className={cn(
+                "flex items-center justify-center gap-2 px-5 py-3 rounded-xl",
+                "bg-slate-900 text-white text-sm font-semibold",
+                "hover:bg-slate-800 transition-all duration-300",
+                "shadow-md hover:shadow-lg",
+              )}
+            >
+              Ver solución
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
         {/*  Línea inferior tipo progreso */}

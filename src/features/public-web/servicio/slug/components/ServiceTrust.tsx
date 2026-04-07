@@ -70,7 +70,7 @@ export default function ServiceTrust() {
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className="py-10">
-      <p className="text-4xl md:text-5xl font-semibold text-sky-500">
+      <p className="text-4xl md:text-5xl font-semibold text-slate-800">
         {value}
       </p>
       <p className="text-xs uppercase tracking-widest text-slate-500 mt-2">
