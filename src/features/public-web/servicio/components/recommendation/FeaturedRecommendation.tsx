@@ -25,7 +25,7 @@ export default function FeaturedRecommendation({
   alternatives,
 }: Props) {
   return (
-    <section className="relative max-w-6xl mx-auto px-6 mb-16">
+    <section className="relative max-w-6xl mx-auto px-6 mb-16 will-change-transform">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export default function FeaturedRecommendation({
         <div className="absolute inset-0 rounded-3xl p-px bg-linear-to-r from-indigo-500/20 via-transparent to-indigo-500/20 pointer-events-none" />
 
         {/* Métricas estilo consultora */}
-        <div className="relative grid md:grid-cols-2 gap-10 p-10">
+        <div className="relative flex flex-col md:grid md:grid-cols-2 gap-8 md:gap10 p-6 md:p-10">
           {/*  CONTENIDO */}
           <div className="flex flex-col justify-center">
             {/* Badge */}
@@ -49,7 +49,7 @@ export default function FeaturedRecommendation({
               <Sparkles className="w-4 h-4" />
               Recomendación principal
             </div>
-            <div className="flex gap-6 mb-6 text-xs font-medium text-slate-500">
+            <div className="flex justify-between md:justify-start md:gap-6 mb-6 text-xs font-medium text-slate-500">
               <div>
                 <span className="block text-slate-400">Impacto</span>
                 <span className="text-slate-900 font-semibold">
@@ -82,7 +82,7 @@ export default function FeaturedRecommendation({
               {service.title}
             </h3>
 
-            <div className="mb-6">
+            <div className="mb-4 md:mb-6">
               <MetricsDonutGroup
                 impact={service.recommendationMeta.impact}
                 effort={service.recommendationMeta.effort}
@@ -134,14 +134,16 @@ export default function FeaturedRecommendation({
                 Alternativas evaluadas
               </p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2 overflow-auto pb-2 no-scrollbar">
                 {alternatives.map((alt) => (
-                  <div
+                  <Link
                     key={`${alt.id}-${alt.title}`}
-                    className="px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 bg-slate-50"
+                    href={`/servicio/${alt.slug}?from=featured_recommendation`}
                   >
-                    {alt.title}
-                  </div>
+                    <div className="px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 bg-slate-50">
+                      {alt.title}
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -151,7 +153,7 @@ export default function FeaturedRecommendation({
               <Link
                 href={`/servicio/${service.slug}?from=main_recommendation`}
                 className={cn(
-                  "inline-flex items-center gap-2 w-fit px-6 py-3 rounded-xl",
+                  "flex md:inline-flex w-full md:w-fit justify-center items-center gap-2 px-6 py-3 rounded-xl",
                   "bg-slate-900 text-white text-sm font-semibold",
                   "hover:bg-slate-800 transition-all duration-300",
                   "shadow-md hover:shadow-lg",
@@ -163,33 +165,29 @@ export default function FeaturedRecommendation({
             </div>
           </div>
 
-          {/*  LADO VISUAL (minimalista + autoridad) */}
-          <div className="relative hidden md:flex items-center justify-center">
-            <div className="relative w-full h-56 rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden">
-              {/* Glow interno */}
-              <div className="absolute inset-0 bg-[radial-linear(circle_at_70%_40%,rgba(99,102,241,0.15),transparent_60%)]" />
+          <div className="relative w-full h-108 rounded-2xl border border-slate-200 
+          bg-slate-50 overflow-hidden">
+            {/* Glow */}
+            <div className="absolute inset-0 bg-[radial-linear(circle_at_70%_40%,rgba(99,102,241,0.15),transparent_60%)]" />
 
-              {/* Líneas decorativas tipo consultora */}
-              <div
-                className="absolute inset-0 opacity-20 
+            {/* Grid decorativo */}
+            <div
+              className="absolute inset-0 opacity-20 
               bg-[linear-linear(to_right,#00000010_1px,transparent_1px),linear-gradient(to_bottom,#00000010_1px,transparent_1px)] 
               bg-size-[24px_24px]"
-              />
+            />
 
-              {/* Overlay para la imagen  */}
-              <div className="absolute inset-0 bg-linear-to-t from-white/80 via-white/40 to-transparent" />
-              {/* Texto placeholder premium */}
-              <div className="absolute inset-0">
-                <Image
-                  src={service.image || "/place-holder.webp"}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  className="object-cover opacity-90"
-                  priority={false}
-                />
-              </div>
-            </div>
+            {/* Imagen */}
+            <Image
+              src={service.image || "/place-holder.webp"}
+              alt={service.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+              className="object-cover opacity-90"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-white/80 via-white/40 to-transparent" />
           </div>
         </div>
         {/*  Línea inferior tipo progreso */}

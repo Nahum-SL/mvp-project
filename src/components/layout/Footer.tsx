@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import Link from "next/link";
 import {
   Mail,
@@ -17,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="bg-slate-950 text-slate-300 relative 
+      className="bg-slate-950 min-h-100 text-slate-300 relative 
     overflow-hidden border-t border-slate-900"
     >
       <div

@@ -17,14 +17,16 @@ export const AIRecommendationLayer = ({ recommendations }: Props) => {
   const top = recommendations[0];
 
   return (
-    <section className="relative mb-12">
+    <section className="relative mb-12 will-change-transform">
       {/* Glow background tipo Vercel */}
-      <div className="absolute inset-0 bg-linear-to-r from-blue-50 via-white to-purple-50 blur-2xl opacity-60 rounded-4xl" />
+      <div
+        className="absolute inset-0 bg-linear-to-r from-blue-50 via-white to-purple-50 
+      blur-xl md:blur-2xl opacity-60 rounded-4xl"
+      />
 
-      <div className="relative bg-white/80 backdrop-blur-xl border border-slate-100 rounded-4xl p-8 shadow-xl">
-        
+      <div className="relative bg-white/80 backdrop-blur-xl border border-slate-100 rounded-4xl p-5 md:p-8 shadow-xl">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-4 md:mb-6">
           <div className="p-2 bg-blue-600 text-white rounded-xl">
             <Sparkles size={18} />
           </div>
@@ -34,7 +36,7 @@ export const AIRecommendationLayer = ({ recommendations }: Props) => {
         </div>
 
         {/* Headline */}
-        <h3 className="text-2xl font-extrabold text-slate-900 mb-4 leading-tight">
+        <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-4 leading-tight">
           {narrative.headline}
         </h3>
 
@@ -54,7 +56,9 @@ export const AIRecommendationLayer = ({ recommendations }: Props) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-linear-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 flex justify-between items-center"
+          transition={{ duration: 0.4 }}
+          className="bg-linear-to-br from-slate-900 to-slate-800 text-white 
+          rounded-2xl p-6 flex flex-col md:flex-row gap-4 md:justify-between md:items-center"
         >
           <div>
             <p className="text-xs uppercase tracking-widest text-slate-400 mb-1">
@@ -63,24 +67,30 @@ export const AIRecommendationLayer = ({ recommendations }: Props) => {
             <h4 className="text-lg">{top.title}</h4>
           </div>
 
-          <div className="flex gap-6 text-xs text-slate-300">
+          <div className="flex justify-between md:justify-start md:gap-6 text-xs text-slate-300 w-full md:w-auto">
             <div>
               <p>Impacto</p>
-              <p className="text-white font-bold">{Math.round(top.impact) / 10}</p>
+              <p className="text-white font-bold">
+                {Math.round(top.impact) / 10}
+              </p>
             </div>
             <div>
               <p>Esfuerzo</p>
-              <p className="text-white font-bold">{Math.round(top.effort) / 10}</p>
+              <p className="text-white font-bold">
+                {Math.round(top.effort) / 10}
+              </p>
             </div>
             <div>
               <p>Riesgo</p>
-              <p className="text-white font-bold">{Math.round(top.risk) / 10}</p>
+              <p className="text-white font-bold">
+                {Math.round(top.risk) / 10}
+              </p>
             </div>
           </div>
         </motion.div>
 
         {/* Recommendation */}
-        <p className="mt-6 text-slate-700 font-medium max-w-3xl">
+        <p className="mt-6 text-slate-700 font-medium max-w-full md:max-w-3xl">
           {narrative.recommendation}
         </p>
 

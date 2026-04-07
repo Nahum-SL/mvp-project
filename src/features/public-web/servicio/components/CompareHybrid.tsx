@@ -75,7 +75,7 @@ export default function ComparisonHybrid({ services }: Props) {
               )}
 
               <Link
-                href={`/servicio/${svc.id}?from=compare_hybrid`}
+                href={`/servicio/${svc.slug}?from=compare_hybrid`}
                 className="block"
               >
                 <h3 className="font-semibold text-sm mb-3 hover:underline hover:text-indigo-600">
