@@ -22,7 +22,7 @@ export const NosotrosHero = ({
       <HeroVideoBackground
         videoSrc="/nosotros-hero-video.webm"
         poster="/nosotros-hero-image.webp"
-        delay={500}
+        delay={0}
       />
 
       <div className="container mx-auto px-6 relative z-10">

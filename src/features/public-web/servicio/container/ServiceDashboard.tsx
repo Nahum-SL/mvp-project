@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo } from "react";
+
 import { useServices } from "@/src/hooks/useServices";
 import { SmartSelector } from "../components/selector/SmartSelector";
 import { ServiceGrid } from "../components/ServiceGrid";
@@ -44,18 +46,21 @@ export default function ServiceDashboard() {
     resetCompare,
   } = useComparison({ services: scoredServices });
 
-  const recommendedServices = recommendation?.bestMatch
-    ? [recommendation.bestMatch, ...(recommendation.alternatives || [])].map(
-        (svc) => ({
-          id: svc.id,
-          title: svc.title,
-          impact: svc.recommendationMeta.impact,
-          effort: svc.recommendationMeta.effort,
-          risk: svc.recommendationMeta.risk,
-          priorityScore: getPriorityScore(svc.recommendationMeta),
-        }),
-      )
-    : [];
+  const recommendedServices = useMemo(() => {
+    if (!recommendation?.bestMatch) return [];
+
+    return [
+      recommendation.bestMatch,
+      ...(recommendation.alternatives || []),
+    ].map((svc) => ({
+      id: svc.id,
+      title: svc.title,
+      impact: svc.recommendationMeta.impact,
+      effort: svc.recommendationMeta.effort,
+      risk: svc.recommendationMeta.risk,
+      priorityScore: getPriorityScore(svc.recommendationMeta),
+    }));
+  }, [recommendation]);
 
   const { data: comparedServices, loading } = useCompareRecommendation({
     ids: compareIds,
