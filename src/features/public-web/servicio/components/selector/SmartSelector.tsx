@@ -24,7 +24,7 @@ export const SmartSelector = ({
   isPending,
 }: Props) => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState(filters.search);
+  const [searchTerm, setSearchTerm] = useState(filters.search || "");
 
   // Debounce para la búsqueda
   useEffect(() => {
@@ -185,8 +185,8 @@ export const SmartSelector = ({
                 onClick={() => {
                   setSearchTerm("");
                   onFilterChange({
-                    businessType: "",
-                    painPoint: "",
+                    businessType: undefined,
+                    painPoint: undefined,
                     search: "", 
                   });
                 }}

@@ -15,15 +15,12 @@ export function calculateServiceScore(
   const reasons: string[] = [];
 
   const hasBusinessType =
-    filters.businessType &&
-    svc.businessTypes.includes(filters.businessType);
+    filters.businessType && svc.businessTypes.includes(filters.businessType);
   const hasPainPoint =
     filters.painPoint && svc.painPoints.includes(filters.painPoint);
 
   // Coincidencia por tipo de negocio = 30
-  if (
-    hasBusinessType
-  ) {
+  if (hasBusinessType) {
     score += 30;
     reasons.push("Optimizado para tu tipo de negocio");
   }
@@ -35,7 +32,7 @@ export function calculateServiceScore(
   }
 
   // Si coinciden ambos
-  if (hasBusinessType && hasPainPoint  ) {
+  if (hasBusinessType && hasPainPoint) {
     score += 10;
     reasons.push("Recomendado a tu problema principal");
   }

@@ -6,12 +6,24 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
+import { MetricsDonutGroup } from "./metricas/MetricDonutGroup";
 
+// -- Bloque de decisión
 interface Props {
   service: ScoredService;
+  alternatives: ScoredService[];
+  insights?: {
+    summary: string;
+    confidence: number;
+    reasoning: string[];
+  };
 }
 
-export default function FeaturedRecommendation({ service }: Props) {
+export default function FeaturedRecommendation({
+  service,
+  insights,
+  alternatives,
+}: Props) {
   return (
     <section className="relative max-w-6xl mx-auto px-6 mb-16">
       <motion.div
@@ -28,6 +40,7 @@ export default function FeaturedRecommendation({ service }: Props) {
         {/*  Gradient border effect */}
         <div className="absolute inset-0 rounded-3xl p-px bg-linear-to-r from-indigo-500/20 via-transparent to-indigo-500/20 pointer-events-none" />
 
+        {/* Métricas estilo consultora */}
         <div className="relative grid md:grid-cols-2 gap-10 p-10">
           {/*  CONTENIDO */}
           <div className="flex flex-col justify-center">
@@ -37,25 +50,54 @@ export default function FeaturedRecommendation({ service }: Props) {
               Recomendación principal
             </div>
             <div className="flex gap-6 mb-6 text-xs font-medium text-slate-500">
-              <span>Impacto: {service.recommendationMeta.impact}/10</span>
-              <span>Esfuerzo: {service.recommendationMeta.effort}/10</span>
-              <span>Riesgo: {service.recommendationMeta.risk}/10</span>
+              <div>
+                <span className="block text-slate-400">Impacto</span>
+                <span className="text-slate-900 font-semibold">
+                  {Math.round(service.recommendationMeta.impact / 10)}/10
+                </span>
+              </div>
+
+              <div>
+                <span className="block text-slate-400">Esfuerzo</span>
+                <span className="text-slate-900 font-semibold">
+                  {Math.round(service.recommendationMeta.effort) / 10}/10
+                </span>
+              </div>
+
+              <div>
+                <span className="block text-slate-400">Riesgo</span>
+                <span className="text-slate-900 font-semibold">
+                  {Math.round(service.recommendationMeta.risk / 10)}/10
+                </span>
+              </div>
             </div>
 
             {/* Título */}
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-medium text-slate-900 leading-tight mb-4">
               Esto es lo que necesitas ahora
             </h2>
 
             {/* Servicio */}
-            <h3 className="text-xl font-semibold text-slate-800 mb-4">
+            <h3 className="text-xl font-semibold text-slate-800 mb-4 border-l-4 border-indigo-500 pl-4">
               {service.title}
             </h3>
 
+            <div className="mb-6">
+              <MetricsDonutGroup
+                impact={service.recommendationMeta.impact}
+                effort={service.recommendationMeta.effort}
+                risk={service.recommendationMeta.risk}
+              />
+            </div>
+
             {/* Descripción */}
             <p className="text-slate-600 leading-relaxed mb-6 line-clamp-3">
-              {service.description.replace(/<[^>]*>/g, "")}
+              {service.description?.replace(/<[^>]*>/g, "")}
             </p>
+
+            {insights && (
+              <p className="text-sm text-slate-500 mb-4">{insights.summary}</p>
+            )}
 
             <ul className="space-y-2 mb-6">
               {service.recommendationMeta.reasons.map((reason, i) => (
@@ -68,19 +110,57 @@ export default function FeaturedRecommendation({ service }: Props) {
                 </li>
               ))}
             </ul>
+
+            {/* Confidence con contexto */}
+            {insights && (
+              <div className="mb-6">
+                <div className="flex justify-between text-xs text-slate-400 mb-1">
+                  <span>Confianza del sistema</span>
+                  <span>{Math.round(insights.confidence * 100)}%</span>
+                </div>
+
+                <div className="h-1 bg-slate-200 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-indigo-500 transition-all duration-700"
+                    style={{ width: `${insights.confidence * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Alternativas que tengan compatibilidad  */}
+            <div className="mt-8">
+              <p className="text-xs uppercase tracking-wider text-slate-400 mb-3">
+                Alternativas evaluadas
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {alternatives.map((alt) => (
+                  <div
+                    key={`${alt.id}-${alt.title}`}
+                    className="px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 bg-slate-50"
+                  >
+                    {alt.title}
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* CTA */}
-            <Link
-              href={`/servicio/${service.slug}`}
-              className={cn(
-                "inline-flex items-center gap-2 w-fit px-6 py-3 rounded-xl",
-                "bg-slate-900 text-white text-sm font-semibold",
-                "hover:bg-slate-800 transition-all duration-300",
-                "shadow-md hover:shadow-lg",
-              )}
-            >
-              Ver solución
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <div className="mt-8">
+              <Link
+                href={`/servicio/${service.slug}?from=main_recommendation`}
+                className={cn(
+                  "inline-flex items-center gap-2 w-fit px-6 py-3 rounded-xl",
+                  "bg-slate-900 text-white text-sm font-semibold",
+                  "hover:bg-slate-800 transition-all duration-300",
+                  "shadow-md hover:shadow-lg",
+                )}
+              >
+                Ver solución
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </div>
 
           {/*  LADO VISUAL (minimalista + autoridad) */}
@@ -101,7 +181,7 @@ export default function FeaturedRecommendation({ service }: Props) {
               {/* Texto placeholder premium */}
               <div className="absolute inset-0">
                 <Image
-                  src={service.image}
+                  src={service.image || "/place-holder.webp"}
                   alt={service.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
@@ -112,7 +192,6 @@ export default function FeaturedRecommendation({ service }: Props) {
             </div>
           </div>
         </div>
-
         {/*  Línea inferior tipo progreso */}
         <div className="h-0.5 w-full bg-linear-to-r from-indigo-500 via-indigo-300 to-transparent opacity-60" />
       </motion.div>

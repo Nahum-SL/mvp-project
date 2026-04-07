@@ -7,11 +7,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Service } from "@/src/types/servicio/servicio";
+import { ScoredService } from "../types/servicio/scoring.types";
 import { API_URL } from "@/src/lib/api-url";
 
 export const useServices = () => {
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<ScoredService[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

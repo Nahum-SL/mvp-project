@@ -1,17 +1,18 @@
 "use client";
 
 import { useMemo, memo } from "react";
-import { Service } from "@/src/types/servicio/servicio";
+
+import { ScoredService } from "@/src/types/servicio/scoring.types";
 import { Check, Minus, Info } from "lucide-react";
 
 // Usamos memo para evitar re-renders si el dashboard cambia pero no los servicios a comparar
 export const ComparisonTableStripe = memo(
-  ({ services }: { services: Service[] }) => {
+  ({ services }: { services: ScoredService[] }) => {
     // 1. Calculamos las filas de forma plana para renderizado directo O(1)
     const rows = useMemo(() => {
       // Obtenemos nombres únicos
       const names = Array.from(
-        new Set(services.flatMap((s) => s.features.map((f) => f.name))),
+        new Set(services.flatMap((s) => (s.features ?? []).map((f) => f.name))),
       );
 
       // Mapeamos a una estructura que la tabla recorra sin lógica extra

@@ -9,8 +9,6 @@ import ServiceBenefits from "@/src/features/public-web/servicio/slug/components/
 import ServiceProcess from "@/src/features/public-web/servicio/slug/components/ServicesProcess";
 import ServiceTrust from "@/src/features/public-web/servicio/slug/components/ServiceTrust";
 import ServiceCTA from "@/src/features/public-web/servicio/slug/components/ServiceCTA";
-import ServiceContent from "@/src/features/public-web/servicio/components/ServiceContent";
-import ServiceContactSidebar from "@/src/features/public-web/servicio/components/ServiceContactSidebar";
 
 interface Props {
   params: Promise<{ slug: string }>;

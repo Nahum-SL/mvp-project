@@ -18,7 +18,7 @@ import { memo } from "react";
 
 interface Props {
   service: Service;
-  highlighted?: boolean; // Se activa cuando hay un match en el SmartSelector
+  highlightLevel?: "high" | "medium" | "low" | "none";
   onCompare: () => void;
   isComparing: boolean;
   matchScore?: number;
@@ -26,25 +26,27 @@ interface Props {
 
 export const ServiceCardComponent = ({
   service,
-  highlighted,
+  highlightLevel,
   onCompare,
   isComparing,
   matchScore,
 }: Props) => {
   // Recuperamos el icono dinámicamente si existe en Lucide
   const IconComponent = iconMap[service.icon as IconName] ?? LinkIcon;
+  // Calculando "high"
+  const isHigh = highlightLevel === "high";
 
   return (
     <article
       className={cn(
         "group relative bg-white rounded-[2.5rem] p-8 border transition-all duration-500 flex flex-col h-full",
-        highlighted
-          ? "border-blue-500 shadow-2xl shadow-blue-100 ring-2 ring-blue-500/10 scale-[1.02]"
-          : "border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-2",
+        isHigh
+          ? "border-blue-500 shadow-2xl ring-2 ring-blue-500/10 scale-[1.02]"
+          : "border-slate-100 hover:shadow-xl",
       )}
     >
       {/* Badge de Recomendado (Solo si está resaltado) */}
-      {highlighted && matchScore && matchScore >= 85 && (
+      {highlightLevel === "high" && matchScore && matchScore >= 85 && (
         <div
           className="absolute -top-4 right-6 bg-emerald-500 text-white 
         px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest 
@@ -60,7 +62,7 @@ export const ServiceCardComponent = ({
         <div
           className={cn(
             "p-4 rounded-2xl transition-colors",
-            highlighted
+            isHigh
               ? "bg-green-400 text-white"
               : "bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600",
           )}
@@ -91,9 +93,9 @@ export const ServiceCardComponent = ({
 
         {/* Si se hace un match mayor al 80%
             Muestra un comentario relevante
-            para evitar falsos positivos se agrego "highlighted"
+            para evitar falsos positivos se agrego "highlightLevel"
         */}
-        {highlighted && matchScore && matchScore >= 80 && (
+        {highlightLevel === "high" && matchScore && matchScore >= 80 && (
           <div
             className="inline-block px-3 py-1 bg-emerald-100 
           text-emerald-700 text-[10px] font-extrabold uppercase rounded-lg mb-2"
@@ -188,7 +190,7 @@ export const ServiceCard = memo(
     return (
       prevProps.matchScore === nextProps.matchScore &&
       prevProps.isComparing === nextProps.isComparing &&
-      prevProps.highlighted === nextProps.highlighted &&
+      prevProps.highlightLevel === nextProps.highlightLevel &&
       // Es vital comparar el ID del servicio por si la tarjeta se recicla en la lista
       prevProps.service.id === nextProps.service.id
     );

@@ -6,6 +6,7 @@ import { ServiceCard } from "./ServiceCard";
 import { ServiceFilters } from "@/src/types/servicio/servicio";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
+import { useMemo } from "react";
 
 interface Props {
   services: ScoredService[];
@@ -21,6 +22,10 @@ export const ServiceGrid = ({
   compareIds,
   highlightedIds,
 }: Props) => {
+  const highlightedSet = useMemo(
+    () => new Set(highlightedIds),
+    [highlightedIds],
+  );
 
   return (
     <motion.div
@@ -41,9 +46,9 @@ export const ServiceGrid = ({
               service={svc}
               onCompare={() => onCompare(svc.id)}
               isComparing={compareIds.includes(svc.id)}
-              highlighted={highlightedIds.includes(svc.id)}
-              matchScore={svc.relevanceScore} // Usamos el valor ya calculado
-            />
+              highlightLevel={highlightedSet.has(svc.id) ? "high" : "none"}
+              matchScore={svc.relevanceScore}
+            />{" "}
           </motion.div>
         ))}
       </AnimatePresence>

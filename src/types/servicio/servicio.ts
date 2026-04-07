@@ -11,8 +11,8 @@ export interface ServiceFeature {
 
 // Definimos la estructura exacta de tus filtros
 export interface ServiceFilters {
-  businessType: BusinessTypeID | "";
-  painPoint: PainPointID | "";
+  businessType?: BusinessTypeID;
+  painPoint?: PainPointID;
   search: string;
 }
 
@@ -35,15 +35,4 @@ export interface Service {
 
   createdAt: string;
   updatedAt: string;
-}
-
-export interface ServiceGlobal {
-  id: number;
-  title: string;
-  slug: string;
-  description: string;
-  image: string;
-  businessTypes: string[];
-  painPoints: string[];
-  order?: number;
 }
