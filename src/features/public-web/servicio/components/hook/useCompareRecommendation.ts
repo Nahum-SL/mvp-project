@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { compareServices } from "../compare.action";
+import { compareServices } from "../compare/compare.action";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
 import { RecommendationParams } from "@/src/types/servicio/recommendation";
 

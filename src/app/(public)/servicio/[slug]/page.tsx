@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getServiceBySlug } from "@/src/features/admin/servicio/action";
 
 // Subcomponentes
-import ServiceSlugHero from "@/src/features/public-web/servicio/ServiceSlugHero";
+import ServiceSlugHero from "@/src/features/public-web/servicio/slug/ServiceSlugHero";
 import ServicePainPoints from "@/src/features/public-web/servicio/slug/components/ServicePainPoints";
 import ServiceBenefits from "@/src/features/public-web/servicio/slug/components/ServiceBenefits";
 import ServiceProcess from "@/src/features/public-web/servicio/slug/components/ServicesProcess";

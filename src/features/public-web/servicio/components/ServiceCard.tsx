@@ -1,201 +1,164 @@
-// src/features/components/servicios/ServiceCard.tsx
 "use client";
 
-import { Service } from "@/src/types/servicio/servicio";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  Link as LinkIcon,
-} from "lucide-react";
-import { cn } from "@/src/lib/utils";
-import Link from "next/link";
-// -- UTILS --
-// Manejar iconos
-import { iconMap, IconName } from "@/src/lib/icons";
-
+import { motion } from "framer-motion";
 import { memo } from "react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { cn } from "@/src/lib/utils";
+import { iconMap, IconName } from "@/src/lib/icons";
+import { ScoredService } from "@/src/types/servicio/scoring.types";
 
 interface Props {
-  service: Service;
+  service: ScoredService & {
+    priorityScore?: number;
+  };
   highlightLevel?: "high" | "medium" | "low" | "none";
   onCompare: () => void;
   isComparing: boolean;
   matchScore?: number;
 }
 
-export const ServiceCardComponent = ({
+export const ServiceCardV2Component = ({
   service,
-  highlightLevel,
+  highlightLevel = "none",
   onCompare,
   isComparing,
-  matchScore,
+  matchScore = 0,
 }: Props) => {
-  // Recuperamos el icono dinámicamente si existe en Lucide
-  const IconComponent = iconMap[service.icon as IconName] ?? LinkIcon;
-  // Calculando "high"
+  const IconComponent = iconMap[service.icon as IconName];
   const isHigh = highlightLevel === "high";
 
+  const priority = service.priorityScore ?? 0;
+  const mainReason = service.recommendationMeta?.reasons?.[0];
+
   return (
-    <article
+    <motion.article
+      layout
+      animate={
+        highlightLevel === "high" ? { scale: [1, 1.03, 1] } : { scale: 1 }
+      }
+      transition={{ duration: 0.4 }}
       className={cn(
-        "group relative bg-white rounded-[2.5rem] p-8 border transition-all duration-500 flex flex-col h-full",
+        "group relative flex flex-col h-full rounded-3xl border p-6 transition-all duration-500",
+        "bg-white overflow-hidden",
         isHigh
-          ? "border-emerald-500 shadow-2xl ring-2 ring-blue-500/10 scale-[1.02]"
-          : "border-slate-100 group-hover:border-blue-500 hover:shadow-xl",
+          ? "border-indigo-500 shadow-xl shadow-indigo-100/50 scale-[1.02]"
+          : "border-slate-100 hover:border-slate-200 hover:shadow-lg",
+        highlightLevel === "none" && "opacity-60 hover:opacity-100",
       )}
     >
-      {/* Badge de Recomendado (Solo si está resaltado) */}
-      {highlightLevel === "high" && matchScore && matchScore >= 85 && (
-        <div
-          className="absolute -top-4 right-6 bg-emerald-500 text-white 
-        px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest 
-        flex items-center gap-1 shadow-lg"
-        >
-          <Sparkles size={12} />
-          Top recomendado
-        </div>
+      {/* Glow */}
+      {isHigh && (
+        <div className="absolute inset-0 bg-linear-to-br from-indigo-50 to-transparent pointer-events-none" />
       )}
 
-      {/* Header: Icono y Título */}
-      <div className="flex items-start justify-between mb-6">
-        <div
-          className={cn(
-            "p-4 rounded-2xl transition-colors",
-            isHigh
-              ? "bg-green-400 text-white"
-              : "bg-slate-50 text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600",
-          )}
-        >
-          <IconComponent size={28} strokeWidth={1.5} />
+      {/* HEADER */}
+      <div className="flex items-start justify-between mb-4 relative z-10">
+        <div className="p-3 rounded-xl bg-slate-50 text-slate-500 group-hover:bg-indigo-50 group-hover:text-indigo-600 transition">
+          {IconComponent && <IconComponent size={22} strokeWidth={1.8} />}
         </div>
-        <div className="flex gap-1">
-          {service.businessTypes.slice(0, 2).map((type) => (
-            <span
-              key={type}
-              className="text-[9px] font-extrabold uppercase tracking-tighter
-              text-slate-400 bg-slate-50 px-2 py-1 rounded-md"
-            >
-              {type}
-            </span>
-          ))}
+
+        {/* MINI SCORES */}
+        <div className="text-right text-[10px] text-slate-400 space-y-1">
+          <div>
+            <span className="block">Match</span>
+            <span className="font-bold text-slate-700">{matchScore}%</span>
+          </div>
+          <div>
+            <span className="block">Prioridad</span>
+            <span className="font-bold text-indigo-600">{priority}</span>
+          </div>
         </div>
       </div>
 
-      {/* TItulo del Servicio */}
-      <div className="grow">
-        <h3
-          className="text-xl font-extrabold text-slate-900 mb-3 leading-tight 
-        group-hover:text-blue-600 transition-colors"
-        >
-          {service.title}
-        </h3>
+      {/* TITLE */}
+      <h3 className="text-lg font-semibold text-slate-900 mb-2 leading-snug relative z-10">
+        {service.title}
+      </h3>
 
-        {/* Si se hace un match mayor al 80%
-            Muestra un comentario relevante
-            para evitar falsos positivos se agrego "highlightLevel"
-        */}
-        {highlightLevel === "high" && matchScore && matchScore >= 80 && (
-          <div
-            className="inline-block px-3 py-1 bg-emerald-100 
-          text-emerald-700 text-[10px] font-extrabold uppercase rounded-lg mb-2"
+      {/* RAZÓN PRINCIPAL */}
+      {mainReason && (
+        <p className="text-xs text-slate-500 italic mb-3 relative z-10">
+          {mainReason}
+        </p>
+      )}
+
+      {/* PROGRESS BAR */}
+      <div className="mb-4 relative z-10">
+        <div className="flex justify-between text-[10px] text-slate-400 mb-1">
+          <span>Compatibilidad</span>
+          <span>{matchScore}%</span>
+        </div>
+
+        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${matchScore}%`}}
+            transition={{ duration: 0.8, ease: "easeOut"}}
+            className={cn(
+              "h-full transition-all duration-700",
+              matchScore > 80
+                ? "bg-emerald-500"
+                : matchScore > 50
+                  ? "bg-indigo-500"
+                  : "bg-amber-400",
+            )}
+            style={{ width: `${matchScore}%` }}
+          />
+        </div>
+      </div>
+
+      {/* DESCRIPTION */}
+      <p className="text-sm text-slate-600 line-clamp-3 mb-4 relative z-10">
+        {service.description?.replace(/<[^>]*>/g, "")}
+      </p>
+
+      {/* FEATURES */}
+      <ul className="space-y-2 mb-6 relative z-10">
+        {service.features?.slice(0, 2).map((f) => (
+          <li
+            key={f.id}
+            className="flex items-center gap-2 text-xs text-slate-600"
           >
-            Recomendación Top
-          </div>
-        )}
+            <CheckCircle2 size={14} className="text-emerald-500" />
+            {f.name}
+          </li>
+        ))}
+      </ul>
 
-        {/* Linea colorida del card que aumenta y cambia de color mientras mayor sea el match */}
-        {matchScore !== undefined && matchScore > 0 && (
-          <div className="mb-4 space-y-1.5">
-            <div className="flex justify-between items-center text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
-              <span>Compatibilidad</span>
-              <span
-                className={cn(
-                  matchScore > 80
-                    ? "text-emerald-500"
-                    : matchScore > 50
-                      ? "text-blue-500"
-                      : "text-amber-500",
-                )}
-              >
-                {matchScore}%
-              </span>
-            </div>
-            <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-              <div
-                className={cn(
-                  "h-full transition-all duration-1000 ease-out",
-                  matchScore > 80
-                    ? "bg-emerald-500"
-                    : matchScore > 50
-                      ? "bg-blue-500"
-                      : "bg-amber-500",
-                )}
-                style={{ width: `${matchScore}%` }}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Renderizado de descripción (limitado para el card) */}
-        <div
-          className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3"
-          dangerouslySetInnerHTML={{ __html: service.description }}
-        />
-
-        {/* Features rápidas */}
-        <ul className="space-y-3 mb-8">
-          {service.features.slice(0, 3).map((feature) => (
-            <li
-              key={feature.id}
-              className="flex items-center gap-3 text-xs font-bold text-slate-600"
-            >
-              <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-              {feature.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Footer: Acciones */}
-      <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+      {/* FOOTER */}
+      <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-50 relative z-10">
         <Link
           href={`/servicio/${service.slug}`}
-          className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-slate-900 hover:text-blue-600 transition-all"
+          className="flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-indigo-600 transition"
         >
-          Ver Detalles <ArrowRight size={16} />
+          Ver detalles <ArrowRight size={14} />
         </Link>
 
         <button
           onClick={onCompare}
           className={cn(
-            "text-[13px] font-bold transition-all active:scale-95 underline-offset-4 hover:underline", // Añadido active:scale-95
-            isComparing ? "text-amber-600 underline" : "text-slate-400",
+            "text-xs font-semibold transition-all",
+            "px-3 py-1.5 rounded-lg border",
+            isComparing
+              ? "bg-indigo-600 text-white border-indigo-600"
+              : "border-slate-200 text-slate-500 hover:border-indigo-300 hover:text-indigo-600",
           )}
         >
           {isComparing ? "Seleccionado" : "Comparar"}
         </button>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
-// 2. Envolvemos con memo y exportamos
 export const ServiceCard = memo(
-  ServiceCardComponent,
-  (prevProps, nextProps) => {
-    // REGLA DE ORO PARA EL INP:
-    // Solo re-renderizar si cambian los valores visuales críticos.
-
-    return (
-      prevProps.matchScore === nextProps.matchScore &&
-      prevProps.isComparing === nextProps.isComparing &&
-      prevProps.highlightLevel === nextProps.highlightLevel &&
-      // Es vital comparar el ID del servicio por si la tarjeta se recicla en la lista
-      prevProps.service.id === nextProps.service.id
-    );
-  },
+  ServiceCardV2Component,
+  (prev, next) =>
+    prev.service.id === next.service.id &&
+    prev.matchScore === next.matchScore &&
+    prev.isComparing === next.isComparing &&
+    prev.highlightLevel === next.highlightLevel,
 );
 
-// Asignamos un displayName para debugging (útil en React 19)
 ServiceCard.displayName = "ServiceCard";

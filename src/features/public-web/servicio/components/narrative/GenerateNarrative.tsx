@@ -1,5 +1,6 @@
 import { AIServiceInsight } from "../../types";
 
+// Exportado ==> a AIRecommendation.tsx
 export const generateNarrative = (services: AIServiceInsight[]) => {
   if (!services.length) return null;
 

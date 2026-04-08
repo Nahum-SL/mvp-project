@@ -16,7 +16,7 @@ import { useRecommendation } from "./ServiceDashboard/hooks/useRecommendation";
 import { useComparison } from "./ServiceDashboard/hooks/useComparison";
 
 import { getPriorityScore } from "./ServiceDashboard/utils/priorityScore";
-import ComparisonModal from "../components/ComparisonModal";
+import ComparisonModal from "../components/compare/ComparisonModal";
 
 import { useCompareRecommendation } from "../components/hook/useCompareRecommendation";
 
@@ -106,6 +106,7 @@ export default function ServiceDashboard() {
             services={
               comparedServices.length ? comparedServices : selectedServices
             }
+            hasContext={hasActiveFilters}
           />
         )}
       </AnimatePresence>

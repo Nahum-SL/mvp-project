@@ -91,7 +91,7 @@ export default function FeaturedRecommendation({
             </div>
 
             {/* Descripción */}
-            <p className="text-slate-600 leading-relaxed mb-6 line-clamp-3">
+            <p className="text-slate-600 leading-relaxed mb-6 line-clamp-none md:line-clamp-3">
               {service.description?.replace(/<[^>]*>/g, "")}
             </p>
 
