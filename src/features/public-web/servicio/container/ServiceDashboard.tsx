@@ -70,8 +70,6 @@ export default function ServiceDashboard() {
 
   const highlightedIds = recommendedServices.map((s) => s.id);
 
-  const isComparing = isModalOpen && compareIds.length === 2;
-
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 space-y-16">
       <SmartSelector
@@ -99,7 +97,7 @@ export default function ServiceDashboard() {
       />
 
       <AnimatePresence>
-        {isComparing && (
+        {isModalOpen && (
           <ComparisonModal
             isOpen={isModalOpen}
             onClose={resetCompare}

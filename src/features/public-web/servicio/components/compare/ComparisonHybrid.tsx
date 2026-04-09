@@ -3,9 +3,11 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
-import { ComparisonTableStripe } from "./ComparisonTableStripe";
 import { cn } from "@/src/lib/utils";
 import { Info, Sparkles, Trophy } from "lucide-react";
+
+import { ComparisonTableStripe } from "./ComparisonTableStripe";
+import { MetricsDonutMini } from "../recommendation/metricas/MetricsDonutsMini";
 
 interface Props {
   services: ScoredService[];
@@ -15,6 +17,8 @@ interface Props {
 export default function ComparisonHybrid({ services, hasContext }: Props) {
   //  calcular scores
   const enriched = useMemo(() => {
+    // Llega vacio durante la carga inicial, evitar errores de acceso a propiedades
+    if (!services || services.length === 0) return [];
     return services.map((s) => {
       // Asegúrate de que estamos accediendo al objeto correcto
       // Si NestJS envía los datos, vienen dentro de recommendationMeta
@@ -40,13 +44,33 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
     ? Math.max(...enriched.map((s) => s.priorityScore))
     : 0;
 
+  // Servicios con el mejor score (puede haber empate)
   const bestServices = enriched.filter((s) => s.priorityScore === bestScore);
-
   // En lugar de comparar igualdad exacta (===), comparamos la diferencia
   const isTie = bestServices.length > 1;
   // Ganador
   const hasWinner = bestServices.length === 1;
+  // Mostramos las metricas IA si hay contexto
   const showAI = hasContext;
+
+  const cardStyles = {
+    winner:
+      "border-indigo-500 bg-linear-to-b from-indigo-50/50 to-white shadow-indigo-100/50 shadow-lg",
+    tie: "border-emerald-500 bg-linear-to-b from-emerald-50/50 to-white shadow-emerald-100/50 shadow-md",
+    neutral: "border-slate-100 bg-white hover:border-slate-200 shadow-sm",
+  };
+
+  const accentColor = {
+    winner: "text-indigo-600",
+    tie: "text-emerald-600",
+    neutral: "text-slate-400",
+  };
+
+  const barColor = {
+    winner: "bg-indigo-500",
+    tie: "bg-emerald-500",
+    neutral: "bg-slate-400",
+  };
 
   return (
     <div className="space-y-8">
@@ -110,21 +134,34 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
         {enriched.map((svc) => {
           const isBest = bestServices.some((s) => s.id === svc.id);
           const showBest = isBest && showAI;
+          const mode =
+            isTie && isBest
+              ? "tie"
+              : hasWinner && isBest
+                ? "winner"
+                : "neutral";
           return (
             <motion.div
               key={svc.id}
               className={cn(
                 "relative overflow-hidden rounded-2xl border-2 p-6 transition-all duration-300",
                 showBest
-                  ? "border-indigo-500 bg-linear-to-b from-indigo-50/50 to-white shadow-indigo-100/50 shadow-lg"
+                  ? cardStyles[mode]
                   : "border-slate-100 bg-white hover:border-slate-200 shadow-sm",
               )}
             >
-              {/* Badge Dinámico */}
-              {showBest && showAI && (
+              {/* Badge Dinámico: Usamos el mismo mode */}
+              {showAI && mode !== "neutral" && (
                 <div className="absolute top-0 right-0">
-                  <div className="bg-indigo-600 text-white px-4 py-1 rounded-bl-xl text-[10px] font-black uppercase tracking-tighter">
-                    Mejor Elección
+                  <div
+                    className={cn(
+                      "text-white px-4 py-1 rounded-bl-xl text-[10px] font-black uppercase tracking-tighter",
+                      mode === "winner" ? "bg-indigo-600" : "bg-emerald-500",
+                    )}
+                  >
+                    {mode === "winner"
+                      ? "Mejor Elección"
+                      : "Prioridad Equilibrada"}
                   </div>
                 </div>
               )}
@@ -149,51 +186,46 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
                           }}
                           className={cn(
                             "h-full rounded-full",
-                            showBest ? "bg-indigo-500" : "bg-slate-400",
+                            showBest ? barColor[mode] : "bg-slate-400",
                           )}
                         />
                       )}
                     </div>
                   </div>
                   {showAI && (
-                    <span className="text-2xl font-black text-indigo-600 leading-none">
+                    <span
+                      className={cn(
+                        "text-2xl font-bold leading-none",
+                        accentColor[mode],
+                      )}
+                    >
                       {Math.round(svc.priorityScore / 10)}
                     </span>
                   )}
                 </div>
 
                 {/* Mini-grid de métricas */}
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-50">
-                  <div className="text-center">
-                    <p className="text-[9px] text-slate-400 uppercase">
-                      Impacto
-                    </p>
-                    {showAI && (
-                      <p className="font-bold text-slate-700">
-                        {Math.round(svc.impact / 10)}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-center border-x border-slate-100">
-                    <p className="text-[9px] text-slate-400 uppercase">
-                      Esfuerzo
-                    </p>
-                    {showAI && (
-                      <p className="font-bold text-slate-700">
-                        {Math.round(svc.effort / 10)}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-center">
-                    <p className="text-[9px] text-slate-400 uppercase">
-                      Riesgo
-                    </p>
-                    {showAI && (
-                      <p className="font-bold text-slate-700">
-                        {Math.round(svc.risk / 10)}
-                      </p>
-                    )}
-                  </div>
+                {/* DONUT METRICS */}
+                <div className="flex justify-between pt-3 border-t border-slate-50">
+                  {showAI && (
+                    <>
+                      <MetricsDonutMini
+                        label="Impacto"
+                        value={svc.impact}
+                        color="stroke-emerald-500"
+                      />
+                      <MetricsDonutMini
+                        label="Esfuerzo"
+                        value={svc.effort}
+                        color="stroke-amber-500"
+                      />
+                      <MetricsDonutMini
+                        label="Riesgo"
+                        value={svc.risk}
+                        color="stroke-rose-500"
+                      />
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>

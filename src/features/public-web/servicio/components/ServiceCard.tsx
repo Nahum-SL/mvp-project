@@ -30,7 +30,7 @@ export const ServiceCardV2Component = ({
 
   const priority = service.priorityScore ?? 0;
   const mainReason = service.recommendationMeta?.reasons?.[0];
-
+  
   return (
     <motion.article
       layout

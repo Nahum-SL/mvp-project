@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
-import ComparisonHybrid from "./CompareHybrid";
+import ComparisonHybrid from "./ComparisonHybrid";
 import { cn } from "@/src/lib/utils";
 
 interface Props {

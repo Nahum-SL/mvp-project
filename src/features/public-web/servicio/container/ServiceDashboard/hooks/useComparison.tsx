@@ -1,4 +1,4 @@
-import { useState, useMemo, startTransition, useTransition } from "react";
+import { useState, useMemo } from "react";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
 
 type UseComparisonProps = {
@@ -8,21 +8,18 @@ type UseComparisonProps = {
 export function useComparison({ services }: UseComparisonProps) {
   const [compareIds, setCompareIds] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPending, startTransition] = useTransition();
 
   const toggleCompare = (id: number) => {
-    startTransition(() => {
-      setCompareIds((prev) => {
-        const next = prev.includes(id)
-          ? prev.filter((i) => i !== id)
-          : prev.length < 2
-            ? [...prev, id]
-            : [prev[1], id];
+    setCompareIds((prev) => {
+      const next = prev.includes(id)
+        ? prev.filter((i) => i !== id)
+        : prev.length < 2
+          ? [...prev, id]
+          : [prev[1], id];
 
-        if (next.length === 2) setIsModalOpen(true);
+      if (next.length === 2) setIsModalOpen(true);
 
-        return next;
-      });
+      return next;
     });
   };
 

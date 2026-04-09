@@ -95,7 +95,7 @@ export const IntranetCardLink = ({
           } as React.CSSProperties
         }
       >
-        {/* 🔥 SPOTLIGHT dinámico */}
+        {/* SPOTLIGHT dinámico */}
         <div
           className="
             pointer-events-none absolute inset-0 rounded-3xl
