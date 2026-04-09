@@ -15,9 +15,6 @@ interface Props {
 }
 
 export default function ComparisonHybrid({ services, hasContext }: Props) {
-  // Función de normalización para redondear a múltiplos de 100
-  const normalize = (value: number) => Math.round(value / 100) * 100;
-
   //  calcular scores
   const enriched = useMemo(() => {
     // Llega vacio durante la carga inicial, evitar errores de acceso a propiedades
@@ -31,15 +28,14 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
       const effort = meta?.effort ?? 0;
       const risk = meta?.risk ?? 0;
 
-      // Fórmula de prioridad: Impacto ponderado contra Esfuerzo y Riesgo
-      const raw = Math.max(0, impact * 2 - effort - risk);
+      const priorityScore = Math.max(0, impact * 2 - effort - risk);
 
       return {
         ...s,
         impact,
         effort,
         risk,
-        priorityScore: normalize(raw),
+        priorityScore,
       };
     });
   }, [services]);
@@ -142,8 +138,9 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
         {enriched.map((svc) => {
           const isBest = bestServices.some((s) => s.id === svc.id);
           const showBest = isBest && showAI;
-          const mode =
-            isTie && isBest
+          const mode = !showAI
+            ? "neutral"
+            : isTie && isBest
               ? "tie"
               : hasWinner && isBest
                 ? "winner"
