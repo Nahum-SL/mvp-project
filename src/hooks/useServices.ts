@@ -8,39 +8,35 @@
 
 import { useState, useEffect } from "react";
 import { ScoredService } from "../types/servicio/scoring.types";
+import { ServiceFilters } from "../types/servicio/servicio";
 import { API_URL } from "@/src/lib/api-url";
 
-export const useServices = () => {
+export const useServices = (filters: ServiceFilters) => {
   const [services, setServices] = useState<ScoredService[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchServices = async () => {
-      try {
-        setIsLoading(true);
-        // Consumimos la ruta pública de tu controlador de NestJS
-        const response = await fetch(`${API_URL}/api/servicio`, {
-          // Usamos caché de Next.js pero permitimos revalidación
-          next: { tags: ["servicio"] },
-        });
+      setIsLoading(true);
 
-        if (!response.ok) {
-          throw new Error("Error al cargar los servicios");
-        }
+      const params = new URLSearchParams();
 
-        const data = await response.json();
-        setServices(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Error desconocido");
-        // console.error("FETCH_SERVICES_ERROR:", err);
-      } finally {
-        setIsLoading(false);
-      }
+      if (filters.businessType)
+        params.append("businessType", filters.businessType);
+      if (filters.painPoint) params.append("painPoint", filters.painPoint);
+      if (filters.search) params.append("search", filters.search);
+
+      const response = await fetch(
+        `${API_URL}/api/servicio/scored?${params.toString()}`,
+      );
+
+      const data = await response.json();
+      setServices(data);
+      setIsLoading(false);
     };
 
     fetchServices();
-  }, []);
+  }, [filters]);
 
-  return { services, isLoading, error };
+  return { services, isLoading };
 };

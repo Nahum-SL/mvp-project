@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { compareServices } from "../compare/compare.action";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
 import { RecommendationParams } from "@/src/types/servicio/recommendation";
-
+// Acciones
+import { compareServices } from "../compare/compare.action";
 interface Props {
   ids: number[];
   filters: RecommendationParams;

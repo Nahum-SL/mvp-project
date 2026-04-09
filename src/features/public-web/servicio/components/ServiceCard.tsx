@@ -9,9 +9,7 @@ import { iconMap, IconName } from "@/src/lib/icons";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
 
 interface Props {
-  service: ScoredService & {
-    priorityScore?: number;
-  };
+  service: ScoredService;
   highlightLevel?: "high" | "medium" | "low" | "none";
   onCompare: () => void;
   isComparing: boolean;
@@ -30,7 +28,7 @@ export const ServiceCardV2Component = ({
 
   const priority = service.priorityScore ?? 0;
   const mainReason = service.recommendationMeta?.reasons?.[0];
-  
+
   return (
     <motion.article
       layout
@@ -93,8 +91,8 @@ export const ServiceCardV2Component = ({
         <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: `${matchScore}%`}}
-            transition={{ duration: 0.8, ease: "easeOut"}}
+            animate={{ width: `${matchScore}%` }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className={cn(
               "h-full transition-all duration-700",
               matchScore > 80

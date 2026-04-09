@@ -71,19 +71,19 @@ export const AIRecommendationLayer = ({ recommendations }: Props) => {
             <div>
               <p>Impacto</p>
               <p className="text-white font-bold">
-                {Math.round(top.impact) / 10}
+                {Math.round(top.impact)}%
               </p>
             </div>
             <div>
               <p>Esfuerzo</p>
               <p className="text-white font-bold">
-                {Math.round(top.effort) / 10}
+                {Math.round(top.effort)}%
               </p>
             </div>
             <div>
               <p>Riesgo</p>
               <p className="text-white font-bold">
-                {Math.round(top.risk) / 10}
+                {Math.round(top.risk)}%
               </p>
             </div>
           </div>

@@ -46,7 +46,7 @@ export const ServiceGrid = ({
     <>
       <div className="mb-4 md:mb-6">
         <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">
-          Otras opciones que puedes considerar
+          Servicios que puedes considerar
         </h3>
       </div>
       <motion.div

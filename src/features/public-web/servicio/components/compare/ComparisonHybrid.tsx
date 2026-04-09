@@ -22,20 +22,12 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
     return services.map((s) => {
       // Asegúrate de que estamos accediendo al objeto correcto
       // Si NestJS envía los datos, vienen dentro de recommendationMeta
-      const meta = s.recommendationMeta;
-
-      const impact = meta?.impact ?? 0;
-      const effort = meta?.effort ?? 0;
-      const risk = meta?.risk ?? 0;
-
-      const priorityScore = Math.max(0, impact * 2 - effort - risk);
-
       return {
         ...s,
-        impact,
-        effort,
-        risk,
-        priorityScore,
+        impact: s.recommendationMeta.impact ?? 0,
+        effort: s.recommendationMeta.effort ?? 0,
+        risk: s.recommendationMeta.risk ?? 0,
+        priorityScore: s.priorityScore ?? 0,
       };
     });
   }, [services]);

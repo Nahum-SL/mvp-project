@@ -11,18 +11,14 @@ import FeaturedRecommendation from "../components/recommendation/FeaturedRecomme
 import { AIRecommendationLayer } from "../components/recommendation/AIRecommendationLayer";
 
 import { useServiceFilters } from "./ServiceDashboard/hooks/useServiceFilters";
-import { useServiceScoring } from "./ServiceDashboard/hooks/useServiceScoring";
 import { useRecommendation } from "./ServiceDashboard/hooks/useRecommendation";
 import { useComparison } from "./ServiceDashboard/hooks/useComparison";
 
-import { getPriorityScore } from "./ServiceDashboard/utils/priorityScore";
 import ComparisonModal from "../components/compare/ComparisonModal";
 
 import { useCompareRecommendation } from "../components/hook/useCompareRecommendation";
 
 export default function ServiceDashboard() {
-  const { services, isLoading } = useServices();
-
   const {
     filters,
     setFilters,
@@ -31,10 +27,7 @@ export default function ServiceDashboard() {
     hasActiveFilters,
   } = useServiceFilters();
 
-  const scoredServices = useServiceScoring({
-    services,
-    filters: debouncedFilters,
-  });
+  const { services, isLoading } = useServices(debouncedFilters);
 
   const { recommendation } = useRecommendation({ filters: debouncedFilters });
 
@@ -44,7 +37,7 @@ export default function ServiceDashboard() {
     selectedServices,
     isModalOpen,
     resetCompare,
-  } = useComparison({ services: scoredServices });
+  } = useComparison({ services: services });
 
   const recommendedServices = useMemo(() => {
     if (!recommendation?.bestMatch) return [];
@@ -58,7 +51,7 @@ export default function ServiceDashboard() {
       impact: svc.recommendationMeta.impact,
       effort: svc.recommendationMeta.effort,
       risk: svc.recommendationMeta.risk,
-      priorityScore: getPriorityScore(svc.recommendationMeta),
+      priorityScore: svc.priorityScore,
     }));
   }, [recommendation]);
 
@@ -89,7 +82,7 @@ export default function ServiceDashboard() {
       <AIRecommendationLayer recommendations={recommendedServices} />
 
       <ServiceGrid
-        services={scoredServices}
+        services={services}
         onCompare={toggleCompare}
         compareIds={compareIds}
         highlightedIds={highlightedIds}
