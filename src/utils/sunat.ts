@@ -27,6 +27,10 @@ export const getDynamicDeadline = (digit: string) => {
 
   const { schedule, month } = getCurrentSchedule();
 
+  if (!digit || !(digit in schedule)) {
+    return "Ingresa tu RUC";
+  }
+
   const scheduledDay = schedule[digit];
 
   let monthIndex = month;
@@ -34,8 +38,6 @@ export const getDynamicDeadline = (digit: string) => {
   if (currentDay > scheduledDay) {
     monthIndex = (monthIndex + 1) % 12;
   }
-
-  if (!digit || !(digit in schedule)) return "Ingresa tu RUC";
 
   const months = [
     "Enero",

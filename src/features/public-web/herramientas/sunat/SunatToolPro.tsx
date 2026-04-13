@@ -12,8 +12,10 @@ const subscribe = (callback: () => void) => {
 };
 
 const getServerSnapshot = () => "";
-const getClientSnapshot = () =>
-  localStorage.getItem("asescon_last_ruc_digit") || "";
+const getClientSnapshot = () => {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem("asescon_last_ruc_digit") || "";
+};
 
 export default function SunatToolPro() {
   const storedDigit = useSyncExternalStore(
@@ -24,7 +26,9 @@ export default function SunatToolPro() {
 
   const [tempDigit, setTempDigit] = useState<string | null>(null);
 
-  const digit = (tempDigit ?? storedDigit)?.slice(-1) || "";
+  const rawDigit = tempDigit ?? storedDigit ?? "";
+  const digit = rawDigit ? rawDigit.slice(-1) : "";
+
   const deadline = getDynamicDeadline(digit);
 
   const handleChange = (val: string) => {
