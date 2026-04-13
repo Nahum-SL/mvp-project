@@ -7,7 +7,6 @@ import { FaWhatsapp } from "react-icons/fa";
 //Componente Reutilizable
 import HeroVideoBackground from "@/src/components/ui/layout/hero-video-background";
 import { ReflectButton } from "@/src/components/ui/buttons/ReflectedButton";
-import { trackEvent } from "@/src/lib/gtag";
 
 interface HeroProps {
   companyName?: string;
@@ -16,7 +15,6 @@ interface HeroProps {
   ctaText: string;
   videoPoster?: string; // La imagen de fondo
   videoSrc?: string;
-  onCtaClick?: () => void;
 }
 
 export default function AsesconHero({
@@ -25,7 +23,6 @@ export default function AsesconHero({
   ctaText,
   videoPoster = "/planeamiento-tributario.webp",
   videoSrc = "/asescon-hero-video.webm",
-  onCtaClick,
 }: HeroProps) {
   return (
     <section
@@ -68,10 +65,6 @@ export default function AsesconHero({
             {/* Link Principal (WhatsApp) */}
             <Link
               href="https://wa.me/51974770644"
-              onClick={() => {
-                trackEvent("click", "WhatsApp CTA");
-                onCtaClick?.();
-              }}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
               text-slate-950 font-medium rounded-full overflow-hidden 

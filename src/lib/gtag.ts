@@ -1,4 +1,5 @@
 // src/lib/gtag.ts
+// ---- SIN USAR -----
 export const trackEvent = (
   action: string,
   category: string,

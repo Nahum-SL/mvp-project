@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { getDynamicDeadline } from "@/src/utils/sunat";
+import Link from "next/link";
 
 // 1. Suscriptor externo para el almacenamiento local
 const subscribe = (callback: () => void) => {
@@ -101,6 +102,15 @@ export const SunatCalendar = () => {
           </p>
         </div>
       )}
+      <p className="text-xs text-slate-500 mt-4">
+        Declaración mensual IGV / Renta
+      </p>
+      <Link
+        href="/herramientas/cronograma-sunat"
+        className="text-xs text-sky-400 hover:text-sky-300 mt-4 inline-block"
+      >
+        Ver cronograma completo →
+      </Link>
     </div>
   );
 };

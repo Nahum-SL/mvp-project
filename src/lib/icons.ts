@@ -81,4 +81,13 @@ export const iconMap = {
   Scale,
 };
 
+import { ChessKnight, HardHat, TriangleAlert } from "lucide-react";
+
+export const iconServiceMap = {
+  ChessKnight,
+  HardHat,
+  TriangleAlert,
+};
+
 export type IconName = keyof typeof iconMap;
+export type IconNameService = keyof typeof iconServiceMap;

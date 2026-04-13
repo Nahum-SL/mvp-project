@@ -33,7 +33,7 @@ export const ComparisonTableStripe = memo(
               <thead>
                 <tr>
                   <th className="sticky left-0 z-20 bg-slate-50 p-6 text-left border-b border-r border-slate-200 shadow-[4px_0_10px_-5px_rgba(0,0,0,0.05)]">
-                    <span className="text-xs font-black uppercase tracking-widest text-slate-500">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-slate-500">
                       Capacidades
                     </span>
                   </th>

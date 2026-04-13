@@ -1,13 +1,18 @@
 // src/app/(public)/blog/BlogContent.tsx
+
+// Componente para el titulo de cada sección
+import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
+// Card del primer blog mostrado
 import FeaturedPost from "@/src/components/ui/layout/blog/FeaturedPost";
-import { getBlogPosts } from "@/src/features/public-web/blog/action";
+// Card de los blogs anteriores
+import { BlogCardPage } from "@/src/features/blog/components/BlogCardPage";
+// Layout de animacion
+import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
 // Herramientas / tools
 import { SunatCalendar } from "./tools/SunatCalendar";
 import { GratificationCalc } from "./tools/GratificacionCal";
-
-import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
-import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
-import { BlogCardPage } from "@/src/features/blog/components/BlogCardPage";
+// Acciones - Obtener blog
+import { getBlogPosts } from "@/src/features/public-web/blog/action";
 
 export default async function BlogContent() {
   const allPosts = await getBlogPosts();
@@ -29,21 +34,6 @@ export default async function BlogContent() {
         )}
       </section>
 
-      <ToolsAnimationWrapper>
-        {/* --- NUEVA SECCIÓN DE HERRAMIENTAS --- */}
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <SunatCalendar />
-            <GratificationCalc />
-          </div>
-          <div className="mt-8 text-center">
-            <p className="text-[10px] text-slate-600 font-extrabold uppercase tracking-[0.4em]">
-              Herramientas Gratuitas para Empresas Peruanas by ASESCON
-            </p>
-          </div>
-        </div>
-      </ToolsAnimationWrapper>
-
       {/* --- LISTADO DE POSTS ANTERIORES --- */}
       {hasPosts && (
         <section className="py-24 container mx-auto px-6">
@@ -61,6 +51,21 @@ export default async function BlogContent() {
           </div>
         </section>
       )}
+
+      <ToolsAnimationWrapper>
+        {/* --- NUEVA SECCIÓN DE HERRAMIENTAS --- */}
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <SunatCalendar />
+            <GratificationCalc />
+          </div>
+          <div className="mt-8 text-center">
+            <p className="text-[10px] text-slate-600 font-extrabold uppercase tracking-[0.4em]">
+              Herramientas Gratuitas para Empresas Peruanas by ASESCON
+            </p>
+          </div>
+        </div>
+      </ToolsAnimationWrapper>
 
       {/* Linea separadora para encajar con el Footer */}
       <div className="h-px bg-slate-700 flex-1" />

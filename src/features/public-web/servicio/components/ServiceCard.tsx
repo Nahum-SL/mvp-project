@@ -127,7 +127,7 @@ export const ServiceCardV2Component = ({
       {/* FOOTER */}
       <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-50 relative z-10">
         <Link
-          href={`/servicio/${service.slug}`}
+          href={`/servicio/${service.slug}?from=ver_detalles_servicio`}
           className="flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-indigo-600 transition"
         >
           Ver detalles <ArrowRight size={14} />

@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <main className="bg-slate-950">
       <BlogHero
-        title="Recursos y Artículos"
+        title="Recursos y Blogs"
         subtitle="Descubre análisis, tips y contenido actualizado sobre contabilidad, finanzas y normativa empresarial."
       />
 

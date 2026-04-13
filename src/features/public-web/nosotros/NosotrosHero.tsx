@@ -26,19 +26,7 @@ export const NosotrosHero = ({
       />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl">
-          {/* Badge: Puede mantener la animación, no suele ser el LCP */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-          bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
-          >
-            <span className="h-px w-8 bg-emerald-500" />
-            <span className="text-xs font-bold tracking-[0.3em] text-emerald-400 uppercase">
-              {badge}
-            </span>
-          </motion.div>
+        <div className="max-w-4xl">   
 
           {/* TÍTULO: Quitamos initial/animate y usamos CSS puro para la entrada sutil */}
           <h1 className="text-4xl md:text-7xl lg:text-8xl text-white leading-[0.95] font-serif mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">

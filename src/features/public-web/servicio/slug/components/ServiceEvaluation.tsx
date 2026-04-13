@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MetricsDonutGroup } from "../../components/recommendation/metricas/MetricDonutGroup";
+import { iconServiceMap } from "@/src/lib/icons";
+import { cn } from "@/src/lib/utils";
 
 interface Props {
   impact: number;
@@ -9,12 +10,44 @@ interface Props {
   risk: number;
 }
 
+const METRIC_THEMES = {
+  impact: {
+    label: "Impacto",
+    icon: iconServiceMap.ChessKnight,
+    color: "text-emerald-600",
+    glow: "bg-linear-to-br from-emerald-500/20 to-transparent", // Un poco más de opacidad para que se note el hover
+    border: "group-hover:border-emerald-200",
+  },
+  effort: {
+    label: "Esfuerzo",
+    icon: iconServiceMap.HardHat,
+    color: "text-blue-500",
+    glow: "bg-linear-to-br from-blue-500/20 to-transparent",
+    border: "group-hover:border-blue-200",
+  },
+  risk: {
+    label: "Riesgo",
+    icon: iconServiceMap.TriangleAlert,
+    color: "text-red-500",
+    glow: "bg-linear-to-br from-red-500/20 to-transparent",
+    border: "group-hover:border-red-200",
+  },
+};
+
 export default function ServiceEvaluation({ impact, effort, risk }: Props) {
-  const insights = {
-    impact: getImpactInsight(impact),
-    effort: getEffortInsight(effort),
-    risk: getRiskInsight(risk),
-  };
+  const items = [
+    {
+      type: "impact" as const,
+      value: impact,
+      insight: getImpactInsight(impact),
+    },
+    {
+      type: "effort" as const,
+      value: effort,
+      insight: getEffortInsight(effort),
+    },
+    { type: "risk" as const, value: risk, insight: getRiskInsight(risk) },
+  ];
 
   return (
     <section className="py-28 bg-slate-50">
@@ -37,105 +70,68 @@ export default function ServiceEvaluation({ impact, effort, risk }: Props) {
 
           <p className="text-slate-500 mt-4 text-sm">
             Analizamos impacto, esfuerzo y riesgo para ayudarte a tomar una
-            decisión informada y alineada a tus objetivos.
+            decisión informada.
           </p>
         </motion.div>
 
-        {/* Donuts */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="max-w-md mx-auto mb-16"
-        >
-          <MetricsDonutGroup impact={impact} effort={effort} risk={risk} />
-        </motion.div>
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {items.map((item, i) => {
+            const theme = METRIC_THEMES[item.type];
+            const Icon = theme.icon;
 
-        {/* Cards explicativas */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {[
-            {
-              title: "Impacto",
-              icon: "🚀",
-              value: impact,
-              description: "Valor real que esta solución genera en tu negocio",
-              insight: insights.impact,
-            },
-            {
-              title: "Esfuerzo",
-              icon: "⚡",
-              value: effort,
-              description: "Recursos, tiempo y gestión necesarios",
-              insight: insights.effort,
-            },
-            {
-              title: "Riesgo",
-              icon: "⚠️",
-              value: risk,
-              description: "Nivel de incertidumbre o exposición",
-              insight: insights.risk,
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="relative p-6 rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition"
-            >
-              {/* Glow hover */}
-              <div className="absolute inset-0 opacity-0 hover:opacity-100 transition bg-linear-to-r from-indigo-500/10 to-transparent blur-xl rounded-3xl" />
+            return (
+              <motion.div
+                key={item.type}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className={cn(
+                  "group relative p-8 rounded-3xl bg-white border border-slate-200",
+                  "overflow-hidden transition-all duration-300",
+                  "hover:shadow-2xl hover:shadow-slate-200/60",
+                  theme.border, // Borde dinámico al hacer hover
+                )}
+              >
+                {/* Glow Dinámico - Tailwind v4 bg-linear */}
+                <div
+                  className={cn(
+                    "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl pointer-events-none",
+                    theme.glow,
+                  )}
+                />
 
-              <div className="relative z-10 space-y-4">
-                <div className="text-2xl">{item.icon}</div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-10">
+                    <span
+                      className={cn(
+                        "text-xs font-bold uppercase tracking-[0.2em]",
+                        theme.color,
+                      )}
+                    >
+                      {theme.label}
+                    </span>
+                    <Icon className={cn("w-6 h-6", theme.color)} />
+                  </div>
 
-                <h3 className="font-semibold text-slate-900">{item.title}</h3>
+                  <div className="mb-6">
+                    <span className="text-6xl text-slate-900 tracking-tight">
+                      {Math.round(item.value / 10)}
+                    </span>
+                    <span className="text-xl text-slate-400 font-medium ml-1">
+                      /10
+                    </span>
+                  </div>
 
-                <p className="text-xs text-slate-500">{item.description}</p>
-
-                <div className="text-lg font-semibold text-slate-900">
-                  {Math.round(item.value / 10)}/10
+                  <p className="text-sm text-slate-600 leading-relaxed mt-auto border-l-2 border-slate-100 pl-4">
+                    {item.insight}
+                  </p>
                 </div>
-
-                <p className="text-sm text-slate-600">{item.insight}</p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
-
-        {/* Ejemplo contextual (🔥 conversión) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-white border border-slate-200 rounded-3xl p-8 max-w-3xl mx-auto"
-        >
-          <h4 className="font-semibold text-slate-900 mb-4">
-            Ejemplo real de aplicación
-          </h4>
-
-          <p className="text-sm text-slate-500 mb-4">
-            Si actualmente tienes problemas con multas o desorden tributario:
-          </p>
-
-          <ul className="space-y-2 text-sm text-slate-700">
-            <li>
-              🚀 <strong>Impacto alto:</strong> elimina pérdidas económicas y
-              mejora tu control financiero
-            </li>
-            <li>
-              ⚡ <strong>Esfuerzo bajo:</strong> solo necesitas proporcionarnos
-              información básica
-            </li>
-            <li>
-              ⚠️ <strong>Riesgo bajo:</strong> proceso estandarizado y validado
-              por expertos
-            </li>
-          </ul>
-        </motion.div>
       </div>
     </section>
   );

@@ -1,14 +1,17 @@
 // src/features/public-pages/blog/components/tools/GratificacionCalc.tsx
 // CALCULAR - CALCULA GRATIFICACIÓN
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 // Animacion
 import { motion } from "framer-motion";
-import { EyeIcon } from "@/src/features/public-web/servicio/components/selector/EyeIcon";
-
+// Iconos
 import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
+// Constantes legales y tributarias en el Perú
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
+// Recomendacion que aparece en un monto determinado
 import { ToolSmartAd } from "./ToolSmartAd";
+//
 import { usePersistedState } from "@/src/hooks/usePersistedState";
 import { cn } from "@/src/lib/utils";
 
@@ -117,8 +120,6 @@ export const GratificationCalc = () => {
             <span className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest">
               Monto Estimado
             </span>
-            {/* El ojo parpadea cada vez que el sueldo cambia */}
-            <EyeIcon isBlinking={salary > 0} />
           </div>
           <AnimatedNumber value={result} />
 
@@ -135,13 +136,23 @@ export const GratificationCalc = () => {
             {copied ? <FaCheck size={14} /> : <FaCopy size={14} />}
           </button>
         </div>
-
+        <div className="ml-3">
+          <p className="text-xs text-slate-500 mt-4">
+            Este monto puede variar según tu régimen laboral.
+          </p>
+          <Link
+            href="/herramientas/calculadora-gratificacion"
+            className="text-xs text-emerald-400 hover:text-emerald-300 mt-4 inline-block"
+          >
+            Calculadora avanzada →
+          </Link>
+        </div>
         {/* Lógica de Recomendación Inteligente */}
         <ToolSmartAd
           condition={salary > 4000}
-          text="Tu sueldo supera el límite de exoneración. Podrías estar pagando exceso de Renta de 5ta."
+          text="Podrías estar perdiendo dinero por impuestos mal calculados."
           link="/servicio/planeamiento-tributario?from=calculadora_gratificacion"
-          label="Optimizar impuestos"
+          label="Reducir impuestos ahora"
         />
         <ToolSmartAd
           condition={salary > 0 && months < 6}

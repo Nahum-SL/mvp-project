@@ -152,7 +152,7 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
                 <div className="absolute top-0 right-0">
                   <div
                     className={cn(
-                      "text-white px-4 py-1 rounded-bl-xl text-[10px] font-black uppercase tracking-tighter",
+                      "text-white px-4 py-1 rounded-bl-xl text-[10px] font-semibold uppercase tracking-tighter",
                       mode === "winner" ? "bg-indigo-600" : "bg-emerald-500",
                     )}
                   >

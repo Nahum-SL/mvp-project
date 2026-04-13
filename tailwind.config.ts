@@ -8,6 +8,7 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
   ],
   theme: {
+
     extend: {
       colors: {
         "brand-primary": "var(--color-brand-primary)",
