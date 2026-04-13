@@ -31,12 +31,12 @@ export default function ComparisonHybrid({ services, hasContext }: Props) {
       };
     });
   }, [services]);
-
+  // Encontrar el mejor score para determinar el ganador o empate
   const bestScore = enriched.length
     ? Math.max(...enriched.map((s) => s.priorityScore))
     : 0;
-
-  const TOLERANCE = 0.01; // 1% de tolerancia para considerar empate
+  // 1% de tolerancia para considerar empate
+  const TOLERANCE = 0.01;
 
   // Servicios con el mejor score (puede haber empate)
   const bestServices = enriched.filter(

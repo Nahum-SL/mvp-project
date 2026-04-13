@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa";
 //Componente Reutilizable
 import HeroVideoBackground from "@/src/components/ui/layout/hero-video-background";
 import { ReflectButton } from "@/src/components/ui/buttons/ReflectedButton";
+import { trackEvent } from "@/src/lib/gtag";
 
 interface HeroProps {
   companyName?: string;
@@ -67,7 +68,10 @@ export default function AsesconHero({
             {/* Link Principal (WhatsApp) */}
             <Link
               href="https://wa.me/51974770644"
-              onClick={onCtaClick}
+              onClick={() => {
+                trackEvent("click", "WhatsApp CTA");
+                onCtaClick?.();
+              }}
               className="
               group relative w-full sm:w-auto px-8 py-4 bg-white 
               text-slate-950 font-medium rounded-full overflow-hidden 
