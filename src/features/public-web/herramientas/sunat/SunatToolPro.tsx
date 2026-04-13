@@ -72,7 +72,7 @@ export default function SunatToolPro() {
               w-full mt-2 py-4 md:py-6 text-2xl md:text-4xl text-center
               bg-slate-950 border border-slate-800 rounded-2xl
             text-white outline-none focus:border-sky-500/50
-            n  "
+            "
               placeholder="0"
             />
           </div>
