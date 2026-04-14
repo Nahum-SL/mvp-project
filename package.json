@@ -12,7 +12,6 @@
     "@hookform/resolvers": "^5.2.2",
     "@next/bundle-analyzer": "^16.1.7",
     "@next/third-parties": "^16.2.1",
-    "@prisma/adapter-pg": "^7.3.0",
     "@react-email/components": "^1.0.10",
     "@tailwindcss/typography": "^0.5.19",
     "@tiptap/core": "^3.21.0",

@@ -7,12 +7,10 @@ Proyecto MVP web empresarial para gestión de contacto e intranet, desarrollado 
 - Next.js v16
 - React 22 + TypeScript
 - Tailwind CSS
-- Prisma ORM + PostgreSQL
 - Framer Motion
 
 ## Método de Instalación
 
 ```bash
 pnpm install
-pnpm prisma generate
 pnpm dev
