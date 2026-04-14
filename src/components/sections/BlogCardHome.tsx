@@ -101,7 +101,7 @@ export const BlogCardHome = ({ post, index }: Props) => {
                 // Blanco/Claro por defecto en móvil, Negro por defecto en Desktop (sm)
                 "text-white",
                 // Al hacer hover en desktop, se vuelve blanco
-                isHovered ? "md:text-amber-200" : "",
+                isHovered ? "text-amber-200" : "",
               )}
             >
               {post.title}
