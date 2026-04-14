@@ -50,8 +50,9 @@ export const ServiceHeaderForm = ({
             },
           })}
           disabled={disabled}
+          className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 
+          font-mono text-sm text-blue-600 transition-all"
           placeholder="auditoria-financiera"
-          className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-600 font-mono text-sm text-blue-600 transition-all"
         />
         {errors.slug && (
           <p className="text-red-500 text-[10px] font-bold uppercase">

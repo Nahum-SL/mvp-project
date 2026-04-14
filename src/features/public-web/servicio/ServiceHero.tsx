@@ -17,26 +17,18 @@ export default function ServiceHero({
   videoSrc = "/video/servicios/servicios-hero-video.webm",
   videoPoster = "/servicios-hero.webp",
 }: Props) {
-
   return (
     <section
       className="relative w-full h-[70vh] md:h-[80vh] 
     min-h-svh flex items-center justify-center overflow-hidden bg-slate-950"
     >
-
-      <HeroVideoBackground 
-      poster={videoPoster}
-      videoSrc={videoSrc}
-      delay={0}
-      />
+      <HeroVideoBackground poster={videoPoster} videoSrc={videoSrc} delay={0} />
 
       {/* 2. CONTENIDO CENTRAL */}
       <div className="relative z-20 max-w-5xl px-6 text-center">
         <div className="space-y-6">
           {/* Badge de Confianza */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
           bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
           >
@@ -44,7 +36,7 @@ export default function ServiceHero({
             <span className="text-[10px] font-extrabold uppercase tracking-[0.3em]">
               Soporte Empresarial 360°
             </span>
-          </motion.div>
+          </div>
 
           {/* Título Principal */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.95]">
@@ -55,7 +47,7 @@ export default function ServiceHero({
           {subtitle && (
             <p
               className="text-slate-200/70 text-lg md:text-xl max-w-2xl 
-            mx-auto font-medium leading-relaxed drop-shadow-md"
+            mx-auto font-medium font-sans leading-relaxed drop-shadow-md"
             >
               {subtitle}
             </p>
@@ -70,15 +62,6 @@ export default function ServiceHero({
           />
         </div>
       </div>
-
-      {/* Indicador de scroll */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-emerald-500/70"
-      >
-        <ChevronDown size={32} strokeWidth={1.5} />
-      </motion.div>
     </section>
   );
 }

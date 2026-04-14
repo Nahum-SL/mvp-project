@@ -50,7 +50,7 @@ export default function AsesconHero({
 
           {/* Subtítulo con máximo contraste */}
           <p className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
-            mx-auto leading-relaxed font-medium drop-shadow-md"
+            mx-auto leading-relaxed font-medium font-sans drop-shadow-md"
           >
             {subtitle}
           </p>

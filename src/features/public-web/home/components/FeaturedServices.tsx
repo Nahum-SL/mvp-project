@@ -30,7 +30,7 @@ export const FeaturedServices = () => {
         {/* CTA */}
         <div className="mt-20 flex justify-center">
           <Link
-            href="/servicio?from=home_featured"
+            href="/servicio?from=featured_services"
             className="group inline-flex items-center gap-3 px-6 py-3 
             rounded-full bg-slate-900 text-white text-sm font-semibold
             hover:bg-slate-800 transition-all"

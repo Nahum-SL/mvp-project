@@ -2,7 +2,7 @@
 // React + Next
 import { useState, useTransition, useRef, useEffect } from "react";
 // Validación con Zod + React Hook Form
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 // Acciones del servidor (mensajes de éxito/error + revalidación)
 import { toast } from "sonner";
 // Redireccionar después de crear/editar el post
@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 // Componentes del formulario
 import { BlogEditor } from "./BlogEditor";
 // Subcomponentes del formulario (title, excerpt)
-import { PostHeader } from "./form/PostHeader";
+import { PostHeaderForm } from "./form/PostHeaderForm";
 // Componente para subir imagen (preview + input)
 import { ImagePicker } from "./form/ImagePicker";
 // Configuraciones (categoría, estado, etc)
@@ -24,6 +24,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // Tipos
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { Category } from "@/src/types/blog/category";
+import { slugify } from "@/src/lib/utils";
+// Autocompletado de slug
 
 interface Props {
   categories: Category[];
@@ -38,6 +40,8 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
 
   const {
     register,
+    reset,
+    control,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -45,6 +49,7 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
     resolver: zodResolver(postSchema),
     defaultValues: {
       title: initialData?.title || "",
+      slug: initialData?.slug || "",
       excerpt: initialData?.excerpt || "",
       categoryId: initialData?.categoryId || 0,
       published: initialData?.published || false,
@@ -64,6 +69,24 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
       }
     };
   }, [previewUrl]);
+
+  const slugManuallyEdited = useRef(false);
+
+  const watchedTitle = useWatch({
+    control,
+    name: "title",
+  });
+
+  useEffect(() => {
+    if (!isEditing && watchedTitle && !slugManuallyEdited.current) {
+      setValue("slug", slugify(watchedTitle), { shouldValidate: true });
+    }
+  }, [watchedTitle, isEditing, setValue]);
+
+  // Limpiar formulario
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   // Sincronizar editor con Hook Form
   const handleEditorChange = (html: string) => {
@@ -120,11 +143,18 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
     >
       <div className="lg:col-span-2 space-y-8">
         {/* Pasamos register y errors a los hijos */}
-        <PostHeader register={register} errors={errors} disabled={isPending} />
+        <PostHeaderForm
+          register={register}
+          errors={errors}
+          disabled={isPending}
+          setValue={setValue}
+          onSlugManualEdit={() => {
+            slugManuallyEdited.current = true;
+          }}
+        />
 
         <div className={isPending ? "opacity-50 pointer-events-none" : ""}>
           <BlogEditor
-            
             initialContent={initialData?.content}
             onChange={handleEditorChange}
           />

@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const postSchema = z.object({
   title: z.string().min(5, "El título debe tener al menos 5 caracteres"),
+  slug: z.string().min(3, "El slug es obligatorio"),
   excerpt: z.string().min(10, "El extracto debe ser más descriptivo").max(255),
   categoryId: z.coerce.number().min(1, "Selecciona una categoría"),
   published: z.coerce.boolean().default(false),

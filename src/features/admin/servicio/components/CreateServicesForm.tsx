@@ -161,7 +161,7 @@ export const CreateServicioForm = ({ initialData }: Props) => {
           register={register}
           errors={errors}
           disabled={isPending}
-          setValue={slugify}
+          setValue={setValue}
         />
         {/* Renderizado del IconPicker reutilizado */}
         <div className={isPending ? "opacity-50 pointer-events-none" : ""}>

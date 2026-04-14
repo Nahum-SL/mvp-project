@@ -40,7 +40,7 @@ export async function RecentPostsSection() {
 
         <div className="mt-16 flex justify-center">
           <Link
-            href="/blog"
+            href="/blog?from=recent_posts"
             className="group inline-flex items-center gap-2 text-sm 
             font-medium uppercase tracking-[0.2em] text-slate-900 
             hover:text-[rgb(120,70,45)] transition-colors"

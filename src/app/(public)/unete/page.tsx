@@ -21,10 +21,10 @@ export default function UnetePage() {
         alt="Tenemos un espacio para ti"
       />
       <UneteForm
-        title="Dejanos tus datos"
+        title="Déjanos tus datos"
         subtitle="¡Te contactaremos pronto!"
         src="/trabaja-con-nosotros.webp"
-        alt="Dejanos tus datos"
+        alt="Déjanos tus datos"
       />
     </main>
   );

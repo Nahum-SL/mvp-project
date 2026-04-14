@@ -15,7 +15,6 @@ export const NosotrosHero = ({
   titlePrimary = "RIGOR TÉCNICO",
   titleSecondary = "VISIÓN HUMANA",
   subtitle = "Desde 1998 consolidando la seguridad jurídica y contable de las empresas peruanas.",
-  badge = "NUESTRA ESENCIA",
 }: Props) => {
   return (
     <section className="relative w-full h-[80vh] min-h-svh flex items-center overflow-hidden bg-slate-950">
@@ -37,7 +36,8 @@ export const NosotrosHero = ({
           </h1>
 
           {/* SUBTÍTULO (EL LCP): Cero Framer Motion aquí. Usamos clases de Tailwind para opacidad inmediata */}
-          <p className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed font-light opacity-100 transition-opacity duration-700">
+          <p className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed 
+          font-light opacity-100 transition-opacity duration-700">
             {subtitle}
           </p>
 

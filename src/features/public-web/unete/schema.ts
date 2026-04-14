@@ -19,14 +19,37 @@ export const uneteSchema = z.object({
 
   cv: z
     .any()
-    .refine(
-      (files) => files instanceof FileList && files.length > 0,
-      "El CV es obligatorio",
-    )
-    .refine((files) => files.length > 0, "El CV es obligatorio")
-    .refine((files) => files[0].size <= MAX_FILE_SIZE, "Máximo 2MB")
-    .refine((files) => ACCEPTED_FILE_TYPES.includes(files[0].type), "Solo PDF"),
+    .optional()
+    .refine((files) => {
+      if (!files) return true; // 👈 clave
+      return files instanceof FileList && files.length > 0;
+    }, "El CV es obligatorio")
+    .refine((files) => {
+      if (!files || files.length === 0) return true;
+      return files[0].size <= MAX_FILE_SIZE;
+    }, "Máximo 2MB")
+    .refine((files) => {
+      if (!files || files.length === 0) return true;
+      return ACCEPTED_FILE_TYPES.includes(files[0].type);
+    }, "Solo PDF"),
 });
 
 export type UneteFormInput = z.input<typeof uneteSchema>;
 export type UneteFormValues = z.output<typeof uneteSchema>;
+
+export const step1Schema = uneteSchema.pick({
+  fullName: true,
+  dni: true,
+  age: true,
+});
+
+export const step2Schema = uneteSchema.pick({
+  email: true,
+  phone: true,
+  experience: true,
+  position: true,
+});
+
+export const step3Schema = uneteSchema.pick({
+  cv: true,
+});

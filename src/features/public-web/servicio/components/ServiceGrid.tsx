@@ -43,7 +43,7 @@ export const ServiceGrid = ({
   }, [services, highlightedIds]);
 
   return (
-    <>
+    <div className="min-h-150">
       <div className="mb-4 md:mb-6">
         <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">
           Servicios que puedes considerar
@@ -88,6 +88,6 @@ export const ServiceGrid = ({
           ))}
         </AnimatePresence>
       </motion.div>
-    </>
+    </div>
   );
 };

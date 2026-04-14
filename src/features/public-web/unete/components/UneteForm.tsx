@@ -1,10 +1,8 @@
-// features/public-pages/unete/components/UneteForm.tsx
 "use client";
 
-import { useTransition } from "react";
+import { useTransition, useState, useEffect, useRef } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "framer-motion";
 import { toast } from "sonner";
 
 import {
@@ -12,11 +10,13 @@ import {
   type UneteFormInput,
   type UneteFormValues,
 } from "../schema";
+
 import { sendUneteAction } from "../action";
 
 import { FormField } from "./FormField";
 import { FileUpload } from "./FileUpload";
 import { FormImageSection } from "./FormImageSection";
+import { MultiStepForm } from "./MultiStepForm";
 
 interface Props {
   title: string;
@@ -27,138 +27,204 @@ interface Props {
 
 export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
   const [isPending, startTransition] = useTransition();
+  const [step, setStep] = useState(1);
+  const totalSteps = 3;
 
   const {
     reset,
     control,
     register,
     handleSubmit,
+    trigger,
     formState: { errors },
   } = useForm<UneteFormInput, unknown, UneteFormValues>({
     resolver: zodResolver(uneteSchema),
     defaultValues: {
       fullName: "",
       dni: "",
+      age: 0,
       email: "",
       phone: "",
+      experience: 0,
       position: "",
+      cv: undefined,
     },
   });
 
   const selectedFile = useWatch({ control, name: "cv" });
 
+  const formRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    formRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [step]);
+
+  const direction = useRef(1);
+
+  const handleNext = async () => {
+    direction.current = 1;
+
+    let isValid = false;
+
+    if (step === 1) {
+      isValid = await trigger(["fullName", "dni", "age"]);
+    }
+
+    if (step === 2) {
+      isValid = await trigger(["email", "phone", "experience", "position"]);
+    }
+
+    if (step === 3) {
+      isValid = await trigger(["cv"]);
+    }
+
+    if (!isValid) {
+      const firstError = Object.keys(errors)[0];
+      const el = document.querySelector(`[name="${firstError}"]`);
+      if (el) (el as HTMLElement).focus();
+      return;
+    }
+
+    setStep((s) => s + 1);
+  };
+
+  const handlePrev = () => setStep((prev) => prev - 1);
+
   const onSubmit = async (data: UneteFormValues) => {
     startTransition(async () => {
       const result = await sendUneteAction(data);
+
       if (result.success) {
         toast.success(result.message);
         reset();
+        setStep(1);
       } else {
-        toast.error(result.error); // Cambié .message por .error según tu estructura de action
+        toast.error(result.error);
       }
     });
   };
+
+  const stepTitles = [
+    "Datos personales",
+    "Información profesional",
+    "Adjunta tu CV",
+  ];
+
+  // DEFINICIÓN DE STEPS
+  const steps = [
+    {
+      id: 1,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h3 className="text-lg font-bold text-slate-700">
+            {stepTitles[step - 1]}
+          </h3>
+          <div className="md:col-span-2">
+            <FormField
+              label="Nombres Completos"
+              registration={register("fullName")}
+              error={errors.fullName?.message}
+            />
+          </div>
+
+          <FormField
+            label="DNI"
+            registration={register("dni")}
+            error={errors.dni?.message}
+          />
+
+          <FormField
+            label="Edad"
+            type="number"
+            registration={register("age")}
+            error={errors.age?.message}
+          />
+        </div>
+      ),
+    },
+    {
+      id: 2,
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FormField
+            label="Email"
+            type="email"
+            registration={register("email")}
+            error={errors.email?.message}
+          />
+
+          <FormField
+            label="Teléfono"
+            registration={register("phone")}
+            error={errors.phone?.message}
+          />
+
+          <FormField
+            label="Años Experiencia"
+            type="number"
+            registration={register("experience")}
+            error={errors.experience?.message}
+          />
+
+          <FormField
+            label="Puesto de Interés"
+            registration={register("position")}
+            error={errors.position?.message}
+            isSelect
+          >
+            <option value="">Seleccione...</option>
+            <option value="Asistente Contable">Asistente Contable</option>
+            <option value="Archivador y Digitador">
+              Archivador y Digitador
+            </option>
+            <option value="Practicantes">Practicantes</option>
+          </FormField>
+        </div>
+      ),
+    },
+    {
+      id: 3,
+      content: (
+        <FileUpload
+          label="Adjunta tu CV (PDF)"
+          registration={register("cv")}
+          error={
+            errors.cv?.message === "string" ? errors.cv.message : undefined
+          }
+          selectedFileName={selectedFile?.[0]?.name}
+        />
+      ),
+    },
+  ];
 
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm"
-          >
+          <div className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm">
             <div className="mb-10">
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                {title}
-              </h2>
-              <p className="text-slate-500 mt-2 font-light">{subtitle}</p>
+              <h2 className="text-2xl md:text-3xl text-slate-900">{title}</h2>
+              <p className="text-slate-500 mt-5">{subtitle}</p>
             </div>
 
-            <form
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="md:col-span-2">
-                <FormField
-                  label="Nombres Completos"
-                  placeholder="Nombres y Apellidos"
-                  registration={register("fullName")}
-                  error={errors.fullName?.message}
+            <div ref={formRef}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <MultiStepForm
+                  step={step}
+                  totalSteps={totalSteps}
+                  steps={steps}
+                  onNext={handleNext}
+                  onPrev={handlePrev}
+                  isFirstStep={step === 1}
+                  isLastStep={step === totalSteps}
+                  isSubmitting={isPending}
                 />
-              </div>
-
-              <FormField
-                label="DNI"
-                placeholder="-- -- -- --"
-                registration={register("dni")}
-                error={errors.dni?.message}
-              />
-              <FormField
-                label="Edad"
-                type="number"
-                placeholder="--"
-                registration={register("age")}
-                error={errors.age?.message}
-              />
-              <FormField
-                label="Email"
-                type="email"
-                placeholder="tu@correo.com"
-                registration={register("email")}
-                error={errors.email?.message}
-              />
-              <FormField
-                label="Teléfono"
-                type="tel"
-                placeholder="+51 ---"
-                registration={register("phone")}
-                error={errors.phone?.message}
-              />
-              <FormField
-                label="Años Experiencia"
-                type="number"
-                placeholder="--"
-                registration={register("experience")}
-                error={errors.experience?.message}
-              />
-
-              <FormField
-                label="Puesto de Interés"
-                registration={register("position")}
-                error={errors.position?.message}
-                isSelect
-              >
-                <option value="">Seleccione...</option>
-                <option value="Asistente Contable">Asistente Contable</option>
-                <option value="Archivador y Digitador">
-                  Archivador y Digitador
-                </option>
-                <option value="Practicantes">Practicantes</option>
-              </FormField>
-
-              {/* Asegura que solo pase el valor si es string (CV) */}
-              <FileUpload
-                label="Adjunta tu CV (PDF)"
-                registration={register("cv")}
-                error={
-                  errors.cv?.message === "string"
-                    ? errors.cv.message
-                    : undefined
-                }
-                selectedFileName={selectedFile?.[0]?.name}
-              />
-
-              <button
-                type="submit"
-                disabled={isPending}
-                className="md:col-span-2 mt-4 w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white font-extrabold py-4 rounded-xl uppercase tracking-[0.2em] transition-all shadow-lg active:scale-[0.98]"
-              >
-                {isPending ? "Enviando..." : "Enviar Postulación"}
-              </button>
-            </form>
-          </motion.div>
+              </form>
+            </div>
+          </div>
 
           <FormImageSection src={src} alt={alt} />
         </div>

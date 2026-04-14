@@ -18,7 +18,6 @@ export const BlogHero = ({
   subtitle,
   videoPoster = "/asesoria-niif.webp",
 }: Props) => {
-
   return (
     <section
       className="relative w-full h-[70vh] md:h-[80vh] min-h-svh flex 
@@ -47,16 +46,15 @@ export const BlogHero = ({
       <div className="relative z-20 max-w-4xl px-6 text-center">
         <div className="space-y-6">
           {/* Badge de Sección */}
-          <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 
-          border border-blue-500/20 text-blue-400">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 
+          border border-blue-500/20 text-blue-400"
+          >
             <Newspaper size={16} className="animate-pulse" />
             <span className="text-[10px] font-extrabold uppercase tracking-[0.3em]">
               Centro de Inteligencia Fiscal
             </span>
-          </motion.div>
+          </div>
 
           {/* Título*/}
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.9]">
@@ -67,7 +65,7 @@ export const BlogHero = ({
           {subtitle && (
             <p
               className="text-slate-300 text-lg md:text-xl max-w-2xl 
-            mx-auto font-medium leading-relaxed drop-shadow-md"
+            mx-auto font-medium font-sans leading-relaxed drop-shadow-md"
             >
               {subtitle}
             </p>
@@ -82,17 +80,6 @@ export const BlogHero = ({
           />
         </div>
       </div>
-
-      {/* Indicador de scroll sutil */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-blue-500/50"
-      >
-        <Link href="/blog/#recentPost">
-          <ChevronDown size={30} strokeWidth={1} />
-        </Link>
-      </motion.div>
     </section>
   );
 };
