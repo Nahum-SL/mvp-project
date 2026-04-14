@@ -3,6 +3,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import SunatToolPro from "@/src/features/public-web/herramientas/sunat/SunatToolPro";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Cronograma SUNAT 2026 Perú | Consulta tus vencimientos",
@@ -32,7 +33,13 @@ export default function CronogramaSunatPage() {
       {/* TOOL */}
       <section className="pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <SunatToolPro />
+          <Suspense
+            fallback={
+              <div className="h-85 md:h-105 rounded-[2.5rem] bg-slate-900 border border-slate-800 animate-pulse" />
+            }
+          >
+            <SunatToolPro />
+          </Suspense>
         </div>
       </section>
 
@@ -73,7 +80,7 @@ export default function CronogramaSunatPage() {
             href="/servicio/asesoria-contable"
             className="inline-block bg-sky-500 hover:bg-sky-400 text-black font-bold px-6 py-3 rounded-xl transition"
           >
-            Delegar mi contabilidad 
+            Delegar mi contabilidad
           </Link>
         </div>
       </section>
