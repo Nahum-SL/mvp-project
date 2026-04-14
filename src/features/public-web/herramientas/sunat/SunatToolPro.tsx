@@ -5,6 +5,7 @@ import { cn } from "@/src/lib/utils";
 import { getDynamicDeadline } from "@/src/utils/sunat";
 import Link from "next/link";
 import SunatScheduleTable from "./SunatScheduleTable";
+import { useNow } from "@/src/lib/useNow";
 
 const subscribe = (callback: () => void) => {
   window.addEventListener("storage", callback);
@@ -24,12 +25,16 @@ export default function SunatToolPro() {
     getServerSnapshot,
   );
 
+  // Estado temporal para cuando el usuario está escribiendo un nuevo dígito
   const [tempDigit, setTempDigit] = useState<string | null>(null);
 
+  // El dígito actual es el del store, a menos que el usuario esté escribiendo uno nuevo
+  const now = useNow();
+  // El valor que se muestra en el input y se usa para el cálculo
   const rawDigit = tempDigit ?? storedDigit ?? "";
+  // Aseguramos que siempre sea un solo dígito numérico
   const digit = rawDigit ? rawDigit.slice(-1) : "";
-
-  const deadline = getDynamicDeadline(digit);
+  const deadline = getDynamicDeadline(digit, now);
 
   const handleChange = (val: string) => {
     const d = val.slice(-1);

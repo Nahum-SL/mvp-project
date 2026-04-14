@@ -1,37 +1,30 @@
-type MonthSchedule = {
-  month: number; // 0-11
-  year: number;
-  schedule: Record<string, number>;
+// utils/sunat.ts
+type Schedule = Record<string, number>;
+
+const SCHEDULE: Schedule = {
+  "0": 15,
+  "1": 16,
+  "2": 17,
+  "3": 18,
+  "4": 19,
+  "5": 20,
+  "6": 21,
+  "7": 22,
+  "8": 23,
+  "9": 24,
 };
 
-export const getCurrentSchedule = (): MonthSchedule => ({
-  month: new Date().getMonth(),
-  year: new Date().getFullYear(),
-  schedule: {
-    "0": 15,
-    "1": 16,
-    "2": 17,
-    "3": 18,
-    "4": 19,
-    "5": 20,
-    "6": 21,
-    "7": 22,
-    "8": 23,
-    "9": 24,
-  },
-});
-
-export const getDynamicDeadline = (digit: string) => {
-  const now = new Date();
-  const currentDay = now.getDate();
-
-  const { schedule, month } = getCurrentSchedule();
-
-  if (!digit || !(digit in schedule)) {
+export const getDynamicDeadline = (digit: string, now: Date) => {
+  if (!digit || !(digit in SCHEDULE)) {
     return "Ingresa tu RUC";
   }
 
-  const scheduledDay = schedule[digit];
+  const { day: currentDay, month } = {
+    day: now.getDate(),
+    month: now.getMonth(),
+  };
+
+  const scheduledDay = SCHEDULE[digit];
 
   let monthIndex = month;
 
