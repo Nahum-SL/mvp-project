@@ -55,36 +55,40 @@ export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
 
   const formRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    formRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, [step]);
+  const isFirstRender = useRef(true);
 
+  useEffect(() => {
+    // Solo scrollear si el usuario ya interactuó y cambió de paso (hacia adelante o atrás)
+    if (step > 1 || !isFirstRender.current) {
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        return;
+      }
+
+      formRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [step]);
+  
   const direction = useRef(1);
 
   const handleNext = async () => {
     direction.current = 1;
 
-    let isValid = false;
+    let fields: (keyof UneteFormInput)[] = [];
 
-    if (step === 1) {
-      isValid = await trigger(["fullName", "dni", "age"]);
-    }
+    if (step === 1) fields = ["fullName", "dni", "age"];
+    if (step === 2) fields = ["email", "phone", "experience", "position"];
+    if (step === 3) fields = ["cv"];
 
-    if (step === 2) {
-      isValid = await trigger(["email", "phone", "experience", "position"]);
-    }
-
-    if (step === 3) {
-      isValid = await trigger(["cv"]);
-    }
+    const isValid = await trigger(fields);
 
     if (!isValid) {
-      const firstError = Object.keys(errors)[0];
-      const el = document.querySelector(`[name="${firstError}"]`);
-      if (el) (el as HTMLElement).focus();
+      const el = document.querySelector(`[name="${fields[0]}"]`) as HTMLElement;
+
+      el?.focus();
       return;
     }
 
@@ -201,7 +205,7 @@ export const UneteForm = ({ title, subtitle, src, alt }: Props) => {
   ];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section id="unete-form" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm">
