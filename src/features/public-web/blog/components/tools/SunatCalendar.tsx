@@ -4,7 +4,6 @@ import { useState, useSyncExternalStore } from "react";
 import { FaCalendarAlt } from "react-icons/fa";
 import { getDynamicDeadline } from "@/src/utils/sunat";
 import Link from "next/link";
-import { useNow } from "@/src/lib/useNow";
 
 // 1. Suscriptor externo para el almacenamiento local
 const subscribe = (callback: () => void) => {
@@ -41,7 +40,7 @@ export const SunatCalendar = () => {
     window.dispatchEvent(new Event("storage"));
   };
 
-  const now = useNow();
+  const now = new Date();
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden group">
