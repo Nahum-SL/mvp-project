@@ -55,7 +55,7 @@ function NavbarCard() {
             >
               <button
                 className="flex items-center gap-2 cursor-pointer hover:bg-blue-900/40 p-4 
-                rounded-2xl transition-all duration-200 text-whiteE"
+                rounded-2xl transition-all duration-200 text-white"
                 aria-expanded={openDropdown}
               >
                 RECURSOS
