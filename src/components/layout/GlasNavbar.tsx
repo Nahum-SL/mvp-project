@@ -6,9 +6,14 @@ import { cn } from "@/src/lib/utils";
 interface GlassNavbarProps {
   children: ReactNode;
   className?: string;
+  forceSolid: boolean;
 }
 
-export default function GlassNavbar({ children, className }: GlassNavbarProps) {
+export default function GlassNavbar({
+  children,
+  className,
+  forceSolid = false,
+}: GlassNavbarProps & { forceSolid?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,14 +31,16 @@ export default function GlassNavbar({ children, className }: GlassNavbarProps) {
     <nav
       className={cn(
         `
-        fixed top-0 left-0 w-full z-50
-        transition-all duration-500 ease-in-out
-        ${
-          scrolled
-            ? "bg-slate-950/80 shadow-xl backdrop-blur-md border-b border-white/5 py-2"
-            : "bg-transparent backdrop-blur-none border-b border-transparent py-4"
-        }
-        `,
+    fixed top-0 left-0 w-full z-50
+    transition-colors duration-200 ease-out
+    ${
+      forceSolid
+        ? "bg-slate-950 shadow-xl border-b border-white/5 py-2"
+        : scrolled
+          ? "bg-slate-950/70 backdrop-blur-xl border-b border-white/5 py-2"
+          : "bg-transparent py-4"
+    }
+    `,
         className,
       )}
     >
