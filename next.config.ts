@@ -8,10 +8,10 @@ import type { NextConfig } from "next";
  */
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: res.cloudinary.com ui-avatars.com;
-    connect-src 'self' *.neon.tech *.cloudinary.com;
+    img-src 'self' blob: data: res.cloudinary.com ui-avatars.com *.googletagmanager.com;
+    connect-src 'self' *.neon.tech *.cloudinary.com *.google-analytics.com mvp-backend-production-91b8.up.railway.app;
     font-src 'self' data:;
     object-src 'none';
     base-uri 'self';
