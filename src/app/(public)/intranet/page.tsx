@@ -1,10 +1,9 @@
 import { Suspense } from "react";
 import IntranetHero from "@/src/features/public-web/intranet/IntranetHero";
-import IntranetDashboard from "@/src/features/public-web/intranet/components/IntranetDashboard";
 import { IntranetSkeleton } from "@/src/components/skeletons/IntranetSkeleton";
-import { getLinks } from "@/src/features/admin/intranet/action";
 
 import { Metadata } from "next";
+import IntranetDashboardWrapper from "@/src/features/public-web/intranet/components/IntranetDashboardWrapper";
 
 export const metadata: Metadata = {
   title: "Portal de Clientes",
@@ -13,8 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function IntranetPage() {
-  const { links } = await getLinks();
-
   return (
     <main className="bg-slate-950">
       <IntranetHero
@@ -24,7 +21,7 @@ export default async function IntranetPage() {
 
       {/* Pasamos los links reales al componente cliente */}
       <Suspense fallback={<IntranetSkeleton />}>
-        <IntranetDashboard initialLinks={links} />
+        <IntranetDashboardWrapper />
       </Suspense>
     </main>
   );

@@ -1,26 +1,7 @@
-// src/components/ui/layout/intranet/IntranetDashboardWrapper.tsx
-import { cookies } from "next/headers";
 import IntranetDashboard from "../../../../features/public-web/intranet/components/IntranetDashboard";
-import { API_URL } from "@/src/lib/api-url";
-
-async function getLinks() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("asescon_token")?.value;
-
-  const res = await fetch(`${API_URL}/api/intranet/links`, {
-    headers: { Authorization: `Bearer ${token}` },
-    next: { revalidate: 60 },
-  });
-
-  if (!res.ok) return { userName: "Usuario", links: [] };
-  return res.json();
-}
+import { getLinks } from "@/src/features/admin/intranet/action";
 
 export default async function IntranetDashboardWrapper() {
   const { links } = await getLinks();
-
-  // Aquí podemos añadir un delay artificial si quieres probar el skeleton:
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
-
   return <IntranetDashboard initialLinks={links} />;
 }
