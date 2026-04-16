@@ -1,4 +1,4 @@
-import IntranetDashboard from "../../../../features/public-web/intranet/components/IntranetDashboard";
+import IntranetDashboard from "./IntranetDashboard";
 import { getLinks } from "./action";
 
 export default async function IntranetDashboardWrapper() {
