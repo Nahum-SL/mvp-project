@@ -1,0 +1,8 @@
+Asescon Security Policy
+
+Este archivo ayuda a investigadores a reportar vulnerabilidades de forma segura.
+
+Contact: mailto:tu-email@dominio.com
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://www.google.com/search?q=https://asescon-frontend.vercel.app/.well-known/security.txt
