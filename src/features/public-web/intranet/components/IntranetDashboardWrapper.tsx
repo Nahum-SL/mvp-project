@@ -1,5 +1,5 @@
 import IntranetDashboard from "../../../../features/public-web/intranet/components/IntranetDashboard";
-import { getLinks } from "@/src/features/admin/intranet/action";
+import { getLinks } from "./action";
 
 export default async function IntranetDashboardWrapper() {
   const { links } = await getLinks();
