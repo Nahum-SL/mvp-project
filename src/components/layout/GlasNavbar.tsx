@@ -32,7 +32,7 @@ export default function GlassNavbar({
       className={cn(
         `
     fixed top-0 left-0 w-full z-50
-    transition-colors duration-200 ease-out
+    transition-[background-color,backdrop-filter] duration-200 ease-out
     ${
       forceSolid
         ? "bg-slate-950 shadow-xl border-b border-white/5 py-2"
