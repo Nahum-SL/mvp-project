@@ -2,8 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Newspaper, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { Newspaper } from "lucide-react";
 import Image from "next/image";
 
 interface Props {
@@ -12,6 +11,11 @@ interface Props {
   videoSrc?: string;
   videoPoster?: string;
 }
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0 },
+};
 
 export const BlogHero = ({
   title,
@@ -55,28 +59,36 @@ export const BlogHero = ({
               Centro de Inteligencia Fiscal
             </span>
           </div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.4 }}
+          >
 
-          {/* Título*/}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl text-white font-serif tracking-tighter leading-[0.9]">
-            {title}
-          </h1>
+            {/* Título*/}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl pb-5 text-white font-serif tracking-tighter leading-[0.9]">
+              {title}
+            </h1>
 
-          {/* Subtítulo: Más legible sobre el video */}
-          {subtitle && (
-            <p
-              className="text-slate-300 text-lg md:text-xl max-w-2xl 
+            {/* Subtítulo: Más legible sobre el video */}
+            {subtitle && (
+              <p
+                className="text-slate-300 text-lg md:text-xl max-w-2xl 
             mx-auto font-medium font-sans leading-relaxed drop-shadow-md"
-            >
-              {subtitle}
-            </p>
-          )}
+              >
+                {subtitle}
+              </p>
+            )}
+          </motion.div>
 
           {/* Línea decorativa animada */}
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "60px" }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="h-1.5 bg-blue-600 rounded-full mx-auto mt-8 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            style={{ transformOrigin: "left" }}
+            className="h-1.5 w-15 bg-blue-600 rounded-full mx-auto mt-8 shadow-[0_0_15px_rgba(37,99,235,0.5)]"
           />
         </div>
       </div>

@@ -8,7 +8,6 @@ import { Service } from "@/src/types/servicio/servicio";
 export default function ServiceSlugHero({ service }: { service: Service }) {
   return (
     <section className="relative w-full flex items-center min-h-svh overflow-hidden bg-slate-950">
-
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -30,7 +29,6 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          
           {/* Badge */}
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-blue-500" />
@@ -46,7 +44,8 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
 
           {/* Subheadline */}
           <p className="mt-6 text-lg text-slate-300 max-w-2xl">
-            Optimiza la gestión y reduce riesgos con una estrategia diseñada para empresas que exigen precisión y resultados.
+            Optimiza la gestión y reduce riesgos con una estrategia diseñada
+            para empresas que exigen precisión y resultados.
           </p>
 
           {/* CTA */}
@@ -58,12 +57,15 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
               Agendar Consultoría
             </Link>
 
-            <Link
-              href={`/servicio/${service.slug}#detalles`}
+            <button
+              onClick={() => {
+                const el = document.getElementById("detalles");
+                el?.scrollIntoView({ behavior: "smooth" });
+              }}
               className="px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 transition"
             >
               Ver detalles
-            </Link>
+            </button>
           </div>
         </motion.div>
       </div>
