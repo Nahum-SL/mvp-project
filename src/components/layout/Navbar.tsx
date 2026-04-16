@@ -180,13 +180,13 @@ function NavbarCard() {
               {/* Links */}
               <nav className="flex flex-col gap-3">
                 {NAV_ITEMS.map((item) => {
-                  const isActive = pathname === item.href;
+                  const isActive = item.href ? pathname === item.href : false;
                   const isOpen = openItem === item.name;
 
                   // ITEM CON SUBMENÚ
                   if (item.children) {
                     return (
-                      <div key={item.name} className="flex flex-col">
+                      <div key={item.href || item.name} className="flex flex-col">
                         <button
                           onClick={() => setOpenItem(isOpen ? null : item.name)}
                           className="flex items-center justify-between px-4 py-3 rounded-xl 
