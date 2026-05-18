@@ -18,7 +18,7 @@ import { PostConfigCard } from "./form/PostConfigCard";
 // Acciones (create/update)
 import { createPostAction, updatePostAction } from "../action";
 // Validación y tipos del formulario
-import { postSchema, type PostFormInput, type PostFormValues } from "../schema";
+import { postSchema, type PostFormInput, type PostFormValues } from "../schemas/blog-schema";
 // Utils
 import { zodResolver } from "@hookform/resolvers/zod";
 // Tipos

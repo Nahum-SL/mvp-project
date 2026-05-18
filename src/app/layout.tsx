@@ -2,6 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { inter } from "../lib/fonts";
 import { Toaster } from "sonner";
+import { Providers } from "../lib/tanstack/provider";
 
 import "./globals.css";
 
@@ -91,7 +92,9 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased flex flex-col`}
       >
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         <Toaster position="top-right" richColors closeButton />
         
         {/* Obtener ID de medicion (G-XXXXXXXXXX) */}

@@ -2,7 +2,7 @@
 import { Loader2, Save, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { PostFormInput } from "../../schema";
+import { PostFormInput } from "../../schemas/blog-schema";
 import { Category } from "@/src/types/blog/category";
 import { cn } from "@/src/lib/utils";
 //

@@ -6,12 +6,15 @@ import type { NextConfig } from "next";
  * 2. 'img-src': Añadimos Cloudinary y UI-Avatars para que el navegador permita cargarlas.
  * 3. 'script-src': Mantenemos unsafe-inline solo si es estrictamente necesario para Next.js.
  */
+const isDev = process.env.NODE_ENV === "development";
+const backendUrl = isDev ? "http://localhost:3001 localhost:3001" : "";
+
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: res.cloudinary.com ui-avatars.com *.googletagmanager.com;
-    connect-src 'self' *.neon.tech *.cloudinary.com *.google-analytics.com mvp-backend-production-91b8.up.railway.app;
+    connect-src 'self' ${backendUrl} *.neon.tech *.cloudinary.com *.google-analytics.com;
     font-src 'self' data:;
     object-src 'none';
     base-uri 'self';

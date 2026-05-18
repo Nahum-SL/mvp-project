@@ -1,5 +1,5 @@
 import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { PostFormInput } from "../../schema";
+import { PostFormInput } from "../../schemas/blog-schema";
 import { cn, slugify } from "@/src/lib/utils";
 
 interface PostHeaderProps {

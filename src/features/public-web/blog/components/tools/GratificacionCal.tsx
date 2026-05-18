@@ -11,7 +11,7 @@ import { FaCopy, FaCheck, FaCalculator } from "react-icons/fa";
 import { PERU_CONSTANTS } from "@/src/lib/peru-constants";
 // Recomendacion que aparece en un monto determinado
 import { ToolSmartAd } from "./ToolSmartAd";
-//
+// hook
 import { usePersistedState } from "@/src/hooks/usePersistedState";
 import { cn } from "@/src/lib/utils";
 
