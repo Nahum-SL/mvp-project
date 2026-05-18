@@ -1,4 +1,4 @@
-'use server';
+"use server";
 import { API_URL } from "@/src/lib/api-url";
 
 export async function getLinks() {

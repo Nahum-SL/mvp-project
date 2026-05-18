@@ -5,7 +5,7 @@ import {
   deletePostAction,
 } from "../api/blog-mutation";
 
-import { BLOG_QUERY_KEY } from "../utils/blog-query-key";
+import { BLOG_QUERY_KEY } from "../../utils/blog-query-key";
 
 // ===========
 // MUTATIONS

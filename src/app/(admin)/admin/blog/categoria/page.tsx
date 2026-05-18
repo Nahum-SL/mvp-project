@@ -1,4 +1,4 @@
-import { CategoryForm } from "@/src/features/admin/blog/category/form/CategoryForm";
+import { CategoryForm } from "@/src/features/admin/blog/category/components/CategoryForm";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 import { LayoutGrid } from "lucide-react";
 

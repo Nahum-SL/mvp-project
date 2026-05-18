@@ -7,7 +7,7 @@ import {
   categorySchema,
   type CategoryFormInput,
   type CategoryFormValues,
-} from "../schema";
+} from "../schemas/blog-category-schema";
 import { createCategoryAction } from "../action";
 import { useState } from "react";
 

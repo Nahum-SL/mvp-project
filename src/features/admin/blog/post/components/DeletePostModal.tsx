@@ -1,10 +1,9 @@
 // src/features/admin/blog/components/DeletePostModal.tsx
 "use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { useTransition } from "react";
-import { deletePostAction } from "../action";
-import { toast } from "sonner";
+import { useDeletePostModal } from "../hooks/use-delete-post-modal";
 
 interface Props {
   isOpen: boolean;
@@ -19,19 +18,8 @@ export const DeletePostModal = ({
   postId,
   postTitle,
 }: Props) => {
-  const [isPending, startTransition] = useTransition();
-
-  const handleDelete = () => {
-    startTransition(async () => {
-      const result = await deletePostAction(postId);
-      if (result.success) {
-        toast.success("Artículo eliminado correctamente");
-        onClose();
-      } else {
-        toast.error(result.error);
-      }
-    });
-  };
+  // Acoplamos nuestro hook de negocio
+  const { handleDelete, isPending } = useDeletePostModal({ postId, onClose });
 
   return (
     <AnimatePresence>
@@ -42,7 +30,7 @@ export const DeletePostModal = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={!isPending ? onClose : undefined}
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-100"
           />
 
@@ -76,14 +64,10 @@ export const DeletePostModal = ({
                   <button
                     onClick={handleDelete}
                     disabled={isPending}
-                    className="w-full py-4 bg-red-600 text-white font-extrabold rounded-2xl hover:bg-red-700 transition-colors uppercase text-xs tracking-widest flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-red-600 text-white font-extrabold rounded-2xl hover:bg-red-700 transition-colors uppercase text-xs tracking-widest flex items-center justify-center gap-2 disabled:opacity-70"
                   >
-                    {isPending ? (
-                      <Loader2 className="animate-spin" size={16} />
-                    ) : null}
-                    {isPending
-                      ? "Eliminando..."
-                      : "Sí, eliminar permanentemente"}
+                    {isPending && <Loader2 className="animate-spin" size={16} />}
+                    {isPending ? "Eliminando..." : "Sí, eliminar permanentemente"}
                   </button>
 
                   <button

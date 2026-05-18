@@ -47,3 +47,4 @@ export async function deletePostAction(id: number): Promise<void> {
     throw new Error(error?.message ?? "Error eliminando post");
   }
 }
+
