@@ -1,8 +1,8 @@
 // src/app/admin/servicios/page.tsx
 import Link from "next/link";
 import { Plus, Layers } from "lucide-react";
-import { getAdminServicios } from "@/src/features/admin/servicio/action";
-import { ServiciosTable } from "@/src/features/admin/servicio/components/ServiciosTable";
+import { getAdminServicios } from "@/src/features/admin/_servicio/action";
+import { ServiciosTable } from "@/src/features/admin/_servicio/components/ServiciosTable";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 
 export default async function AdminServiciosPage() {

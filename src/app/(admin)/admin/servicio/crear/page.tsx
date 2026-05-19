@@ -1,4 +1,4 @@
-import { CreateServicioForm } from "@/src/features/admin/servicio/components/CreateServicesForm";
+import { CreateServicioForm } from "@/src/features/admin/_servicio/components/CreateServicesForm";
 import PageHeader from "@/src/features/admin/components/PageHeader";
 
 export default function NuevoServicioPage() {

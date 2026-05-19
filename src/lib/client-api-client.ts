@@ -10,7 +10,7 @@ export const apiClient = async <T>(
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,
-    },
+    },  
   });
 
   if (!res.ok) {

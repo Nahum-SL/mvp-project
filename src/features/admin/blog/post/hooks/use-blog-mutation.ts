@@ -5,7 +5,7 @@ import {
   deletePostAction,
 } from "../api/blog-mutation";
 
-import { BLOG_QUERY_KEY } from "../../utils/blog-query-key";
+import { POST_QUERY_KEYS } from "../utils/blog-query-key";
 
 // ===========
 // MUTATIONS
@@ -20,7 +20,7 @@ export const useCreatePost = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: BLOG_QUERY_KEY.all,
+        queryKey: POST_QUERY_KEYS.all,
       });
     },
   });
@@ -37,7 +37,7 @@ export const useUpdatePost = () => {
     onSuccess: () => {
       // Invalidar la lista de posts y el post específico actualizado
       queryClient.invalidateQueries({
-        queryKey: BLOG_QUERY_KEY.all,
+        queryKey: POST_QUERY_KEYS.all,
       });
     },
   });
@@ -52,7 +52,7 @@ export const useDeletePost = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: BLOG_QUERY_KEY.all,
+        queryKey: POST_QUERY_KEYS.all,
       });
     },
   });

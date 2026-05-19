@@ -1,40 +1,59 @@
-// src/features/admin/blog/components/DeletePostModal.tsx
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { useDeletePostModal } from "../hooks/use-delete-post-modal";
+import { useDeletePost } from "../hooks/use-blog-mutation";
 
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-  postId: number;
-  postTitle: string;
-}
+import { useDeleteModal, usePostActions } from "../store/post.selectors";
+import { toast } from "sonner";
 
-export const DeletePostModal = ({
-  isOpen,
-  onClose,
-  postId,
-  postTitle,
-}: Props) => {
-  // Acoplamos nuestro hook de negocio
-  const { handleDelete, isPending } = useDeletePostModal({ postId, onClose });
+export const DeletePostModal = () => {
+  // =========
+  // STORE
+  // =========
+  const { isOpen, postId, postTitle } = useDeleteModal();
+  const { closeDeleteModal } = usePostActions();
+
+  // =========
+  // MUTATION
+  // =========
+  const { mutate, isPending } = useDeletePost();
+
+  // =========
+  // HANDLERS
+  // =========
+  const handleDelete = () => {
+    if (!postId) return;
+
+    mutate(postId, {
+      onSuccess: () => {
+        toast.success("Artículo eliminado correctamente");
+
+        closeDeleteModal();
+      },
+
+      onError: (error) => {
+        toast.error(
+          error instanceof Error ? error.message : "Error inesperado",
+        );
+      },
+    });
+  };
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* BACKDROP */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={!isPending ? onClose : undefined}
+            onClick={!isPending ? closeDeleteModal : undefined}
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-100"
           />
 
-          {/* Modal */}
+          {/* MODAL */}
           <div className="fixed inset-0 flex items-center justify-center z-101 p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -53,11 +72,8 @@ export const DeletePostModal = ({
 
                 <p className="text-slate-500 text-sm leading-relaxed">
                   Estás a punto de borrar{" "}
-                  <span className="font-bold text-slate-800">
-                    {postTitle}
-                  </span>
-                  . Esta acción es irreversible y el contenido desaparecerá del
-                  blog público.
+                  <span className="font-bold text-slate-800">{postTitle}</span>.
+                  Esta acción es irreversible.
                 </p>
 
                 <div className="flex flex-col w-full gap-3 mt-6">
@@ -66,12 +82,15 @@ export const DeletePostModal = ({
                     disabled={isPending}
                     className="w-full py-4 bg-red-600 text-white font-extrabold rounded-2xl hover:bg-red-700 transition-colors uppercase text-xs tracking-widest flex items-center justify-center gap-2 disabled:opacity-70"
                   >
-                    {isPending && <Loader2 className="animate-spin" size={16} />}
-                    {isPending ? "Eliminando..." : "Sí, eliminar permanentemente"}
+                    {isPending && (
+                      <Loader2 className="animate-spin" size={16} />
+                    )}
+
+                    {isPending ? "Eliminando..." : "Sí, eliminar"}
                   </button>
 
                   <button
-                    onClick={onClose}
+                    onClick={closeDeleteModal}
                     disabled={isPending}
                     className="w-full py-4 bg-slate-100 text-slate-600 font-extrabold rounded-2xl hover:bg-slate-200 transition-colors uppercase text-xs tracking-widest disabled:opacity-50"
                   >

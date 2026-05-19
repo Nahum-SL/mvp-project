@@ -1,8 +1,7 @@
 // Maneja: GET (listar todos) y POST (crear)
 
-import { serverApiClient } from "@/src/lib/server-api";
-import { handleApiError } from "@/src/lib/handle-api-server";
-import { apiSuccess } from "@/src/lib/api-response";
+import { serverApiClient } from "@/src/lib/server-api-client";
+import { apiSuccess, handleApiError } from "@/src/lib/api-response";
 
 // =============
 // GET - Listar

@@ -1,4 +1,5 @@
 import { BlogPost } from "@/src/types/blog/blogPost";
+import { handleResponse } from "@/src/lib/handle-response";
 
 // Create
 export async function createPostAction(formData: FormData): Promise<BlogPost> {
@@ -6,14 +7,7 @@ export async function createPostAction(formData: FormData): Promise<BlogPost> {
     method: "POST",
     body: formData,
   });
-
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-
-    throw new Error(error?.message ?? "Error creando post");
-  }
-
-  return res.json();
+  return handleResponse<BlogPost>(res);
 }
 
 // Update
@@ -25,14 +19,7 @@ export async function updatePostAction(
     method: "PATCH",
     body: formData,
   });
-
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-
-    throw new Error(error?.message ?? "Error actualizando post");
-  }
-
-  return res.json();
+  return handleResponse<BlogPost>(res);
 }
 
 // Delete
@@ -40,11 +27,5 @@ export async function deletePostAction(id: number): Promise<void> {
   const res = await fetch(`/api/admin/blog/post/${id}`, {
     method: "DELETE",
   });
-
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-
-    throw new Error(error?.message ?? "Error eliminando post");
-  }
+  return handleResponse<void>(res);
 }
-

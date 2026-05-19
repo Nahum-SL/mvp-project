@@ -64,7 +64,6 @@ export async function getNavigationPosts(currentSlug: string) {
       nextPost: posts[(currentIndex + 1) % posts.length],
     };
   } catch (error) {
-    // console.error("NAV_ERROR: ", error);
     return { prevPost: null, nextPost: null };
   }
 }

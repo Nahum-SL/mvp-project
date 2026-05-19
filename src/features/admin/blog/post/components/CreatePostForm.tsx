@@ -1,4 +1,5 @@
 "use client";
+import { FormProvider } from "react-hook-form";
 // Componentes del formulario
 import { BlogEditor } from "./editor/BlogEditor";
 // Subcomponentes del formulario (title, excerpt)
@@ -8,8 +9,6 @@ import { ImagePicker } from "./form/ImagePicker";
 import { PostConfigCard } from "./form/PostConfigCard";
 // Tipos
 import { BlogPost } from "@/src/types/blog/blogPost";
-//
-import { FormProvider } from "react-hook-form";
 // hooks
 import { usePostForm } from "../hooks/use-post-form";
 // Schema

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getServiceBySlug } from "@/src/features/admin/servicio/action";
+import { getServiceBySlug } from "@/src/features/admin/_servicio/action";
 
 // Subcomponentes
 import ServiceSlugHero from "@/src/features/public-web/servicio/slug/ServiceSlugHero";

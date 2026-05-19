@@ -1,0 +1,34 @@
+import type { Service } from "@/src/types/servicio/servicio";
+import { handleResponse } from "@/src/lib/handle-response";
+
+// Create
+export async function createServiceAction(
+    formData: FormData
+): Promise<Service> {
+  const res = await fetch("/api/admin/service", {
+    method: "POST",
+    body: formData,
+  });
+  return handleResponse<Service>(res);
+}
+
+// Update
+export async function updatePostAction(
+  id: number,
+  formData: FormData,
+): Promise<Service> {
+  const res = await fetch(`/api/admin/servicio/${id}`, {
+    method: "PATCH",
+    body: formData,
+  });
+  return handleResponse<Service>(res);
+}
+
+// Delete
+export async function deletePostAction(id: number): Promise<void> {
+  const res = await fetch(`/api/admin/servicio/${id}`, {
+    method: "DELETE",
+  });
+  return handleResponse<void>(res);
+}
+

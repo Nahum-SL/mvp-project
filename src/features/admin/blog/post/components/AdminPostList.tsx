@@ -1,16 +1,13 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, User as UserIcon, Trash2, Edit3 } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { DeletePostModal } from "./DeletePostModal"; // El que creamos antes
+import { usePostActions } from "../store/post.selectors";
 
 export const AdminPostList = ({ posts }: { posts: BlogPost[] }) => {
-  const [deleteTarget, setDeleteTarget] = useState<{
-    id: number;
-    title: string;
-  } | null>(null);
+  const { openDeleteModal } = usePostActions();
 
   return (
     <div className="grid grid-cols-1 gap-4">
@@ -72,7 +69,10 @@ export const AdminPostList = ({ posts }: { posts: BlogPost[] }) => {
             </Link>
             <button
               onClick={() =>
-                setDeleteTarget({ id: Number(post.id), title: post.title })
+                openDeleteModal({
+                  id: post.id,
+                  title: post.title,
+                })
               }
               className="p-3 bg-slate-50 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
             >
@@ -82,12 +82,7 @@ export const AdminPostList = ({ posts }: { posts: BlogPost[] }) => {
         </div>
       ))}
 
-      <DeletePostModal
-        isOpen={!!deleteTarget}
-        onClose={() => setDeleteTarget(null)}
-        postId={deleteTarget?.id || 0}
-        postTitle={deleteTarget?.title || ""}
-      />
+      <DeletePostModal />
     </div>
   );
 };

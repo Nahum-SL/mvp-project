@@ -13,7 +13,7 @@ import {
   Quote,
 } from "lucide-react";
 
-import { EditorToolbarButton } from "./EditorToolBarButton";
+import { EditorToolbarButton } from "./EditorToolbarButton";
 
 interface Props {
   editor: Editor;

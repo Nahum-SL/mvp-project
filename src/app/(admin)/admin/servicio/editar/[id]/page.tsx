@@ -1,5 +1,5 @@
-import { CreateServicioForm } from "@/src/features/admin/servicio/components/CreateServicesForm";
-import { getServicioById } from "@/src/features/admin/servicio/action";
+import { CreateServicioForm } from "@/src/features/admin/_servicio/components/CreateServicesForm";
+import { getServicioById } from "@/src/features/admin/_servicio/action";
 import { notFound } from "next/navigation";
 import PageHeader from "@/src/features/admin/components/PageHeader";
 

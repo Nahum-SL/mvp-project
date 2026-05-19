@@ -1,5 +1,3 @@
-// Maneja: GET (un post), PATCH/PUT (editar) y DELETE (borrar) de un post específico
-
 import { serverApiClient } from "@/src/lib/server-api-client";
 import { NextResponse } from "next/server";
 import { apiSuccess, handleApiError } from "@/src/lib/api-response";
@@ -8,7 +6,7 @@ interface RouteParams {
   params: Promise<{ id: string }>;
 }
 
-// GET /api/post/[id] -> Obtener un post específico
+// GET /api/servicio/[id] -> Obtener un servicio específico
 export async function GET(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
@@ -19,48 +17,47 @@ export async function GET(request: Request, { params }: RouteParams) {
       return NextResponse.json(
         {
           statusCode: 400,
-          message: "ID de post inválido",
+          message: "ID de servicio inválido",
           error: "Bad Request",
         },
         { status: 400 },
       );
     }
 
-    const data = await serverApiClient(`/api/post/${id}`);
+    const data = await serverApiClient(`/api/servicio/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {
-    return handleApiError(error, "Error obteniendo post");
+    return handleApiError(error, "Error obteniendo servicio");
   }
 }
 
-
-// PATCH /api/post/[id] -> Actualizar un post
+// PATCH /api/servicio/[id] -> Actualizar un servicio
 export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
     const formData = await request.formData();
 
-    const data = await serverApiClient(`/api/post/${id}`, {
+    const data = await serverApiClient(`/api/servicio/${id}`, {
       method: "PATCH",
       body: formData,
     });
     return apiSuccess(data);
   } catch (error: unknown) {
-    return handleApiError(error, "Error actualizando post");
+    return handleApiError(error, "Error actualizando servicio");
   }
 }
 
-// DELETE /api/post/[id] -> Eliminar un post
+// DELETE /api/servicio/[id] -> Eliminar un servicio
 export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
 
-    await serverApiClient(`/api/post/${id}`, {
+    await serverApiClient(`/api/servicio/${id}`, {
       method: "DELETE",
     });
 
     return apiSuccess(null);
   } catch (error: unknown) {
-    return handleApiError(error, "Error eliminando post");
+    return handleApiError(error, "Error eliminando servicio");
   }
 }
