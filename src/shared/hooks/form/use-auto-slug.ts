@@ -21,7 +21,7 @@ interface Props<T extends FieldValues> {
   disabled?: boolean;
 }
 
-export function usePostSlug<T extends FieldValues>({
+export function useAutoSlug<T extends FieldValues>({
   control,
   setValue,
   fieldTitle,

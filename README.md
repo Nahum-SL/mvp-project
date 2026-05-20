@@ -32,4 +32,5 @@ derived/business logic
 UI rendering
 
 # Subir cambios
-git checkout 
+git checkout
+

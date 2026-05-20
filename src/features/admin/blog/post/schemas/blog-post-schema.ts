@@ -12,13 +12,7 @@ export const postSchema = z.object({
   published: z
     .union([z.boolean(), z.string()])
     .transform((value) => value === true || value === "true"),
-  image: z
-    .instanceof(File)
-    .refine(
-      (file) => ["image/jpeg", "image/png", "image/webp"].includes(file.type),
-      "Formato de imagen inválido",
-    )
-    .optional(),
+  image: z.custom<File>((file) => file instanceof File).optional(),
   // El contenido y la imagen se validan aparte o como opcionales aquí
   content: z.string().min(20, "El contenido es muy corto"),
 });

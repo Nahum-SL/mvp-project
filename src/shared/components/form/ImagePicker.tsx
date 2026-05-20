@@ -1,53 +1,68 @@
-// src/features/admin/blog/components/form/ImagePicker.tsx
+// src/shared/components/form/ImagePicker.tsx
 "use client";
 
 import { useRef } from "react";
-import { ImageIcon, X } from "lucide-react";
+import { useFormContext, FieldValues, Path, PathValue } from "react-hook-form";
 import Image from "next/image";
+import { ImageIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/src/lib/utils";
-import { useFormContext } from "react-hook-form";
 
-interface ImagePickerProps {
+// Definimos la interfaz usando el genérico TFieldValues para que sea Type-safe
+interface ImagePickerProps<TFieldValues extends FieldValues> {
+  name: Path<TFieldValues>; // El campo exacto del esquema (ej: "image")
   previewUrl: string | null;
-  onImageChange: (file: File | null) => void; // Recibe el archivo directamente
+  onImageChange: (file: File | null) => void;
   onRemove: () => void;
-  disabled: boolean;
+  disabled?: boolean;
+  label?: string; // Label opcional por si cambia el texto
 }
 
-export const ImagePicker = ({
+export function ImagePicker<TFieldValues extends FieldValues = FieldValues>({
+  name,
   previewUrl,
   onImageChange,
   onRemove,
-  disabled,
-}: ImagePickerProps) => {
-  // Encapsulamos la referencia del input dentro de su propio componente
+  disabled = false,
+  label = "Portada",
+}: ImagePickerProps<TFieldValues>) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  // Obtenemos setValue desde React Hook Form para sincronizar el archivo binario con el Schema
-  const { setValue, register } = useFormContext();
+
+  // Extraemos setValue y register tipados desde el contexto
+  const { setValue, register } = useFormContext<TFieldValues>();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    
-    // 1. Enviamos el archivo al hook de preview para renderizar la imagen
+
+    // 1. Notificamos al hook local para renderizar el ObjectURL en la vista
     onImageChange(file);
-    
-    // 2. Sincronizamos el archivo con React Hook Form para que Zod lo valide
-    setValue("image", file, { shouldValidate: true });
+
+    // 2. Sincronizamos dinámicamente con el nombre de propiedad recibido
+    setValue(name, file as PathValue<TFieldValues, Path<TFieldValues>>, {
+      shouldValidate: true,
+    });
   };
 
   const handleRemoveClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Evitamos que el click active el contenedor padre
+    e.stopPropagation(); // Previene activar el clic del contenedor padre
     onRemove();
-    setValue("image", null, { shouldValidate: true });
-    if (fileInputRef.current) fileInputRef.current.value = ""; // Limpiamos el value HTML
+
+    // Al remover, seteamos el campo como undefined o null
+    setValue(name, undefined as PathValue<TFieldValues, Path<TFieldValues>>, {
+      shouldValidate: true,
+    });
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; // Limpiamos el valor nativo del input HTML
+    }
   };
+
+  const { ref: rhfRef, ...restRegister } = register(name);
 
   return (
     <section>
       <label className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400 mb-4 block">
-        Portada
+        {label}
       </label>
       <div
         onClick={() => !previewUrl && fileInputRef.current?.click()}
@@ -74,7 +89,7 @@ export const ImagePicker = ({
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
-                unoptimized={previewUrl.startsWith("blob:")} // Evita optimizar URLs temporales
+                unoptimized={previewUrl.startsWith("blob:")}
               />
               <button
                 type="button"
@@ -96,12 +111,12 @@ export const ImagePicker = ({
           )}
         </AnimatePresence>
 
-        {/* El input oculto se registra con RHF de forma nativa */}
+        {/* Input oculto unificado con RHF de forma segura */}
         <input
-          {...register("image")}
+          {...restRegister}
           ref={(e) => {
-            register("image").ref(e); // Registra el ref de RHF
-            fileInputRef.current = e; // Sincroniza nuestro ref local para el clic
+            rhfRef(e); // Asigna la referencia interna de React Hook Form
+            fileInputRef.current = e; // Asigna nuestra referencia local para controlar el click manual
           }}
           type="file"
           className="hidden"
@@ -112,4 +127,4 @@ export const ImagePicker = ({
       </div>
     </section>
   );
-};
+}

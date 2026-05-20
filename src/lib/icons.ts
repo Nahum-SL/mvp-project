@@ -1,4 +1,5 @@
 import {
+  LucideIcon,
   // EXPORT -->
   // src/features/admin/intranet/components/LinkRow.tsx -- Para la eleccion de iconos
   Users,
@@ -91,3 +92,4 @@ export const iconServiceMap = {
 
 export type IconName = keyof typeof iconMap;
 export type IconNameService = keyof typeof iconServiceMap;
+

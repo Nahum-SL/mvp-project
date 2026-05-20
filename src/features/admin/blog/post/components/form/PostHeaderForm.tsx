@@ -1,15 +1,12 @@
 import { slugify } from "@/src/lib/utils";
 import { useFormContext } from "react-hook-form";
+
+// Componentes Atomicos
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormInput } from "@/src/components/ui/form/FormInput";
 import { FormTextArea } from "@/src/components/ui/form/FormTextArea";
 import { FormError } from "@/src/components/ui/form/FormError";
 import { FormCheckbox } from "@/src/components/ui/form/FormCheckbox";
-
-interface PostHeaderProps {
-  disabled?: boolean;
-  onSlugManualEdit: () => void;
-}
 
 interface PostHeaderProps {
   disabled?: boolean;

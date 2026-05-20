@@ -14,8 +14,8 @@ import {
 } from "../schemas/blog-post-schema";
 
 import { useCreatePost, useUpdatePost } from "./use-blog-mutation";
-import { useImagePreview } from "./use-image-preview";
-import { usePostSlug } from "./use-post-slug";
+import { useImagePreview } from "@/src/shared/hooks/form/use-image-preview";
+import { useAutoSlug } from "@/src/shared/hooks/form/use-auto-slug";
 
 import type { BlogPost } from "@/src/types/blog/blogPost";
 
@@ -50,7 +50,7 @@ export function usePostForm({ initialData }: UsePostFormProps) {
     initialImage: initialData?.image,
   });
 
-  const { markAsManual } = usePostSlug({
+  const { markAsManual } = useAutoSlug({
     control: form.control,
     setValue: form.setValue,
     fieldTitle: "title",

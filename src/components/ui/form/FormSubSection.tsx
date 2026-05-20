@@ -5,15 +5,15 @@ interface Props {
   className?: string;
 }
 
-export function FormLabel({ children, className }: Props) {
+export function FormSubSection({ children, className }: Props) {
   return (
-    <label
+    <section
       className={cn(
-        "text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400",
+        "bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-6",
         className,
       )}
     >
       {children}
-    </label>
+    </section>
   );
 }

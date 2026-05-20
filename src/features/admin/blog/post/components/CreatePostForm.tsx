@@ -1,11 +1,11 @@
 "use client";
 import { FormProvider } from "react-hook-form";
 // Componentes del formulario
-import { BlogEditor } from "./editor/BlogEditor";
+import { RichEditor } from "@/src/shared/components/editor/RichEditor";
 // Subcomponentes del formulario (title, excerpt)
 import { PostHeaderForm } from "./form/PostHeaderForm";
 // Componente para subir imagen (preview + input)
-import { ImagePicker } from "./form/ImagePicker";
+import { ImagePicker } from "@/src/shared/components/form/ImagePicker";
 import { PostConfigCard } from "./form/PostConfigCard";
 // Tipos
 import { BlogPost } from "@/src/types/blog/blogPost";
@@ -13,6 +13,8 @@ import { BlogPost } from "@/src/types/blog/blogPost";
 import { usePostForm } from "../hooks/use-post-form";
 // Schema
 import type { Category } from "@/src/types/blog/category";
+import type { PostFormInput } from "../schemas/blog-post-schema";
+// Componentes Atomicos
 
 interface Props {
   categories: Category[];
@@ -44,12 +46,17 @@ export const CreatePostForm = ({ categories, initialData }: Props) => {
           />
 
           <div className={isPending ? "opacity-50 pointer-events-none" : ""}>
-            <BlogEditor name="content" disabled={isPending} />
+            <RichEditor<PostFormInput>
+              name="content"
+              disabled={isPending}
+              placeholder="Escribe el cuerpo del articulo del post aqui .."
+            />
           </div>
         </div>
 
         <div className="space-y-6">
-          <ImagePicker
+          <ImagePicker<PostFormInput>
+            name="image"
             previewUrl={previewUrl}
             onImageChange={handleImageChange}
             onRemove={removeImage}

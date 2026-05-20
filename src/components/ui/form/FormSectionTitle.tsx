@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-export function FormLabel({ children, className }: Props) {
+export function FormSectionTitle({ children, className }: Props) {
   return (
     <label
       className={cn(

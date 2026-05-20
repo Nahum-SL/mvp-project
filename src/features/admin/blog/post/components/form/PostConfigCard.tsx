@@ -8,6 +8,7 @@ import { cn } from "@/src/lib/utils";
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormSelect } from "@/src/components/ui/form/FormSelect";
 import { FormCheckbox } from "@/src/components/ui/form/FormCheckbox";
+import { FormAside } from "@/src/components/ui/form/FormAside";
 
 interface Props {
   categories: Category[];
@@ -22,8 +23,7 @@ export const PostConfigCard = ({ categories, isPending }: Props) => {
   }));
 
   return (
-    <aside className="bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm space-y-8 sticky top-6">
-      
+    <FormAside>
       {/* SECCIÓN CLASIFICACIÓN (CATEGORÍAS) */}
       <section className="space-y-2">
         <FormLabel>Clasificación</FormLabel>
@@ -71,6 +71,6 @@ export const PostConfigCard = ({ categories, isPending }: Props) => {
       >
         <ArrowLeft size={16} /> Cancelar
       </Link>
-    </aside>
+    </FormAside>
   );
 };

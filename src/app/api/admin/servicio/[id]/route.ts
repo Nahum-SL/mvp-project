@@ -15,11 +15,6 @@ export async function GET(request: Request, { params }: RouteParams) {
     // Replicamos el BadRequestException de tu controlador de NestJS
     if (isNaN(postId)) {
       return NextResponse.json(
-        {
-          statusCode: 400,
-          message: "ID de servicio inválido",
-          error: "Bad Request",
-        },
         { status: 400 },
       );
     }

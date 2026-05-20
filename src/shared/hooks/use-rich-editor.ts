@@ -1,25 +1,26 @@
+// src/shared/components/editor/hooks/use-rich-editor.ts
 "use client";
 
 import { useEditor } from "@tiptap/react";
-
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import { CharacterCount } from "@tiptap/extension-character-count";
 import { TextStyle } from "@tiptap/extension-text-style";
-
 import { cn } from "@/src/lib/utils";
 
-interface UseBlogEditorProps {
+interface UseRichEditorProps {
   content?: string;
   editable?: boolean;
+  placeholder?: string; // 💡 Añadido para que sea dinámico
   onChange?: (value: string) => void;
 }
 
-export function useBlogEditor({
+export function useRichEditor({
   content,
   editable = true,
+  placeholder = "Escribe el contenido aquí...",
   onChange,
-}: UseBlogEditorProps) {
+}: UseRichEditorProps) {
   return useEditor({
     extensions: [
       StarterKit.configure({
@@ -27,26 +28,18 @@ export function useBlogEditor({
           levels: [1, 2, 3],
         },
       }),
-
       TextStyle,
-
       CharacterCount,
-
       Placeholder.configure({
-        placeholder: "Escribe el cuerpo del artículo aquí...",
+        placeholder,
       }),
     ],
-
     content,
-
     editable,
-
     immediatelyRender: false,
-
     onUpdate: ({ editor }) => {
       onChange?.(editor.getHTML());
     },
-
     editorProps: {
       attributes: {
         class: cn(
