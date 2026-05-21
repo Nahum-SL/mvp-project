@@ -2,7 +2,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Mail, MessageSquare } from "lucide-react";
-import { Contacto, ContactStatus } from "../types";
+import { Contacto, ContactStatus } from "../../../../types/contacto/contacto-type";
 
 interface Props {
   contacto: Contacto | null;

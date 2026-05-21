@@ -10,8 +10,8 @@ import { STATUS_CONFIG } from "../constante";
 import { updateContactStatusAction } from "../action";
 import { ContactoDrawer } from "./ContactoDrawer";
 // Types
-import { Contacto } from "../types";
-import { ContactStatus } from "../types";
+import { Contacto } from "../../../../types/contacto/contacto-type";
+import { ContactStatus } from "../../../../types/contacto/contacto-type";
 
 interface Props {
   leads: Contacto[];

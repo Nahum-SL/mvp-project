@@ -1,5 +1,5 @@
 export const SERVICIO_QUERY_KEYS = {
-  all: ["servicio"] as const,
+  all: ["admin", "servicios"] as const,
 
   lists: () =>
     [...SERVICIO_QUERY_KEYS.all, "list"] as const,

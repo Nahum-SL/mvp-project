@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Save, User, Phone, Mail, Loader2 } from "lucide-react";
 import { contactoSchema, type ContactoFormValues, type ContactoFormInput } from "../schema";
 import { ContactInput } from "@/src/features/public-web/contacto/components/form/ContactInput";
-import { Contacto } from "../types";
+import { Contacto } from "../../../../types/contacto/contacto-type";
 
 interface Props {
   isOpen: boolean;

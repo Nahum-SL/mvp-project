@@ -2,15 +2,18 @@ import { serverApiClient } from "@/src/lib/server-api-client";
 import { handleApiError, apiSuccess } from "@/src/lib/api-response";
 
 // =============
-// POST - Crear
+// POST - Comparar
 // =============
 
 export async function POST(request: Request) {
   try {
-    const formData = await request.formData();
+    const body = await request.json();
     const data = await serverApiClient("/api/servicio/recommendation",{
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(body),
     });
     return apiSuccess(data);
   } catch (error: unknown) {

@@ -9,7 +9,7 @@ import { handleApiError, apiSuccess } from "@/src/lib/api-response";
 
 export async function GET() {
   try {
-    const data = await serverApiClient("/api/servicio/admin");
+    const data = await serverApiClient("/api/servicio");
 
     return apiSuccess(data);
   } catch (error: unknown) {

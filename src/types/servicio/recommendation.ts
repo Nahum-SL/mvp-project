@@ -17,3 +17,17 @@ export interface RecommendationResult {
     reasoning: string[];
   } | null;
 }
+
+// Consumo del endpoint => /api/public/servicio/recommendation
+// Types usados
+
+export type CompareResponses = ScoredService[];
+
+export interface CompareServicesPayload {
+  ids: number[];
+  filters: {
+    businessType?: BusinessTypeID;
+    painPoint?: PainPointID;
+    search?: string;
+  };
+}

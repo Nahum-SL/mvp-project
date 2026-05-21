@@ -118,7 +118,6 @@ export async function deleteContactAction(id: string) {
   }
 }
 
-// Obtener leads de clientes
 // Obtener leads de clientes - CORREGIDO
 export async function getLeads() {
   const cookieStore = await cookies();

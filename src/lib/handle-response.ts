@@ -15,7 +15,7 @@ export async function handleResponse<T>(res: Response): Promise<T> {
     throw new Error(
       errorBody?.message ?? `Error del servidor (HTTP ${res.status})`
     );
-  }-
+  }
 
   // Si la respuesta fue un 204 No Content (como en el Delete), retornamos undefined de forma segura
   if (res.status === 204) {
