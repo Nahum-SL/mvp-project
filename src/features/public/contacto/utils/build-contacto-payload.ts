@@ -1,5 +1,5 @@
 // src/features/admin/contacto/utils/build-contact-payload.ts
-import type { ContactoFormValues } from "../schemas/contacto.schema";
+import type { ContactoFormValues } from "../schemas/public-contacto.schema";
 /**
  * Ventajas:
  * 1. Sanitiza los strings (.trim()) automáticamente.
@@ -12,8 +12,8 @@ export function buildContactPayload(values: ContactoFormValues) {
     email: values.email.toLowerCase().trim(),
     telefono: values.telefono.trim(),
     // Convertimos el string 'YYYY-MM-DD' a un objeto Date o string ISO
-    fechaNac: values.fechaNac ? new Date(values.fechaNac) : null,
-    comentario: values.comentario?.trim() || null,
+    fechaNac: values.fechaNac,
+    comentario: values.comentario?.trim() || undefined,
   };
 }
 

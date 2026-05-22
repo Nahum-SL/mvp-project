@@ -5,7 +5,7 @@ import {
   updateServicioAction,
 } from "../api/servicio.mutation";
 import { SERVICIO_QUERY_KEYS } from "../utils/servicio-query-options";
-import type { Service } from "@/src/types/servicio/servicio";
+import type { Service } from "@/src/types/servicio/servicio-types";
 
 // CREATE
 export const useCreateServicio = () => {

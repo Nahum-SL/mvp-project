@@ -1,7 +1,7 @@
 // src/features/admin/servicios/components/ServiciosTable.tsx
 "use client";
 
-import { Service } from "@/src/types/servicio/servicio";
+import { Service } from "@/src/types/servicio/servicio-types";
 import { Edit3, Trash2, Eye, EyeOff, LayoutGrid } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

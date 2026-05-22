@@ -3,7 +3,7 @@
 "use client";
 
 import { ServiceCard } from "./ServiceCard";
-import { ServiceFilters } from "@/src/types/servicio/servicio";
+import { ServiceFilters } from "@/src/types/servicio/servicio-types";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScoredService } from "@/src/types/servicio/scoring.types";
 import { useMemo } from "react";

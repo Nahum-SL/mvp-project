@@ -9,7 +9,7 @@ import {
   type PainPointID,
 } from "@/src/types/servicio/constants";
 
-import { ServiceFilters } from "@/src/types/servicio/servicio";
+import { ServiceFilters } from "@/src/types/servicio/servicio-types";
 
 export function useServiceFilters() {
   const router = useRouter();

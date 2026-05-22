@@ -22,7 +22,7 @@ import { useAutoSlug } from "@/src/shared/hooks/form/use-auto-slug";
 import { getServicioDefaultValues } from "../utils/get-servicio-default-values";
 import { buildServicioFormData } from "../utils/build-servicio-form-data";
 
-import type { Service } from "@/src/types/servicio/servicio";
+import type { Service } from "@/src/types/servicio/servicio-types";
 
 interface Props {
   initialData?: Service;

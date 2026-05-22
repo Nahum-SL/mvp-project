@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { Service } from "@/src/types/servicio/servicio";
+import { Service } from "@/src/types/servicio/servicio-types";
 
 interface Props {
   features: Service["features"];

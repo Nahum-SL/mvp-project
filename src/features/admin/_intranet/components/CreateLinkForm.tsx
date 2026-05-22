@@ -18,7 +18,7 @@ import {
 import { createLinkAction, updateLinkAction } from "../action";
 import { LinkHeader } from "./form/LinkHeader";
 import { LinkConfigCard } from "./form/LinkConfigCard";
-import { IntranetLink } from "@/src/types/intranet/intranet-links";
+import { IntranetLink } from "@/src/types/intranet/intranet-types";
 // Iconos
 import { IconPicker } from "./form/IconPicker";
 import { IconName } from "@/src/lib/icons";

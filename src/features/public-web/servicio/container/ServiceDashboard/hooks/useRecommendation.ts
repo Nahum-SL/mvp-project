@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRecommendation } from "../../../action";
 import { RecommendationResult } from "@/src/types/servicio/recommendation";
-import { ServiceFilters } from "@/src/types/servicio/servicio";
+import { ServiceFilters } from "@/src/types/servicio/servicio-types";
 
 interface Props {
   filters: ServiceFilters;

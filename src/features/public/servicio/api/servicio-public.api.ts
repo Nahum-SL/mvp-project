@@ -1,4 +1,4 @@
-import type { Service } from "@/src/types/servicio/servicio";
+import type { Service } from "@/src/types/servicio/servicio-types";
 import { handleResponse } from "@/src/lib/handle-response";
 
 export async function getPublicServices(): Promise<Service[]> {

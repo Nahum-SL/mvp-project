@@ -8,7 +8,7 @@
 
 import { useState, useEffect } from "react";
 import { ScoredService } from "../types/servicio/scoring.types";
-import { ServiceFilters } from "../types/servicio/servicio";
+import { ServiceFilters } from "../types/servicio/servicio-types";
 import { API_URL } from "@/src/lib/api-url";
 
 export const useServices = (filters: ServiceFilters) => {

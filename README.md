@@ -28,9 +28,11 @@ form state
 # HOOKS
 derived/business logic
 
-# COMPONENTS
+# COMPONENTS.
 UI rendering
 
 # Subir cambios
-git checkout
+git add .
+git commit -m ""
+git push origin refactor-arquitectura
 

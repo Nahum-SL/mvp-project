@@ -1,6 +1,6 @@
 "use client";
 
-import { Service } from "@/src/types/servicio/servicio";
+import { Service } from "@/src/types/servicio/servicio-types";
 import { CheckCircle2 } from "lucide-react";
 
 export default function ServiceContent({ service }: { service: Service }) {

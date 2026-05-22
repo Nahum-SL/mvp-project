@@ -5,7 +5,7 @@ import { Plus, Trash2 } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 // Componentes Atomicos
 import { FormError } from "@/src/components/ui/form/FormError";
-import { FormSectionTitle } from "@/src/components/ui/form/FormSectionTitle";
+import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormSubSection } from "@/src/components/ui/form/FormSubSection";
 
 interface Props {
@@ -27,9 +27,9 @@ export const ServiceFeatures = ({ isPending }: Props) => {
   return (
     <FormSubSection >
       <div className="flex justify-between items-center">
-        <FormSectionTitle>
+        <FormLabel>
           Beneficios incluidos
-        </FormSectionTitle>
+        </FormLabel>
         <button
           type="button"
           onClick={() => append("")}

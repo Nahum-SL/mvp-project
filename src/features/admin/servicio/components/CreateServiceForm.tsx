@@ -12,11 +12,11 @@ import { ServiceConfigCard } from "./form/ServiceConfigCard";
 // Componentes Compartidos (Shared / Globales de Formulario)
 import { RichEditor } from "@/src/shared/components/editor/RichEditor";
 import { ImagePicker } from "@/src/shared/components/form/ImagePicker";
-import { FormIconPicker } from "@/src/shared/components/form/FormIconPicker"; // ✨ Nuevo componente integrado
+import { FormIconPicker } from "@/src/shared/components/form/FormIconPicker"; //  Nuevo componente integrado
 
 // Esquema e Iconos
 import type { ServicioFormInput } from "../schemas/servicio.schema";
-import type { Service } from "@/src/types/servicio/servicio";
+import type { Service } from "@/src/types/servicio/servicio-types";
 import { iconServiceMap } from "@/src/lib/icons";
 
 interface Props {

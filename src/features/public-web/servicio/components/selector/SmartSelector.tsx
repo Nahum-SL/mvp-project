@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
-import { ServiceFilters } from "@/src/types/servicio/servicio";
+import { ServiceFilters } from "@/src/types/servicio/servicio-types";
 import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 import { FilterItem } from "./Filter";
 import { SearchAction } from "./SearchAction";

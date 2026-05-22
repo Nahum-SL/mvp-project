@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Service } from "@/src/types/servicio/servicio";
+import { Service } from "@/src/types/servicio/servicio-types";
 
 export default function ServiceSlugHero({ service }: { service: Service }) {
   return (

@@ -1,4 +1,4 @@
-import { Service } from "./servicio";
+import { Service } from "./servicio-types";
 
 export interface ServiceRecommendationMeta {
   impact: number;

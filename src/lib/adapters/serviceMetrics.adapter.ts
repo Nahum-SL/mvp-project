@@ -1,4 +1,4 @@
-import { Service } from "@/src/types/servicio/servicio";
+import { Service } from "@/src/types/servicio/servicio-types";
 
 // Para que sean igual a las medidas del backend en NestJS
 // Por ahora se mantiene asi para un avanze rapido

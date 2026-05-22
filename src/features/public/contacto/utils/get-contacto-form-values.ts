@@ -1,23 +1,13 @@
-// src/features/admin/contacto/utils/get-contact-default-values.ts
-import { ContactoFormInput } from "../schemas/contacto.schema";
-// Reemplaza esto por tu interfaz real de Lead/Contacto que viene del backend/Zustand
-import type { Contacto } from "@/src/types/contacto/contacto-type";
+// utils/get-contacto-form-values.ts
 
-interface Props {
-  initialData?: Contacto;
-}
+import type { ContactoFormInput } from "../schemas/public-contacto.schema";
 
-export function getContactDefaultValues({
-  initialData,
-}: Props): ContactoFormInput {
+export function getContactDefaultValues(): ContactoFormInput {
   return {
-    name: initialData?.name || "",
-    email: initialData?.email || "",
-    telefono: initialData?.telefono || "",
-    // RHF en inputs de tipo "date" espera estrictamente un string en formato YYYY-MM-DD
-    fechaNac: initialData?.fechaNac
-      ? new Date(initialData.fechaNac).toISOString().split("T")[0]
-      : "",
-    comentario: initialData?.comentario || "",
+    name: "",
+    email: "",
+    telefono: "",
+    fechaNac: "",
+    comentario: "",
   };
 }
