@@ -1,39 +1,43 @@
+import { useShallow } from "zustand/react/shallow";
+
 import { usePostStore } from "./post.store";
 
-// FILTRAR ACCESO DE ESTADO
+// =========================
+// STATE
+// =========================
+
 export const usePostFilters = () =>
   usePostStore((state) => state.filters);
 
-// ELIMINAR
 export const useDeleteModal = () =>
   usePostStore((state) => state.deleteModal);
 
-// OBTENER POST
+export const usePreviewDrawer = () =>
+  usePostStore((state) => state.previewDrawer);
+
 export const useActivePost = () =>
   usePostStore((state) => state.activePost);
 
-// ACCIONES PARA EL POST
+// =========================
+// ACTIONS
+// =========================
+
 export const usePostActions = () =>
-  usePostStore((s) => ({
-    openDeleteModal: s.openDeleteModal,
-    closeDeleteModal: s.closeDeleteModal,
-    setFilters: s.setFilters,
-  }));
-// ====================
-// CAMBIOS
-// ====================
+  usePostStore(
+    useShallow((state) => ({
+      // Delete Modal
+      openDeleteModal: state.openDeleteModal,
+      closeDeleteModal: state.closeDeleteModal,
 
-// ===== ANTES =====  
-// import { usePostStore } from "./post.store";
+      // Preview Drawer
+      openPreviewDrawer: state.openPreviewDrawer,
+      closePreviewDrawer: state.closePreviewDrawer,
 
-// export const usePostFilters = () =>
-//   usePostStore((state) => state.filters);
+      // Active
+      setActivePost: state.setActivePost,
 
-// export const useDeleteModal = () =>
-//   usePostStore((state) => state.deleteModal);
-
-// export const useActivePost = () =>
-//   usePostStore((state) => state.activePost);
-
-// ===== DESPUES =====
-// const modal = useDeleteModal();
+      // Filters
+      setFilters: state.setFilters,
+      clearFilters: state.clearFilters,
+    })),
+  );

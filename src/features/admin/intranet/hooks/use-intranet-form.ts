@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -21,7 +20,6 @@ import { buildIntranetPayload } from "../utils/build-intranet-payload";
 import { getIntranetDefaultValues } from "../utils/get-intranet-default-values";
 
 import type { IntranetLink } from "@/src/types/intranet/intranet-types";
-import type { IconName } from "@/src/lib/icons";
 
 interface Props {
   initialData?: IntranetLink;
@@ -43,24 +41,6 @@ export function useIntranetForm({ initialData }: Props) {
       initialData,
     }),
   });
-
-  // ======================
-  // ICON STATE
-  // ======================
-
-  const [selectedIcon, setSelectedIcon] = useState<IconName>(
-    (initialData?.icon as IconName) || "LinkIcon",
-  );
-
-  // Sincroniza RHF + estado visual
-  const handleIconChange = (iconName: IconName) => {
-    setSelectedIcon(iconName);
-
-    form.setValue("icon", iconName, {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
-  };
 
   // ======================
   // MUTATIONS
@@ -107,9 +87,5 @@ export function useIntranetForm({ initialData }: Props) {
     onSubmit,
     isPending,
     isEditing,
-
-    // ICON PICKER
-    selectedIcon,
-    handleIconChange,
   };
 }

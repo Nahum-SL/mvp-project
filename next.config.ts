@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 /**
  * BUENAS PRÁCTICAS DE SEGURIDAD (CSP)
@@ -62,7 +63,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
+  turbopack: { root: path.join(__dirname) },
   // 2. Optimización de Imágenes
   images: {
     formats: ["image/avif", "image/webp"], // Mejor práctica: servir formatos modernos automáticamente

@@ -1,6 +1,6 @@
 // app/(admin)/admin/intranet/nuevo/page.tsx
 import PageHeader from "@/src/features/admin/components/PageHeader";
-import { CreateLinkForm } from "@/src/features/admin/intranet/components/CreateLinkForm";
+import { IntranetForm } from "@/src/features/admin/intranet/components/CreateLinkForm";
 
 export default function NewLinkPage() {
   return (
@@ -12,7 +12,7 @@ export default function NewLinkPage() {
       />
 
       <section>
-        <CreateLinkForm />
+        <IntranetForm />
       </section>
     </main>
   );

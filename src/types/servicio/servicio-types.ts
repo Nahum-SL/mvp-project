@@ -7,7 +7,7 @@ export interface ServiceFeature {
   name: string;
   serviceId: number;
 }
-
+//
 // Definimos la estructura exacta de tus filtros
 export interface ServiceFilters {
   businessType?: BusinessTypeID;
@@ -58,4 +58,20 @@ export interface CreateServicePayload {
 
   isVisible: boolean;
   order: number;
+}
+
+export interface UpdateServicePayload {
+  title?: string;
+  slug?: string;
+  description?: string;
+  icon?: string | null;
+  image?: string;
+
+  businessTypes?: BusinessTypeID[];
+  painPoints?: PainPointID[];
+
+  features?: CreateServiceFeaturePayload[];
+
+  isVisible?: boolean;
+  order?: number;
 }

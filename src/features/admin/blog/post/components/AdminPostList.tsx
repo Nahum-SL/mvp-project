@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, User as UserIcon, Trash2, Edit3 } from "lucide-react";
 import { BlogPost } from "@/src/types/blog/blogPost";
-import { DeletePostModal } from "./DeletePostModal"; // El que creamos antes
+import { DeletePostModal } from "../modals/DeletePostModal"; // El que creamos antes
 import { usePostActions } from "../store/post.selectors";
 
 export const AdminPostList = ({ posts }: { posts: BlogPost[] }) => {

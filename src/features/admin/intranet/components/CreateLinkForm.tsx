@@ -2,12 +2,14 @@
 import { FormProvider } from "react-hook-form";
 import { useIntranetForm } from "../hooks/use-intranet-form";
 
+import { useState } from "react";
+
 // Sub-componentes del formulario
 import { LinkConfigCard } from "./form/LinkConfigCard";
 import { LinkHeader } from "./form/LinkHeader";
 
 // Componentes atomicos
-import { IconPicker } from "@/src/components/ui/icon-picker";
+import { RHFIconPicker } from "@/src/components/ui/rhf-icon-picker";
 import { iconMap } from "@/src/lib/icons";
 import { FormActions } from "@/src/components/ui/form/FormActions";
 
@@ -19,14 +21,9 @@ interface LinkFormProps {
 }
 
 export function IntranetForm({ initialData }: LinkFormProps) {
-  const {
-    form,
-    onSubmit,
-    isPending,
-    isEditing,
-    selectedIcon,
-    handleIconChange,
-  } = useIntranetForm({ initialData });
+  const { form, onSubmit, isPending, isEditing } = useIntranetForm({
+    initialData,
+  });
 
   return (
     <FormProvider {...form}>
@@ -37,11 +34,10 @@ export function IntranetForm({ initialData }: LinkFormProps) {
         <div className="lg:col-span-2 space-y-8">
           <LinkHeader disabled={isPending} />
 
-          <IconPicker
-            value={selectedIcon}
-            onChange={handleIconChange}
+          <RHFIconPicker
+            name="icon"
             icons={iconMap}
-            label="Icono del Acceso"
+            label="Selecciona un icono"
           />
         </div>
 

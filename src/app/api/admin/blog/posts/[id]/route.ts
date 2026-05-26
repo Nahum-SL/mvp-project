@@ -8,7 +8,7 @@ interface RouteParams {
   params: Promise<{ id: string }>;
 }
 
-// GET /api/post/[id] -> Obtener un post específico
+// GET /post/[id] -> Obtener un post específico
 export async function GET(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
@@ -26,7 +26,7 @@ export async function GET(request: Request, { params }: RouteParams) {
       );
     }
 
-    const data = await serverApiClient(`/api/post/${id}`);
+    const data = await serverApiClient(`/post/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, "Error obteniendo post");
@@ -34,13 +34,13 @@ export async function GET(request: Request, { params }: RouteParams) {
 }
 
 
-// PATCH /api/post/[id] -> Actualizar un post
+// PATCH /post/[id] -> Actualizar un post
 export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
     const formData = await request.formData();
 
-    const data = await serverApiClient(`/api/post/${id}`, {
+    const data = await serverApiClient(`/post/${id}`, {
       method: "PATCH",
       body: formData,
     });
@@ -50,12 +50,12 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   }
 }
 
-// DELETE /api/post/[id] -> Eliminar un post
+// DELETE /post/[id] -> Eliminar un post
 export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
 
-    await serverApiClient(`/api/post/${id}`, {
+    await serverApiClient(`/post/${id}`, {
       method: "DELETE",
     });
 

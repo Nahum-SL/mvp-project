@@ -25,7 +25,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
-    const data = await serverApiClient("/api/post",{
+    const data = await serverApiClient("/post",{
       method: "POST",
       body: formData,
     });

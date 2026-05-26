@@ -19,6 +19,13 @@ pnpm dev
 # Zustand 
 UI - state
 
+# NO colocar en Zustand - Porque RHF ya optimiza eso brutalmente-->
+form values
+inputs
+validation
+loading states de forms
+react-hook-form state
+
 # REACT QUERY
 server state
 

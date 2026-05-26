@@ -1,14 +1,10 @@
 // app/(admin)/admin/intranet/page.tsx
 import Link from "next/link";
 import { Plus, LayoutGrid } from "lucide-react";
-import { AdminLinkList } from "@/src/features/admin/intranet/components/AdminLinkList";
-import { Suspense } from "react";
-import { LinkListSkeleton } from "@/src/features/admin/intranet/components/LinkListSkeleton";
-import { getIntranetLinks } from "@/src/features/admin/intranet/action";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import { IntranetManagementView } from "@/src/features/admin/intranet/drawers/IntranetManagamentView";
 
 export default async function AdminIntranetPage() {
-  const links = await getIntranetLinks();
 
   return (
     <main className="space-y-10 pb-20">
@@ -30,9 +26,7 @@ export default async function AdminIntranetPage() {
       
       {/* Lista de Gestión */}
       <section className="pb-10">
-        <Suspense fallback={<LinkListSkeleton />}>
-          <AdminLinkList links={links} />
-        </Suspense>
+      <IntranetManagementView />
       </section>
     </main>
   );

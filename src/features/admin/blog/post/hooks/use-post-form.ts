@@ -12,9 +12,13 @@ import {
   type PostFormValues,
 } from "../schemas/blog-post-schema";
 
-import { useCreatePost, useUpdatePost } from "./use-blog-mutation";
+import { useCreatePost, useUpdatePost } from "./use-post-mutation";
 import { useImagePreview } from "@/src/shared/hooks/form/use-image-preview";
 import { useAutoSlug } from "@/src/shared/hooks/form/use-auto-slug";
+
+// Utils
+import { getPostDefaultValues } from "../utils/post-default-values";
+import { buildPostFormData } from "../utils/post-form-data";
 
 import type { BlogPost } from "@/src/types/blog/blogPost";
 
@@ -34,14 +38,7 @@ export function usePostForm({ initialData }: UsePostFormProps) {
   const form = useForm<PostFormInput, unknown, PostFormValues>({
     resolver: zodResolver(postSchema),
 
-    defaultValues: {
-      title: initialData?.title || "",
-      slug: initialData?.slug || "",
-      excerpt: initialData?.excerpt || "",
-      categoryId: initialData?.categoryId || 0,
-      published: initialData?.published || false,
-      content: initialData?.content || "",
-    },
+    defaultValues: getPostDefaultValues({ initialData }),
   });
 
   // Hooks especializados
@@ -59,16 +56,8 @@ export function usePostForm({ initialData }: UsePostFormProps) {
 
   // Submit
   const onSubmit = async (values: PostFormValues) => {
-    const formData = new FormData();
-    
-    for (const [key, value] of Object.entries(values)) {
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else {
-        formData.append(key, String(value));
-      }
-    }
-    // Mutation
+    const formData = buildPostFormData(values);
+
     try {
       if (isEditing && initialData?.id) {
         await updateMutation.mutateAsync({
@@ -82,12 +71,12 @@ export function usePostForm({ initialData }: UsePostFormProps) {
 
         toast.success("¡Publicado!");
       }
+
       router.push("/admin/blog");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Error inesperado");
     }
   };
-
   return {
     form,
     previewUrl,

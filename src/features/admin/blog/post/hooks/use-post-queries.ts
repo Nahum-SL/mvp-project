@@ -1,6 +1,6 @@
 import { useQuery} from "@tanstack/react-query";
 import { getAdminPost, getPostById } from "../api/post.api";
-import { POST_QUERY_KEYS } from "../utils/blog-query-key";
+import { POST_QUERY_KEYS } from "../utils/post-query-key";
 
 // GET
 export function useAdminPosts() {

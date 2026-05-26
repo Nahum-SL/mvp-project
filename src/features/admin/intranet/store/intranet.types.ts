@@ -1,17 +1,19 @@
-import type { IntranetLink } from "@/src/types/intranet/intranet-types";
-
 export interface DeleteModalState {
   isOpen: boolean;
   id: number | null;
   title: string;
 }
 
+// PreviewDrawer --> Para controlar este Drawer de previsualización sin alterar las URL
 export interface IntranetStore {
-  activeLink: IntranetLink | null;
+  previewDrawer: {
+    isOpen: boolean;
+    linkId: number | null;
+  };
+  openPreviewDrawer: (id: number) => void;
+  closePreviewDrawer: () => void;
 
   deleteModal: DeleteModalState;
-
-  setActiveLink: (link: IntranetLink | null) => void;
 
   openDeleteModal: (payload: { id: number; title: string }) => void;
 

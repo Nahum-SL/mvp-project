@@ -1,5 +1,4 @@
 import {
-  LucideIcon,
   // EXPORT -->
   // src/features/admin/intranet/components/LinkRow.tsx -- Para la eleccion de iconos
   Users,

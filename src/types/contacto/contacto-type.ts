@@ -6,7 +6,7 @@ export const ContactStatus = {
 } as const;
 
 export type ContactStatus = (typeof ContactStatus)[keyof typeof ContactStatus];
-
+// 
 export interface Contacto {
   id: string;
   name: string;

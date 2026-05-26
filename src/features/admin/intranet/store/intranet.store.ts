@@ -1,20 +1,43 @@
+// features/admin/intranet/store/intranet.store.ts
 import { create } from "zustand";
 
-import type { IntranetStore } from "./intranet.type";
+import type { DeleteModalState, IntranetStore } from "./intranet.types";
+
+const initialDeleteModal: DeleteModalState = {
+  isOpen: false,
+  id: null,
+  title: "",
+};
 
 export const useIntranetStore = create<IntranetStore>((set) => ({
-  activeLink: null,
-
-  deleteModal: {
+  // =====================
+  // PREVIEW DRAWER
+  // =====================
+  previewDrawer: {
     isOpen: false,
-    id: null,
-    title: "",
+    linkId: null,
   },
 
-  setActiveLink: (link) =>
+  openPreviewDrawer: (id) =>
     set({
-      activeLink: link,
+      previewDrawer: {
+        isOpen: true,
+        linkId: id,
+      },
     }),
+
+  closePreviewDrawer: () =>
+    set({
+      previewDrawer: {
+        isOpen: false,
+        linkId: null,
+      },
+    }),
+
+  // =====================
+  // DELETE MODAL
+  // =====================
+  deleteModal: initialDeleteModal,
 
   openDeleteModal: ({ id, title }) =>
     set({
@@ -27,10 +50,6 @@ export const useIntranetStore = create<IntranetStore>((set) => ({
 
   closeDeleteModal: () =>
     set({
-      deleteModal: {
-        isOpen: false,
-        id: null,
-        title: "",
-      },
+      deleteModal: initialDeleteModal,
     }),
 }));

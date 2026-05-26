@@ -1,17 +1,9 @@
-// Acciones
-import { getAdminPost } from "@/src/features/admin/blog/action";
-// Lista
-import { AdminPostList } from "@/src/features/admin/blog/components/AdminPostList";
-// Diseño de carga
-import { PostListSkeleton } from "@/src/features/admin/blog/components/PostListSkeleton";
-import { Suspense } from "react";
 // Header
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 import { LayoutGrid, Plus } from "lucide-react";
 import Link from "next/link";
 
 export default async function AdminBlogPage() {
-  const posts = await getAdminPost();
 
   return (
     <div className="space-y-10 pb-20">
@@ -44,9 +36,6 @@ export default async function AdminBlogPage() {
         }
       />
 
-      <Suspense fallback={<PostListSkeleton />}>
-        <AdminPostList posts={posts} />
-      </Suspense>
     </div>
   );
 }

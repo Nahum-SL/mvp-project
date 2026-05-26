@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { AlertTriangle, Loader2 } from "lucide-react";
-import { useDeletePost } from "../hooks/use-blog-mutation";
+import { useDeletePost } from "../hooks/use-post-mutation";
 
 import { useDeleteModal, usePostActions } from "../store/post.selectors";
 import { toast } from "sonner";

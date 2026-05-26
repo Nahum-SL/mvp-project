@@ -6,7 +6,7 @@ import { Metadata } from "next";
 // Componentes de la página
 import AsesconHero from "@/src/features/public-web/home/AsesconHero";
 import { RecentPostSkeleton } from "../../components/skeletons/RecentPostSkeleton";
-import { ContactForm } from "@/src/features/public-web/contacto/components/ContactForm";
+import { ContactForm } from "@/src/features/public/contacto/components/ContactForm";
 import { FeaturedServices } from "@/src/features/public-web/home/components/FeaturedServices";
 import { ValueProposition } from "@/src/features/public-web/home/components/ValueProposition";
 import { RecentPostsSection } from "@/src/components/sections/RecentPostSection";

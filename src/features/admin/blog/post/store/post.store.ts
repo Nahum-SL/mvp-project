@@ -11,28 +11,37 @@ const defaultFilters: PostFilters = {
 };
 
 export const usePostStore = create<PostStore>((set) => ({
-  // =========
+  // =========================
   // UI
-  // =========
+  // =========================
+
   deleteModal: {
     isOpen: false,
     postId: null,
     postTitle: "",
   },
 
-  // =========
-  // ACTIVE
-  // =========
+  previewDrawer: {
+    isOpen: false,
+    postId: null,
+  },
+
+  // =========================
+  // ACTIVE ENTITY
+  // =========================
+
   activePost: null,
 
-  // =========
+  // =========================
   // FILTERS
-  // =========
+  // =========================
+
   filters: defaultFilters,
 
-  // =========
-  // MODAL ACTIONS
-  // =========
+  // =========================
+  // DELETE MODAL ACTIONS
+  // =========================
+
   openDeleteModal: ({ id, title }) =>
     set({
       deleteModal: {
@@ -43,26 +52,47 @@ export const usePostStore = create<PostStore>((set) => ({
     }),
 
   closeDeleteModal: () =>
-    set((state) => ({
+    set({
       deleteModal: {
-        ...state.deleteModal,
         isOpen: false,
         postId: null,
         postTitle: "",
       },
-    })),
+    }),
 
-  // =========
-  // ACTIVE ACTIONS
-  // =========
+  // =========================
+  // PREVIEW DRAWER ACTIONS
+  // =========================
+
+  openPreviewDrawer: (id) =>
+    set({
+      previewDrawer: {
+        isOpen: true,
+        postId: id,
+      },
+    }),
+
+  closePreviewDrawer: () =>
+    set({
+      previewDrawer: {
+        isOpen: false,
+        postId: null,
+      },
+    }),
+
+  // =========================
+  // ACTIVE POST ACTIONS
+  // =========================
+
   setActivePost: (post) =>
     set({
       activePost: post,
     }),
 
-  // =========
+  // =========================
   // FILTER ACTIONS
-  // =========
+  // =========================
+
   setFilters: (newFilters) =>
     set((state) => ({
       filters: {

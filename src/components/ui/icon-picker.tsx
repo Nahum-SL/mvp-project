@@ -1,4 +1,4 @@
-// src/components/icon-picker.tsx
+// src/components/ui/icon-picker.tsx
 "use client";
 
 import { useState, useMemo } from "react";
@@ -6,13 +6,12 @@ import { Search, LucideIcon } from "lucide-react";
 import { cn } from "@/src/lib/utils";
 import { motion } from "framer-motion";
 
-// Definimos Props usando un Genérico <T> que debe ser un subtipo de string
-interface Props<T extends string> {
+export interface IconPickerProps<T extends string> {
   value: T;
   onChange: (value: T) => void;
-  icons: Record<T, LucideIcon>; // Mapeo estricto de llaves a componentes Lucide
+  icons: Record<T, LucideIcon>;
   error?: string;
-  label?: string; // Título opcional personalizable por feature
+  label?: string;
 }
 
 export const IconPicker = <T extends string>({
@@ -21,10 +20,8 @@ export const IconPicker = <T extends string>({
   icons,
   error,
   label = "Icono del Acceso",
-}: Props<T>) => {
+}: IconPickerProps<T>) => {
   const [searchTerm, setSearchTerm] = useState("");
-
-
 
   // Convertimos las llaves del mapa de íconos inyectado en un Array indexable
   const iconList = useMemo(() => Object.keys(icons) as T[], [icons]);
@@ -32,11 +29,10 @@ export const IconPicker = <T extends string>({
   // Recuperamos el ícono seleccionado actualmente
   const SelectedIcon = icons[value] as LucideIcon;
 
-  // Filtramos basándonos en la lista dinámica de este mapa específico
+  // Filtramos basándonos en el término de búsqueda
   const filteredIcons = useMemo(() => {
-    return iconList.filter((name) =>
-      name.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
+    const lowerSearch = searchTerm.toLowerCase();
+    return iconList.filter((name) => name.toLowerCase().includes(lowerSearch));
   }, [searchTerm, iconList]);
 
   return (
@@ -70,14 +66,12 @@ export const IconPicker = <T extends string>({
           className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border-none 
           rounded-xl focus:ring-2 focus:ring-blue-500/20 
           transition-all outline-none font-medium"
+          value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div
-        className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto 
-        pr-2 scrollbar-thin scrollbar-thumb-slate-200"
-      >
+      <div className="grid grid-cols-5 gap-3 max-h-50 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
         {filteredIcons.map((iconName) => {
           const IconComponent = icons[iconName] as LucideIcon;
           const isSelected = value === iconName;
@@ -110,3 +104,18 @@ export const IconPicker = <T extends string>({
     </div>
   );
 };
+
+// =======================
+// ICON PICKER
+// =======================
+
+// SIRVE para:
+
+// Zustand
+// filtros
+// selects externos
+// settings
+// configuraciones
+// drawers
+// preview
+// componentes no-RHF

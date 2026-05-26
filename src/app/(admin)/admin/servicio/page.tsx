@@ -1,12 +1,9 @@
 // src/app/admin/servicios/page.tsx
 import Link from "next/link";
 import { Plus, Layers } from "lucide-react";
-import { getAdminServicios } from "@/src/features/admin/_servicio/action";
-import { ServiciosTable } from "@/src/features/admin/_servicio/components/ServiciosTable";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 
 export default async function AdminServiciosPage() {
-  const servicios = await getAdminServicios();
 
   return (
     <main className="space-y-10 pb-20">
@@ -27,10 +24,6 @@ export default async function AdminServiciosPage() {
           </Link>
         }
       />
-      {/* Tabla de Gestión */}
-      <section className="bg-white rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden">
-        <ServiciosTable initialData={servicios} />
-      </section>
     </main>
   );
 }

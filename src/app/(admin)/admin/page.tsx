@@ -1,18 +1,15 @@
 // src/app/(admin)/admin/page.tsx
 import { Users, FileText, Link as LinkIcon, Eye, Home } from "lucide-react";
-import { getDashboardStats } from "@/src/features/admin/dashboard/action";
-import { DashboardCharts } from "@/src/features/admin/dashboard/components/DashboardStast";
-import { StatCard } from "@/src/features/admin/dashboard/components/StatCard";
-import { QuickActions } from "@/src/features/admin/dashboard/components/QuickActions";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import { StatCard } from "@/src/features/admin/_dashboard/components/StatCard";
+import { QuickActions } from "@/src/features/admin/_dashboard/components/QuickActions";
 
 export default async function AdminDashboardPage() {
-  const data = await getDashboardStats();
 
   const stats = [
     {
       name: "Prospectos",
-      value: data.leads,
+      value: 10,
       change: "+12%",
       icon: Users,
       color: "text-blue-600",
@@ -22,7 +19,7 @@ export default async function AdminDashboardPage() {
     },
     {
       name: "Artículos",
-      value: data.posts,
+      value: 10,
       change: "En línea",
       icon: FileText,
       color: "text-emerald-600",
@@ -32,7 +29,7 @@ export default async function AdminDashboardPage() {
     },
     {
       name: "Intranet",
-      value: data.links,
+      value: 13,
       change: "Activos",
       icon: LinkIcon,
       color: "text-amber-600",
@@ -42,7 +39,7 @@ export default async function AdminDashboardPage() {
     },
     {
       name: "Visitas",
-      value: data.views,
+      value: 12030,
       change: "+5.4%",
       icon: Eye,
       color: "text-violet-600",
@@ -80,9 +77,9 @@ export default async function AdminDashboardPage() {
               <option>Últimos 30 días</option>
             </select>
           </div>
-          <div className="h-64 w-full">
+          {/* <div className="h-64 w-full">
             <DashboardCharts data={data.chartData || []} />
-          </div>
+          </div> */}
         </div>
 
         {/* Acciones */}

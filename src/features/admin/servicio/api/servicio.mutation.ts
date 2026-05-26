@@ -3,7 +3,7 @@ import { handleResponse } from "@/src/lib/handle-response";
 
 // Create
 export async function createServicioAction(
-    formData: FormData
+  formData: FormData,
 ): Promise<Service> {
   const res = await fetch("/api/admin/servicio", {
     method: "POST",
@@ -31,4 +31,3 @@ export async function deleteServicioAction(id: number): Promise<void> {
   });
   return handleResponse<void>(res);
 }
-

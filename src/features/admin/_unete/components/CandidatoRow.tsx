@@ -8,7 +8,7 @@ import { es } from "date-fns/locale";
 import { cn } from "@/src/lib/utils";
 
 import { JobAppStatus } from "../types";
-import { JobApplication } from "@/src/types/unete/unete";
+import { JobApplication } from "@/src/types/unete/unete-types";
 import { StatusBadge } from "./StatusBadge";
 
 import Link from "next/link";

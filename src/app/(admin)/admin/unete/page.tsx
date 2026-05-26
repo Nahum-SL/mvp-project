@@ -1,18 +1,10 @@
-// src/app/(admin)/admin/unete/page.tsx
 
-// --- Skeleton de carga
-import { TableSkeleton } from "@/src/components/skeletons/TableSkeleton";
-import { Suspense } from "react";
-
-// --- Componentes
-import { CandidatosTable } from "@/src/features/admin/unete/components/CandidatosTable";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 
 // -- Icono
 import { LayoutGrid } from "lucide-react";
 
-// --- Acciones
-import { getCandidatos } from "@/src/features/admin/unete/action";
+import { UneteManagementView } from "@/src/features/admin/unete/views/unete-managament-view";
 
 export default function UneteAdminPage() {
   return (
@@ -23,19 +15,7 @@ export default function UneteAdminPage() {
       icon={<LayoutGrid size={32} />}
       variant="flat"
       />
-
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
-        {/* El Skeleton aparece mientras se cargan los datos */}
-        <Suspense fallback={<TableSkeleton rows={5} />}>
-          <CandidatosList />
-        </Suspense>
-      </div>
+      <UneteManagementView />
     </div>
   );
-}
-// Se obtiene la lista de candidatos y se renderiza la tabla. 
-// El Suspense muestra el skeleton mientras se cargan los datos.
-async function CandidatosList() {
-  const candidatos = await getCandidatos();
-  return <CandidatosTable data={candidatos} />;
 }

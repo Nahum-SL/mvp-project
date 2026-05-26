@@ -1,5 +1,9 @@
+// src/components/ui/table/Table.tsx
 import { ReactNode } from "react";
 import { cn } from "@/src/lib/utils";
+import { LoadingState } from "../states/LoadingState"; // Ajusta la ruta según prefieras
+import { EmptyState } from "../states/EmptyState";
+import { AlertCircle } from "lucide-react";
 
 interface TableProps {
   headers: string[];
@@ -8,6 +12,7 @@ interface TableProps {
   isEmpty?: boolean;
   loadingComponent?: ReactNode;
   emptyComponent?: ReactNode;
+  className?: string;
 }
 
 export function Table({
@@ -17,18 +22,25 @@ export function Table({
   isEmpty,
   loadingComponent,
   emptyComponent,
+  className,
 }: TableProps) {
   const colSpan = headers.length;
+
   return (
-    <div className="overflow-x-auto border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm bg-white dark:bg-gray-900">
+    <div
+      className={cn(
+        "overflow-x-auto border border-slate-100 dark:border-gray-800 rounded-3xl shadow-sm bg-white dark:bg-gray-900",
+        className,
+      )}
+    >
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-gray-50 dark:bg-gray-800/50 text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200 dark:border-gray-800">
+          <tr className="bg-slate-50/70 dark:bg-gray-800/50 text-[11px] font-extrabold text-slate-400 dark:text-gray-400 uppercase tracking-widest border-b border-slate-100 dark:border-gray-800">
             {headers.map((header, index) => (
               <th
                 key={header}
                 className={cn(
-                  "px-6 py-3.5",
+                  "px-8 py-4 italic",
                   index === colSpan - 1 ? "text-right" : "",
                 )}
               >
@@ -37,21 +49,29 @@ export function Table({
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-800 text-sm">
+        <tbody className="divide-y divide-slate-100 dark:divide-gray-800 text-sm">
           {isLoading && (
             <tr>
               <td colSpan={colSpan} className="px-6 py-4">
-                {loadingComponent}
+                {loadingComponent || <LoadingState />}
               </td>
             </tr>
           )}
+
           {!isLoading && isEmpty && (
             <tr>
               <td colSpan={colSpan} className="px-6 py-4">
-                {emptyComponent}
+                {emptyComponent || (
+                  <EmptyState
+                    icon={AlertCircle}
+                    title="No hay registros disponibles"
+                    description="Parece que aún no se ha agregado ningún elemento a esta sección."
+                  />
+                )}
               </td>
             </tr>
           )}
+
           {!isLoading && !isEmpty && children}
         </tbody>
       </table>

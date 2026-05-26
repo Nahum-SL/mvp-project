@@ -23,7 +23,7 @@ export async function GET(request: Request, { params }: RouteParams) {
       );
     }
 
-    const data = await serverApiClient(`/api/intranet/admin/link/${id}`);
+    const data = await serverApiClient(`/intranet/admin/link/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, "Error obteniendo el link de la intranet");
@@ -36,7 +36,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     const { id } = await params;
     const body = await request.json();
 
-    const data = await serverApiClient(`/api/intranet/admin/update/${id}`, {
+    const data = await serverApiClient(`/intranet/admin/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
 
-    await serverApiClient(`/api/intranet/admin/delete/${id}`, {
+    await serverApiClient(`/intranet/admin/delete/${id}`, {
       method: "DELETE",
     });
 

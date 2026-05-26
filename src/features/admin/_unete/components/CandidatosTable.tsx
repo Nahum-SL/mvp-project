@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { useTransition, useState } from "react";
 import { toast } from "sonner";
 import { JobAppStatus } from "../types";
-import { JobApplication } from "@/src/types/unete/unete";
+import { JobApplication } from "@/src/types/unete/unete-types";
 import { updateCandidatoStatus } from "../action";
 import { CandidatoFilters } from "./CandidatosFilters";
 import { CandidatoRow } from "./CandidatoRow";

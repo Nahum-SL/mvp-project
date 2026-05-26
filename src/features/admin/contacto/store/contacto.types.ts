@@ -14,7 +14,7 @@ export interface DeleteContactModalState {
   contactId: string | null;
   contactName: string;
 }
-
+// 
 export interface ContactoStore {
   // =========
   // UI STATE
