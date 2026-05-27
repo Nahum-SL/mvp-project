@@ -10,7 +10,7 @@ import { apiSuccess, handleApiError } from "@/src/lib/api-response";
 // Obtener todos los post para el admin (con autenticación)
 export async function GET() {
   try {
-    const data = await serverApiClient("/api/post/admin");
+    const data = await serverApiClient("/post/admin");
 
     return apiSuccess(data);
   } catch (error: unknown) {

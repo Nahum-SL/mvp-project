@@ -2,9 +2,9 @@
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
 import { LayoutGrid, Plus } from "lucide-react";
 import Link from "next/link";
+import { PostManagementView } from "@/src/features/admin/blog/post/views/PostManagamentView";
 
 export default async function AdminBlogPage() {
-
   return (
     <div className="space-y-10 pb-20">
       <SectionHeader
@@ -14,8 +14,8 @@ export default async function AdminBlogPage() {
         variant="flat"
         actions={
           <Link
-          href="/admin/blog/crear"
-          className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
+            href="/admin/blog/crear"
+            className="bg-slate-900 text-white hover:bg-blue-600 px-8 py-4 rounded-2xl 
           font-extrabold uppercase text-xs tracking-widest transition-all flex items-center }
           gap-2 shadow-xl shadow-blue-100"
           >
@@ -35,7 +35,7 @@ export default async function AdminBlogPage() {
           </Link>
         }
       />
-
+      <PostManagementView />
     </div>
   );
 }

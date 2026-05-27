@@ -3,7 +3,7 @@ import { serverApiClient } from "@/src/lib/server-api-client";
 
 export async function GET() {
   try {
-    const data = await serverApiClient("/api/post");
+    const data = await serverApiClient("/api/public/blog/post");
 
     return apiSuccess(data);
   } catch (error) {

@@ -1,5 +1,5 @@
 import { useQuery} from "@tanstack/react-query";
-import { getAdminPost, getPostById } from "../api/post.api";
+import { getAdminPost, getPostById } from "../api/post.query";
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
 
 // GET
@@ -11,11 +11,11 @@ export function useAdminPosts() {
   });
 }
 
-export function usePostById(id: number) {
+export function usePostById(id: number | null) {
   return useQuery({
-    queryKey: [POST_QUERY_KEYS.detail],
-    queryFn: () => getPostById(id),
-    enabled: !!id, // Solo ejecutar si hay un ID válido
+    queryKey: [POST_QUERY_KEYS.detail(id ?? 0)],
+    queryFn: () => getPostById(id!), // Si id es null, usar 0 o un valor predeterminado
+    enabled: id !== null && id > 0, // Solo ejecutar si id es válido
   });
 }
 

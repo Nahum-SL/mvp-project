@@ -11,6 +11,9 @@ Proyecto MVP web empresarial para gestión de contacto e intranet, desarrollado 
 
 ## Método de Instalación
 
+## Arquitectura implementada
+Feature-Driven
+
 ```bash
 pnpm install
 pnpm dev
