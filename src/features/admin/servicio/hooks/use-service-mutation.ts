@@ -4,8 +4,9 @@ import {
   deleteServicioAction,
   updateServicioAction,
 } from "../api/servicio.mutation";
-import { SERVICIO_QUERY_KEYS } from "../utils/servicio-query-options";
+import { SERVICIO_QUERY_KEYS } from "../utils/servicio-query-key";
 import type { Service } from "@/src/types/servicio/servicio-types";
+import { toast } from "sonner";
 
 // CREATE
 export const useCreateServicio = () => {
@@ -30,10 +31,23 @@ export const useUpdateServicio = () => {
     mutationFn: ({ id, data }: { id: number; data: FormData }) =>
       updateServicioAction(id, data),
 
-    onSuccess: () => {
+    onSuccess: (updatedService) => {
       queryClient.invalidateQueries({
-        queryKey: SERVICIO_QUERY_KEYS.all,
+        queryKey: SERVICIO_QUERY_KEYS.lists(),
       });
+
+      queryClient.setQueryData(
+        SERVICIO_QUERY_KEYS.detail(updatedService.id),
+        updatedService,
+      );
+
+      toast.success("Servicio actualizado correctamente");
+    },
+
+    onError: (error) => {
+      toast.error(
+        error instanceof Error ? error.message : "Error actualizando servicio",
+      );
     },
   });
 };
@@ -44,20 +58,24 @@ export const useDeleteServicio = () => {
 
   return useMutation({
     mutationFn: deleteServicioAction,
-    
+
     // Mutación Optimista ejecutada inmediatamente al disparar deleteServicio(id)
-    onMutate: async (idDeleted) => {
+    onMutate: async (deletedId) => {
       // Cancelamos queries salientes para que no sobreescriban nuestra caché optimista
-      await queryClient.cancelQueries({ queryKey: SERVICIO_QUERY_KEYS.all });
+      await queryClient.cancelQueries({ 
+        queryKey: SERVICIO_QUERY_KEYS.lists(), 
+      });
 
       // Guardamos una copia del estado previo de la caché para Rollback
-      const previousServicios = queryClient.getQueryData<Service[]>(SERVICIO_QUERY_KEYS.all);
+      const previousServicios = queryClient.getQueryData<Service[]>(
+        SERVICIO_QUERY_KEYS.lists(),
+      );
 
       // Modificamos la caché removiendo el elemento de inmediato de la UI
       if (previousServicios) {
         queryClient.setQueryData<Service[]>(
-          SERVICIO_QUERY_KEYS.all,
-          previousServicios.filter((service) => service.id !== idDeleted)
+          SERVICIO_QUERY_KEYS.lists(),
+          previousServicios.filter((service) => service.id !== deletedId),
         );
       }
 
@@ -66,9 +84,12 @@ export const useDeleteServicio = () => {
     },
 
     // Si la acción falla en la DB, hacemos rollback automático usando el contexto previo
-    onError: (err, idDeleted, context) => {
+    onError: (err, deletedId, context) => {
       if (context?.previousServicios) {
-        queryClient.setQueryData(SERVICIO_QUERY_KEYS.all, context.previousServicios);
+        queryClient.setQueryData(
+          SERVICIO_QUERY_KEYS.lists(),
+          context.previousServicios,
+        );
       }
     },
 
@@ -79,4 +100,4 @@ export const useDeleteServicio = () => {
       });
     },
   });
-}
+};

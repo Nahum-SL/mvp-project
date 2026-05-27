@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Plus, Layers } from "lucide-react";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import { ServicioManagementView } from "@/src/features/admin/servicio/view/service-managament-view";
 
 export default async function AdminServiciosPage() {
 
@@ -24,6 +25,7 @@ export default async function AdminServiciosPage() {
           </Link>
         }
       />
+        <ServicioManagementView />
     </main>
   );
 }

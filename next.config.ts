@@ -63,7 +63,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  turbopack: { root: path.join(__dirname) },
+  turbopack: { root: process.cwd() },
   // 2. Optimización de Imágenes
   images: {
     formats: ["image/avif", "image/webp"], // Mejor práctica: servir formatos modernos automáticamente

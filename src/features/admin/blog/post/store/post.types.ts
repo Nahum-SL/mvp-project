@@ -1,5 +1,3 @@
-// features/admin/blog/post/store/post.types.ts
-
 import type { BlogPost } from "@/src/types/blog/blogPost";
 
 export interface PostFilters {

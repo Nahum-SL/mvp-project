@@ -2,25 +2,27 @@
 import { cn } from "@/src/lib/utils";
 
 interface Props {
-  text?: string;
+  title?: string;
   children: React.ReactNode;
   className?: string;
 }
 
-export function FormSection({ text, children, className }: Props) {
+// Componente de sección para formularios, con título opcional y estilizado con Tailwind
+export function FormSection({ title, children, className }: Props) {
   return (
-    <div
+    <section
       className={cn(
         "space-y-6 p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm",
         className,
       )}
     >
-      {text && (
-        <h3 className="text-xs font-extrabold uppercase tracking-widest text-blue-600 ml-2 block">
-          {text}
+      {title && (
+        <h3 className="text-xs font-extrabold uppercase tracking-widest text-blue-600">
+          {title}
         </h3>
       )}
-      <div className="space-y-4">{children}</div>
-    </div>
+
+      <div className="space-y-5">{children}</div>
+    </section>
   );
 }

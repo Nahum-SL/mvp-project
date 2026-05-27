@@ -33,7 +33,7 @@ export function PostManagementView() {
         </div>
 
         <a
-          href="/admin/blog/create"
+          href="/admin/blog/crear"
           className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-slate-900 hover:bg-blue-600 text-white font-extrabold text-xs uppercase tracking-widest rounded-2xl transition-all shadow-xl active:scale-95"
         >
           <Plus size={16} /> Redactar Artículo

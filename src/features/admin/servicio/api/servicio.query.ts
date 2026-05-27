@@ -6,3 +6,7 @@ export async function getAdminServices(): Promise<Service[]> {
   return handleResponse<Service[]>(res);
 }
 
+export async function getAdminServiceById(id: number): Promise<Service> {
+  const res = await fetch(`/api/admin/servicio/${id}`);
+  return handleResponse<Service>(res);
+}

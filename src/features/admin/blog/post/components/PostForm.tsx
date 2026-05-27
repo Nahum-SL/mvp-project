@@ -21,7 +21,7 @@ interface Props {
   initialData?: BlogPost;
 }
 
-export const CreatePostForm = ({ categories, initialData }: Props) => {
+export const PostForm = ({ categories, initialData }: Props) => {
   const {
     form,
     previewUrl,

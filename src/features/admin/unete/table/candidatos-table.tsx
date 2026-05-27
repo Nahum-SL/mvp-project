@@ -4,7 +4,7 @@
 import type { JobApplication } from "@/src/types/unete/unete-types";
 import { CandidateRow } from "./candidato-row";
 import { LoadingState } from "@/src/components/ui/states/LoadingState";
-
+//
 interface Props {
   candidates: JobApplication[];
   isLoading: boolean;

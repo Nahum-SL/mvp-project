@@ -7,11 +7,10 @@ import { slugify } from "@/src/lib/utils";
 import { FormInput } from "@/src/components/ui/form/FormInput";
 import { FormError } from "@/src/components/ui/form/FormError";
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
-import { FormSubSection } from "@/src/components/ui/form/FormSubSection";
+import { FormSection } from "@/src/components/ui/form/FormSection";
 
 interface Props {
   disabled?: boolean;
-
   onManualSlug?: () => void;
 }
 
@@ -23,7 +22,7 @@ export function ServiceHeaderForm({ disabled, onManualSlug }: Props) {
   } = useFormContext();
 
   return (
-    <FormSubSection>
+    <FormSection>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Title */}
         <div className="space-y-3">
@@ -84,6 +83,6 @@ export function ServiceHeaderForm({ disabled, onManualSlug }: Props) {
           <FormError message={errors.slug?.message as string} />
         </div>
       </div>
-    </FormSubSection>
+    </FormSection>
   );
 }

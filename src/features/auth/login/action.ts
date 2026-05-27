@@ -16,7 +16,7 @@ export async function loginAction(
   data: LoginFormValues,
 ): Promise<LoginActionResult> {
   try {
-    const response = await fetch(`${API_URL}/api/auth/login`, {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -48,7 +48,7 @@ export async function loginAction(
 // Nueva acción para verificar el código
 export async function verify2FAAction(email: string, code: string) {
   try {
-    const response = await fetch(`${API_URL}/api/auth/verify-2fa`, {
+    const response = await fetch(`${API_URL}/auth/verify-2fa`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, code }),

@@ -46,3 +46,19 @@ git add .
 git commit -m ""
 git push origin refactor-arquitectura
 
+# Puntos a tomar en cuenta
+views/
+
+Orquesta lógica.
+
+table/
+
+Renderiza.
+
+hooks/
+
+Transforma estado.
+
+utils/
+
+Lógica pura reutilizable.

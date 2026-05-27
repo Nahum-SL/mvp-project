@@ -19,8 +19,8 @@ import { useCreateServicio, useUpdateServicio } from "./use-service-mutation";
 import { useImagePreview } from "@/src/shared/hooks/form/use-image-preview";
 import { useAutoSlug } from "@/src/shared/hooks/form/use-auto-slug";
 
-import { getServicioDefaultValues } from "../utils/get-servicio-default-values";
-import { buildServicioFormData } from "../utils/build-servicio-form-data";
+import { getServicioDefaultValues } from "../utils/servicio-default-values";
+import { buildServicioFormData } from "../utils/servicio-form-data";
 
 import type { Service } from "@/src/types/servicio/servicio-types";
 
