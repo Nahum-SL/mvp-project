@@ -1,28 +1,32 @@
 // src/features/admin/servicio/components/form/ServiceForm.tsx
 "use client";
 
-import { UseFormReturn } from "react-hook-form";
-import { ServiceHeaderForm } from "./ServiceHeaderForm";
-import { ServiceFeatures } from "./ServiceFeatures";
-import { ServiceConfigCard } from "./ServiceConfigCard";
+import { ServiceHeaderForm } from "./form/ServiceHeaderForm";
+import { ServiceFeatures } from "./form/ServiceFeatures";
+import { ServiceConfigCard } from "./form/ServiceConfigCard";
+
 import { FormTextArea } from "@/src/components/ui/form/FormTextArea";
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormSection } from "@/src/components/ui/form/FormSection";
-import type { ServicioFormInput } from "../../schemas/servicio.schema";
 
-interface Props {
-  form: UseFormReturn<ServicioFormInput>;
-  onSubmit: (data: ServicioFormInput) => void;
-  isPending: boolean;
-  onManualSlug?: () => void;
+import type { ServicioFormInput } from "../schemas/servicio.schema";
+import type {
+  Service,
+  ServiceFeature,
+} from "@/src/types/servicio/servicio-types";
+
+import { useServiceForm } from "../hooks/use-service-form";
+
+interface FormProps {
+  initialData?: Service;
+  features: ServiceFeature[];
 }
 
-export function ServiceForm({
-  form,
-  onSubmit,
-  isPending,
-  onManualSlug,
-}: Props) {
+export function ServiceForm({ initialData }: FormProps) {
+  const { form, isPending, markAsManual, onSubmit } = useServiceForm({
+    initialData,
+  });
+
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
@@ -31,7 +35,7 @@ export function ServiceForm({
       {/* Columna Principal Izquierda (2/3 del layout) */}
       <div className="lg:col-span-2 space-y-8">
         {/* Sección 1: Datos Base (Título y Slug) */}
-        <ServiceHeaderForm disabled={isPending} onManualSlug={onManualSlug} />
+        <ServiceHeaderForm disabled={isPending} onManualSlug={markAsManual} />
 
         {/* Sección 2: Textarea Atómico de Descripción */}
         <FormSection>

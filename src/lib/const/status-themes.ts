@@ -21,3 +21,14 @@ export const STATUS_STYLES_UNETE = {
 } as const;
 
 export type StatusTypeUnete = keyof typeof STATUS_STYLES_UNETE;
+
+// src/lib/const/status-themes.ts
+
+export const ACCIONES_STYLES = {
+  VER: "bg-blue-50 text-blue-700 border-blue-100 hover:bg-blue-100 dark:bg-blue-950/25 dark:text-blue-400 dark:border-blue-900/30 dark:hover:bg-blue-900/40",
+  EDITAR: "bg-emerald-50 text-emerald-700 border-emerald-100 hover:bg-emerald-100 dark:bg-emerald-950/25 dark:text-emerald-400 dark:border-emerald-900/30 dark:hover:bg-emerald-900/40",
+  ELIMINAR: "bg-red-50 text-red-700 border-red-100 hover:bg-red-100 dark:bg-red-950/25 dark:text-red-400 dark:border-red-900/30 dark:hover:bg-red-900/40",
+  DEFAULT: "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 dark:bg-slate-950/25 dark:text-slate-400 dark:border-slate-800/30 dark:hover:bg-slate-800/30",
+} as const;
+
+export type AccionesType = keyof typeof ACCIONES_STYLES;

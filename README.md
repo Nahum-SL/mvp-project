@@ -47,6 +47,7 @@ git commit -m ""
 git push origin refactor-arquitectura
 
 # Puntos a tomar en cuenta
+
 views/
 
 Orquesta lógica.

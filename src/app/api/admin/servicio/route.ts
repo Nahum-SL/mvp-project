@@ -9,7 +9,7 @@ import { apiSuccess, handleApiError } from "@/src/lib/api-response";
 
 export async function GET() {
   try {
-    const data = await serverApiClient("/api/servicio/admin");
+    const data = await serverApiClient("/servicio/admin");
 
     return apiSuccess(data);
   } catch (error: unknown) {
@@ -24,7 +24,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
-    const data = await serverApiClient("/api/servicio",{
+    const data = await serverApiClient("/servicio",{
       method: "POST",
       body: formData,
     });

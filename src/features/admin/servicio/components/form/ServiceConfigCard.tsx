@@ -7,18 +7,22 @@ import { cn } from "@/src/lib/utils";
 import Link from "next/link";
 
 import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
+
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormAside } from "@/src/components/ui/form/FormAside";
 import { FormSwitch } from "@/src/components/ui/form/FormSwitch";
 import { FormInput } from "@/src/components/ui/form/FormInput";
 import { FormError } from "@/src/components/ui/form/FormError";
+
 import type { ServicioFormInput } from "../../schemas/servicio.schema";
+import type { ServiceFeature } from "@/src/types/servicio/servicio-types";
 
 interface Props {
   isPending: boolean;
+  features?: ServiceFeature[];
 }
 
-export function ServiceConfigCard({ isPending }: Props) {
+export function ServiceConfigCard({ isPending, features }: Props) {
   const {
     register,
     formState: { errors },

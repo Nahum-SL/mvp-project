@@ -1,9 +1,5 @@
-'use client";';
-
 import { ReactNode, useEffect } from "react";
 import { X } from "lucide-react";
-
-import { AnimatePresence, motion } from "framer-motion";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -31,7 +27,6 @@ export function Drawer({
   }, [isOpen, onClose]);
   if (!isOpen) return null;
   return (
-    <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-end bg-black/40 backdrop-blur-sm transition-opacity">
         {/* Backdrop clickable */}
         <div className="absolute inset-0" onClick={onClose} /> {/* Panel */}
@@ -57,6 +52,5 @@ export function Drawer({
           <div className="flex-1 overflow-y-auto">{children}</div>
         </div>
       </div>
-    </AnimatePresence>
   );
 }

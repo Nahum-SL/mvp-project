@@ -1,5 +1,5 @@
 import type { Contacto } from "@/src/types/contacto/contacto-type";
-import { STATUS_STYLES } from "@/src/lib/const/status-themes";
+import { STATUS_STYLES_CONTACT } from "@/src/lib/const/status-themes";
 import { Trash2, Edit2, Calendar } from "lucide-react";
 
 interface ContactRowProps {
@@ -36,7 +36,7 @@ export function ContactRow({
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <span
-          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[contacto.status]}`}
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES_CONTACT[contacto.status]}`}
         >
           {contacto.status}
         </span>

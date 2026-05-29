@@ -14,7 +14,7 @@ interface Props {
   categories: Category[];
   isPending: boolean;
 }
-
+// 
 export const PostConfigCard = ({ categories, isPending }: Props) => {
   // Transformamos las categorías al formato esperado por el FormSelect
   const categoryOptions = categories.map((cat) => ({

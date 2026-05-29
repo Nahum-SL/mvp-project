@@ -1,5 +1,5 @@
-import { CreateServicioForm } from "@/src/features/admin/_servicio/components/CreateServicesForm";
 import PageHeader from "@/src/features/admin/components/PageHeader";
+import { ServiceForm } from "@/src/features/admin/servicio/components/ServiceForm";
 
 export default function NuevoServicioPage() {
   return (
@@ -9,7 +9,7 @@ export default function NuevoServicioPage() {
       subtitle="Configura la oferta comercial para el selector inteligente."
        backHref="/admin/servicio"
       />
-      <CreateServicioForm />
+      {/* <ServiceForm /> */}
     </div>
   );
 }

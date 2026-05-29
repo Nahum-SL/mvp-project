@@ -1,37 +1,68 @@
+// src/components/ui/table/TableButton.tsx
+"use client";
+
+import Link from "next/link";
 import { cn } from "@/src/lib/utils";
+import { AccionesType, ACCIONES_STYLES } from "@/src/lib/const/status-themes";
 
-type typeButton = "button" | "submit" | "reset";
-type variantButton = "default" | "danger";
-
-interface TableButtonProps {
-  type?: typeButton;
-  onClick?: () => void;
-  className?: string;
+// Base de propiedades compartidas por ambos tipos de render
+interface BaseProps {
   children: React.ReactNode;
   title: string;
-  variant?: variantButton;
+  variant?: AccionesType;
+  className?: string;
 }
 
-export const TableButton = ({
-  type = "button",
-  onClick,
-  className,
+// Tipo específico cuando actúa como un Botón de acción nativo
+interface AsButtonProps extends BaseProps {
+  href?: never; // Prohibe el uso de href si es botón
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
+}
+
+// Tipo específico cuando actúa como un Link de redirección
+interface AsLinkProps extends BaseProps {
+  href: string; // href es obligatorio si es Link
+  onClick?: never; // Prohibe el uso de onClick si es Link
+  type?: never;
+}
+
+type TableButtonProps = AsButtonProps | AsLinkProps;
+
+export function TableButton({
   children,
   title,
-  variant = "default"
-}: TableButtonProps) => {
+  variant = "DEFAULT",
+  className,
+  href,
+  onClick,
+  type = "button",
+}: TableButtonProps) {
+  // Estilos compartidos de estructura y transiciones (Consistencia visual absoluta)
+  const sharedClasses = cn(
+    "p-2.5 inline-flex items-center justify-center rounded-xl border transition-all duration-200 active:scale-95",
+    ACCIONES_STYLES[variant],
+    className,
+  );
+
+  // Variante 1: Redirección semántica (Next.js Link)
+  if (href) {
+    return (
+      <Link href={href} className={sharedClasses} title={title}>
+        {children}
+      </Link>
+    );
+  }
+
+  // Variante 2: Acción de Javascript (Click/Submit/Modal)
   return (
     <button
       type={type}
-      className={cn(
-        "p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 dark:hover:bg-gray-800 rounded-xl transition-all",
-        variant === "danger" && "hover:text-red-500 hover:bg-red-50 dark:hover:bg-gray-800",
-        className,
-      )}
       onClick={onClick}
+      className={sharedClasses}
       title={title}
     >
       {children}
     </button>
   );
-};
+}

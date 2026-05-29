@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: RouteParams) {
       );
     }
 
-    const data = await serverApiClient(`/api/servicio/${id}`);
+    const data = await serverApiClient(`/servicio/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, "Error obteniendo servicio");
@@ -32,7 +32,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     const { id } = await params;
     const formData = await request.formData();
 
-    const data = await serverApiClient(`/api/servicio/${id}`, {
+    const data = await serverApiClient(`/servicio/${id}`, {
       method: "PATCH",
       body: formData,
     });
@@ -47,7 +47,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
 
-    await serverApiClient(`/api/servicio/${id}`, {
+    await serverApiClient(`/servicio/${id}`, {
       method: "DELETE",
     });
 

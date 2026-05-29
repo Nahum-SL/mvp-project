@@ -2,12 +2,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Edit3, Trash2, Calendar, User, Eye } from "lucide-react";
-import type { BlogPost } from "@/src/types/blog/blogPost";
 import { usePostActions } from "../store/post.selectors";
+import type { BlogPost } from "@/src/types/blog/blogPost";
 
 import { cn } from "@/src/lib/utils";
 
+// Componentes de UI reutilizables
 import { TableRow } from "@/src/components/ui/table/TableRow";
 import { TableCell } from "@/src/components/ui/table/TableCell";
 import { TableButton } from "@/src/components/ui/table/TableButton";
@@ -97,13 +99,13 @@ export function PostRow({ post }: Props) {
           </TableButton>
 
           {/* Editar */}
-          <a
+          <Link
             href={`/admin/blog/editar/${post.id}`}
             className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-xl transition-all"
             title="Editar artículo"
           >
             <Edit3 size={16} />
-          </a>
+          </Link>
 
           {/* Eliminar */}
           <TableButton
