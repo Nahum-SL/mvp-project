@@ -11,17 +11,16 @@ import { PostConfigCard } from "./form/PostConfigCard";
 import { BlogPost } from "@/src/types/blog/blogPost";
 // hooks
 import { usePostForm } from "../hooks/use-post-form";
+import { useCategories } from "../../category/hooks/use-blog-category-queries";
 // Schema
-import type { Category } from "@/src/types/blog/category";
 import type { PostFormInput } from "../schemas/blog-post-schema";
 // Componentes Atomicos
 
 interface Props {
-  categories: Category[];
   initialData?: BlogPost;
 }
 
-export const PostForm = ({ categories, initialData }: Props) => {
+export const PostForm = ({ initialData }: Props) => {
   const {
     form,
     previewUrl,
@@ -30,7 +29,10 @@ export const PostForm = ({ categories, initialData }: Props) => {
     onSubmit,
     markAsManual,
     removeImage,
+    isEditing,
   } = usePostForm({ initialData });
+
+  const {data: categoryOptions = [], isLoading} = useCategories();
 
   return (
     <FormProvider {...form}>
@@ -62,7 +64,7 @@ export const PostForm = ({ categories, initialData }: Props) => {
             onRemove={removeImage}
             disabled={isPending}
           />
-          <PostConfigCard categories={categories} isPending={isPending} />
+          <PostConfigCard categories={categoryOptions} isPending={isLoading} isEditing={isEditing} />
         </div>
       </form>
     </FormProvider>

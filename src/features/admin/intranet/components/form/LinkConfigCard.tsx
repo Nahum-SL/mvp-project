@@ -6,6 +6,7 @@ import { Link2, ListOrdered, Eye } from "lucide-react";
 
 interface Props {
   isPending: boolean;
+  isEditing?: boolean;
 }
 
 export const LinkConfigCard = ({ isPending }: Props) => {
@@ -63,6 +64,7 @@ export const LinkConfigCard = ({ isPending }: Props) => {
             ]}
           />
         </div>
+
       </div>
     </FormCard>
   );

@@ -9,9 +9,7 @@ export const postSchema = z.object({
     .min(10, "El extracto debe ser más descriptivo")
     .max(255, "El extracto no puede superar los 255 caracteres"),
   categoryId: z.coerce.number().min(1, "Selecciona una categoría"),
-  published: z
-    .union([z.boolean(), z.string()])
-    .transform((value) => value === true || value === "true"),
+  published: z.coerce.boolean().default(false),
   image: z.custom<File>((file) => file instanceof File).optional(),
   // El contenido y la imagen se validan aparte o como opcionales aquí
   content: z.string().min(20, "El contenido es muy corto"),

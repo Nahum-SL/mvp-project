@@ -6,7 +6,6 @@ import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormInput } from "@/src/components/ui/form/FormInput";
 import { FormTextArea } from "@/src/components/ui/form/FormTextArea";
 import { FormError } from "@/src/components/ui/form/FormError";
-import { FormCheckbox } from "@/src/components/ui/form/FormCheckbox";
 
 interface PostHeaderProps {
   disabled?: boolean;
@@ -64,15 +63,6 @@ export const PostHeaderForm = ({
         disabled={disabled}
         placeholder="Resumen ejecutivo para SEO..."
       />
-
-      {/* PUBLISHED CONTROL (Checkbox atómico) */}
-      <div className="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
-        <FormCheckbox
-          name="published"
-          label="Publicar inmediatamente (Marcar como visible para los lectores)"
-          disabled={disabled}
-        />
-      </div>
     </div>
   );
 };

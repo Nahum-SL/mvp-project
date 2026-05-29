@@ -19,7 +19,7 @@ export function ServiceFeatures({ isPending }: Props) {
     formState: { errors },
   } = useFormContext<ServicioFormInput>();
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove } = useFieldArray<ServicioFormInput>({
     control,
     name: "features",
   });
@@ -30,9 +30,10 @@ export function ServiceFeatures({ isPending }: Props) {
         <FormLabel>Beneficios incluidos</FormLabel>
         <button
           type="button"
-          onClick={() => append("")}
+          onClick={() => append({ title: "", description: "", icon: "" })}
           disabled={isPending}
-          className="p-2 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all active:scale-95"
+          className="p-2 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white 
+          transition-all active:scale-95 cursor-pointer"
         >
           <Plus size={18} />
         </button>
@@ -42,7 +43,7 @@ export function ServiceFeatures({ isPending }: Props) {
         {fields.map((field, index) => (
           <div key={field.id} className="flex gap-3 items-center group">
             <input
-              {...register(`features.${index}` as const)}
+              {...register(`features.${index}.title` as const)}
               disabled={isPending}
               placeholder="Ej: Asesoría técnica 24/7"
               className="flex-1 p-4 bg-slate-50 rounded-2xl border-none text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
@@ -50,7 +51,8 @@ export function ServiceFeatures({ isPending }: Props) {
             <button
               type="button"
               onClick={() => remove(index)}
-              className="p-2 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all duration-200"
+              className="p-2 text-slate-300 hover:text-red-500 opacity-0 cursor-pointer
+              group-hover:opacity-100 transition-all duration-200"
             >
               <Trash2 size={18} />
             </button>

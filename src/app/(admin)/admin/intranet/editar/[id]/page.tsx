@@ -1,8 +1,24 @@
 // app/(admin)/admin/intranet/editar/[id]/page.tsx
 import PageHeader from "@/src/features/admin/components/PageHeader";
-import { IntranetForm } from "@/src/features/admin/intranet/components/CreateLinkForm";
+import { IntranetForm } from "@/src/features/admin/intranet/components/IntranetForm";
+import { getIntranetLinkById } from "@/src/features/admin/intranet/api/intranet.query";
 
-export default async function EditLinkPage() {
+interface Props {
+  params: Promise<{ id: string }>; // Asegura que el ID se reciba como una promesa resuelta
+}
+
+export default async function EditLinkPage({ params }: Props) {
+  const { id } = await params;
+
+  const linkId = parseInt(id);
+
+  // Validación de seguridad por si intentan inyectar "/intranet/abc" en la URL
+  if (Number.isNaN(linkId)) {
+    throw new Error("ID invalido.");w
+  }
+
+  const link = await getIntranetLinkById(linkId);
+
   return (
     <main className="max-w-6xl mx-auto space-y-8">
       <PageHeader
@@ -12,7 +28,7 @@ export default async function EditLinkPage() {
       />
 
       <section>
-        <IntranetForm />
+        <IntranetForm initialData={link} />
       </section>
     </main>
   );

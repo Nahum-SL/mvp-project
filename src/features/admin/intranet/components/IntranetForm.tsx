@@ -1,8 +1,5 @@
 "use client";
 import { FormProvider } from "react-hook-form";
-import { useIntranetForm } from "../hooks/use-intranet-form";
-
-import { useState } from "react";
 
 // Sub-componentes del formulario
 import { LinkConfigCard } from "./form/LinkConfigCard";
@@ -15,6 +12,9 @@ import { FormActions } from "@/src/components/ui/form/FormActions";
 
 // Esquema
 import type { IntranetLink } from "@/src/types/intranet/intranet-types";
+
+// hooks
+import { useIntranetForm } from "../hooks/use-intranet-form";
 
 interface LinkFormProps {
   initialData?: IntranetLink;
@@ -47,6 +47,7 @@ export function IntranetForm({ initialData }: LinkFormProps) {
           <FormActions
             isPending={isPending}
             isEditing={isEditing}
+            submitLabel="Guardar Cambios"
             cancelHref="/admin/intranet"
           />
         </div>

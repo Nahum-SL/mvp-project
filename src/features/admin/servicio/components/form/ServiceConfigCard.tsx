@@ -2,27 +2,27 @@
 "use client";
 
 import { useFormContext } from "react-hook-form";
-import { Loader2, Save, ArrowLeft } from "lucide-react";
-import { cn } from "@/src/lib/utils";
-import Link from "next/link";
 
+// Constantes para opciones de negocio y puntos de dolor
 import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 
+// Components Atomicos
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormAside } from "@/src/components/ui/form/FormAside";
 import { FormSwitch } from "@/src/components/ui/form/FormSwitch";
 import { FormInput } from "@/src/components/ui/form/FormInput";
 import { FormError } from "@/src/components/ui/form/FormError";
+import { FormActions } from "@/src/components/ui/form/FormActions";
 
+// Esquema de validación
 import type { ServicioFormInput } from "../../schemas/servicio.schema";
-import type { ServiceFeature } from "@/src/types/servicio/servicio-types";
 
 interface Props {
   isPending: boolean;
-  features?: ServiceFeature[];
+  isEditing?: boolean;
 }
 
-export function ServiceConfigCard({ isPending, features }: Props) {
+export function ServiceConfigCard({ isPending, isEditing }: Props) {
   const {
     register,
     formState: { errors },
@@ -103,32 +103,7 @@ export function ServiceConfigCard({ isPending, features }: Props) {
 
       {/* Acciones */}
       <div className="space-y-3 pt-4">
-        <button
-          type="submit"
-          disabled={isPending}
-          className={cn(
-            "w-full py-5 rounded-4xl font-extrabold uppercase tracking-widest text-[10px]",
-            "transition-all flex items-center justify-center gap-3",
-            isPending
-              ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-              : "bg-slate-900 text-white hover:bg-blue-600 shadow-xl shadow-blue-100 active:scale-95",
-          )}
-        >
-          {isPending ? (
-            <Loader2 className="animate-spin" size={18} />
-          ) : (
-            <Save size={18} />
-          )}
-          {isPending ? "Guardando..." : "Guardar Servicio"}
-        </button>
-
-        <Link
-          href="/admin/servicio"
-          className="w-full bg-white text-slate-400 font-extrabold py-4 rounded-4xl border border-slate-100 hover:bg-slate-50 transition-all flex items-center justify-center gap-3 uppercase text-[10px] tracking-widest"
-        >
-          <ArrowLeft size={16} />
-          <span>Volver al listado</span>
-        </Link>
+        <FormActions isPending={isPending} isEditing={isEditing} submitLabel="Guardar Servicio" loadingLabel="" cancelHref="/admin/servicio"/>
       </div>
     </FormAside>
   );

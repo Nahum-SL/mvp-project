@@ -94,23 +94,25 @@ export function PostRow({ post }: Props) {
           <TableButton
             onClick={() => openPreviewDrawer(post.id)}
             title="Previsualizar contenido"
+            variant="VER"
           >
             <Eye size={16} />
           </TableButton>
 
           {/* Editar */}
-          <Link
-            href={`/admin/blog/editar/${post.id}`}
-            className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-xl transition-all"
+          <TableButton
+            href={`/admin/blog/post/editar/${post.id}`}
             title="Editar artículo"
+            variant="EDITAR"
           >
             <Edit3 size={16} />
-          </Link>
+          </TableButton>
 
           {/* Eliminar */}
           <TableButton
             onClick={() => openDeleteModal({ id: post.id, title: post.title })}
             title="Eliminar artículo"
+            variant="ELIMINAR"
           >
             <Trash2 size={16} />
           </TableButton>

@@ -7,11 +7,13 @@ import { Edit3, ExternalLink, Link as LinkIcon, Trash2 } from "lucide-react";
 import { iconMap } from "@/src/lib/icons";
 import { cn } from "@/src/lib/utils";
 
+// Componentes de UI
 import { TableRow } from "@/src/components/ui/table/TableRow";
 import { TableCell } from "@/src/components/ui/table/TableCell";
-
+import { TableButton } from "@/src/components/ui/table/TableButton";
+// types
 import type { IntranetLink } from "@/src/types/intranet/intranet-types";
-
+// Acciones - Zustand
 import { useIntranetActions } from "../store/intranet.selector";
 
 interface Props {
@@ -20,7 +22,7 @@ interface Props {
 
 export function LinkRow({ link }: Props) {
   const { openDeleteModal } = useIntranetActions();
-    
+
   const IconComponent =
     link.icon && iconMap[link.icon as keyof typeof iconMap]
       ? iconMap[link.icon as keyof typeof iconMap]
@@ -89,26 +91,26 @@ export function LinkRow({ link }: Props) {
       {/* Acciones */}
       <TableCell align="right">
         <div className="flex items-center justify-end gap-2">
-          <Link
+          <TableButton
             href={`/admin/intranet/editar/${link.id}`}
-            className="p-2 text-slate-400 hover:text-blue-600
-            hover:bg-blue-50 rounded-xl transition-all"
+            title="Editar Enlace"
+            variant="EDITAR"
           >
             <Edit3 size={18} />
-          </Link>
+          </TableButton>
 
-          <button
+          <TableButton
+            title="Eliminar Enlace"
+            variant="ELIMINAR"
             onClick={() =>
               openDeleteModal({
                 id: link.id,
                 title: link.title,
               })
             }
-            className="p-2 text-slate-400 hover:text-red-600
-            hover:bg-red-50 rounded-xl transition-all"
           >
             <Trash2 size={18} />
-          </button>
+          </TableButton>
         </div>
       </TableCell>
     </TableRow>

@@ -12,7 +12,7 @@ export async function GET(
   try {
     const { slug } = await params;
 
-    const data = await serverApiClient(`/api/post/slug/${slug}`);
+    const data = await serverApiClient(`/post/slug/${slug}`);
 
     return apiSuccess(data);
   } catch (error) {

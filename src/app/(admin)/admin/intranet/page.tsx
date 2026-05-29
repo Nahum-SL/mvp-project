@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Plus, LayoutGrid } from "lucide-react";
 import SectionHeader from "@/src/features/admin/components/SectionHeader";
-import { IntranetManagementView } from "@/src/features/admin/intranet/drawers/IntranetManagamentView";
+import { IntranetManagementView } from "@/src/features/admin/intranet/view/IntranetManagamentView";
 
 export default async function AdminIntranetPage() {
 
@@ -26,7 +26,7 @@ export default async function AdminIntranetPage() {
       
       {/* Lista de Gestión */}
       <section className="pb-10">
-      <IntranetManagementView />
+        <IntranetManagementView />
       </section>
     </main>
   );

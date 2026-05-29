@@ -12,7 +12,7 @@ export const LinkHeader = ({ disabled }: Props) => {
   return (
     <div className="space-y-8">
       {/* Sección Título */}
-      <FormSection text="Título del Enlace">
+      <FormSection title="Título del Enlace">
         <FormInput
           name="title"
           disabled={disabled}

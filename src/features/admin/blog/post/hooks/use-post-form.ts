@@ -84,6 +84,7 @@ export function usePostForm({ initialData }: UsePostFormProps) {
     removeImage,
     markAsManual,
     onSubmit,
+    isEditing,
     isPending: createMutation.isPending || updateMutation.isPending,
   };
 }

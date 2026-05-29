@@ -1,7 +1,5 @@
-// src/features/admin/servicio/components/form/ServiceHeaderForm.tsx
-"use client";
-import { useFormContext } from "react-hook-form";
 import { slugify } from "@/src/lib/utils";
+import { useFormContext } from "react-hook-form";
 
 // Componentes Atomicos
 import { FormInput } from "@/src/components/ui/form/FormInput";

@@ -40,7 +40,7 @@ export function TableButton({
 }: TableButtonProps) {
   // Estilos compartidos de estructura y transiciones (Consistencia visual absoluta)
   const sharedClasses = cn(
-    "p-2.5 inline-flex items-center justify-center rounded-xl border transition-all duration-200 active:scale-95",
+    "p-2.5 inline-flex items-center justify-center rounded-xl border transition-all duration-200 active:scale-95 cursor-pointer",
     ACCIONES_STYLES[variant],
     className,
   );

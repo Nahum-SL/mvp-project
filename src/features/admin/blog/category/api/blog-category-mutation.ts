@@ -5,7 +5,7 @@ import { handleResponse } from "@/src/lib/handle-response";
 export async function createBlogCategoryAction(
   formData: FormData,
 ): Promise<Category> {
-  const res = await fetch("/api/admin/blog/category", {
+  const res = await fetch("/admin/blog/category", {
     method: "POST",
     body: formData,
   });

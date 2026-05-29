@@ -82,9 +82,10 @@ export function ServicePreviewDrawer() {
               <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
                 Descripción Base
               </h4>
-              <p className="text-sm text-slate-600 leading-relaxed font-medium bg-slate-50 p-4 rounded-2xl">
-                {service.description}
-              </p>
+              <div
+                className="text-slate-600 leading-relaxed font-medium"
+                dangerouslySetInnerHTML={{ __html: service.description }}
+              />
             </div>
 
             <div className="space-y-3">

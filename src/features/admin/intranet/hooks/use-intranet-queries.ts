@@ -24,7 +24,7 @@ export const useAdminIntranetLink = (id: number | null) => {
   return useQuery({
     queryKey: INTRANET_QUERY_KEYS.detail(id ?? 0),
 
-    queryFn: () => getIntranetLinkById(String(id)),
+    queryFn: () => getIntranetLinkById(id ?? 0),
 
     enabled: id !== null && id > 0,
   });

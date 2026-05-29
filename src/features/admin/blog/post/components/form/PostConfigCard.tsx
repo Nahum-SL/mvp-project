@@ -9,19 +9,21 @@ import { FormLabel } from "@/src/components/ui/form/FormLabel";
 import { FormSelect } from "@/src/components/ui/form/FormSelect";
 import { FormCheckbox } from "@/src/components/ui/form/FormCheckbox";
 import { FormAside } from "@/src/components/ui/form/FormAside";
+import { FormActions } from "@/src/components/ui/form/FormActions";
 
 interface Props {
   categories: Category[];
   isPending: boolean;
+  isEditing?: boolean;
 }
 // 
-export const PostConfigCard = ({ categories, isPending }: Props) => {
+export const PostConfigCard = ({ categories, isPending, isEditing }: Props) => {
   // Transformamos las categorías al formato esperado por el FormSelect
   const categoryOptions = categories.map((cat) => ({
     value: cat.id,
     label: cat.name,
   }));
-
+  
   return (
     <FormAside>
       {/* SECCIÓN CLASIFICACIÓN (CATEGORÍAS) */}
@@ -46,31 +48,7 @@ export const PostConfigCard = ({ categories, isPending }: Props) => {
       </div>
 
       {/* BOTÓN DE ACCIÓN PRINCIPAL */}
-      <button
-        type="submit"
-        disabled={isPending}
-        className={cn(
-          "w-full py-5 rounded-4xl font-extrabold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-3 shadow-xl",
-          isPending
-            ? "bg-slate-100 text-slate-400 shadow-none"
-            : "bg-slate-900 text-white hover:bg-blue-600 shadow-blue-200 active:scale-95",
-        )}
-      >
-        {isPending ? (
-          <Loader2 className="animate-spin" size={18} />
-        ) : (
-          <Save size={18} />
-        )}
-        {isPending ? "Procesando..." : "Guardar Artículo"}
-      </button>
-
-      {/* ENLACE CANCELAR */}
-      <Link
-        href="/admin/blog"
-        className="w-full bg-white text-slate-500 font-bold py-4 rounded-3xl border border-slate-200 hover:bg-slate-50 hover:border-sky-500 hover:text-sky-500 transition-all flex items-center justify-center gap-3 uppercase text-xs tracking-widest text-center"
-      >
-        <ArrowLeft size={16} /> Cancelar
-      </Link>
+      <FormActions isPending={isPending} isEditing={isEditing} />
     </FormAside>
   );
 };

@@ -48,18 +48,24 @@ git push origin refactor-arquitectura
 
 # Puntos a tomar en cuenta
 
-views/
+views  -> orquestan
+hooks  -> transforman
+utils  -> abstraen lógica pura
+components -> encapsulan UI reutilizable
+table -> renderiza entidades tabulares
+store -> controla UI/global state
+api -> comunica backend
+schemas -> validan contratos
+modals/drawers -> overlays desacoplados
 
-Orquesta lógica.
 
-table/
-
-Renderiza.
-
-hooks/
-
-Transforma estado.
-
-utils/
-
-Lógica pura reutilizable.
+Flujo de final -->
+src/features/.../api/post.query.ts
+        ↓
+fetch(http://localhost:3000/api/admin/blog/post/9)
+        ↓
+src/app/api/admin/blog/post/[id]/route.ts
+        ↓
+serverApiClient()
+        ↓
+http://localhost:3001/api/post/9

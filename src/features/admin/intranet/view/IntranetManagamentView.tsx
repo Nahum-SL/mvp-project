@@ -5,7 +5,7 @@ import { useAdminIntranetLinks } from "../hooks/use-intranet-queries";
 import { LinkHeader } from "../table/LinkHeader"; // Tu componente para título y botón nuevo
 import { LinkTable } from "../table/LinkTable";
 import { IntranetPreviewDrawer } from "../drawers/IntranetPreviewDrawer";
-import { DeleteIntranetModal } from "../modals/DeleteIntranetModal";
+import { DeleteIntranetModal } from "../modals/delete-intranet-modal";
 
 export function IntranetManagementView() {
   // Asignamos un array vacío como fallback instantáneo para solucionar el error de tipado

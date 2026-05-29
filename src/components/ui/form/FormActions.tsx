@@ -18,7 +18,7 @@ export function FormActions({
   isEditing = false,
 
   submitLabel,
-  loadingLabel = "Guardando...",
+  loadingLabel,
 
   cancelHref = "/admin",
 }: Props) {
@@ -32,7 +32,7 @@ export function FormActions({
           text-white font-extrabold py-4 rounded-2xl
           shadow-xl shadow-blue-200 transition-all
           flex items-center justify-center gap-3
-          uppercase text-sm tracking-widest
+          uppercase text-sm tracking-widest cursor-pointer disabled:cursor-not-allowed
         "
       >
         {isPending ? (
@@ -42,7 +42,7 @@ export function FormActions({
         )}
 
         {isPending
-          ? loadingLabel
+          ? loadingLabel || (isEditing ? "Actualizando..." : "Guardando...")
           : submitLabel || (isEditing ? "Actualizar" : "Crear")}
       </button>
 

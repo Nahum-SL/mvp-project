@@ -1,12 +1,12 @@
 import { useQuery} from "@tanstack/react-query";
-import { getAdminPost, getPostById } from "../api/post.query";
+import { getAdminPosts, getPostById } from "../api/post.query";
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
 
 // GET
 export function useAdminPosts() {
   return useQuery({
     queryKey: POST_QUERY_KEYS.lists(),
-    queryFn: getAdminPost,
+    queryFn: getAdminPosts,
     staleTime: 1000 * 60 * 5, // 5 minutos
   });
 }
