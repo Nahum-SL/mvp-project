@@ -1,4 +1,4 @@
-// src/app/api/admin/contacto/[id]/route.ts
+// src/app/admin/contacto/[id]/route.ts
 import { serverApiClient } from "@/src/lib/server-api-client";
 import { apiSuccess, handleApiError } from "@/src/lib/api-response";
 
@@ -10,7 +10,7 @@ interface RouteParams {
 export async function GET(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const data = await serverApiClient(`/api/contacto/admin/${id}`);
+    const data = await serverApiClient(`/contacto/admin/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, "Error obteniendo el detalle del contacto");
@@ -23,7 +23,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     const { id } = await params;
     const body = await request.json();
 
-    const data = await serverApiClient(`/api/contacto/admin/status/${id}`, {
+    const data = await serverApiClient(`/contacto/admin/status/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export async function DELETE(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
 
-    await serverApiClient(`/api/contacto/admin/delete/${id}`, {
+    await serverApiClient(`/contacto/admin/delete/${id}`, {
       method: "DELETE",
     });
 

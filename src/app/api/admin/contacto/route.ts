@@ -8,7 +8,7 @@ import { apiSuccess, handleApiError } from "@/src/lib/api-response";
 // Obtener todos los leads de los clientes para el admin (con autenticación)
 export async function GET() {
   try {
-    const data = await serverApiClient("/api/contacto/admin/all");
+    const data = await serverApiClient("/contacto/admin/all");
     return apiSuccess(data);
   } catch (error: unknown) {
     return handleApiError(error, "Error obteniendo contactos");

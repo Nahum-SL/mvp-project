@@ -1,6 +1,6 @@
 // src/features/admin/audit/components/AuditStats.tsx
 import { ShieldCheck, ShieldAlert, Activity } from "lucide-react";
-import { AuditStats } from "@/src/types/audit/audit";
+import { AuditStats } from "@/src/types/audit/audit-types";
 
 
 

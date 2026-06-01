@@ -9,7 +9,7 @@ import {
   AlertTriangle,
   Clock,
 } from "lucide-react";
-import { AuditLog } from "@/src/types/audit/audit";
+import { AuditLog } from "@/src/types/audit/audit-types";
 
 interface Props {
   logs: AuditLog[];

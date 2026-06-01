@@ -1,10 +1,11 @@
 
 import { BlogPost } from "@/src/types/blog/blogPost";
 import { handleResponse } from "@/src/lib/handle-response";
+import { getBaseUrl } from "@/src/lib/get-base-url";
 
 // Create
 export async function createPostAction(formData: FormData): Promise<BlogPost> {
-  const res = await fetch("/api/admin/blog/post", {
+  const res = await fetch(`${getBaseUrl()}/api/admin/blog/post`, {
     method: "POST",
     body: formData,
   });
@@ -16,7 +17,7 @@ export async function updatePostAction(
   id: number,
   formData: FormData,
 ): Promise<BlogPost> {
-  const res = await fetch(`/api/admin/blog/post/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/admin/blog/post/${id}`, {
     method: "PATCH",
     body: formData,
   });

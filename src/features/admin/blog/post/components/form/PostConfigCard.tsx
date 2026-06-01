@@ -1,8 +1,5 @@
 // src/features/admin/blog/components/form/PostConfigCard.tsx
-import { Loader2, Save, ArrowLeft } from "lucide-react";
-import Link from "next/link";
 import type { Category } from "@/src/types/blog/category";
-import { cn } from "@/src/lib/utils";
 
 // Componentes Atómicos Refactorizados
 import { FormLabel } from "@/src/components/ui/form/FormLabel";
@@ -48,7 +45,7 @@ export const PostConfigCard = ({ categories, isPending, isEditing }: Props) => {
       </div>
 
       {/* BOTÓN DE ACCIÓN PRINCIPAL */}
-      <FormActions isPending={isPending} isEditing={isEditing} />
+      <FormActions submitLabel="Crear Post" isPending={isPending} isEditing={isEditing} />
     </FormAside>
   );
 };

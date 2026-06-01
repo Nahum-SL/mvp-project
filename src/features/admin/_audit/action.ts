@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { AuditLog, AuditStats, CleanupResponse } from "@/src/types/audit/audit";
+import { AuditLog, AuditStats, CleanupResponse } from "@/src/types/audit/audit-types";
 import { API_URL } from "@/src/lib/api-url";
 
 async function getAuthHeaders() {

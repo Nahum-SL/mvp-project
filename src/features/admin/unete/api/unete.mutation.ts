@@ -1,5 +1,6 @@
 import { handleResponse } from "@/src/lib/handle-response";
 import type { JobApplication, UpdateJobAppStatusPayload } from "@/src/types/unete/unete-types";
+import { getBaseUrl } from "@/src/lib/get-base-url";
 
 interface UpdateParamas {
     id: string;
@@ -11,7 +12,7 @@ export async function updateJobAppStatusAction({
     id,
     payload,
 }: UpdateParamas): Promise<JobApplication> {
-    const res = await fetch(`/api/admin/unete/${id}/status`, {
+    const res = await fetch(`${getBaseUrl()}/api/admin/unete/${id}/status`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -20,3 +21,4 @@ export async function updateJobAppStatusAction({
     });
     return handleResponse<JobApplication>(res);
 }
+

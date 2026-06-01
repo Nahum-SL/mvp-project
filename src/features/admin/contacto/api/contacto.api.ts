@@ -1,12 +1,13 @@
 import type { Contacto } from "@/src/types/contacto/contacto-type";
 import { handleResponse } from "@/src/lib/handle-response";
+import { getBaseUrl } from "@/src/lib/get-base-url";
 
 export async function getContactosAction(): Promise<Contacto[]> {
-  const res = await fetch("/api/admin/contacto");
+  const res = await fetch(`${getBaseUrl()}/api/admin/contacto`);
   return handleResponse<Contacto[]>(res);
 }
 
 export async function getContactoById(id: string): Promise<Contacto> {
-  const res = await fetch(`/api/admin/contacto/${id}`);
+  const res = await fetch(`${getBaseUrl()}/api/admin/contacto/${id}`);
   return handleResponse<Contacto>(res);
 }

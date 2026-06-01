@@ -5,6 +5,8 @@ import type {
   UpdateIntranetLinkPayload,
 } from "@/src/types/intranet/intranet-types";
 
+import { getBaseUrl } from "@/src/lib/get-base-url";
+
 interface UpdateParamas {
   id: number;
   payload: UpdateIntranetLinkPayload;
@@ -14,7 +16,7 @@ interface UpdateParamas {
 export async function createIntranetLinkAction(
   payload: CreateIntranetLinkPayload,
 ): Promise<IntranetLink> {
-  const res = await fetch("/api/admin/intranet", {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +31,7 @@ export async function updateIntranetLinkAction({
   id,
   payload,
 }: UpdateParamas): Promise<IntranetLink> {
-  const res = await fetch(`/api/admin/intranet/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +43,7 @@ export async function updateIntranetLinkAction({
 
 // DELETE
 export async function deleteIntranetLinkAction(id: string): Promise<void> {
-  const res = await fetch(`/api/admin/intranet/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet/${id}`, {
     method: "DELETE",
   });
   return handleResponse<void>(res);

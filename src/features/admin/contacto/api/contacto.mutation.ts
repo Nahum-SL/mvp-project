@@ -3,6 +3,7 @@ import type {
   UpdateContactStatusPayload,
 } from "@/src/types/contacto/contacto-type";
 import { handleResponse } from "@/src/lib/handle-response";
+import { getBaseUrl } from "@/src/lib/get-base-url";
 
 // IMPLEMENTAR ESTO EN CADA FEATURES EN => .mutation.ts
 interface UpdateStageArgs {
@@ -14,7 +15,7 @@ export async function updateStateContactAction({
   id,
   payload,
 }: UpdateStageArgs): Promise<Contacto> {
-  const res = await fetch(`/api/admin/contacto/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/admin/contacto/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +26,7 @@ export async function updateStateContactAction({
 }
 
 export async function deleteContactAction(id: string): Promise<void> {
-  const res = await fetch(`/api/admin/contacto/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/admin/contacto/${id}`, {
     method: "DELETE",
   });
   return handleResponse<void>(res);
