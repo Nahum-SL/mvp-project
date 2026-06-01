@@ -1,5 +1,5 @@
 
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 
 // -- Icono
 import { LayoutGrid } from "lucide-react";

@@ -47,7 +47,6 @@ export function IntranetForm({ initialData }: LinkFormProps) {
           <FormActions
             isPending={isPending}
             isEditing={isEditing}
-            submitLabel="Guardar Cambios"
             cancelHref="/admin/intranet"
           />
         </div>

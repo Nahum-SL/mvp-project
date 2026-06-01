@@ -1,47 +1,56 @@
+// src/features/admin/components/BreadcrumbAuto.tsx
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronRight, Home } from "lucide-react";
+import { useBreadcrumbs } from "../hooks/use-breadcrumb";
 
 export default function BreadcrumbAuto() {
-  const pathname = usePathname();
-  const segments = pathname?.split("/").filter(Boolean) || [];
-
-  const format = (segment: string) => {
-    // Si el segmento es un ID (solo números), podrías retornar "Detalle" o dejarlo
-    if (!isNaN(Number(segment))) return "Detalle";
-
-    return segment.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
-  };
+  const { breadcrumbs, hasItems } = useBreadcrumbs();
 
   return (
-    <nav className="flex items-center gap-2 text-[15px] md:text-[17] text-slate-400 mb-2">
-      <Link href="/admin" className="hover:text-sky-400 transition">
-        <Home size={17} />
+    // "h-6 flex items-center" congela el espacio en el esqueleto del servidor
+    // impidiendo que el SectionHeader salte al cargarse el JS.
+    <nav
+      aria-label="Breadcrumb"
+      className="flex items-center gap-2 text-[13px] font-semibold text-slate-400 h-6 select-none"
+    >
+      <Link
+        href="/admin"
+        className="hover:text-indigo-600 text-slate-400 transition-colors flex items-center gap-1"
+      >
+        <Home size={15} />
       </Link>
 
-      {segments.length > 0 && <ChevronRight size={12} className="opacity-50" />}
+      {hasItems && (
+        <ChevronRight size={12} className="text-slate-300 shrink-0" />
+      )}
 
-      {segments.map((segment, index) => {
-        const path = `/${segments.slice(0, index + 1).join("/")}`;
-        const isLast = index === segments.length - 1;
-
-        return (
-          <div key={path} className="flex items-center gap-2">
-            {!isLast ? (
-              <Link href={path} className="hover:text-sky-400 transition">
-                {format(segment)}
+      <ol className="flex items-center gap-2 p-0 m-0 list-none">
+        {breadcrumbs.map((item) => (
+          <li key={item.path} className="flex items-center gap-2">
+            {!item.isLast ? (
+              <Link
+                href={item.path}
+                className="hover:text-indigo-600 text-slate-400 transition-colors"
+              >
+                {item.label}
               </Link>
             ) : (
-              <span className="text-slate-500 font-medium">
-                {format(segment)}
+              <span
+                aria-current="page"
+                className="text-slate-600 font-bold tracking-tight"
+              >
+                {item.label}
               </span>
             )}
-            {!isLast && <ChevronRight size={12} className="opacity-50" />}
-          </div>
-        );
-      })}
+
+            {!item.isLast && (
+              <ChevronRight size={12} className="text-slate-300 shrink-0" />
+            )}
+          </li>
+        ))}
+      </ol>
     </nav>
   );
 }

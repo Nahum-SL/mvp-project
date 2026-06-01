@@ -1,5 +1,5 @@
 // app/(admin)/admin/contacto/page.tsx
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 import { Book } from "lucide-react";
 import { ContactAdminView } from "@/src/features/admin/contacto/views/contact-admin-view";
 

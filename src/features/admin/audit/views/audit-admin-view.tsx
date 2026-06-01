@@ -2,14 +2,14 @@
 "use client";
 
 import { useState } from "react";
-import { Database, Loader2 } from "lucide-react";
+import { Database, Loader2, Trash2 } from "lucide-react";
 import { useAuditLogs, useAuditStats } from "../hooks/use-audit-queries";
 
 // Subcomponentes refactorizados
 import { AuditCardStats } from "../components/AuditStats";
 import { LogsTable } from "../table/table-log";
 import { OptimizationModal } from "../modals/optimization-modal";
-import SectionHeader from "../../components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 
 export function AuditAdminView() {
   const [isOptimizeOpen, setIsOptimizeOpen] = useState(false);
@@ -54,8 +54,8 @@ export function AuditAdminView() {
             text-white px-6 py-3 rounded-2xl text-[10px] font-bold 
             uppercase tracking-widest transition-all shadow-lg shadow-indigo-900/10 active:scale-95"
           >
-            <Database size={16} />
-            Optimizar Base de Datos
+            <Trash2 size={16} />
+              Limpiar Logs
           </button>
         }
       />

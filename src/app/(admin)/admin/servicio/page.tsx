@@ -1,7 +1,7 @@
 // src/app/admin/servicios/page.tsx
 import Link from "next/link";
 import { Plus, Layers } from "lucide-react";
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 import { ServicioManagementView } from "@/src/features/admin/servicio/view/service-managament-view";
 
 export default async function AdminServiciosPage() {

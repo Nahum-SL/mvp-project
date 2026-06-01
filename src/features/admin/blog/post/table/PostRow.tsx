@@ -101,7 +101,7 @@ export function PostRow({ post }: Props) {
 
           {/* Editar */}
           <TableButton
-            href={`/admin/blog/post/editar/${post.id}`}
+            href={`/admin/blog/editar/${post.id}`}
             title="Editar artículo"
             variant="EDITAR"
           >

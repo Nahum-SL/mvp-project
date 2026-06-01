@@ -11,7 +11,6 @@ import { INTRANET_QUERY_KEYS } from "../utils/intranet-query-key";
 export const useAdminIntranetLinks = () => {
   return useQuery({
     queryKey: INTRANET_QUERY_KEYS.lists(),
-
     queryFn: getIntranetLinks,
   });
 };
@@ -23,9 +22,7 @@ export const useAdminIntranetLinks = () => {
 export const useAdminIntranetLink = (id: number | null) => {
   return useQuery({
     queryKey: INTRANET_QUERY_KEYS.detail(id ?? 0),
-
-    queryFn: () => getIntranetLinkById(id ?? 0),
-
+    queryFn: () => getIntranetLinkById(id!),
     enabled: id !== null && id > 0,
   });
 };

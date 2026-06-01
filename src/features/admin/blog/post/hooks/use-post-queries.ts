@@ -7,7 +7,6 @@ export function useAdminPosts() {
   return useQuery({
     queryKey: POST_QUERY_KEYS.lists(),
     queryFn: getAdminPosts,
-    staleTime: 1000 * 60 * 5, // 5 minutos
   });
 }
 

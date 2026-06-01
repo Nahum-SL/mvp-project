@@ -1,5 +1,5 @@
 import { CategoryForm } from "@/src/features/admin/blog/category/components/CategoryForm";
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 import { LayoutGrid } from "lucide-react";
 
 export default function AdmCreateCategory() {

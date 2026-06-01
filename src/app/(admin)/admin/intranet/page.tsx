@@ -1,7 +1,7 @@
 // app/(admin)/admin/intranet/page.tsx
 import Link from "next/link";
 import { Plus, LayoutGrid } from "lucide-react";
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 import { IntranetManagementView } from "@/src/features/admin/intranet/view/IntranetManagamentView";
 
 export default async function AdminIntranetPage() {

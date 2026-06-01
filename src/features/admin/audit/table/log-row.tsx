@@ -1,9 +1,9 @@
 // src/features/admin/audit/table/log-row.tsx
 import { motion } from "framer-motion";
 import type { AuditLog } from "@/src/types/audit/audit-types";
-import { LogActionCell } from "./log-action-cell";
-import { LogStatusCell } from "./log-status-cell";
-import { LogDateCell } from "./log-date-cell";
+import { LogActionCell } from "./log-cells/log-action-cell";
+import { LogStatusCell } from "./log-cells/log-status-cell";
+import { LogDateCell } from "./log-cells/log-date-cell";
 
 interface LogRowProps {
   log: AuditLog;

@@ -9,12 +9,11 @@ interface Props {
 
 export default async function EditLinkPage({ params }: Props) {
   const { id } = await params;
-
   const linkId = parseInt(id);
 
   // Validación de seguridad por si intentan inyectar "/intranet/abc" en la URL
   if (Number.isNaN(linkId)) {
-    throw new Error("ID invalido.");w
+    throw new Error("ID invalido.");
   }
 
   const link = await getIntranetLinkById(linkId);

@@ -1,5 +1,5 @@
 // Header
-import SectionHeader from "@/src/features/admin/components/SectionHeader";
+import SectionHeader from "@/src/components/ui/SectionHeader";
 import { LayoutGrid, Plus } from "lucide-react";
 import Link from "next/link";
 import { PostManagementView } from "@/src/features/admin/blog/post/views/PostManagamentView";
