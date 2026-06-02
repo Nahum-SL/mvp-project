@@ -9,7 +9,7 @@ export async function GET({ params }: RouteParams) {
   try {
     const { slug } = await params;
 
-    const data = await serverApiClient(`/api/servicio/${slug}`);
+    const data = await serverApiClient(`/servicio/${slug}`);
 
     return apiSuccess(data);
   } catch (error: unknown) {

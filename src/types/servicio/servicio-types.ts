@@ -15,6 +15,12 @@ export interface ServiceFilters {
   search: string;
 }
 
+export interface ScoredServiceQuery {
+  businessType: BusinessTypeID;
+  painPoint: PainPointID;
+  search: string;
+}
+
 // La interfaz principal para un servicio, con todos los campos necesarios
 export interface Service {
   id: number;

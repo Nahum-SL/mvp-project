@@ -1,4 +1,13 @@
 // Constantes estaticos para tipos de negocio y puntos de dolor, junto con sus tipos derivados
+export const BUSINESS_TYPE_IDS = ["mype", "startup", "corporativo"] as const;
+
+export const PAIN_POINTS_IDS = [
+  "impuestos",
+  "planillas",
+  "legal",
+  "estrategia",
+] as const;
+
 export const BUSINESS_TYPES = [
   { id: "mype", label: "MYPE / Emprendedor", icon: "Store" },
   { id: "startup", label: "Startup Tech", icon: "Rocket" },
@@ -16,5 +25,5 @@ export const PAIN_POINTS = [
 export type BusinessTypeID = (typeof BUSINESS_TYPES)[number]["id"];
 export type PainPointID = (typeof PAIN_POINTS)[number]["id"];
 
-// Opcional para priorizar servicios 
-export const FEATURED_PRIORITY_IDS = [3,5]; 
+// Opcional para priorizar servicios
+export const FEATURED_PRIORITY_IDS = [3, 5];

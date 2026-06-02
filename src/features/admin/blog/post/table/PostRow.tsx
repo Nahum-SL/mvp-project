@@ -2,7 +2,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Edit3, Trash2, Calendar, User, Eye } from "lucide-react";
 import { usePostActions } from "../store/post.selectors";
 import type { BlogPost } from "@/src/types/blog/blogPost";

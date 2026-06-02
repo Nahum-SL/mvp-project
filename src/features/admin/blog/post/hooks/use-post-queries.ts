@@ -1,12 +1,16 @@
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getAdminPosts, getPostById } from "../api/post.query";
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
+import { usePostFilters } from "../store/post.selectors";
 
 // GET
 export function useAdminPosts() {
+  const filters = usePostFilters();
+
   return useQuery({
-    queryKey: POST_QUERY_KEYS.lists(),
-    queryFn: getAdminPosts,
+    queryKey: POST_QUERY_KEYS.lists(filters),
+    queryFn: () => getAdminPosts(filters),
+    placeholderData: (previousData) => previousData,
   });
 }
 
@@ -17,4 +21,3 @@ export function usePostById(id: number | null) {
     enabled: id !== null && id > 0, // Solo ejecutar si id es válido
   });
 }
-

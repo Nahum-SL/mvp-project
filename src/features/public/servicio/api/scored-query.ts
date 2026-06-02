@@ -3,7 +3,7 @@ import { handleResponse } from "@/src/lib/handle-response";
 import { getBaseUrl } from "@/src/lib/get-base-url";
 import { ServiceFilters } from "@/src/types/servicio/servicio-types";
 
-export async function getRecommendation(
+export async function getScoredServices(
   filters: ServiceFilters,
 ): Promise<ScoredService[]> {
   const params = new URLSearchParams();

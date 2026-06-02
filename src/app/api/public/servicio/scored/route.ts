@@ -1,18 +1,19 @@
 import { serverApiClient } from "@/src/lib/server-api-client";
 import { handleApiError, apiSuccess } from "@/src/lib/api-response";
 
-// =============
-// GET - Obtener recomendación
-// =============
+// =================================
+// GET - Obtener score de servicios
+// =================================
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
+
     const data = await serverApiClient(
-      `/servicio/recommendation?${searchParams.toString()}`,
+      `/servicio/scored?${searchParams.toString()}`,
     );
     return apiSuccess(data);
   } catch (error: unknown) {
-    return handleApiError(error, "Error obteniendo recomendación de servicios");
+    return handleApiError(error, "Error obteniendo score de servicios");
   }
 }

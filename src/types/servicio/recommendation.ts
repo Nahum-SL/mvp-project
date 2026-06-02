@@ -8,6 +8,12 @@ export interface RecommendationParams {
   search?: string;
 }
 
+export interface RecommendationQuery {
+  businessType?: BusinessTypeID;
+  painPoint?: PainPointID;
+  search?: string;
+}
+
 export interface RecommendationResult {
   bestMatch: ScoredService;
   alternatives: ScoredService[];

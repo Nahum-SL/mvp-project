@@ -8,6 +8,8 @@ const defaultFilters: PostFilters = {
   published: undefined,
   categoryId: undefined,
   search: "",
+  limit: 10,
+  page: 1,
 };
 
 export const usePostStore = create<PostStore>((set) => ({

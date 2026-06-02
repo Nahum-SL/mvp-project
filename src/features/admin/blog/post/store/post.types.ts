@@ -4,6 +4,9 @@ export interface PostFilters {
   published?: boolean;
   categoryId?: number;
   search: string;
+
+  page: number;
+  limit: number;
 }
 
 // =========================
