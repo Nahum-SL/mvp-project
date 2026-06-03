@@ -1,7 +1,7 @@
 // src/components/ui/layout/ServiceHero.tsx
 "use client";
 import { motion } from "framer-motion";
-import { ShieldCheck, ChevronDown } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import HeroVideoBackground from "../../../components/ui/layout/hero-video-background";
 
 interface Props {

@@ -1,10 +1,13 @@
 "use client";
 
 import { useMemo } from "react";
-
 import { useServices } from "@/src/hooks/useServices";
+
+// Terminado
 import { SmartSelector } from "../components/selector/SmartSelector";
+
 import { ServiceGrid } from "../components/ServiceGrid";
+
 import { AnimatePresence } from "framer-motion";
 
 import FeaturedRecommendation from "../components/recommendation/FeaturedRecommendation";

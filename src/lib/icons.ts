@@ -91,4 +91,3 @@ export const iconServiceMap = {
 
 export type IconName = keyof typeof iconMap;
 export type IconNameService = keyof typeof iconServiceMap;
-
