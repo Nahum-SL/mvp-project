@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 import { iconMap } from "@/src/lib/icons";
 import { cn } from "@/src/lib/utils";
-
 // Hooks & Utils locales de la feature
 import { useServiceSelector } from "../../hooks/filters/use-service-selector";
 import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
+// Subcomponents
 import { SelectorFilterItem } from "./selector-filter-item";
 import { SearchFilter } from "./search-filter";
 

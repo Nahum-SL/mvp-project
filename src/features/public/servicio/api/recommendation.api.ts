@@ -1,22 +1,19 @@
-import type { ScoredService } from "@/src/types/servicio/scoring.types";
+// recommendation.api.ts
+
 import { handleResponse } from "@/src/lib/handle-response";
 import { getBaseUrl } from "@/src/lib/get-base-url";
-import { ServiceFilters } from "@/src/types/servicio/servicio-types";
+
+import { buildServiceSearchParams } from "../utils/build-servicio-search-params";
+import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
 
 export async function getRecommendation(
   filters: ServiceFilters,
-): Promise<ScoredService[]> {
-  const params = new URLSearchParams();
-
-  if (filters.businessType) params.set("businessType", filters.businessType);
-
-  if (filters.painPoint) params.set("painPoint", filters.painPoint);
-
-  if (filters.search) params.set("search", filters.search);
+): Promise<ServiceFilters> {
+  const params = buildServiceSearchParams(filters);
 
   const res = await fetch(
-    `${getBaseUrl()}/api/public/servicio/scored?${params}`,
+    `${getBaseUrl()}/api/public/servicio/recommendation?${params}`,
   );
 
-  return handleResponse<ScoredService[]>(res);
+  return handleResponse<ServiceFilters>(res);
 }

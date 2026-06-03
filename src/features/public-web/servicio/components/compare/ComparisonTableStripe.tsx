@@ -81,5 +81,4 @@ export const ComparisonTableStripe = memo(
     );
   },
 );
-
 ComparisonTableStripe.displayName = "ComparisonTableStripe";

@@ -38,7 +38,6 @@ export function useServiceFilters({
    * sigue escribiendo.
    */
   const [searchInput, setSearchInput] = useState(filters.search ?? "");
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setFilters((prev) => ({

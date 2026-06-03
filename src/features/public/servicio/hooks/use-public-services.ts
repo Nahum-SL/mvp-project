@@ -3,7 +3,7 @@ import {
   getPublicServiceBySlug,
   getPublicServices,
 } from "../api/servicio-public.query";
-import { PUBLIC_SERVICIO_QUERY_KEYS } from "../utils/public-servicios-query";
+import { PUBLIC_SERVICIO_QUERY_KEYS } from "../utils/public-servicios-query-key";
 
 export function usePublicServices() {
   return useQuery({

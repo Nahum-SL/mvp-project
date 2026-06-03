@@ -2,18 +2,6 @@
 import { ScoredService } from "./scoring.types";
 import type { BusinessTypeID, PainPointID } from "./constants";
 
-export interface RecommendationParams {
-  businessType?: BusinessTypeID;
-  painPoint?: PainPointID;
-  search?: string;
-}
-
-export interface RecommendationQuery {
-  businessType?: BusinessTypeID;
-  painPoint?: PainPointID;
-  search?: string;
-}
-
 export interface RecommendationResult {
   bestMatch: ScoredService;
   alternatives: ScoredService[];

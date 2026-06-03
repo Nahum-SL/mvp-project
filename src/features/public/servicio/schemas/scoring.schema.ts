@@ -15,4 +15,4 @@ export const scoredServiceSchema = serviceSchema.extend({
   priorityScore: z.number(),
 });
 
-export type ScoredServiceResponse = z.infer<typeof scoredServiceSchema>;
+export type ScoredServiceResponse = z.output<typeof scoredServiceSchema>;

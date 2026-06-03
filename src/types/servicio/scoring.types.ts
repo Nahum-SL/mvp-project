@@ -7,7 +7,7 @@ export interface ServiceRecommendationMeta {
   reasons: string[];
 }
 
-export type ScoredService = Service & {
+export interface ScoredService extends Service {
   relevanceScore: number;
   recommendationMeta: ServiceRecommendationMeta;
   priorityScore: number; // Se puede calcular a partir de las métricas o venir directamente del backend

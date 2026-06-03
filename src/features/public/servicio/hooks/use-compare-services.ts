@@ -2,20 +2,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { compareServices } from "../api/compare-services.api";
 import type { CompareServicesPayload } from "@/src/types/servicio/recommendation";
+import { PUBLIC_SERVICIO_QUERY_KEYS } from "../utils/public-servicios-query-key";
 
 export const useCompareServices = (payload: CompareServicesPayload) => {
   return useQuery({
-    // El queryKey debe incluir los ids y filtros para que la caché sepa 
-    // exactamente qué combinación de comparación se está guardando.
-    queryKey: ["services", "compare", payload.ids, payload.filters],
-    
-    // Ejecutamos la función pasándole el payload actual
+    queryKey: PUBLIC_SERVICIO_QUERY_KEYS.compare(payload.ids, payload.filters),
     queryFn: () => compareServices(payload),
-    
-    // Evitamos que dispare la petición a la API si no hay IDs seleccionados
     enabled: payload.ids.length > 0,
-    
-    // Opcional: mantiene la data anterior visible mientras carga la nueva comparación
     placeholderData: (previousData) => previousData,
   });
 };
