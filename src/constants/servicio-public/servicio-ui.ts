@@ -1,5 +1,5 @@
 // Límites y constantes relacionados con la UI de servicios
-export const MAX_COMPARE_SERVICES = 3;
+export const MAX_COMPARE_SERVICES = 2;
 
 export const SERVICE_FEATURE_PREVIEW_LIMIT = 2;
 

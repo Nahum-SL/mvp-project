@@ -1,7 +1,7 @@
-// src/features/public/servicio/components/recommendation/metricas/metric-donut-chart.tsx
 "use client";
 
 import { ResponsiveContainer, PieChart, Pie } from "recharts";
+import { RechartsDevtools } from "@recharts/devtools";
 
 interface MetricDonutChartProps {
   label: string;
@@ -36,9 +36,8 @@ export function MetricDonutChart({
   return (
     <div className="flex flex-col items-center justify-center space-y-1 w-20">
       <div className="relative w-16 h-16 flex items-center justify-center">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <PieChart>
-            {/* Capa 1: Fondo Estático (Sin Cells) */}
             <Pie
               data={backgroundData}
               dataKey="value"

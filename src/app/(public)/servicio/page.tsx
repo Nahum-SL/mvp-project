@@ -1,8 +1,7 @@
-import ServiceDashboard from "@/src/features/public-web/servicio/container/ServiceDashboard";
-import ServiceHero from "@/src/features/public-web/servicio/ServiceHero";
-import ServiceDashboardSkeleton from "@/src/components/skeletons/ServiceDashboardSkeleton";
-import { Suspense } from "react";
 import { Metadata } from "next";
+// Componentes
+import ServiceHero from "@/src/features/public-web/servicio/ServiceHero";
+import { ServicesView } from "@/src/features/public/servicio/views/services-view";
 
 interface Props {
   searchParams: { type?: string; pain?: string; q?: string };
@@ -41,12 +40,7 @@ export default function ServiciosPage() {
         title="Nuestros Servicios"
         subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
       />
-      <Suspense fallback={<ServiceDashboardSkeleton />}>
-        {/* Agregué un padding superior para que el Dashboard no choque con el fade del Hero */}
-        <section className="bg-slate-50 pt-10">
-          <ServiceDashboard />
-        </section>
-      </Suspense>
+      <ServicesView />
     </main>
   );
 }

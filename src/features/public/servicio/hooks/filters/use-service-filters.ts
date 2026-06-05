@@ -9,8 +9,8 @@ import type {
   BusinessTypeID,
   PainPointID,
 } from "@/src/types/servicio/constants";
-import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
 
+import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
 import { createEmptyFilters } from "../../utils/service-filter.helpers";
 
 interface UseServiceFiltersOptions {

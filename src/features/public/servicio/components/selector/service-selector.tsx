@@ -3,11 +3,17 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 import { iconMap } from "@/src/lib/icons";
 import { cn } from "@/src/lib/utils";
-// Hooks & Utils locales de la feature
+// Hooks
 import { useServiceSelector } from "../../hooks/filters/use-service-selector";
+// Types & Constants
+import {
+  BUSINESS_TYPES,
+  PAIN_POINTS,
+  type BusinessTypeID,
+  type PainPointID,
+} from "@/src/types/servicio/constants";
 import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
 // Subcomponents
 import { SelectorFilterItem } from "./selector-filter-item";
@@ -17,8 +23,8 @@ interface ServiceSelectorProps {
   filters: ServiceFilters;
   searchInput: string;
   setSearchInput: (val: string) => void;
-  setBusinessType: (id?: string) => void;
-  setPainPoint: (id?: string) => void;
+  setBusinessType: (id?: BusinessTypeID) => void;
+  setPainPoint: (id?: PainPointID) => void;
   clearFilters: () => void;
   isPending?: boolean;
 }

@@ -1,19 +1,20 @@
 "use client";
 
+import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
 import FeaturedRecommendation from "../components/recommendation/FeaturedRecommendation";
 import { useRecommendation } from "../hooks/use-recommendation";
-import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
-import type { RecommendationResult } from "@/src/types/servicio/recommendation";
 
 interface RecommendationViewProps {
-  recomendation: RecommendationResult;
+  recomendation: ServiceFilters;
 }
 
 export function RecommendationView({ recomendation }: RecommendationViewProps) {
   const { data } = useRecommendation(recomendation);
 
-  if (!data) return null;
-
+  if (!data || !data.bestMatch) {
+    return null;
+  }
+  
   return (
     <FeaturedRecommendation
       service={data.bestMatch}

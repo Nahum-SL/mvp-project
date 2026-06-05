@@ -152,9 +152,10 @@ function ServiceCardComponent({
         </Link>
 
         <button
+          type="button"
           onClick={onCompare}
           className={cn(
-            "px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all",
+            "px-3 py-1.5 rounded-lg border text-xs font-semibold cursor-pointer transition-all",
             isComparing
               ? "bg-indigo-600 text-white border-indigo-600"
               : "border-slate-200 text-slate-500 hover:border-indigo-300 hover:text-indigo-600",

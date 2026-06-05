@@ -5,13 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/src/lib/utils";
-
 // Hooks & Utils
 import { useFeaturedRecommendation } from "../../hooks/use-featured-recommendation";
-
-// Components
+// Graphics
 import { MetricDonutChart } from "../compare/rechart/metrics-donut-chart";
-
 // Types
 import type { ScoredService } from "@/src/types/servicio/scoring.types";
 import type { RecommendationResult } from "@/src/types/servicio/recommendation";

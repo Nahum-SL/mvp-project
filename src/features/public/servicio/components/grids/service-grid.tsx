@@ -1,5 +1,4 @@
 // src/features/public/servicio/components/grids/service-grid.tsx
-
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -26,7 +25,7 @@ export function ServiceGrid({
   const sortedServices = sortServicesByRelevance(services, highlightedIds);
 
   return (
-    <section className="min-h-150">
+    <section className="min-h-37.5">
       <div className="mb-4 md:mb-6">
         <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider">
           Servicios que puedes considerar
@@ -42,7 +41,7 @@ export function ServiceGrid({
             damping: 20,
           },
         }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
         <AnimatePresence mode="popLayout">
           {sortedServices.map((service) => (

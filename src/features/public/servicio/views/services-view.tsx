@@ -1,38 +1,92 @@
 "use client";
 
-import ComparisonModal from "../components/compare/comparison-modal";
-import { useCompareServices } from "../hooks/use-compare-services";
+import { useState } from "react";
+// Componentes
+import { ServiceSelector } from "../components/selector/service-selector";
+import { ServiceGrid } from "../components/grids/service-grid";
+import { CompareFloatingButton } from "../components/compare/compare-floating-button";
+// Componentes orquestadores
+import { RecommendationView } from "./recommendation-view";
+import { ComparisonView } from "./comparison-view";
+// Hooks
+import { useServiceFilters } from "../hooks/filters/use-service-filters";
+import { useScoredServices } from "../hooks/use-scored-services";
+// Constants
+import { MAX_COMPARE_SERVICES } from "@/src/constants/servicio-public/servicio-ui";
+// Utils
+import { getHighlightedServices } from "../utils/service-highlight";
 
-import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
-
-interface ComparisonViewProps {
-  isOpen: boolean;
-  onClose: () => void;
-  compareIds: number[];
-  filters: ServiceFilters;
-  hasContext?: boolean;
-}
-
-export function ComparisonView({
-  isOpen,
-  onClose,
-  compareIds,
-  filters,
-  hasContext,
-}: ComparisonViewProps) {
-  const { data: services = [] } = useCompareServices({
-    ids: compareIds,
+export function ServicesView() {
+  const {
     filters,
-  });
+    searchInput,
+    setSearchInput,
+    setBusinessType,
+    setPainPoint,
+    clearFilters,
+  } = useServiceFilters();
 
-  if (!compareIds.length) return null;
+  const { data: services = [], isLoading } = useScoredServices(filters);
+
+  const [compareIds, setCompareIds] = useState<number[]>([]);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
+
+  const handleCompareSelection = (serviceId: number) => {
+    setCompareIds((prev) => {
+      if (prev.includes(serviceId)) {
+        return prev.filter((id) => id !== serviceId);
+      }
+
+      if (prev.length >= MAX_COMPARE_SERVICES) {
+        return prev;
+      }
+
+      return [...prev, serviceId];
+    });
+  };
+
+  // Obtiene los mejores higlights de 3 servicios comparados
+  const highlightedIds = getHighlightedServices(services);
+
+  const hasRecommendationContext =
+    !!filters.businessType || !!filters.painPoint;
 
   return (
-    <ComparisonModal
-      isOpen={isOpen}
-      onClose={onClose}
-      services={services}
-      hasContext={hasContext}
-    />
+    <>
+      <ServiceSelector
+        filters={filters}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setBusinessType={setBusinessType}
+        setPainPoint={setPainPoint}
+        clearFilters={clearFilters}
+        isPending={isLoading}
+      />
+
+      <RecommendationView recomendation={filters} />
+
+      <ServiceGrid
+        services={services}
+        compareIds={compareIds}
+        highlightedIds={highlightedIds}
+        onCompare={handleCompareSelection}
+      />
+
+      {/* Boton para redirigir al modal */}
+      {compareIds.length >= 2 && (
+        <CompareFloatingButton
+          count={compareIds.length}
+          onClick={() => setIsCompareOpen(true)}
+        />
+      )}
+
+      <ComparisonView
+        isOpen={isCompareOpen}
+        onClose={() => setIsCompareOpen(false)}
+        compareIds={compareIds}
+        filters={filters}
+        hasContext={hasRecommendationContext}
+      />
+    </>
   );
 }

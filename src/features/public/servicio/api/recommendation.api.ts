@@ -5,15 +5,16 @@ import { getBaseUrl } from "@/src/lib/get-base-url";
 
 import { buildServiceSearchParams } from "../utils/build-servicio-search-params";
 import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
+import type { RecommendationResult } from "@/src/types/servicio/recommendation";
 
 export async function getRecommendation(
   filters: ServiceFilters,
-): Promise<ServiceFilters> {
+): Promise<RecommendationResult> {
   const params = buildServiceSearchParams(filters);
 
   const res = await fetch(
     `${getBaseUrl()}/api/public/servicio/recommendation?${params}`,
   );
 
-  return handleResponse<ServiceFilters>(res);
+  return handleResponse<RecommendationResult>(res);
 }
