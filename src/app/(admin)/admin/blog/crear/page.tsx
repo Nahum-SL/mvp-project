@@ -11,7 +11,7 @@ export default async function NewPostPage() {
         subtitle="Redacta contenido de valor para los clientes de ASESCON."
         backHref="/admin/blog"
       />
-      <PostForm categories={[]} />
+      <PostForm />
     </div>
   );
 }

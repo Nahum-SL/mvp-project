@@ -88,3 +88,30 @@ Para un formulario de empleo real, mi combinación sería:
 ✅ Toast success/error
 ✅ Rate Limit en NestJS (obligatorio)
 ✅ Cloudflare Turnstile (muy recomendable)
+
+Fusionar ramas Proceso -->
+desde la rama secundaria:
+
+git status
+git add .
+git commit -m "WIP: ajustes antes de merge"
+
+git checkout main
+git pull origin main
+
+git checkout <rama-secundaria>
+git rebase main
+git add .
+git rebase --continue
+
+git checkout main
+git merge <rama-secundaria>
+
+git push origin main
+git push origin <rama-secundaria>
+
+6. Limpieza (opcional pero recomendado)
+Eliminar la rama
+git branch -d <rama-secundaria>
+git push origin --delete <rama-secundaria>
+
