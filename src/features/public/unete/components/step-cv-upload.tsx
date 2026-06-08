@@ -55,7 +55,7 @@ export function StepCvUpload() {
         )}
       </div>
 
-      <FormError message={errors.cv?.message} />
+      <FormError message={errors.cv?.message as string} />
     </div>
   );
 }

@@ -16,18 +16,27 @@ export function getServicioDefaultValues({
     // Icon
     icon: initialData?.icon || "LinkIcon",
 
-    // Arrays
+    // Arrays de Checkboxes
     businessTypes: initialData?.businessTypes || [],
     painPoints: initialData?.painPoints || [],
 
-    // Features
-    features: initialData?.features?.map((feature) => feature.name) || [""],
+    // 🔥 FEATURES LIMPIO Y SIN ERRORES DE TIPADO
+    features:
+      initialData?.features && initialData.features.length > 0
+        ? initialData.features.map((feature) => ({
+            name: feature.name, // Coincide perfectamente con el contrato y con Zod
+          }))
+        : [
+            {
+              name: "", // Inicializador limpio para cuando creas un servicio nuevo
+            },
+          ],
 
     // Config
     isVisible: initialData?.isVisible ?? true,
     order: initialData?.order ?? 0,
 
-    // File
-    image: undefined,
+    // File / Image
+    image: initialData?.image || undefined,
   };
 }

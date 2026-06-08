@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 // Componentes
 import { ServicesView } from "@/src/features/public/servicio/views/services-view";
 
@@ -33,7 +34,9 @@ export async function generateMetadata({
 export default function ServiciosPage() {
   return (
     <main>
-      <ServicesView />
+      <Suspense fallback={<div>Cargando..</div>}>
+        <ServicesView />
+      </Suspense>
     </main>
   );
 }

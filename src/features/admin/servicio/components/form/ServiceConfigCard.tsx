@@ -52,7 +52,7 @@ export function ServiceConfigCard({ isPending, isEditing }: Props) {
             </label>
           ))}
         </div>
-        <FormError message={errors.businessTypes?.message} />
+        <FormError message={errors.businessTypes?.message as string} />
       </section>
 
       {/* Puntos de dolor */}
@@ -77,7 +77,7 @@ export function ServiceConfigCard({ isPending, isEditing }: Props) {
             </label>
           ))}
         </div>
-        <FormError message={errors.painPoints?.message} />
+        <FormError message={errors.painPoints?.message as string} />
       </section>
 
       {/* Visibilidad y Prioridad utilizando Átomos de Formulario */}

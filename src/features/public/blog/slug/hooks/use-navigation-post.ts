@@ -1,4 +1,4 @@
-import { getPublicPosts } from "../../api/blog-public.api";
+import { getPublicPosts } from "@/src/lib/actions/blog/blog.service";
 import type { BlogPost } from "@/src/types/blog/blogPost";
 
 export function useNavigationPost(currentSlug: string) {

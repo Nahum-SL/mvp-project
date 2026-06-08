@@ -1,7 +1,8 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import IntranetLinkView from "@/src/features/public/intranet/views/intranet-link-view";
 // Api
-import { getPublicIntranetLinks } from "@/src/features/public/intranet/api/intranet-public.query";
+import { getPublicIntranet } from "@/src/lib/actions/lib/intranet.service";
 
 export const metadata: Metadata = {
   title: "Portal de Clientes",
@@ -10,11 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default async function IntranetPage() {
-  const links = await getPublicIntranetLinks();
+  const links = await getPublicIntranet();
 
   return (
     <main className="bg-slate-950">
-      <IntranetLinkView initialLinks={links} />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <IntranetLinkView initialLinks={links} />
+      </Suspense>
     </main>
   );
 }
