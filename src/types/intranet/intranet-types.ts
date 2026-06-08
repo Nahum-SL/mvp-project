@@ -11,11 +11,20 @@ export interface IntranetLink {
   updateAt: string;
 }
 
+export interface IntranetLinks {
+  id: number;
+  title: string;
+  description: string;
+  url: string;
+  icon: string;
+}
+
+
 // =======================
 // Payloads para mutaciones
 // =======================
 
-export interface CreateIntranetLinkPayload {
+export interface IntranetLinkPayload {
   title: string;
   description: string;
   url: string;

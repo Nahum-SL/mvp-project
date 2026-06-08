@@ -1,7 +1,7 @@
 import { handleResponse } from "@/src/lib/handle-response";
 import type {
   IntranetLink,
-  CreateIntranetLinkPayload,
+  IntranetLinkPayload,
   UpdateIntranetLinkPayload,
 } from "@/src/types/intranet/intranet-types";
 
@@ -14,7 +14,7 @@ interface UpdateParamas {
 
 // CREATE
 export async function createIntranetLinkAction(
-  payload: CreateIntranetLinkPayload,
+  payload: IntranetLinkPayload,
 ): Promise<IntranetLink> {
   const res = await fetch(`${getBaseUrl()}/api/admin/intranet`, {
     method: "POST",

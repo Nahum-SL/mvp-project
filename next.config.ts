@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 /**
  * BUENAS PRÁCTICAS DE SEGURIDAD (CSP)
@@ -8,14 +7,25 @@ import path from "path";
  * 3. 'script-src': Mantenemos unsafe-inline solo si es estrictamente necesario para Next.js.
  */
 const isDev = process.env.NODE_ENV === "development";
-const backendUrl = isDev ? "http://localhost:3001 localhost:3001" : "";
 
-const cspHeader = `
+const backendUrl = isDev ? "http://localhost:3001" : "";
+
+const devCSP = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: res.cloudinary.com ui-avatars.com *.googletagmanager.com;
-    connect-src 'self' ${backendUrl} *.neon.tech *.cloudinary.com *.google-analytics.com;
+    img-src 'self' blob: data: https:;
+    font-src 'self' data:;
+    connect-src 'self' http://localhost:3001 ws://localhost:* http://localhost:*;
+    frame-ancestors 'none';
+  `;
+
+const prodCSP = `
+    default-src 'self';
+    script-src 'self';
+    style-src 'self';
+    img-src 'self' blob: data: https://res.cloudinary.com https://ui-avatars.com;
+    connect-src 'self' https://*.neon.tech https://*.cloudinary.com https://*.google-analytics.com;
     font-src 'self' data:;
     object-src 'none';
     base-uri 'self';
@@ -23,9 +33,9 @@ const cspHeader = `
     frame-ancestors 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;
-`
-  .replace(/\s{2,}/g, " ")
-  .trim();
+  `;
+
+const cspHeader = (isDev ? devCSP : prodCSP).replace(/\s{2,}/g, " ").trim();
 
 const nextConfig: NextConfig = {
   // 1. Headers de Seguridad (Lo que te pedía el test de web-check)
@@ -47,17 +57,12 @@ const nextConfig: NextConfig = {
             value: "DENY",
           },
           {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
-            value:
-              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },

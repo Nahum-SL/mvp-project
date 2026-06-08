@@ -1,4 +1,5 @@
 "use client";
+
 import { buildRecommendationMetrics } from "../utils/recommendation/recommendation-metrics";
 // Utils - descripcion
 import { stripHtml } from "../utils/service-description";

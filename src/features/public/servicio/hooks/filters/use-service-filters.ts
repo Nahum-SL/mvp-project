@@ -1,85 +1,56 @@
 // src/features/public/servicio/hooks/use-service-filters.ts
-
 "use client";
 
-import { useEffect, useState } from "react";
-
-// Types
+import { useMemo } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { parseUrlParamsToFilters } from "../../utils/service-filter.helpers";
 import type {
   BusinessTypeID,
   PainPointID,
 } from "@/src/types/servicio/constants";
 
-import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
-import { createEmptyFilters } from "../../utils/service-filter.helpers";
+type FilterPatch = {
+  businessType?: BusinessTypeID | null;
+  painPoint?: PainPointID | null;
+  search?: string;
+};
 
-interface UseServiceFiltersOptions {
-  initialFilters?: Partial<ServiceFilters>;
-  /**
-   * Tiempo de debounce para la búsqueda.
-   * No afecta businessType ni painPoint.
-   */
-  debounceMs?: number;
-}
+export function useServiceFilters() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-export function useServiceFilters({
-  initialFilters,
-  debounceMs = 300,
-}: UseServiceFiltersOptions = {}) {
-  const [filters, setFilters] = useState<ServiceFilters>({
-    ...createEmptyFilters(),
-    ...initialFilters,
-  });
+  const filters = useMemo(
+    () =>
+      parseUrlParamsToFilters(
+        searchParams.get("type"),
+        searchParams.get("pain"),
+        searchParams.get("q"),
+      ),
+    [searchParams],
+  );
 
-  /**
-   * Estado local únicamente para el input.
-   *
-   * Evita disparar consultas mientras el usuario
-   * sigue escribiendo.
-   */
-  const [searchInput, setSearchInput] = useState(filters.search ?? "");
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setFilters((prev) => ({
-        ...prev,
-        search: searchInput,
-      }));
-    }, debounceMs);
+  const setFilters = (next: Partial<FilterPatch>) => {
+    const params = new URLSearchParams(searchParams.toString());
 
-    return () => clearTimeout(timer);
-  }, [searchInput, debounceMs]);
+    // Si viene la propiedad, evaluamos si se añade o se elimina de la URL
+    if ("businessType" in next) {
+      if (next.businessType) params.set("type", next.businessType);
+      else params.delete("type");
+    }
 
-  const setBusinessType = (businessType?: BusinessTypeID) => {
-    setFilters((prev) => ({
-      ...prev,
-      businessType,
-    }));
+    if ("painPoint" in next) {
+      if (next.painPoint) params.set("pain", next.painPoint);
+      else params.delete("pain");
+    }
+
+    if ("search" in next) {
+      if (next.search?.trim()) params.set("q", next.search.trim());
+      else params.delete("q");
+    }
+
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const setPainPoint = (painPoint?: PainPointID) => {
-    setFilters((prev) => ({
-      ...prev,
-      painPoint,
-    }));
-  };
-
-  const clearFilters = () => {
-    const empty = createEmptyFilters();
-
-    setFilters(empty);
-    setSearchInput("");
-  };
-
-  return {
-    filters,
-    // Search
-    searchInput,
-    setSearchInput,
-    // Selectores
-    setBusinessType,
-    setPainPoint,
-    // Estado global
-    setFilters,
-    clearFilters,
-  };
+  return { filters, setFilters };
 }

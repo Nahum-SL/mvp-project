@@ -50,9 +50,7 @@ export function usePublicContactForm() {
   return {
     form,
     onSubmit: form.handleSubmit(onSubmit),
-
     isPending: mutation.isPending,
-
     isSuccessOpen,
     closeSuccessModal: () => setIsSuccessOpen(false),
   };

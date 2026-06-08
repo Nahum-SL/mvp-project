@@ -44,7 +44,7 @@ export default function ComparisonModal({
             <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md px-6 py-4 border-b border-slate-100 flex justify-between items-center">
               <div>
                 <h2 className="font-bold text-slate-900 text-lg md:text-xl tracking-tight">
-                  Comparativa Premium
+                  Comparativa de Servicios
                 </h2>
                 <p className="text-[11px] md:text-xs text-slate-500 font-medium uppercase tracking-wider">
                   Asesoría ASESCON
@@ -53,7 +53,7 @@ export default function ComparisonModal({
 
               <button
                 onClick={onClose}
-                className="p-2.5 bg-slate-50 hover:bg-red-50 hover:text-red-500 rounded-full transition-colors"
+                className="p-2.5 bg-slate-50 hover:bg-red-50 hover:text-red-500 rounded-full transition-colors cursor-pointer"
               >
                 <X size={20} />
               </button>

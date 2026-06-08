@@ -1,5 +1,4 @@
-import UneteHero from "@/src/features/public-web/unete/UneteHero";
-import { UneteForm } from "@/src/features/public-web/unete/components/UneteForm";
+import { UneteView } from "@/src/features/public/unete/views/unete-view";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,18 +13,7 @@ export const metadata: Metadata = {
 export default function UnetePage() {
   return (
     <main>
-      <UneteHero
-        title="Forma parte de nuestra historia"
-        subtitle="Talento que inspira"
-        src="/unete-header.webp"
-        alt="Tenemos un espacio para ti"
-      />
-      <UneteForm
-        title="Déjanos tus datos"
-        subtitle="¡Te contactaremos pronto!"
-        src="/trabaja-con-nosotros.webp"
-        alt="Déjanos tus datos"
-      />
+      <UneteView />
     </main>
   );
 }

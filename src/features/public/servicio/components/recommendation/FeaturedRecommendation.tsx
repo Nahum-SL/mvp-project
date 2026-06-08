@@ -29,7 +29,7 @@ export default function FeaturedRecommendation({
     useFeaturedRecommendation(service, insights);
 
   return (
-    <section className="relative max-w-6xl mx-auto px-6 mb-16 will-change-transform">
+    <section className="relative max-w-6xl mx-auto mt-5 px-6 mb-16 will-change-transform">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

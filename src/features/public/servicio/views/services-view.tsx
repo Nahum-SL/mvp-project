@@ -15,16 +15,10 @@ import { useScoredServices } from "../hooks/use-scored-services";
 import { MAX_COMPARE_SERVICES } from "@/src/constants/servicio-public/servicio-ui";
 // Utils
 import { getHighlightedServices } from "../utils/service-highlight";
+import ServiceHero from "../components/service-hero";
 
 export function ServicesView() {
-  const {
-    filters,
-    searchInput,
-    setSearchInput,
-    setBusinessType,
-    setPainPoint,
-    clearFilters,
-  } = useServiceFilters();
+  const { filters, setFilters } = useServiceFilters();
 
   const { data: services = [], isLoading } = useScoredServices(filters);
 
@@ -53,13 +47,14 @@ export function ServicesView() {
 
   return (
     <>
+      <ServiceHero
+        title="Nuestros Servicios"
+        subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
+      />
+
       <ServiceSelector
         filters={filters}
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        setBusinessType={setBusinessType}
-        setPainPoint={setPainPoint}
-        clearFilters={clearFilters}
+        setFilters={setFilters}
         isPending={isLoading}
       />
 
@@ -73,7 +68,7 @@ export function ServicesView() {
       />
 
       {/* Boton para redirigir al modal */}
-      {compareIds.length >= 2 && (
+      {compareIds.length >= 1 && (
         <CompareFloatingButton
           count={compareIds.length}
           onClick={() => setIsCompareOpen(true)}

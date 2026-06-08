@@ -3,7 +3,6 @@
 
 import { X } from "lucide-react";
 import { SearchAction } from "./selector-filter-item";
-
 interface SearchFilterProps {
   value: string;
   onChange: (val: string) => void;
@@ -48,7 +47,10 @@ export function SearchFilter({
             <X size={18} />
           </button>
         )}
-        <SearchAction isExpanded={hasFilters} isPending={isPending} />
+        <SearchAction 
+          isExpanded={hasFilters} 
+          isPending={isPending} 
+        />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 // src/features/public-pages/home/components/FeaturedServices.tsx
 import { ServiceCardHome } from "./ServiceCardHome.";
 import { FEATURED_HOME } from "../constants/features-home";
-import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
+import { SectionHeaderHome } from "@/src/features/public-web/home/components/SectionHeaderHome";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 

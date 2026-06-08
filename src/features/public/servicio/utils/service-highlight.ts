@@ -6,9 +6,9 @@ export function getHighlightLevel(serviceId: number, highlightedIds: number[]) {
 }
 
 // Obtiene una copia exacta del servicio con mejor score ubicado en la posicion 0
-export function getHighlightedServices(
-  services: ScoredService[],
-  limit = 3,
-) {
-  return services.slice(0, limit).map((s) => s.id);
+export function getHighlightedServices(services: ScoredService[], limit = 3) {
+  return [...services]
+    .sort((a, b) => b.relevanceScore - a.relevanceScore)
+    .slice(0, limit)
+    .map((s) => s.id);
 }

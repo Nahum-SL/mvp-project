@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 // Componentes
-import ServiceHero from "@/src/features/public-web/servicio/ServiceHero";
 import { ServicesView } from "@/src/features/public/servicio/views/services-view";
 
 interface Props {
@@ -31,15 +30,9 @@ export async function generateMetadata({
   };
 }
 
-// src/app/(public)/servicio/page.tsx
-
 export default function ServiciosPage() {
   return (
     <main>
-      <ServiceHero
-        title="Nuestros Servicios"
-        subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
-      />
       <ServicesView />
     </main>
   );

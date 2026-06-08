@@ -45,7 +45,6 @@ export async function getRecentPosts(): Promise<BlogPost[]> {
 }
 
 // ... (tu función getPostBySlug ya existente)
-
 export async function getNavigationPosts(currentSlug: string) {
   try {
     const res = await fetch(`${API_URL}/api/post`, {

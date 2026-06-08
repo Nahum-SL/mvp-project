@@ -1,6 +1,3 @@
-// Hooks
-import { usePublicServicesBySlug } from "../../hooks/use-public-services";
-import { useFeaturedRecommendation } from "../../hooks/use-featured-recommendation";
 // Subcomponentes
 import ServiceSlugHero from "../components/service-slug-hero";
 import ServicePainPoints from "../components/service-pain-points";
@@ -11,33 +8,23 @@ import ServiceTrust from "../components/service-trust";
 import ServiceCTA from "../components/service-cta";
 // Types
 import type { Service } from "@/src/types/servicio/servicio-types";
-// utils
-import { buildRecommendationMetrics } from "../../utils/recommendation/recommendation-metrics";
+// Utils
 
-export function ServiceSlugView({service} : {service: Service}) {
-    const {data: slug, isLoading} = usePublicServicesBySlug(service.slug);
-    
+export function ServiceSlugView({ service}: { service: Service }) {
 
-    return (
-        <main>
+  return (
+    <main>
       <ServiceSlugHero service={service} />
 
       <ServicePainPoints painPoints={service.painPoints} />
 
       <ServiceBenefits features={service.features} />
 
-      <ServiceEvaluation 
-      impact={metrics.impact}
-      effort={metrics.effort}
-      risk={metrics.risk}
-      />
-
-        <ServiceProcess />
+      <ServiceProcess />
 
       <ServiceTrust />
 
       <ServiceCTA serviceTitle={service.title} />
-
-        </main>
-    )
+    </main>
+  );
 }

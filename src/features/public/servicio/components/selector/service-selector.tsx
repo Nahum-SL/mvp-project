@@ -1,31 +1,24 @@
 // src/features/public/servicio/components/selector/service-selector.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { iconMap } from "@/src/lib/icons";
 import { cn } from "@/src/lib/utils";
-// Hooks
-import { useServiceSelector } from "../../hooks/filters/use-service-selector";
-// Types & Constants
-import {
-  BUSINESS_TYPES,
-  PAIN_POINTS,
-  type BusinessTypeID,
-  type PainPointID,
-} from "@/src/types/servicio/constants";
+// Types
+import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
 import type { ServiceFilters } from "@/src/types/servicio/servicio-types";
-// Subcomponents
+// Subcomponentes
 import { SelectorFilterItem } from "./selector-filter-item";
 import { SearchFilter } from "./search-filter";
+// Hooks
+import { useServiceSelector } from "../../hooks/filters/use-service-selector";
+// Hook global desde src/features/public/hooks/use-debounce-value.ts
+import { useDebouncedValue } from "../../../hooks/use-debounce-value";
 
 interface ServiceSelectorProps {
   filters: ServiceFilters;
-  searchInput: string;
-  setSearchInput: (val: string) => void;
-  setBusinessType: (id?: BusinessTypeID) => void;
-  setPainPoint: (id?: PainPointID) => void;
-  clearFilters: () => void;
+  setFilters: (next: Partial<ServiceFilters>) => void;
   isPending?: boolean;
 }
 
@@ -33,23 +26,40 @@ type DropdownSection = "type" | "pain" | null;
 
 export function ServiceSelector({
   filters,
-  searchInput,
-  setSearchInput,
-  setBusinessType,
-  setPainPoint,
-  clearFilters,
+  setFilters,
   isPending,
 }: ServiceSelectorProps) {
   const [activeSection, setActiveSection] = useState<DropdownSection>(null);
+
+  // 1. Estado local inmediato únicamente para controlar las pulsaciones del teclado del Input
+  const [localSearch, setLocalSearch] = useState(filters.search ?? "");
+
   const { selectedBusinessLabel, selectedPainPointLabel, isFiltered } =
     useServiceSelector(filters);
 
+  // 2. Debounce optimizado para enviar el texto definitivo a la URL
+  const debouncedSearch = useDebouncedValue(localSearch, 300);
+
+  // Evitar actualizaciones innecesarias
+  // Actualizar la URL con el valor final después del debounce
+  useEffect(() => {
+    if (debouncedSearch === (filters.search ?? "")) return;
+    setFilters({ search: debouncedSearch.trim() });
+  }, [debouncedSearch, setFilters, filters.search]);
+
+  // Función para alternar la apertura de las secciones del dropdown
   const toggleSection = (section: DropdownSection) => {
     setActiveSection((prev) => (prev === section ? null : section));
   };
 
+  // Función para limpiar todos los filtros y la búsqueda
+  const handleClearAll = () => {
+    setLocalSearch("");
+    setFilters({ businessType: undefined, painPoint: undefined, search: "" });
+  };
+
   return (
-    <div className="relative z-30 -mt-16 mx-auto max-w-5xl w-full px-4">
+    <div className="relative z-30 mt-16 mx-auto max-w-3xl w-full px-4">
       <div
         className={cn(
           "bg-white/95 backdrop-blur-xl rounded-[2.5rem] md:rounded-full p-2 shadow-2xl border border-slate-200",
@@ -85,7 +95,7 @@ export function ServiceSelector({
                         key={type.id}
                         type="button"
                         onClick={() => {
-                          setBusinessType(type.id);
+                          setFilters({ businessType: type.id }); // Mutación limpia a la URL
                           setActiveSection(null);
                         }}
                         className="flex items-center gap-3 w-full p-3 hover:bg-slate-50 rounded-2xl text-left transition-colors group"
@@ -135,7 +145,7 @@ export function ServiceSelector({
                         key={point.id}
                         type="button"
                         onClick={() => {
-                          setPainPoint(point.id);
+                          setFilters({ painPoint: point.id });
                           setActiveSection(null);
                         }}
                         className="flex items-center gap-3 w-full p-3 hover:bg-slate-50 rounded-2xl text-left transition-colors group"
@@ -159,16 +169,15 @@ export function ServiceSelector({
 
         {/* SECCIÓN 3: BÚSQUEDA INPUT */}
         <SearchFilter
-          value={searchInput}
-          onChange={setSearchInput}
-          onClear={clearFilters}
+          value={localSearch}
+          onChange={setLocalSearch}
+          onClear={handleClearAll}
           onFocus={() => setActiveSection(null)}
-          hasFilters={isFiltered}
+          hasFilters={isFiltered || localSearch.trim().length > 0}
           isPending={isPending}
         />
       </div>
 
-      {/* Overlay de cierre seguro */}
       {activeSection && (
         <div
           className="fixed inset-0 -z-10 bg-transparent"

@@ -1,15 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getServiceBySlug } from "@/src/features/admin/_servicio/action";
-// Subcomponentes
-import ServiceSlugHero from "@/src/features/public-web/servicio/slug/ServiceSlugHero";
-import ServicePainPoints from "@/src/features/public-web/servicio/slug/components/ServicePainPoints";
-import ServiceBenefits from "@/src/features/public-web/servicio/slug/components/ServiceBenefits";
-import ServiceProcess from "@/src/features/public-web/servicio/slug/components/ServicesProcess";
-import ServiceTrust from "@/src/features/public-web/servicio/slug/components/ServiceTrust";
-import ServiceCTA from "@/src/features/public-web/servicio/slug/components/ServiceCTA";
-import ServiceEvaluation from "@/src/features/public-web/servicio/slug/components/ServiceEvaluation";
-import { getServiceMetrics } from "@/src/lib/adapters/serviceMetrics.adapter";
+// Views
+import { ServiceSlugView } from "@/src/features/public/servicio/slug/views/service-slug-view";
+// hooks
+import { getPublicServiceBySlug } from "@/src/features/public/servicio/api/servicio-public.query";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -17,43 +11,22 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = await getServiceBySlug(slug);
-
+  const service = await getPublicServiceBySlug(slug);
   if (!service) notFound();
-
   return {
     title: `${service.title} | ASESCON`,
-    description: service.description.replace(/<[^>]*>/g, "").slice(0, 160),
+    description: service.description,
   };
 }
 
 export default async function ServicioDetallePage({ params }: Props) {
   const { slug } = await params;
-  const service = await getServiceBySlug(slug);
-
+  const service = await getPublicServiceBySlug(slug);
   if (!service) notFound();
-
-  const metrics = getServiceMetrics(service);
 
   return (
     <main className="bg-white">
-      <ServiceSlugHero service={service} />
-
-      <ServicePainPoints painPoints={service.painPoints} />
-
-      <ServiceBenefits features={service.features} />
-
-      <ServiceEvaluation 
-      impact={metrics.impact}
-      effort={metrics.effort}
-      risk={metrics.risk}
-      />
-
-      <ServiceProcess />
-
-      <ServiceTrust />
-
-      <ServiceCTA serviceTitle={service.title} />
+      <ServiceSlugView service={service} />
     </main>
   );
 }

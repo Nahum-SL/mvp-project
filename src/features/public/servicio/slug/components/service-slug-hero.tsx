@@ -33,7 +33,7 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
           <div className="flex items-center gap-3 mb-6">
             <span className="h-px w-10 bg-blue-500" />
             <span className="text-blue-400 uppercase tracking-[0.4em] text-xs font-bold">
-              {service.businessTypes[0]}
+              {service.businessTypes[0] ?? "Consultoria"}
             </span>
           </div>
 
@@ -62,7 +62,7 @@ export default function ServiceSlugHero({ service }: { service: Service }) {
                 const el = document.getElementById("detalles");
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 transition"
+              className="px-8 py-4 border border-white/20 text-white rounded-xl hover:bg-white/10 transition cursor-pointer"
             >
               Ver detalles
             </button>

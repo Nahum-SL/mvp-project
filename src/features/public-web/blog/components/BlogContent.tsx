@@ -1,16 +1,17 @@
 // src/app/(public)/blog/BlogContent.tsx
 
 // Componente para el titulo de cada sección
-import { SectionHeaderHome } from "@/src/components/ui/layout/contacto/SectionHeaderHome";
+import { SectionHeaderHome } from "@/src/features/public-web/home/components/SectionHeaderHome";
 // Card del primer blog mostrado
 import FeaturedPost from "@/src/components/ui/layout/blog/FeaturedPost";
 // Card de los blogs anteriores
 import { BlogCardPage } from "@/src/features/blog/components/BlogCardPage";
+
 // Layout de animacion
-import { ToolsAnimationWrapper } from "./tools/ToolsAnimationWrapper";
+import { ToolsAnimationWrapper } from "../../../public/blog/slug/components/tools/ToolsAnimationWrapper";
 // Herramientas / tools
-import { SunatCalendar } from "./tools/SunatCalendar";
-import { GratificationCalc } from "./tools/GratificacionCal";
+import { SunatCalendar } from "../../../public/blog/slug/components/tools/SunatCalendar";
+import { GratificationCalc } from "../../../public/blog/slug/components/tools/GratificacionCal";
 // Acciones - Obtener blog
 import { getBlogPosts } from "@/src/features/public-web/blog/action";
 

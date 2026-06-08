@@ -1,5 +1,4 @@
 import { BUSINESS_TYPES, PAIN_POINTS } from "@/src/types/servicio/constants";
-
 import type {
   BusinessTypeID,
   PainPointID,
@@ -44,5 +43,20 @@ export function createEmptyFilters(): ServiceFilters {
     businessType: undefined,
     painPoint: undefined,
     search: "",
+  };
+}
+
+export function parseUrlParamsToFilters(
+  typeParam: string | null,
+  painParam: string | null,
+  searchParam: string | null
+): ServiceFilters {
+  const isValidType = BUSINESS_TYPES.some((b) => b.id === typeParam);
+  const isValidPain = PAIN_POINTS.some((p) => p.id === painParam);
+
+  return {
+    businessType: isValidType ? (typeParam as BusinessTypeID) : undefined,
+    painPoint: isValidPain ? (painParam as PainPointID) : undefined,
+    search: searchParam?.trim() ?? "",
   };
 }

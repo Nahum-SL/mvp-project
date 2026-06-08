@@ -69,3 +69,22 @@ src/app/api/admin/blog/post/[id]/route.ts
 serverApiClient()
         ↓
 http://localhost:3001/api/post/9
+
+// URL
+La URL se lee, no se sincroniza.
+
+filters (externo)
+localSearch (input UI)
+setFilters (único punto de escritura)
+
+✔ Mucho más estable
+✔ Mucho menos propenso a bugs de sincronización
+✔ Más performante (menos renders inútiles)
+
+Unete - Form
+Para un formulario de empleo real, mi combinación sería:
+
+✅ isSubmitting para evitar doble click
+✅ Toast success/error
+✅ Rate Limit en NestJS (obligatorio)
+✅ Cloudflare Turnstile (muy recomendable)

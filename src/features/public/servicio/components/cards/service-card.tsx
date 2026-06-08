@@ -5,13 +5,13 @@ import { memo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-
 import { cn } from "@/src/lib/utils";
 import { iconMap, IconName } from "@/src/lib/icons";
-
+// Types
 import type { ScoredService } from "@/src/types/servicio/scoring.types";
-
+// Utils
 import { stripHtml } from "../../utils/service-description";
+// Constants
 import { SERVICE_FEATURE_PREVIEW_LIMIT } from "@/src/constants/servicio-public/servicio-ui";
 
 interface ServiceCardProps {
@@ -35,6 +35,8 @@ function ServiceCardComponent({
   const priorityScore = service.priorityScore ?? 0;
   const mainReason = service.recommendationMeta?.reasons?.[0];
   const description = stripHtml(service.description ?? "");
+
+  const match = matchScore >= 0 ? matchScore : 0;
 
   return (
     <motion.article
@@ -65,14 +67,17 @@ function ServiceCardComponent({
 
       {/* Header */}
       <div className="relative z-10 flex items-start justify-between mb-4">
-        <div className="p-3 rounded-xl bg-slate-50 text-slate-500 transition group-hover:bg-indigo-50 group-hover:text-indigo-600">
+        <div
+          className="p-3 rounded-xl bg-slate-50 text-slate-500 transition 
+        group-hover:bg-indigo-50 group-hover:text-indigo-600"
+        >
           {IconComponent && <IconComponent size={22} strokeWidth={1.8} />}
         </div>
 
         <div className="text-right text-[10px] text-slate-400 space-y-1">
           <div>
             <span className="block">Match</span>
-            <span className="font-bold text-slate-700">{matchScore}%</span>
+            <span className="font-bold text-slate-700">{match}%</span>
           </div>
 
           <div>
@@ -98,22 +103,22 @@ function ServiceCardComponent({
       <div className="relative z-10 mb-4">
         <div className="flex justify-between text-[10px] text-slate-400 mb-1">
           <span>Compatibilidad</span>
-          <span>{matchScore}%</span>
+          <span>{match}%</span>
         </div>
 
         <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: `${matchScore}%` }}
+            animate={{ width: `${match}%` }}
             transition={{
               duration: 0.8,
               ease: "easeOut",
             }}
             className={cn(
               "h-full transition-all duration-700",
-              matchScore > 80
+              match > 80
                 ? "bg-emerald-500"
-                : matchScore > 50
+                : match > 50
                   ? "bg-indigo-500"
                   : "bg-amber-400",
             )}

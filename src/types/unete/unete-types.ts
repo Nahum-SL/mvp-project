@@ -53,6 +53,7 @@ export interface CreateJobAppPayload {
   phone: string;
   experience: number;
   position: string;
+  cvUrl: string;
 }
 
 // Update Job Application Status
