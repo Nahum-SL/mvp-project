@@ -1,11 +1,10 @@
 // src/components/ui/layout/AsesconHero.tsx
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
-//Componente Reutilizable
-import HeroVideoBackground from "@/src/components/ui/layout/hero-video-background";
+// Componente Reutilizable
+import { HeroVideoBackground } from "@/src/components/ui/layout/hero-video-background";
 import { ReflectButton } from "@/src/components/ui/buttons/ReflectedButton";
 
 interface HeroProps {
@@ -17,7 +16,7 @@ interface HeroProps {
   videoSrc?: string;
 }
 
-export default function AsesconHero({
+export function AsesconHero({
   mainTitle,
   subtitle,
   ctaText,
@@ -29,18 +28,13 @@ export default function AsesconHero({
       className="relative w-full min-h-svh flex items-center justify-center 
     overflow-hidden bg-slate-950"
     >
-      <HeroVideoBackground
-        poster={videoPoster}
-        videoSrc={videoSrc}
-        delay={0}
-      />
+      <HeroVideoBackground poster={videoPoster} videoSrc={videoSrc} delay={0} />
 
       <div className="max-7xl mx-auto px-6 relative z-20 text-center">
-        {" "}
         {/* Subimos z-index del contenido */}
         <div className="max-w-2xl mx-auto">
           {/* Título */}
-          {/* OPTIMIZACIÓN LCP: Quitamos la animación inicial de opacity: 0 para que pinte instantáneamente */}
+          {/* OPTIMIZACIÓN LCP: Sin animación inicial para pintado instantáneo */}
           <h1
             className="text-4xl md:text-5xl lg:text-5xl font-serif
             text-white tracking-tighter leading-tight"
@@ -49,18 +43,17 @@ export default function AsesconHero({
           </h1>
 
           {/* Subtítulo con máximo contraste */}
-          <p className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
+          <p
+            className="mt-10 text-lg md:text-2xl text-slate-300 max-w-3xl 
             mx-auto leading-relaxed font-medium font-sans drop-shadow-md"
           >
             {subtitle}
           </p>
 
-          {/* Contenedor de Botones */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }} // Reducimos delay ligeramente
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12"
+          {/* Contenedor de Botones con Animación CSS Nativa */}
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-12
+            animate-fade-in [animation-delay:400ms] [animation-fill-mode:both]"
           >
             {/* Link Principal (WhatsApp) */}
             <Link
@@ -99,7 +92,7 @@ export default function AsesconHero({
             >
               Ver Servicios
             </ReflectButton>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -123,7 +116,7 @@ export default function AsesconHero({
         </div>
       </div>
 
-      {/* Luz inferior decorativa - Mantenemos esta para el desvanecimiento final */}
+      {/* Luz inferior decorativa */}
       <div
         className="absolute bottom-0 w-full h-32 bg-linear-to-t 
       from-slate-950 to-transparent z-10"

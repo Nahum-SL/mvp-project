@@ -24,7 +24,7 @@ interface Props {
   overlay?: React.ReactNode;
 }
 
-export default function HeroVideoBackground({
+export function HeroVideoBackground({
   poster,
   videoSrc,
   delay = 500,

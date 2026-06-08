@@ -34,7 +34,7 @@ export async function generateMetadata({
 export default function ServiciosPage() {
   return (
     <main>
-      <Suspense fallback={<div>Cargando..</div>}>
+      <Suspense fallback={<div className="bg-slate-950"/>}>
         <ServicesView />
       </Suspense>
     </main>

@@ -8,23 +8,24 @@ import type { NextConfig } from "next";
  */
 const isDev = process.env.NODE_ENV === "development";
 
-const backendUrl = isDev ? "http://localhost:3001" : "";
+const backendUrl = isDev ? "http://localhost:3001/api" : "";
 
 const devCSP = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
     img-src 'self' blob: data: https:;
     font-src 'self' data:;
-    connect-src 'self' http://localhost:3001 ws://localhost:* http://localhost:*;
+    connect-src 'self' ${backendUrl} ws://localhost:* http://localhost:* https://*.google-analytics.com;
     frame-ancestors 'none';
   `;
 
+// Modificado: Se añade Google Tag Manager en script-src e img-src (para los fallbacks de tracking por pixel)
 const prodCSP = `
     default-src 'self';
-    script-src 'self';
+    script-src 'self' https://www.googletagmanager.com;
     style-src 'self';
-    img-src 'self' blob: data: https://res.cloudinary.com https://ui-avatars.com;
+    img-src 'self' blob: data: https://res.cloudinary.com https://ui-avatars.com https://*.google-analytics.com https://www.googletagmanager.com;
     connect-src 'self' https://*.neon.tech https://*.cloudinary.com https://*.google-analytics.com;
     font-src 'self' data:;
     object-src 'none';

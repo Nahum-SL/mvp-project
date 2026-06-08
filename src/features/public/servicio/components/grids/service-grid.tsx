@@ -25,7 +25,7 @@ export function ServiceGrid({
   const sortedServices = sortServicesByRelevance(services, highlightedIds);
 
   return (
-    <section className="min-h-120 overflow-x-hidden">
+    <section className="min-h-120">
       <div className="mb-4 md:mb-6 mt-9">
         <h3 className="text-sm font-bold text-center text-slate-500 uppercase tracking-wider">
           Servicios que puedes considerar

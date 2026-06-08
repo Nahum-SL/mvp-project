@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 // Componentes
 import { ServiceSelector } from "../components/selector/service-selector";
 import { ServiceGrid } from "../components/grids/service-grid";
@@ -16,6 +16,7 @@ import { MAX_COMPARE_SERVICES } from "@/src/constants/servicio-public/servicio-u
 // Utils
 import { getHighlightedServices } from "../utils/service-highlight";
 import ServiceHero from "../components/service-hero";
+import { ServiceSelectorSkeleton } from "../components/skeleton/service-selector-skeleton";
 
 export function ServicesView() {
   const { filters, setFilters } = useServiceFilters();
@@ -52,13 +53,17 @@ export function ServicesView() {
         subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
       />
 
-      <ServiceSelector
-        filters={filters}
-        setFilters={setFilters}
-        isPending={isLoading}
-      />
+      <Suspense fallback={<ServiceSelectorSkeleton />}>
+        <ServiceSelector
+          filters={filters}
+          setFilters={setFilters}
+          isPending={isLoading}
+        />
+      </Suspense>
 
-      <RecommendationView recomendation={filters} />
+      <Suspense fallback={<ServiceSelectorSkeleton />}>
+        <RecommendationView recomendation={filters} />
+      </Suspense>
 
       <ServiceGrid
         services={services}

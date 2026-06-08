@@ -115,3 +115,5 @@ Eliminar la rama
 git branch -d <rama-secundaria>
 git push origin --delete <rama-secundaria>
 
+Lighthouse
+pnpm exec lighthouse http://localhost:3000

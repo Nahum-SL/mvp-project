@@ -3,19 +3,20 @@ import { Suspense } from "react";
 // Skeleton
 import { RecentPostSkeleton } from "@/src/components/skeletons/RecentPostSkeleton";
 // Componentes de la página
-import AsesconHero from "../components/AsesconHero";
+import { AsesconHero } from "../components/AsesconHero";
 import { ContactForm } from "@/src/features/public/contacto/components/ContactForm";
 import { FeaturedServices } from "../components/FeaturedServices";
 import { ValueProposition } from "../components/ValueProposition";
 import { RecentPostsSection } from "../components/RecentPostSection";
 // Componente header
 import { SectionHeaderHome } from "../components/SectionHeaderHome";
-// Hooks
-import { usePublicPosts } from "@/src/features/public/blog/hooks/use-public.posts";
+import type { BlogPost } from "@/src/types/blog/blogPost";
 
-export function HomeView() {
-  const { data: posts = [] } = usePublicPosts();
+interface HomeViewProps {
+  posts: BlogPost[];
+}
 
+export function HomeView({ posts }: HomeViewProps) {
   return (
     <main className="bg-white text-slate-900">
       <div className="relative z-15">
@@ -26,7 +27,7 @@ export function HomeView() {
           ctaText="Hablar con un asesor"
         />
 
-        {/* 2. SERVICIOS POPULARES: El "catálogo" de soluciones */}
+        {/* 2. SERVICIOS POPULARES: El "catálogo" de soluciones - Estatico no usa fetchs al backend*/}
         <section className="bg-slate-50 z-14">
           <FeaturedServices />
         </section>
@@ -34,7 +35,7 @@ export function HomeView() {
         {/* Usamos colores Blanco, Azul y acentos Amarillos */}
         <ValueProposition />
 
-        {/* 4. CONTENIDO: Posts recientes para SEO y autoridad */}
+        {/* 4. CONTENIDO: Posts recientes para SEO y autoridad - usa un hook para intermediar por el route.ts y llegar al backend*/}
         <Suspense fallback={<RecentPostSkeleton />}>
           <RecentPostsSection posts={posts} />
         </Suspense>

@@ -11,14 +11,12 @@ export async function GET(request: Request, { params }: RouteParams) {
   try {
     const { id } = await params;
     const postId = Number(id);
-
     // Replicamos el BadRequestException de tu controlador de NestJS
     if (isNaN(postId)) {
       return NextResponse.json(
         { status: 400 },
       );
     }
-
     const data = await serverApiClient(`/servicio/${id}`);
     return apiSuccess(data);
   } catch (error: unknown) {

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
-import HeroVideoBackground from "@/src/components/ui/layout/hero-video-background";
+import { HeroVideoBackground } from "@/src/components/ui/layout/hero-video-background";
 
 interface Props {
   title: string;

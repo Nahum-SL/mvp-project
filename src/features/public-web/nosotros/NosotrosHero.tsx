@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import HeroVideoBackground from "@/src/components/ui/layout/hero-video-background";
+import { HeroVideoBackground } from "@/src/components/ui/layout/hero-video-background";
 
 interface Props {
   titlePrimary?: string;
@@ -25,8 +25,7 @@ export const NosotrosHero = ({
       />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl">   
-
+        <div className="max-w-4xl">
           {/* TÍTULO: Quitamos initial/animate y usamos CSS puro para la entrada sutil */}
           <h1 className="text-4xl md:text-7xl lg:text-8xl text-white leading-[0.95] font-serif mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <span className="block font-light opacity-90">{titlePrimary}.</span>
@@ -36,8 +35,10 @@ export const NosotrosHero = ({
           </h1>
 
           {/* SUBTÍTULO (EL LCP): Cero Framer Motion aquí. Usamos clases de Tailwind para opacidad inmediata */}
-          <p className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed 
-          font-light opacity-100 transition-opacity duration-700">
+          <p
+            className="text-slate-400 text-lg md:text-xl max-w-xl leading-relaxed 
+          font-light opacity-100 transition-opacity duration-700"
+          >
             {subtitle}
           </p>
 
