@@ -8,8 +8,6 @@ export async function getPublicServices(): Promise<Service[]> {
 }
 
 export async function getPublicServiceBySlug(slug: string): Promise<Service> {
-  const res = await fetch(`${getBaseUrl()}/api/public/servicio/${slug}`, {
-    cache: "force-cache",
-  });
+  const res = await fetch(`${getBaseUrl()}/api/public/servicio/${slug}`);
   return handleResponse<Service>(res);
 }

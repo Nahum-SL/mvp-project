@@ -45,7 +45,7 @@ export const PostConfigCard = ({ categories, isPending, isEditing }: Props) => {
       </div>
 
       {/* BOTÓN DE ACCIÓN PRINCIPAL */}
-      <FormActions submitLabel="Crear Post" isPending={isPending} isEditing={isEditing} />
+      <FormActions isPending={isPending} isEditing={isEditing}/>
     </FormAside>
   );
 };

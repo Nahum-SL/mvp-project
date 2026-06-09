@@ -10,6 +10,7 @@ import { toast } from "sonner";
 
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
 import { usePostFilters } from "../store/post.selectors";
+import { PostFilters } from "../store/post.types";
 
 // ===========
 // MUTATIONS
@@ -61,9 +62,8 @@ export const useUpdatePost = () => {
 };
 
 // DELETE
-export const useDeletePost = () => {
+export const useDeletePost = (filters: PostFilters) => {
   const queryClient = useQueryClient();
-  const filters = usePostFilters();
 
   return useMutation({
     mutationFn: deletePostAction,
@@ -73,16 +73,14 @@ export const useDeletePost = () => {
         queryKey: POST_QUERY_KEYS.lists(filters),
       });
 
-      // Guardar el estado previo de la lista
       const previousPosts = queryClient.getQueryData<BlogPost[]>(
         POST_QUERY_KEYS.lists(filters),
       );
 
-      // Actualizar la lista de posts en cache eliminando el post borrado
       if (previousPosts) {
-        queryClient.setQueryData<BlogPost[]>(
+        queryClient.setQueryData(
           POST_QUERY_KEYS.lists(filters),
-          previousPosts.filter((post) => post.id !== Number(deletedId)),
+          previousPosts.filter((p) => p.id !== Number(deletedId)),
         );
       }
 

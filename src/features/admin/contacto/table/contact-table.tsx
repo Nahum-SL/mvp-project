@@ -3,7 +3,6 @@ import { Users } from "lucide-react";
 import type { Contacto } from "@/src/types/contacto/contacto-type";
 import { CONTACT_COLUMNS } from "./contact-columns";
 import { ContactRow } from "./contact-row";
-
 // UI Base Atoms
 import { Table } from "@/src/components/ui/table/Table";
 import { LoadingState } from "@/src/components/ui/states/LoadingState";

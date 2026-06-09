@@ -14,8 +14,6 @@ export function IntranetManagementView() {
   return (
     <div className="space-y-6 container mx-auto px-4 py-6 max-w-7xl">
       {/* 1. Orquestación del Encabezado Funcional */}
-      <LinkHeader />
-
       {/* 2. Orquestación del Núcleo de Información */}
       <main className="w-full">
         <LinkTable links={links} isLoading={isLoading} />

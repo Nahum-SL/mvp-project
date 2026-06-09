@@ -131,13 +131,13 @@ export default function NavbarAdmin({ onOpenSidebar }: NavbarAdminProps) {
                     setIsOpen(false);
                   }}
                   className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl 
-                  text-red-500 hover:bg-red-50 transition-colors group"
+                  text-red-500 hover:bg-red-50 transition-colors group cursor-pointer"
                 >
                   <LogOut
                     size={16}
                     className="group-hover:-translate-x-1 transition-transform"
                   />
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest">
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest ">
                     Cerrar Sesión
                   </span>
                 </button>

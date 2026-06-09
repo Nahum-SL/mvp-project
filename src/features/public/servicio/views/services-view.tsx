@@ -16,7 +16,6 @@ import { MAX_COMPARE_SERVICES } from "@/src/constants/servicio-public/servicio-u
 // Utils
 import { getHighlightedServices } from "../utils/service-highlight";
 import ServiceHero from "../components/service-hero";
-import { ServiceSelectorSkeleton } from "../components/skeleton/service-selector-skeleton";
 
 export function ServicesView() {
   const { filters, setFilters } = useServiceFilters();
@@ -53,17 +52,13 @@ export function ServicesView() {
         subtitle="Soluciones estratégicas diseñadas para blindar y potenciar su organización en el mercado peruano."
       />
 
-      <Suspense fallback={<ServiceSelectorSkeleton />}>
-        <ServiceSelector
-          filters={filters}
-          setFilters={setFilters}
-          isPending={isLoading}
-        />
-      </Suspense>
+      <ServiceSelector
+        filters={filters}
+        setFilters={setFilters}
+        isPending={isLoading}
+      />
 
-      <Suspense fallback={<ServiceSelectorSkeleton />}>
-        <RecommendationView recomendation={filters} />
-      </Suspense>
+      <RecommendationView recomendation={filters} />
 
       <ServiceGrid
         services={services}

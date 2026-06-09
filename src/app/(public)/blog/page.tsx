@@ -1,10 +1,9 @@
 // src/app/(public)/blog/page.tsx
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { BlogViews } from "@/src/features/public/blog/views/blog-views";
 // Api
-import { getPublicPosts } from "@/src/actions/blog/post-public.query";
+import { getPublicPosts } from "@/src/features/public/blog/api/blog-public.api";
 
 export default async function BlogPage() {
   const posts = await getPublicPosts();
@@ -14,9 +13,7 @@ export default async function BlogPage() {
   }
   return (
     <main>
-      <Suspense fallback={<div>Cargando...</div>}>
-        <BlogViews post={posts} />
-      </Suspense>
+      <BlogViews post={posts} />
     </main>
   );
 }

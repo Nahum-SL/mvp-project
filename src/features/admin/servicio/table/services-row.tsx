@@ -14,7 +14,6 @@ import { BUSINESS_TYPES } from "@/src/types/servicio/constants";
 import { iconServiceMap } from "@/src/lib/icons";
 import { useServicioActions } from "../store/servicio.selector";
 import { TableButton } from "@/src/components/ui/table/TableButton";
-import Link from "next/link";
 
 interface RowProps {
   svc: Service;

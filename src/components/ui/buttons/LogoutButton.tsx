@@ -15,7 +15,7 @@ export const LogoutButton = () => {
       <div className="p-2 bg-slate-100 group-hover:bg-rose-100 rounded-lg transition-colors">
         <LogOut size={20} />
       </div>
-      <span className="font-bold text-sm uppercase tracking-tight">
+      <span className="font-bold text-sm uppercase tracking-tight cursor-pointer">
         Cerrar Sesión
       </span>
     </motion.button>

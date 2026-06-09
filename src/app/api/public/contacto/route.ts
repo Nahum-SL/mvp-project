@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     
     // 2. Enviarlo como JSON estricto a NestJS
-    const data = await serverApiClient("/api/contacto/enviar", {
+    const data = await serverApiClient("/contacto/enviar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

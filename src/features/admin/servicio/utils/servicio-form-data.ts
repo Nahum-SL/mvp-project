@@ -32,10 +32,7 @@ export function buildServicioFormData(values: ServicioFormValues): FormData {
   // Archivo de imagen (Cloudinary / Local)
   if (values.image instanceof File) {
     formData.append("image", values.image);
-  } else if (typeof values.image === "string") {
-    // Si estás editando y mandas la URL de la imagen actual en lugar de un archivo nuevo
-    formData.append("image", values.image);
   }
-
+  
   return formData;
 }

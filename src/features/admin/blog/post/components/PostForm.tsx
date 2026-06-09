@@ -32,7 +32,7 @@ export const PostForm = ({ initialData }: Props) => {
     isEditing,
   } = usePostForm({ initialData });
 
-  const { data: categoryOptions = [], isLoading } = useCategories();
+  const { data: categoryOptions = [] } = useCategories();
 
   return (
     <FormProvider {...form}>
@@ -67,7 +67,7 @@ export const PostForm = ({ initialData }: Props) => {
           
           <PostConfigCard
             categories={categoryOptions}
-            isPending={isLoading}
+            isPending={isPending}
             isEditing={isEditing}
           />
         </div>

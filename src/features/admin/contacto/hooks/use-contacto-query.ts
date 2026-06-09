@@ -7,7 +7,6 @@ export function useAdminContacts() {
   return useQuery({
     queryKey: CONTACT_QUERY_KEYS.lists(),
     queryFn: getContactosAction,
-    staleTime: 1000 * 60 * 5,
   });
 }
 
