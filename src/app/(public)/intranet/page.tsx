@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import IntranetLinkView from "@/src/features/public/intranet/views/intranet-link-view";
+import IntranetLinkView from "@/src/modules/public/intranet/views/intranet-link-view";
 // Api
-import { getPublicIntranetLinks } from "@/src/features/public/intranet/api/intranet-public.query";
+import { getPublicIntranetLinks } from "@/src/modules/public/intranet/api/intranet-public.query";
 
 export const metadata: Metadata = {
   title: "Portal de Clientes",

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { Suspense } from "react";
 // Componentes
-import { ServicesView } from "@/src/features/public/servicio/views/services-view";
+import { ServicesView } from "@/src/modules/public/servicio/views/services-view";
+import { getPublicServices } from "@/src/modules/public/servicio/api/servicio-public.query";
 
 interface Props {
   searchParams: { type?: string; pain?: string; q?: string };
@@ -31,7 +31,14 @@ export async function generateMetadata({
   };
 }
 
-export default function ServiciosPage() {
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function ServiciosPage({params}: PageProps) {
+  const { slug } = await params;
+  const service = await getPublicServices();
+
   return (
     <main>
       <ServicesView />

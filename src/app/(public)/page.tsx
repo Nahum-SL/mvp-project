@@ -1,5 +1,6 @@
 import { Metadata } from "next";
-import { HomeView } from "@/src/features/public-web/home/views/home-view";
+import { HomeView } from "@/src/modules/public-web/home/views/home-view";
+
 import { getPublicPosts } from "@/src/actions/blog/post-public.query";
 
 export const metadata: Metadata = {
@@ -26,6 +27,8 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const posts = await getPublicPosts();
+  console.log(posts)
+
   return (
     <main>
       <HomeView posts={posts} />

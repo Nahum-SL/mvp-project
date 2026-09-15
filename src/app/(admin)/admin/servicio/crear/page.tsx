@@ -1,5 +1,5 @@
-import PageHeader from "@/src/features/admin/components/PageHeader";
-import { ServiceForm } from "@/src/features/admin/servicio/components/ServiceForm";
+import PageHeader from "@/src/modules/admin/components/PageHeader";
+import { ServiceForm } from "@/src/modules/admin/servicio/components/ServiceForm";
 
 export default function NuevoServicioPage() {
   return (

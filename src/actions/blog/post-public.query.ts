@@ -1,42 +1,45 @@
-"use server";
-
 import type { BlogPost } from "@/src/types/blog/blogPost";
-import { API_URL } from "@/src/lib/api-url";
 // Manejo de fetchs
-import { serverApiClient } from "@/src/lib/server-api-client";
+import { apiClient } from "@/src/lib/api/api-client";
+import { ApiResponse } from "@/src/shared";
 
 export async function getPublicPosts(): Promise<BlogPost[]> {
   try {
-    const posts = await serverApiClient("/post/public", {
+    const response = await apiClient<ApiResponse<BlogPost[]>>("/post/public", {
       next: { revalidate: 3600 },
     });
-    return Array.isArray(posts) ? posts : [];
+
+    return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("ERROR GET PUBLIC POSTS:", error);
     return [];
   }
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const res = await fetch(`${API_URL}/api/post/slug/${slug}`, {
-    next: { revalidate: 60 }, // Cache por 1 minuto
-  });
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await apiClient<ApiResponse<BlogPost>>(`/post/slug/${slug}`, {
+      next: { revalidate: 60 }, // Cache por 1 minuto
+    });
+
+    return res.data;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+  
+
 }
 
 export async function getRecentPosts(): Promise<BlogPost[]> {
   try {
-    const res = await fetch(`${API_URL}/api/post?limit=3`, {
+    const res = await apiClient<ApiResponse<BlogPost[]>>("/post?limit=3", {
       next: { revalidate: 600 },
     });
-    if (!res.ok) return [];
 
-    const data = await res.json();
-
-    // Validamos si NestJS envía el array directo o dentro de un objeto { data: [...] }
-    return Array.isArray(data) ? data : data.data || [];
+    return res.data;
   } catch (e) {
+    console.error(e);
     return [];
   }
 }
@@ -44,14 +47,13 @@ export async function getRecentPosts(): Promise<BlogPost[]> {
 // ... (tu función getPostBySlug ya existente)
 export async function getNavigationPosts(currentSlug: string) {
   try {
-    const res = await fetch(`${API_URL}/api/post`, {
+    const res = await apiClient<ApiResponse<BlogPost[]>>("/post", {
       next: { revalidate: 3600 },
     });
-    const response = await res.json();
-    const posts: BlogPost[] = Array.isArray(response)
-      ? response
-      : response?.data || [];
 
+    const response = res.data;
+    const posts = response || [];
+    
     const currentIndex = posts.findIndex((p) => p.slug === currentSlug);
     if (currentIndex === -1) return { prevPost: null, nextPost: null };
 
@@ -60,6 +62,7 @@ export async function getNavigationPosts(currentSlug: string) {
       nextPost: posts[(currentIndex + 1) % posts.length],
     };
   } catch (error) {
+    console.error("ERROR GET NAVIGATION POSTS:", error);
     return { prevPost: null, nextPost: null };
   }
 }

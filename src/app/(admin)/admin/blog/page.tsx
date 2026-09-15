@@ -1,7 +1,7 @@
 // Header
 import SectionHeader from "@/src/components/ui/SectionHeader";
 import { LayoutGrid, Plus } from "lucide-react";
-import { PostManagementView } from "@/src/features/admin/blog/post/views/PostManagamentView";
+import { PostManagementView } from "@/src/modules/admin/blog/post/views/PostManagamentView";
 import Link from "next/link";
 
 export default async function AdminBlogPage() {

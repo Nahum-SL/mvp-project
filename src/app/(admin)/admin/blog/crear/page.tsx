@@ -1,6 +1,6 @@
 // Tu página quedaría así de limpia:
-import PageHeader from "@/src/features/admin/components/PageHeader"; // Importas el genérico
-import { PostForm } from "@/src/features/admin/blog/post/components/PostForm";
+import PageHeader from "@/src/modules/admin/components/PageHeader"; // Importas el genérico
+import { PostForm } from "@/src/modules/admin/blog/post/components/PostForm";
 
 export default async function NewPostPage() {
 

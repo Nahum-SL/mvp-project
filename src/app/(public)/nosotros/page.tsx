@@ -1,10 +1,10 @@
 // src/app/(public)/nosotros/page.tsx
 import { TeamMember } from "@/src/types/nosotros/team-asescon";
-import { TeamGrid } from "@/src/features/public-web/nosotros/components/TeamGrid";
-import { StatsSection } from "@/src/features/public-web/nosotros/components/StatsSection";
-import { ValuesManifesto } from "@/src/features/public-web/nosotros/components/ValueManifesto";
-import { NosotrosHero } from "@/src/features/public-web/nosotros/NosotrosHero";
-import { InteractiveVideoBox } from "@/src/features/public-web/nosotros/components/videos/InteractiveVideoBox";
+import { TeamGrid } from "@/src/modules/public-web/nosotros/components/TeamGrid";
+import { StatsSection } from "@/src/modules/public-web/nosotros/components/StatsSection";
+import { ValuesManifesto } from "@/src/modules/public-web/nosotros/components/ValueManifesto";
+import { NosotrosHero } from "@/src/modules/public-web/nosotros/NosotrosHero";
+import { InteractiveVideoBox } from "@/src/modules/public-web/nosotros/components/videos/InteractiveVideoBox";
 
 import { Metadata } from "next";
 

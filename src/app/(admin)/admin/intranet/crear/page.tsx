@@ -1,6 +1,6 @@
 // app/(admin)/admin/intranet/nuevo/page.tsx
-import PageHeader from "@/src/features/admin/components/PageHeader";
-import { IntranetForm } from "@/src/features/admin/intranet/components/IntranetForm";
+import PageHeader from "@/src/modules/admin/components/PageHeader";
+import { IntranetForm } from "@/src/modules/admin/intranet/components/IntranetForm";
 
 export default function NewLinkPage() {
   return (

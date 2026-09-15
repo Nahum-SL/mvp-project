@@ -1,0 +1,50 @@
+import { handleResponse } from "@/src/lib/handle-response";
+
+import type {
+  IntranetLink,
+} from "@/src/types/intranet/intranet-types";
+import { CreateLinkInput, UpdateLinkInput } from "../schemas/intranet.schema";
+
+import { getBaseUrl } from "@/src/lib/get-base-url";
+
+interface UpdateParamas {
+  id: number;
+  payload: UpdateLinkInput;
+}
+
+// CREATE
+export async function createIntranetLinkAction(
+  payload: CreateLinkInput,
+): Promise<IntranetLink> {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  return handleResponse<IntranetLink>(res);
+}
+
+// UPDATE
+export async function updateIntranetLinkAction({
+  id,
+  payload,
+}: UpdateParamas): Promise<IntranetLink> {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  return handleResponse<IntranetLink>(res);
+}
+
+// DELETE
+export async function deleteIntranetLinkAction(id: string): Promise<void> {
+  const res = await fetch(`${getBaseUrl()}/api/admin/intranet/${id}`, {
+    method: "DELETE",
+  });
+  return handleResponse<void>(res);
+}

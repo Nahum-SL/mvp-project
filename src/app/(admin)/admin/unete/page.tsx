@@ -4,7 +4,7 @@ import SectionHeader from "@/src/components/ui/SectionHeader";
 // -- Icono
 import { LayoutGrid } from "lucide-react";
 
-import { UneteManagementView } from "@/src/features/admin/unete/views/unete-managament-view";
+import { UneteManagementView } from "@/src/modules/admin/unete/views/unete-managament-view";
 
 export default function UneteAdminPage() {
   return (

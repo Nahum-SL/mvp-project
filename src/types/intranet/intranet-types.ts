@@ -18,26 +18,3 @@ export interface IntranetLinks {
   url: string;
   icon: string;
 }
-
-
-// =======================
-// Payloads para mutaciones
-// =======================
-
-export interface IntranetLinkPayload {
-  title: string;
-  description: string;
-  url: string;
-  icon?: string;
-  order?: number;
-  isVisible?: boolean;
-}
-
-export interface UpdateIntranetLinkPayload {
-  title?: string;
-  description?: string;
-  url?: string;
-  icon?: string;
-  order?: number;
-  isVisible?: boolean;
-}

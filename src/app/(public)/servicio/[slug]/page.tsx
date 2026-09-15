@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 // Views
-import { ServiceSlugView } from "@/src/features/public/servicio/slug/views/service-slug-view";
+import { ServiceSlugView } from "@/src/modules/public/servicio/slug/views/service-slug-view";
 // hooks
-import { getPublicServiceBySlug } from "@/src/features/public/servicio/api/servicio-public.query";
+import { getPublicServiceBySlug } from "@/src/modules/public/servicio/api/servicio-public.query";
 
 interface Props {
   params: Promise<{ slug: string }>;

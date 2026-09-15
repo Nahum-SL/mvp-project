@@ -1,7 +1,7 @@
 // app/(admin)/admin/contacto/page.tsx
 import SectionHeader from "@/src/components/ui/SectionHeader";
 import { Book } from "lucide-react";
-import { ContactAdminView } from "@/src/features/admin/contacto/views/contact-admin-view";
+import { ContactAdminView } from "@/src/modules/admin/contacto/views/contact-admin-view";
 
 export default async function AdminContactoPage() {
 

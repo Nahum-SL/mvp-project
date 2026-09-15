@@ -1,4 +1,4 @@
-import { UneteView } from "@/src/features/public/unete/views/unete-view";
+import { UneteView } from "@/src/modules/public/unete/views/unete-view";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

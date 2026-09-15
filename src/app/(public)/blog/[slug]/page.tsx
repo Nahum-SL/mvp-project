@@ -2,9 +2,9 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 // Views
-import { BlogSlugView } from "@/src/features/public/blog/slug/views/blog-slug-view";
+import { BlogSlugView } from "@/src/modules/public/blog/slug/views/blog-slug-view";
 // Api
-import { getPostBySlug } from "@/src/features/public/blog/api/blog-public.api";
+import { getPostBySlug } from "@/src/modules/public/blog/api/blog-public.api";
 
 interface Props {
   params: Promise<{ slug: string }>;

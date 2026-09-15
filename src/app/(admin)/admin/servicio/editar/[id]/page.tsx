@@ -1,6 +1,6 @@
-import PageHeader from "@/src/features/admin/components/PageHeader";
-import { ServiceForm } from "@/src/features/admin/servicio/components/ServiceForm";
-import { getAdminServiceById } from "@/src/features/admin/servicio/api/servicio.query";
+import PageHeader from "@/src/modules/admin/components/PageHeader";
+import { ServiceForm } from "@/src/modules/admin/servicio/components/ServiceForm";
+import { getAdminServiceById } from "@/src/modules/admin/servicio/api/servicio.query";
 
 interface Props {
   params: Promise<{ id: string }>;

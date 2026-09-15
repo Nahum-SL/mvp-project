@@ -1,6 +1,6 @@
 // src/app/(public)/herramientas/calculadora-gratificacion/page.tsx
 import { Metadata } from "next";
-import GratificationPro from "@/src/features/public-web/herramientas/gratificacion/GratificationPro";
+import GratificationPro from "@/src/modules/public-web/herramientas/gratificacion/GratificationPro";
 import Link from "next/link";
 
 export const metadata: Metadata = {

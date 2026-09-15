@@ -1,7 +1,7 @@
 // app/(admin)/admin/intranet/editar/[id]/page.tsx
-import PageHeader from "@/src/features/admin/components/PageHeader";
-import { IntranetForm } from "@/src/features/admin/intranet/components/IntranetForm";
-import { getIntranetLinkById } from "@/src/features/admin/intranet/api/intranet.query";
+import PageHeader from "@/src/modules/admin/components/PageHeader";
+import { IntranetForm } from "@/src/modules/admin/intranet/components/IntranetForm";
+import { getIntranetLinkById } from "@/src/modules/admin/intranet/api/intranet.query";
 
 interface Props {
   params: Promise<{ id: string }>; // Asegura que el ID se reciba como una promesa resuelta

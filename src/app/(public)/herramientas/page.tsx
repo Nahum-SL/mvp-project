@@ -1,6 +1,6 @@
-import ToolsHero from "@/src/features/public-web/herramientas/ToolsHero";
-import ToolsGrid from "@/src/features/public-web/herramientas/components/ToolsGrid";
-import ToolsValueSection from "@/src/features/public-web/herramientas/components/ToolsValueSection";
+import ToolsHero from "@/src/modules/public-web/herramientas/ToolsHero";
+import ToolsGrid from "@/src/modules/public-web/herramientas/components/ToolsGrid";
+import ToolsValueSection from "@/src/modules/public-web/herramientas/components/ToolsValueSection";
 
 
 export default function HerramientasPage() {

@@ -1,5 +1,5 @@
 // src/app/(admin)/admin/page.tsx
-import { DashboardStatsView } from "@/src/features/admin/dashboard/stats/views/dashboard-stats-view";
+import { DashboardStatsView } from "@/src/modules/admin/dashboard/stats/views/dashboard-stats-view";
 
 export default async function AdminDashboardPage() {
   return (

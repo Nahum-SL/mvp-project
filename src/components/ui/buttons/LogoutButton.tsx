@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { logoutAction } from "@/src/features/auth/login/logout-action";
+import { logoutAction } from "@/src/modules/auth/login/logout-action";
 import { motion } from "framer-motion";
 
 export const LogoutButton = () => {

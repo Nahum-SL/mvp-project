@@ -2,7 +2,7 @@
 
 import { Metadata } from "next";
 import Link from "next/link";
-import SunatToolPro from "@/src/features/public-web/herramientas/sunat/SunatToolPro";
+import SunatToolPro from "@/src/modules/public-web/herramientas/sunat/SunatToolPro";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {

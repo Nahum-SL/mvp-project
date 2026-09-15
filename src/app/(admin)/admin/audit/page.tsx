@@ -1,4 +1,4 @@
-import { AuditAdminView } from "@/src/features/admin/audit/views/audit-admin-view";
+import { AuditAdminView } from "@/src/modules/admin/audit/views/audit-admin-view";
 
 export default async function AuditPage() {
 

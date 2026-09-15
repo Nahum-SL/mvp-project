@@ -1,8 +1,8 @@
 // app/(auth)/login/page.tsx
 import { Suspense } from "react";
-import { LoginBranding } from "@/src/features/auth/login/components/LoginBranding";
-import { LoginFormContainer } from "@/src/features/auth/login/components/LoginFormContainer";
-import { LoginFormSkeleton } from "@/src/features/auth/login/components/LoginFormSkeleton";
+import { LoginBranding } from "@/src/modules/auth/login/components/LoginBranding";
+import { LoginFormContainer } from "@/src/modules/auth/login/components/LoginFormContainer";
+import { LoginFormSkeleton } from "@/src/modules/auth/login/components/LoginFormSkeleton";
 
 export default function LoginPage() {
   return (

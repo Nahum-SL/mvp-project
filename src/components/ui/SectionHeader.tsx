@@ -1,4 +1,4 @@
-import BreadcrumbAuto from "../../features/admin/components/BreadcrumbAuto";
+import BreadcrumbAuto from "../../modules/admin/components/BreadcrumbAuto";
 import { cn } from "@/src/lib/utils";
 
 interface SectionHeaderProps {

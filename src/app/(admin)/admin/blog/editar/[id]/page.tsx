@@ -1,6 +1,6 @@
-import PageHeader from "@/src/features/admin/components/PageHeader";
-import { PostForm } from "@/src/features/admin/blog/post/components/PostForm";
-import { getPostById } from "@/src/features/admin/blog/post/api/post.query";
+import PageHeader from "@/src/modules/admin/components/PageHeader";
+import { PostForm } from "@/src/modules/admin/blog/post/components/PostForm";
+import { getPostById } from "@/src/modules/admin/blog/post/api/post.query";
 
 interface Props {
   params: Promise<{id: string}>;
