@@ -48,7 +48,7 @@ src/
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/tu-usuario/asescon-frontend.git
+git clone https://github.com/Nahum-SL/asescon-frontend.git
 
 # Entrar al proyecto
 cd asescon-frontend
@@ -87,7 +87,7 @@ pnpm run start
 Crear un archivo `.env.local` en la raíz del proyecto:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
 NEXT_PUBLIC_APP_NAME=Asescon
 ```
 
