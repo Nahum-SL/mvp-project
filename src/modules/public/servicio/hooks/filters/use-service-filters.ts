@@ -3,7 +3,9 @@
 
 import { useMemo } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+// State helper
 import { parseUrlParamsToFilters } from "../../utils/service-filter.helpers";
+// Types
 import type {
   BusinessTypeID,
   PainPointID,

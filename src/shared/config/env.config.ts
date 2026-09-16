@@ -6,7 +6,7 @@ interface EnvConfig {
 
 export const envConfig: EnvConfig = {
     apiUrl:
-      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
+      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
     isDev: process.env.NODE_ENV === 'development',
     isProd: process.env.NODE_ENV === 'production',
 }

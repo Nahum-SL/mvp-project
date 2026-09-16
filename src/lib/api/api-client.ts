@@ -1,5 +1,5 @@
 // Url del backend en Nestjs
-const API_URL = process.env.API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 type ApiClientOptions = RequestInit & {
   token?: string;
@@ -9,7 +9,10 @@ export async function apiClient<T>(
   endpoint: string,
   { token, headers, ...options }: ApiClientOptions = {},
 ): Promise<T> {
-  // Validar que la ruta API exista
+  console.log("🔵 API_URL:", API_URL);
+  console.log("🔵 ENDPOINT:", endpoint);
+  console.log("🔵 FULL URL:", `${API_URL}${endpoint}`);
+
   if (!API_URL) {
     throw new Error("API_URL is not defined.");
   }
@@ -23,6 +26,9 @@ export async function apiClient<T>(
       ...headers,
     },
   });
+
+  console.log("🟢 STATUS:", response.status);
+  console.log("🟢 URL:", response.url);
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}));

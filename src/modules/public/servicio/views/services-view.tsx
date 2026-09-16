@@ -45,7 +45,7 @@ export function ServicesView() {
 
   const hasRecommendationContext =
     !!filters.businessType || !!filters.painPoint;
-
+    
   return (
     <>
       <ServiceHero

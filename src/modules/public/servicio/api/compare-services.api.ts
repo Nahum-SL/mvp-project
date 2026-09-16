@@ -4,7 +4,6 @@ import type {
 } from "@/src/types/servicio/recommendation";
 
 import { apiClient } from "@/src/lib/api/api-client";
-import { API_URL } from "@/src/lib/api-url";
 import { ApiResponse } from "@/src/shared";
 
 export async function compareServices(

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 // Componentes
 import { ServicesView } from "@/src/modules/public/servicio/views/services-view";
-import { getPublicServices } from "@/src/modules/public/servicio/api/servicio-public.query";
 
 interface Props {
   searchParams: { type?: string; pain?: string; q?: string };
@@ -31,13 +30,11 @@ export async function generateMetadata({
   };
 }
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
+// interface PageProps {
+//   params: Promise<{ slug: string }>;
+// }
 
-export default async function ServiciosPage({params}: PageProps) {
-  const { slug } = await params;
-  const service = await getPublicServices();
+export default function ServiciosPage() {
 
   return (
     <main>
