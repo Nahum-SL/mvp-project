@@ -1,8 +1,10 @@
-import { handleResponse } from "@/src/lib/handle-response";
-import { getBaseUrl } from "@/src/lib/get-base-url"; 
+'use server';
+
+import { serverApiClient } from "@/src/lib/api/server-api-client";
+import { ApiResponse } from "@/src/shared";
 import type { DashboardStats } from "@/src/types/admin/dashboard-stats";
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const res = await fetch(`${getBaseUrl()}/api/admin/dashboard/stats`);
-  return handleResponse<DashboardStats>(res);
+  const res = await serverApiClient<ApiResponse<DashboardStats>>("/admin/stats");
+  return res.data;
 }

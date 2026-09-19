@@ -18,6 +18,7 @@ interface Props {
 }
 
 export function PostRow({ post }: Props) {
+  // Zustand
   const { openDeleteModal, openPreviewDrawer } = usePostActions();
 
   return (

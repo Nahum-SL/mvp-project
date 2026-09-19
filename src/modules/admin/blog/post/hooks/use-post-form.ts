@@ -1,25 +1,26 @@
 "use client";
-import { useRouter } from "next/navigation";
 
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+// Notificacion
 import { toast } from "sonner";
-
+// Schema
 import {
   postSchema,
   type PostFormInput,
   type PostFormValues,
 } from "../schemas/blog-post-schema";
-
+// Actions
 import { useCreatePost, useUpdatePost } from "./use-post-mutation";
+// Manejo de la IMAGEN
 import { useImagePreview } from "@/src/shared/hooks/form/use-image-preview";
+// Manejo del auto completado del SLUG
 import { useAutoSlug } from "@/src/shared/hooks/form/use-auto-slug";
-
 // Utils
 import { getPostDefaultValues } from "../utils/post-default-values";
 import { buildPostFormData } from "../utils/post-form-data";
-
+// Types
 import type { BlogPost } from "@/src/types/blog/blogPost";
 
 interface UsePostFormProps {

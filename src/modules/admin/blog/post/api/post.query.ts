@@ -1,8 +1,11 @@
+'use server';
+
 import type { BlogPost } from "@/src/types/blog/blogPost";
 import type { PostFilters } from "../store/post.types";
 import type { PaginatedResponse } from "@/src/types/api/paginated-response";
-import { handleResponse } from "@/src/lib/handle-response";
-import { API_URL } from "@/src/lib/api-url";
+import { serverApiClient } from "@/src/lib/api/server-api-client";
+import { ApiResponse } from "@/src/shared";
+
 
 export async function getAdminPosts(
   filters: PostFilters,
@@ -24,14 +27,14 @@ export async function getAdminPosts(
   params.set("page", String(filters.page));
   params.set("limit", String(filters.limit));
 
-  const res = await fetch(
-    `${API_URL}/post/admin?${params.toString()}`,
+  const res = await serverApiClient<ApiResponse<PaginatedResponse<BlogPost>>>(
+    `/post/admin?${params.toString()}`,
   );
 
-  return handleResponse<PaginatedResponse<BlogPost>>(res);
+  return res.data;
 }
 
 export async function getPostById(id: number): Promise<BlogPost> {
-  const res = await fetch(`${API_URL}/post/${id}`);
-  return handleResponse<BlogPost>(res);
+  const res = await serverApiClient<ApiResponse<BlogPost>>(`/post/${id}`);
+  return res.data;
 }

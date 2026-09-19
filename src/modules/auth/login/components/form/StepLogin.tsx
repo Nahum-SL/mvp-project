@@ -1,18 +1,25 @@
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import Link from "next/link";
-import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+// Framer Motion
 import { motion } from "framer-motion";
+// Icons
+import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+// Schema y values
 import { loginSchema, type LoginFormValues } from "../../schema";
+// Action
 import { loginAction } from "../../action";
+// Cajas de texto
 import { AuthInput } from "../AuthInput";
-import { useRouter } from "next/navigation";
 
 interface StepLoginProps {
   onSuccess: (email: string) => void;
   onError: (msg: string | null) => void;
 }
+
+
 
 export const StepLogin = ({ onSuccess, onError }: StepLoginProps) => {
   const router = useRouter();
@@ -30,20 +37,32 @@ export const StepLogin = ({ onSuccess, onError }: StepLoginProps) => {
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
     onError(null);
+
     const result = await loginAction(data);
 
+    console.log("🔐 LOGIN RESULT:", result);
+
     if ("error" in result && result.error) {
+      console.log("❌ LOGIN ERROR");
       onError(result.error);
       setIsLoading(false);
-    } else if ("requires2FA" in result && result.requires2FA) {
+    }
+
+    if ("requires2FA" in result && result.requires2FA) {
+      console.log("🔐 2FA REQUERIDO:", result.email);
+      setIsLoading(false);
       onSuccess(result.email);
-    } else if ("success" in result && result.success) {
+    }
+    if ("success" in result && result.success) {
+      console.log("✅ LOGIN SUCCESS");
       const role = result.user?.role;
+
       router.push(
         role === "OWNER" || role === "ADMIN" ? "/admin" : "/intranet",
       );
-      router.refresh();
     }
+
+    router.refresh();
   };
 
   return (

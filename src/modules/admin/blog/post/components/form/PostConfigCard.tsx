@@ -13,14 +13,14 @@ interface Props {
   isPending: boolean;
   isEditing?: boolean;
 }
-// 
+//
 export const PostConfigCard = ({ categories, isPending, isEditing }: Props) => {
   // Transformamos las categorías al formato esperado por el FormSelect
   const categoryOptions = categories.map((cat) => ({
     value: cat.id,
     label: cat.name,
   }));
-  
+
   return (
     <FormAside>
       {/* SECCIÓN CLASIFICACIÓN (CATEGORÍAS) */}
@@ -45,7 +45,11 @@ export const PostConfigCard = ({ categories, isPending, isEditing }: Props) => {
       </div>
 
       {/* BOTÓN DE ACCIÓN PRINCIPAL */}
-      <FormActions isPending={isPending} isEditing={isEditing}/>
+      <FormActions
+        cancelHref="/admin/blog"
+        isPending={isPending}
+        isEditing={isEditing}
+      />
     </FormAside>
   );
 };

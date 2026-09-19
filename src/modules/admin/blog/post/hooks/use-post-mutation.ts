@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+// Actions
 import { createPost, updatePost, deletePost } from "../api/post.mutation";
-
+// Types
 import type { BlogPost } from "@/src/types/blog/blogPost";
-
+// Querys
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
+// Zustand
 import { usePostFilters } from "../store/post.selectors";
 import { PostFilters } from "../store/post.types";
 

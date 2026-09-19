@@ -10,6 +10,6 @@ export async function getPublicServices(): Promise<Service[]> {
 }
 
 export async function getPublicServiceBySlug(slug: string): Promise<Service> {
-  const res = await apiClient<ApiResponse<Service[]>>(`/servicio/${slug}`);
-  return res.data[0];
+  const res = await apiClient<ApiResponse<Service>>(`/servicio/${slug}`);
+  return res.data;
 }

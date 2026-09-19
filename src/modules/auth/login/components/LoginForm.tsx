@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+// Framer Motion
 import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+// Icons
+import { AlertCircle, CheckCircle2 } from "lucide-react";
+// Steps
 import { StepLogin } from "./form/StepLogin";
 import { StepOTP } from "./form/StepOTP";
-import { AlertCircle, CheckCircle2 } from "lucide-react";
+// Utils
 import { cn } from "@/src/lib/utils";
-import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -50,6 +54,7 @@ export const LoginForm = () => {
             <StepLogin
               key="step-1"
               onSuccess={(email) => {
+                console.log("➡️ CAMBIANDO A 2FA:", email);
                 setAdminEmail(email);
                 setStep("2fa");
               }}
