@@ -4,7 +4,7 @@ import { z } from "zod";
 // Create
 // =======================
 
-export const createLinkSchema = z.object({
+export const intranetSchema = z.object({
   title: z
     .string()
     .trim()
@@ -37,15 +37,15 @@ export const createLinkSchema = z.object({
 // Update
 // =======================
 
-export const updateLinkSchema = createLinkSchema.partial();
+export const updateLinkSchema = intranetSchema.partial();
 
 // =======================
 // Types
 // =======================
 
-export type CreateLinkInput = z.infer<typeof createLinkSchema>;
+export type CreateLinkInput = z.infer<typeof intranetSchema>;
 export type UpdateLinkInput = z.infer<typeof updateLinkSchema>;
 
 // Tipos para los formularios y acciones
-export type IntranetLinkFormInput = z.input<typeof createLinkSchema>;
-export type IntranetLinkValues = z.output<typeof createLinkSchema>;
+export type IntranetLinkFormInput = z.input<typeof intranetSchema>;
+export type IntranetLinkValues = z.output<typeof intranetSchema>;

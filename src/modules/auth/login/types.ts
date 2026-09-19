@@ -13,7 +13,7 @@ export interface AuthResponse {
 
 export type LoginActionResult =
   | {
-      success: true;
+      success: boolean;
       user: {
         id: string;
         name: string;

@@ -9,7 +9,7 @@ export default function NuevoServicioPage() {
       subtitle="Configura la oferta comercial para el selector inteligente."
        backHref="/admin/servicio"
       />
-      {/* <ServiceForm /> */}
+      <ServiceForm />
     </div>
   );
 }

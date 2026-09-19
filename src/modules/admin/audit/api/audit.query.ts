@@ -1,16 +1,17 @@
+'use server';
+
+import { serverApiClient } from "@/src/lib/api/server-api-client";
+import { ApiResponse } from "@/src/shared";
 import type { AuditLog, AuditStats } from "@/src/types/audit/audit-types";
 
-import { handleResponse } from "@/src/lib/handle-response";
-import { getBaseUrl } from "@/src/lib/get-base-url";
-
 export async function getAuditLogs(): Promise<AuditLog[]> {
-  const res = await fetch(`${getBaseUrl()}/api/admin/audit`);
+  const res = await serverApiClient<ApiResponse<AuditLog[]>>("/audit");
 
-  return handleResponse<AuditLog[]>(res);
+  return res.data;
 }
 
 export async function getAuditStats(): Promise<AuditStats> {
-  const res = await fetch(`${getBaseUrl()}/api/admin/audit/stats`);
+  const res = await serverApiClient<ApiResponse<AuditStats>>("/audit/stats");
 
-  return handleResponse<AuditStats>(res);
+  return res.data;
 }

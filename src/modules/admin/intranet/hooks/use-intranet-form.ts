@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import {
-  intranetLinkSchema,
+  intranetSchema,
   type IntranetLinkFormInput,
   type IntranetLinkValues,
 } from "../schemas/intranet.schema";
@@ -35,7 +35,7 @@ export function useIntranetForm({ initialData }: Props) {
   // ======================
 
   const form = useForm<IntranetLinkFormInput, unknown, IntranetLinkValues>({
-    resolver: zodResolver(intranetLinkSchema),
+    resolver: zodResolver(intranetSchema),
 
     defaultValues: getIntranetDefaultValues({
       initialData,

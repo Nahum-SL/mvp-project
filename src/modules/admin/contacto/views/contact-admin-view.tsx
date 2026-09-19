@@ -1,9 +1,13 @@
 // Ejemplo de uso en la capa views/
 "use client";
 
+// hook
 import { useAdminContacts } from "../hooks/use-contacto-query";
+// Zustand - Store
 import { useContactActions } from "../store/contacto.selector";
+// Table
 import { ContactTable } from "../table/contact-table";
+// Drawer Component
 import { ContactDeleteDialog } from "../drawers/ContactDeleteDialog";
 import { ContactDrawer } from "../drawers/ContactDrawer";
 

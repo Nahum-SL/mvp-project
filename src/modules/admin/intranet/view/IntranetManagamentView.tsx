@@ -1,10 +1,13 @@
 // features/admin/intranet/views/IntranetManagementView.tsx
 "use client";
 
+// Hook
 import { useAdminIntranetLinks } from "../hooks/use-intranet-queries";
-import { LinkHeader } from "../table/LinkHeader"; // Tu componente para título y botón nuevo
+// Components Table
 import { LinkTable } from "../table/LinkTable";
+// View
 import { IntranetPreviewDrawer } from "../drawers/IntranetPreviewDrawer";
+// Delete Modal
 import { DeleteIntranetModal } from "../modals/delete-intranet-modal";
 
 export function IntranetManagementView() {

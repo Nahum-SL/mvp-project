@@ -7,6 +7,7 @@ import type { BlogPost } from "@/src/types/blog/blogPost";
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
 // Zustand
 import { usePostFilters } from "../store/post.selectors";
+// Store - Types
 import { PostFilters } from "../store/post.types";
 
 // ===========

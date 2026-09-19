@@ -1,13 +1,15 @@
-import { handleResponse } from "@/src/lib/handle-response";
+'use server';
+
+import { serverApiClient } from "@/src/lib/api/server-api-client";
+import { ApiResponse } from "@/src/shared";
 import type { IntranetLink } from "@/src/types/intranet/intranet-types";
-import { getBaseUrl } from "@/src/lib/get-base-url";
 
 export async function getIntranetLinks(): Promise<IntranetLink[]> {
-  const res = await fetch(`${getBaseUrl()}/api/admin/intranet`);
-  return handleResponse<IntranetLink[]>(res);
+  const res = await serverApiClient<ApiResponse<IntranetLink[]>>("/intranet/admin");
+  return res.data;
 }
 
 export async function getIntranetLinkById(id: number): Promise<IntranetLink> {
-  const res = await fetch(`${getBaseUrl()}/api/admin/intranet/${id}`);
-  return handleResponse<IntranetLink>(res);
+  const res = await serverApiClient<ApiResponse<IntranetLink>>(`/intranet/${id}`);
+  return res.data;
 }

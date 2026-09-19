@@ -1,11 +1,16 @@
 // src/shared/components/form/ImagePicker.tsx
 "use client";
 
+// Iconos
+import { ImageIcon, X } from "lucide-react";
+// React
 import { useRef } from "react";
 import { useFormContext, FieldValues, Path, PathValue } from "react-hook-form";
+// Next
 import Image from "next/image";
-import { ImageIcon, X } from "lucide-react";
+// Framer Motion
 import { motion, AnimatePresence } from "framer-motion";
+// Util para manejar cambios css
 import { cn } from "@/src/lib/utils";
 
 // Definimos la interfaz usando el genérico TFieldValues para que sea Type-safe
@@ -29,10 +34,15 @@ export function ImagePicker<TFieldValues extends FieldValues = FieldValues>({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Extraemos setValue y register tipados desde el contexto
-  const { setValue, register } = useFormContext<TFieldValues>();
+  // Se corrigio el problema de como manejaba RHF la imagen
+  // Mostrando FileList { length: 0 } 
+  // El problema estaba justo en la interacción entre el register() del <input type="file"> y tu setValue().
+  const { setValue } = useFormContext<TFieldValues>();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
+    console.log("📸 FILE SELECCIONADO:", file);
+    console.log("📸 INSTANCE OF FILE:", file instanceof File);
 
     // 1. Notificamos al hook local para renderizar el ObjectURL en la vista
     onImageChange(file);
@@ -56,8 +66,6 @@ export function ImagePicker<TFieldValues extends FieldValues = FieldValues>({
       fileInputRef.current.value = ""; // Limpiamos el valor nativo del input HTML
     }
   };
-
-  const { ref: rhfRef, ...restRegister } = register(name);
 
   return (
     <section>
@@ -111,13 +119,12 @@ export function ImagePicker<TFieldValues extends FieldValues = FieldValues>({
           )}
         </AnimatePresence>
 
-        {/* Input oculto unificado con RHF de forma segura */}
+        {/* 
+          Input oculto unificado con RHF de forma segura 
+          Ahora simplemente le enviamos ref={fileInputRef}
+        */}
         <input
-          {...restRegister}
-          ref={(e) => {
-            rhfRef(e); // Asigna la referencia interna de React Hook Form
-            fileInputRef.current = e; // Asigna nuestra referencia local para controlar el click manual
-          }}
+          ref={fileInputRef}          
           type="file"
           className="hidden"
           accept="image/jpeg, image/png, image/webp"

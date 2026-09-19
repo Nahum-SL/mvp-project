@@ -78,6 +78,7 @@ export function usePostForm({ initialData }: UsePostFormProps) {
       toast.error(error instanceof Error ? error.message : "Error inesperado");
     }
   };
+
   return {
     form,
     previewUrl,
