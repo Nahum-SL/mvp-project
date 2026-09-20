@@ -11,6 +11,7 @@ import { SunatCalendar } from "../slug/components/tools/SunatCalendar";
 import { GratificationCalc } from "../slug/components/tools/GratificacionCal";
 // Types
 import type { BlogPost } from "@/src/types/blog/blogPost";
+
 interface BlogViewsProps {
   post: BlogPost[];
 }

@@ -27,7 +27,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const posts = await getPublicPosts();
-  console.log(posts)
 
   return (
     <main>

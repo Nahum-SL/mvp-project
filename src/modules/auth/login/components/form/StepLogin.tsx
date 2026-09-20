@@ -40,21 +40,16 @@ export const StepLogin = ({ onSuccess, onError }: StepLoginProps) => {
 
     const result = await loginAction(data);
 
-    console.log("🔐 LOGIN RESULT:", result);
-
     if ("error" in result && result.error) {
-      console.log("❌ LOGIN ERROR");
       onError(result.error);
       setIsLoading(false);
     }
 
     if ("requires2FA" in result && result.requires2FA) {
-      console.log("🔐 2FA REQUERIDO:", result.email);
       setIsLoading(false);
       onSuccess(result.email);
     }
     if ("success" in result && result.success) {
-      console.log("✅ LOGIN SUCCESS");
       const role = result.user?.role;
 
       router.push(

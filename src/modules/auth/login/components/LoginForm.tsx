@@ -54,7 +54,6 @@ export const LoginForm = () => {
             <StepLogin
               key="step-1"
               onSuccess={(email) => {
-                console.log("➡️ CAMBIANDO A 2FA:", email);
                 setAdminEmail(email);
                 setStep("2fa");
               }}

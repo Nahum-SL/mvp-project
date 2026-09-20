@@ -11,7 +11,6 @@ import type { Service } from "@/src/types/servicio/servicio-types";
 // Utils
 
 export function ServiceSlugView({ service}: { service: Service }) {
-  console.log("PAIN POINTS: ",service.painPoints)
 
   return (
     <main>

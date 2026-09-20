@@ -41,8 +41,6 @@ export function ImagePicker<TFieldValues extends FieldValues = FieldValues>({
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    console.log("📸 FILE SELECCIONADO:", file);
-    console.log("📸 INSTANCE OF FILE:", file instanceof File);
 
     // 1. Notificamos al hook local para renderizar el ObjectURL en la vista
     onImageChange(file);

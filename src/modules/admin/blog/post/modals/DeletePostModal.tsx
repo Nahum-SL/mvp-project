@@ -17,7 +17,7 @@ export const DeletePostModal = () => {
   // =========
   // MUTATION
   // =========
-  const { mutate, isPending } = useDeletePost();
+  const {mutate, isPending  } = useDeletePost();
 
   // =========
   // HANDLERS

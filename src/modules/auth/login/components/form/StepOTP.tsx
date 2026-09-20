@@ -14,8 +14,6 @@ export const StepOTP = ({ email, onBack, onError }: StepOTPProps) => {
   const router = useRouter();
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log("🔢 StepOTP render:", email);
   
   const handleVerify = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
@@ -24,7 +22,6 @@ export const StepOTP = ({ email, onBack, onError }: StepOTPProps) => {
 
     const result = await verify2FAAction(email, otp);
 
-    console.log("RESPUESTA", result);
     if ("error" in result && result.error) {
       onError(result.error);
       setIsLoading(false);

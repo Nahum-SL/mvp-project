@@ -1,6 +1,9 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 // Componentes
 import { ServicesView } from "@/src/modules/public/servicio/views/services-view";
+// Skeleton
+import ServiceDashboardSkeleton from "@/src/components/skeletons/ServiceDashboardSkeleton";
 
 interface Props {
   searchParams: { type?: string; pain?: string; q?: string };
@@ -35,10 +38,11 @@ export async function generateMetadata({
 // }
 
 export default function ServiciosPage() {
-
   return (
     <main>
-      <ServicesView />
+      <Suspense fallback={<ServiceDashboardSkeleton/>}>
+        <ServicesView />
+      </Suspense>
     </main>
   );
 }

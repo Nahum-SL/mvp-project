@@ -1,7 +1,5 @@
 import type { BlogPost } from "@/src/types/blog/blogPost";
-
 import { ApiResponse } from "@/src/shared";
-
 import { apiClient } from "@/src/lib/api/api-client";
 
 export async function getPublicPosts(): Promise<BlogPost[]> {

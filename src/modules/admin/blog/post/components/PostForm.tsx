@@ -34,29 +34,10 @@ export const PostForm = ({ initialData }: Props) => {
 
   const { data: categoryOptions = [] } = useCategories();
 
-  const imageValue = form.watch("image");
-
-  console.log("🖼️ RHF IMAGE:", imageValue);
-  console.log(
-    "🖼️ RHF IMAGE instanceof File:",
-    imageValue instanceof File
-  );
-
   return (
     <FormProvider {...form}>
       <form
-        onSubmit={form.handleSubmit(
-          (data) => {
-            console.log("✅ FORMULARIO VÁLIDO");
-            console.log(data);
-
-            onSubmit(data);
-          },
-          (errors) => {
-            console.log("❌ FORMULARIO INVÁLIDO");
-            console.log(errors);
-          },
-        )}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20"
       >
         <div className="lg:col-span-2 space-y-8">

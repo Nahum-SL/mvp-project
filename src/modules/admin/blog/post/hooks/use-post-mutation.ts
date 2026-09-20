@@ -7,8 +7,6 @@ import type { BlogPost } from "@/src/types/blog/blogPost";
 import { POST_QUERY_KEYS } from "../utils/post-query-key";
 // Zustand
 import { usePostFilters } from "../store/post.selectors";
-// Store - Types
-import { PostFilters } from "../store/post.types";
 
 // ===========
 // MUTATIONS
@@ -53,8 +51,9 @@ export const useUpdatePost = () => {
 };
 
 // DELETE
-export const useDeletePost = (filters: PostFilters) => {
+export const useDeletePost = () => {
   const queryClient = useQueryClient();
+  const filters = usePostFilters();
 
   return useMutation({
     mutationFn: deletePost,
@@ -78,7 +77,7 @@ export const useDeletePost = (filters: PostFilters) => {
       return { previousPosts };
     },
 
-    onError: (error, deletedId, context) => {
+    onError: (_error, _deletedId, context) => {
       if (context?.previousPosts) {
         queryClient.setQueryData(
           POST_QUERY_KEYS.lists(filters), // Revertir a la lista previa en caso de error
